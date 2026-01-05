@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter/services.dart';
 
 import 'models/encounter.dart';
 import 'models/partner.dart';
@@ -34,6 +35,11 @@ void main() async {
 
   // 5. Formato de fechas
   await initializeDateFormatting();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(NotchApp());
 }
