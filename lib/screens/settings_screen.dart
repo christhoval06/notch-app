@@ -13,7 +13,7 @@ import 'home_screen.dart';
 // IMPORTS DE MODELOS (Para el reseteo)
 import '../models/encounter.dart';
 import '../models/partner.dart';
-import '../models/user_progress.dart';
+import '../models/monthly_progress.dart';
 import '../models/health_log.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -91,7 +91,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       HapticFeedback.heavyImpact();
       await Hive.close();
       // Borrar Hive
-      final boxes = ['encounters', 'partners', 'user_progress', 'health_logs'];
+      final boxes = [
+        'encounters',
+        'partners',
+        'monthly_progress',
+        'health_logs',
+      ];
       for (var boxName in boxes) {
         try {
           // Ahora sí podemos borrar sin miedo porque Hive ya cerró la conexión
@@ -104,7 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // Reabrir cajas vacías para evitar crash
       await Hive.openBox<Encounter>('encounters');
       await Hive.openBox<Partner>('partners');
-      await Hive.openBox<UserProgress>('user_progress');
+      await Hive.openBox<MonthlyProgress>('monthly_progress');
       await Hive.openBox<HealthLog>('health_logs');
 
       // Borrar Secure Storage

@@ -13,7 +13,7 @@ import 'package:notch_app/widgets/pin_pad.dart';
 
 import 'package:notch_app/models/encounter.dart';
 import 'package:notch_app/models/partner.dart';
-import 'package:notch_app/models/user_progress.dart';
+import 'package:notch_app/models/monthly_progress.dart';
 import 'package:notch_app/models/health_log.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -134,7 +134,12 @@ class _AuthScreenState extends State<AuthScreen> {
       await Hive.close();
 
       // 2. BORRAR LOS ARCHIVOS FÍSICOS
-      final boxes = ['encounters', 'partners', 'user_progress', 'health_logs'];
+      final boxes = [
+        'encounters',
+        'partners',
+        'monthly_progress',
+        'health_logs',
+      ];
 
       for (var boxName in boxes) {
         try {
@@ -149,7 +154,7 @@ class _AuthScreenState extends State<AuthScreen> {
       // Reabrimos las cajas vacías para que el Home y otras pantallas funcionen
       await Hive.openBox<Encounter>('encounters');
       await Hive.openBox<Partner>('partners');
-      await Hive.openBox<UserProgress>('user_progress');
+      await Hive.openBox<MonthlyProgress>('monthly_progress');
       await Hive.openBox<HealthLog>('health_logs');
 
       // --- FASE 3: BORRADO DE CREDENCIALES ---
