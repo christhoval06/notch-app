@@ -56,12 +56,6 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
 
             return Scaffold(
               backgroundColor: const Color(0xFF121212),
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                title: Text(
-                  isCurrentMonth ? "Temporada Actual 🏆" : "Historial",
-                ),
-              ),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(

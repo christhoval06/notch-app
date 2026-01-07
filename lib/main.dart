@@ -3,14 +3,17 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
+import 'package:notch_app/widgets/app_lifecycle_observer.dart';
 
 import 'models/encounter.dart';
 import 'models/partner.dart';
-import 'models/user_progress.dart';
+import 'models/monthly_progress.dart';
 import 'models/health_log.dart';
 
 import 'services/notification_service.dart';
 import 'screens/auth_screen.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   // 1. Inicializar Flutter
@@ -24,13 +27,13 @@ void main() async {
   // 3. Registrar el Adaptador (Generado por build_runner)
   Hive.registerAdapter(EncounterAdapter());
   Hive.registerAdapter(PartnerAdapter());
-  Hive.registerAdapter(UserProgressAdapter());
+  Hive.registerAdapter(MonthlyProgressAdapter());
   Hive.registerAdapter(HealthLogAdapter());
 
   // 4. Abrir la caja de datos (Si no existe, la crea)
   await Hive.openBox<Encounter>('encounters');
   await Hive.openBox<Partner>('partners');
-  await Hive.openBox<UserProgress>('user_progress');
+  await Hive.openBox<MonthlyProgress>('monthly_progress');
   await Hive.openBox<HealthLog>('health_logs');
 
   // 5. Formato de fechas
@@ -48,6 +51,7 @@ class NotchApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'NOTCH',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -65,7 +69,7 @@ class NotchApp extends StatelessWidget {
         ),
       ),
       // La primera pantalla es la de Seguridad (Biometría)
-      home: AuthScreen(),
+      home: AppLifecycleObserver(child: AuthScreen()),
     );
   }
 }

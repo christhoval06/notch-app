@@ -33,7 +33,7 @@ class _AuthScreenState extends State<AuthScreen> {
   void initState() {
     super.initState();
     // Intentar biometría al iniciar (opcional, o dejar que el usuario toque el botón)
-    _authenticateBiometric();
+    // _authenticateBiometric();
 
     _checkBiometricAvailability();
   }
