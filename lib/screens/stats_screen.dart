@@ -2,9 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:notch_app/screens/insights_screen.dart';
 import '../models/encounter.dart';
-import '../utils/translations.dart';
 
 class StatsScreen extends StatelessWidget {
   @override

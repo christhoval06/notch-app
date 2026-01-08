@@ -9,6 +9,7 @@ import 'models/encounter.dart';
 import 'models/partner.dart';
 import 'models/monthly_progress.dart';
 import 'models/health_log.dart';
+import 'models/fake_task.dart';
 
 import 'services/notification_service.dart';
 import 'screens/auth_screen.dart';
@@ -29,12 +30,14 @@ void main() async {
   Hive.registerAdapter(PartnerAdapter());
   Hive.registerAdapter(MonthlyProgressAdapter());
   Hive.registerAdapter(HealthLogAdapter());
+  Hive.registerAdapter(FakeTaskAdapter());
 
   // 4. Abrir la caja de datos (Si no existe, la crea)
   await Hive.openBox<Encounter>('encounters');
   await Hive.openBox<Partner>('partners');
   await Hive.openBox<MonthlyProgress>('monthly_progress');
   await Hive.openBox<HealthLog>('health_logs');
+  await Hive.openBox<FakeTask>('fake_tasks');
 
   // 5. Formato de fechas
   await initializeDateFormatting();

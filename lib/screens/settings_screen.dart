@@ -236,21 +236,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       const SizedBox(height: 20),
                       const Text(
-                        "Hola, soy [Tu Nombre]. Creé NOTCH porque creo que los datos íntimos deben permanecer privados. Esta app no tiene servidores, no tiene trackers y tú eres el único dueño de tu información.",
+                        "Hola, soy @christhoval. Creé NOTCH para el registro privado y seguro de la actividad sexual. Porque creo que los datos íntimos deben permanecer privados, esta app no tiene servidores, no tiene trackers y tú eres el único dueño de tu información.",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.grey),
                       ),
-                      const SizedBox(height: 30),
-                      ElevatedButton.icon(
-                        icon: const Icon(Icons.coffee),
-                        label: const Text("Apoya el proyecto"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber[800],
-                        ),
-                        onPressed: () => _launchContact(
-                          'https://www.buymeacoffee.com/tuusuario',
-                        ),
-                      ),
+                      // const SizedBox(height: 30),
+                      // ElevatedButton.icon(
+                      //   icon: const Icon(Icons.coffee),
+                      //   label: const Text("Apoya el proyecto"),
+                      //   style: ElevatedButton.styleFrom(
+                      //     backgroundColor: Colors.amber[800],
+                      //   ),
+                      //   onPressed: () => _launchContact(
+                      //     'https://www.buymeacoffee.com/tuusuario',
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -263,18 +263,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: "Contacto / Soporte",
             subtitle: "Reportar bugs o sugerir ideas",
             onTap: () => _launchContact(
-              'mailto:soporte@notchapp.com?subject=Soporte NOTCH',
+              'mailto:me@christhoval.com?subject=Soporte NOTCH',
             ),
           ),
-          _buildTile(
-            icon: Icons.policy_outlined,
-            color: Colors.grey,
-            title: "Política de Privacidad",
-            subtitle: "Términos de uso y manejo de datos",
-            onTap: () => _launchContact(
-              'https://tudominio.com/privacy',
-            ), // Crea una web simple gratis
-          ),
+          // _buildTile(
+          //   icon: Icons.policy_outlined,
+          //   color: Colors.grey,
+          //   title: "Política de Privacidad",
+          //   subtitle: "Términos de uso y manejo de datos",
+          //   onTap: () => _launchContact(
+          //     'https://tudominio.com/privacy',
+          //   ), // Crea una web simple gratis
+          // ),
 
           // 4. ZONA DE PELIGRO
           _buildSectionHeader("ZONA DE PELIGRO"),
