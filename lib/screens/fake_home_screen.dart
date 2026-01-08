@@ -27,6 +27,7 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
           content: TextField(
             controller: titleController,
             autofocus: true,
+            style: TextStyle(color: Colors.black87),
             decoration: const InputDecoration(hintText: 'Ej. Comprar leche'),
           ),
           actions: <Widget>[
@@ -128,40 +129,30 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: const Icon(Icons.delete_outline, color: Colors.white),
                 ),
-                child: Card(
-                  elevation: 1.5, // Sombra ligera para cada tarjeta
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
+                child: ListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                  leading: Checkbox(
+                    value: task.isDone,
+                    activeColor: Colors.blueAccent, // Color al marcar
+                    onChanged: (value) {
+                      task.isDone = value!;
+                      task.save();
+                    },
                   ),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    leading: Checkbox(
-                      value: task.isDone,
-                      activeColor: Colors.blueAccent, // Color al marcar
-                      onChanged: (value) {
-                        task.isDone = value!;
-                        task.save();
-                      },
-                    ),
-                    title: Text(
-                      task.title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        decoration: task.isDone
-                            ? TextDecoration.lineThrough
-                            : null,
-                        decorationColor: Colors.black54,
-                        decorationThickness: 1.5,
-                        // Color del texto: Negro si no está hecha, gris si está hecha
-                        color: task.isDone ? Colors.black45 : Colors.black87,
-                      ),
+                  title: Text(
+                    task.title,
+                    style: TextStyle(
+                      fontSize: 16,
+                      decoration: task.isDone
+                          ? TextDecoration.lineThrough
+                          : null,
+                      decorationColor: Colors.black54,
+                      decorationThickness: 1.5,
+                      // Color del texto: Negro si no está hecha, gris si está hecha
+                      color: task.isDone ? Colors.black45 : Colors.black87,
                     ),
                   ),
                 ),
