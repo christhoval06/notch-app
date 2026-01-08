@@ -68,8 +68,10 @@ class NotchApp extends StatelessWidget {
           secondary: Colors.purpleAccent,
         ),
       ),
-      // La primera pantalla es la de Seguridad (Biometría)
-      home: AppLifecycleObserver(child: AuthScreen()),
+      builder: (context, child) {
+        return AppLifecycleObserver(child: child!);
+      },
+      home: AuthScreen(),
     );
   }
 }

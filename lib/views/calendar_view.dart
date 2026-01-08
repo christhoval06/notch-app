@@ -34,6 +34,7 @@ class _CalendarViewState extends State<CalendarView> {
         final selectedEncounters = _getEncountersForDay(_selectedDay!, box);
         return Column(
           children: [
+            const SizedBox(height: 20),
             _buildCalendar(box),
             const SizedBox(height: 20),
             Padding(

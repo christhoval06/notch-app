@@ -16,6 +16,7 @@ class _AppLifecycleObserverState extends State<AppLifecycleObserver>
   @override
   void initState() {
     super.initState();
+    print("======== [GLOBAL] App Lifecycle State ========");
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -28,12 +29,25 @@ class _AppLifecycleObserverState extends State<AppLifecycleObserver>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+
+    // --- AÑADE ESTE PRINT ---
+    print("======== [GLOBAL] App Lifecycle State Changed: $state ========");
+
     if (state == AppLifecycleState.paused) {
-      // Usamos la clave global para navegar, sin necesitar un context local
-      navigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => AuthScreen()),
-        (Route<dynamic> route) => false,
-      );
+      // --- AÑADE ESTE OTRO PRINT ---
+      print("======== [GLOBAL] App Paused. Locking now... ========");
+
+      // Comprobación de seguridad
+      if (navigatorKey.currentState != null) {
+        navigatorKey.currentState?.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => AuthScreen()),
+          (Route<dynamic> route) => false,
+        );
+      } else {
+        print(
+          "======== [ERROR] navigatorKey.currentState es nulo. No se puede navegar. ========",
+        );
+      }
     }
   }
 

@@ -27,7 +27,6 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             if (!snapshot.hasData || box.isEmpty) {
               return Scaffold(
                 backgroundColor: const Color(0xFF121212),
-                appBar: AppBar(backgroundColor: Colors.transparent),
                 body: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(40.0),
