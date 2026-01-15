@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notch_app/models/encounter.dart';
 import 'package:notch_app/models/partner.dart';
+import 'package:notch_app/widgets/partner_avatar.dart';
 import 'package:uuid/uuid.dart';
 
 import 'partner_detail_screen.dart'; // La crearemos en el paso 4
@@ -59,20 +60,23 @@ class BlackBookScreen extends StatelessWidget {
                 // No existe perfil aún, no pasa nada
               }
 
+              final tempPartner =
+                  partnerProfile ??
+                  Partner(
+                    id: '',
+                    name: name,
+                    avatarType: AvatarType.initial,
+                    avatarContent: Colors
+                        .primaries[name.hashCode % Colors.primaries.length]
+                        .value
+                        .toString(),
+                  );
+
               return Card(
                 color: Colors.grey[900],
                 margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.blueAccent.withOpacity(0.2),
-                    child: Text(
-                      name[0].toUpperCase(),
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  leading: PartnerAvatar(partner: tempPartner, radius: 22),
                   title: Text(
                     name,
                     style: TextStyle(
@@ -90,11 +94,15 @@ class BlackBookScreen extends StatelessWidget {
                     size: 14,
                   ),
                   onTap: () {
-                    // Si no existe el perfil, lo creamos temporalmente en memoria o DB
                     if (partnerProfile == null) {
+                      final randomColor = Colors
+                          .primaries[name.hashCode % Colors.primaries.length];
+
                       partnerProfile = Partner(
                         id: const Uuid().v4(),
                         name: name,
+                        avatarType: AvatarType.initial,
+                        avatarContent: randomColor.value.toString(),
                       );
                       partnerBox.add(partnerProfile!);
                     }

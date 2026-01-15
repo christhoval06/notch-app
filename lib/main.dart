@@ -3,13 +3,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
-import 'package:notch_app/widgets/app_lifecycle_observer.dart';
 
 import 'models/encounter.dart';
 import 'models/partner.dart';
 import 'models/monthly_progress.dart';
 import 'models/health_log.dart';
 import 'models/fake_task.dart';
+
+import 'package:notch_app/widgets/app_lifecycle_observer.dart';
 
 import 'services/notification_service.dart';
 import 'screens/auth_screen.dart';
@@ -28,6 +29,7 @@ void main() async {
   // 3. Registrar el Adaptador (Generado por build_runner)
   Hive.registerAdapter(EncounterAdapter());
   Hive.registerAdapter(PartnerAdapter());
+  Hive.registerAdapter(AvatarTypeAdapter());
   Hive.registerAdapter(MonthlyProgressAdapter());
   Hive.registerAdapter(HealthLogAdapter());
   Hive.registerAdapter(FakeTaskAdapter());

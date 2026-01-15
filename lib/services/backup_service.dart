@@ -43,7 +43,15 @@ class BackupService {
           .toList();
 
       final partners = Hive.box<Partner>('partners').values
-          .map((p) => {'id': p.id, 'name': p.name, 'notes': p.notes})
+          .map(
+            (p) => {
+              'id': p.id,
+              'name': p.name,
+              'notes': p.notes,
+              'avatarType': p.avatarType.index,
+              'avatarContent': p.avatarContent,
+            },
+          )
           .toList();
 
       final health = Hive.box<HealthLog>('health_logs').values
@@ -142,9 +150,15 @@ class BackupService {
 
       // Rellenar Partners
       for (var p in data['partners']) {
-        Hive.box<Partner>(
-          'partners',
-        ).add(Partner(id: p['id'], name: p['name'], notes: p['notes']));
+        Hive.box<Partner>('partners').add(
+          Partner(
+            id: p['id'],
+            name: p['name'],
+            notes: p['notes'],
+            avatarType: p['avatarType'],
+            avatarContent: p['avatarContent'],
+          ),
+        );
       }
 
       // Rellenar Health

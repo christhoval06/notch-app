@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/models/encounter.dart';
+import 'package:notch_app/screens/share_preview_screen.dart';
 import '../models/monthly_progress.dart';
 import '../utils/gamification_engine.dart';
 
@@ -11,6 +13,45 @@ class TrophyRoomScreen extends StatefulWidget {
 
 class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   String? _selectedMonthId;
+  bool _isSharing = false;
+
+  Future<void> _shareRank() async {
+    setState(() => _isSharing = true);
+    // await _shareService.captureAndShareWidget(
+    //   context,
+    //   widgetKey: _shareCardKey,
+    //   text: "¡He alcanzado un nuevo nivel en la app NOTCH! 🏆 #NOTCHapp",
+    // );
+    setState(() => _isSharing = false);
+  }
+
+  void _navigateToSharePreview(MonthlyProgress progress) {
+    // Calculamos los datos adicionales que necesitamos
+    final encounterBox = Hive.box<Encounter>('encounters');
+    final currentMonth = DateFormat('yyyy-MM').parse(progress.monthId);
+
+    final totalEncountersThisMonth = encounterBox.values
+        .where(
+          (e) =>
+              e.date.year == currentMonth.year &&
+              e.date.month == currentMonth.month,
+        )
+        .length;
+
+    final levelData = GamificationEngine.getCurrentLevel(progress.xp);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => SharePreviewScreen(
+          rankName: levelData['name'],
+          currentXp: progress.xp,
+          progressToNextLevel: levelData['progress'],
+          totalEncountersThisMonth: totalEncountersThisMonth,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,59 +188,110 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           ),
         ],
       ),
-      child: Column(
+      child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          Text(
-            isCurrentMonth ? "NIVEL ACTUAL" : "RANGO FINAL",
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
-              letterSpacing: 2,
-              fontSize: 12,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            // Si es un mes pasado y tiene rango final, lo mostramos. Si no, calculamos el nivel.
-            isCurrentMonth
-                ? levelData['name']
-                : (progress.finalRank ?? levelData['name']),
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              shadows: [Shadow(color: Colors.black26, blurRadius: 5)],
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            "${progress.xp} XP",
-            style: const TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          const SizedBox(height: 20),
+          Column(
+            children: [
+              Text(
+                isCurrentMonth ? "NIVEL ACTUAL" : "RANGO FINAL",
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.8),
+                  letterSpacing: 2,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                // Si es un mes pasado y tiene rango final, lo mostramos. Si no, calculamos el nivel.
+                isCurrentMonth
+                    ? levelData['name']
+                    : (progress.finalRank ?? levelData['name']),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  shadows: [Shadow(color: Colors.black26, blurRadius: 5)],
+                ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                "${progress.xp} XP",
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              const SizedBox(height: 20),
 
-          // Solo mostramos la barra de progreso si es la temporada actual
+              // Solo mostramos la barra de progreso si es la temporada actual
+              if (isCurrentMonth)
+                Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: LinearProgressIndicator(
+                        value: levelData['progress'],
+                        minHeight: 12,
+                        backgroundColor: Colors.black38,
+                        color: Colors.amberAccent,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      "Siguiente nivel en ${levelData['next_xp']} XP",
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
+                ),
+            ],
+          ),
+          // Positioned(
+          //   top: -15,
+          //   right: -15,
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       color: Colors.white,
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.black26,
+          //           blurRadius: 10,
+          //           spreadRadius: 2,
+          //         ),
+          //       ],
+          //     ),
+          //     child: _isSharing
+          //         ? const Padding(
+          //             padding: EdgeInsets.all(12),
+          //             child: SizedBox(
+          //               width: 24,
+          //               height: 24,
+          //               child: CircularProgressIndicator(strokeWidth: 2),
+          //             ),
+          //           )
+          //         : IconButton(
+          //             icon: const Icon(Icons.share, color: Colors.blueAccent),
+          //             onPressed: _shareRank,
+          //           ),
+          //   ),
+          // ),
           if (isCurrentMonth)
-            Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: LinearProgressIndicator(
-                    value: levelData['progress'],
-                    minHeight: 12,
-                    backgroundColor: Colors.black38,
-                    color: Colors.amberAccent,
-                  ),
+            Positioned(
+              top: -15,
+              right: -15,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
                 ),
-                const SizedBox(height: 5),
-                Text(
-                  "Siguiente nivel en ${levelData['next_xp']} XP",
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    fontSize: 10,
-                  ),
+                child: IconButton(
+                  icon: const Icon(Icons.share, color: Colors.blueAccent),
+                  onPressed: () => _navigateToSharePreview(progress),
                 ),
-              ],
+              ),
             ),
         ],
       ),
