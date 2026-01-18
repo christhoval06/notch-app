@@ -14,6 +14,8 @@ class _CalendarViewState extends State<CalendarView> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +37,42 @@ class _CalendarViewState extends State<CalendarView> {
         return Column(
           children: [
             const SizedBox(height: 20),
+
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(
+            //     horizontal: 16.0,
+            //     vertical: 8.0,
+            //   ),
+            //   child: ToggleButtons(
+            //     isSelected: [
+            //       _calendarFormat == CalendarFormat.month,
+            //       _calendarFormat == CalendarFormat.week,
+            //     ],
+            //     onPressed: (index) {
+            //       setState(() {
+            //         _calendarFormat = index == 0
+            //             ? CalendarFormat.month
+            //             : CalendarFormat.week;
+            //       });
+            //     },
+            //     borderRadius: BorderRadius.circular(8.0),
+            //     selectedColor: Colors.white,
+            //     color: Colors.grey,
+            //     fillColor: Colors.blueAccent.withOpacity(0.3),
+            //     borderColor: Colors.grey[700],
+            //     selectedBorderColor: Colors.blueAccent,
+            //     children: const [
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(horizontal: 16),
+            //         child: Text("Mes"),
+            //       ),
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(horizontal: 16),
+            //         child: Text("Semana"),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             _buildCalendar(box),
             const SizedBox(height: 20),
             Padding(
@@ -87,6 +125,7 @@ class _CalendarViewState extends State<CalendarView> {
         firstDay: DateTime.utc(2020, 1, 1),
         lastDay: DateTime.utc(2030, 12, 31),
         focusedDay: _focusedDay,
+        calendarFormat: _calendarFormat,
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
 
         // Estilos del calendario (Dark Mode)
@@ -122,6 +161,16 @@ class _CalendarViewState extends State<CalendarView> {
             _selectedDay = selectedDay;
             _focusedDay = focusedDay;
           });
+        },
+        onFormatChanged: (format) {
+          if (_calendarFormat != format) {
+            setState(() {
+              _calendarFormat = format;
+            });
+          }
+        },
+        onPageChanged: (focusedDay) {
+          _focusedDay = focusedDay;
         },
       ),
     );

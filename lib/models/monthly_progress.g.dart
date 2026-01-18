@@ -21,13 +21,14 @@ class MonthlyProgressAdapter extends TypeAdapter<MonthlyProgress> {
       xp: fields[1] as int,
       unlockedBadges: (fields[2] as List).cast<String>(),
       finalRank: fields[3] as String?,
+      longestStreakOfMonth: fields[4] == null ? 0 : fields[4] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, MonthlyProgress obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.monthId)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class MonthlyProgressAdapter extends TypeAdapter<MonthlyProgress> {
       ..writeByte(2)
       ..write(obj.unlockedBadges)
       ..writeByte(3)
-      ..write(obj.finalRank);
+      ..write(obj.finalRank)
+      ..writeByte(4)
+      ..write(obj.longestStreakOfMonth);
   }
 
   @override

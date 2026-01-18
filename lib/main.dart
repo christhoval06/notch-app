@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
+import 'package:notch_app/models/global_progress.dart';
 
 import 'models/encounter.dart';
 import 'models/partner.dart';
@@ -27,6 +28,7 @@ void main() async {
   await Hive.initFlutter();
 
   // 3. Registrar el Adaptador (Generado por build_runner)
+  Hive.registerAdapter(GlobalProgressAdapter());
   Hive.registerAdapter(EncounterAdapter());
   Hive.registerAdapter(PartnerAdapter());
   Hive.registerAdapter(AvatarTypeAdapter());
@@ -40,6 +42,7 @@ void main() async {
   await Hive.openBox<MonthlyProgress>('monthly_progress');
   await Hive.openBox<HealthLog>('health_logs');
   await Hive.openBox<FakeTask>('fake_tasks');
+  await Hive.openBox<GlobalProgress>('global_progress');
 
   // 5. Formato de fechas
   await initializeDateFormatting();

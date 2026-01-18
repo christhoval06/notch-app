@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/utils/gamification_engine.dart';
 import '../services/backup_service.dart';
 import '../services/pdf_service.dart';
 
@@ -19,6 +21,16 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
     setState(() => _isLoading = true);
     try {
       await action();
+
+      if (action == _backupService.createEncryptedBackup) {
+        final unlocked = await AchievementEngine.processEvent(
+          event: AchievementEvent.backupCreated,
+        );
+        if (unlocked.isNotEmpty) {
+          successMsg += " 🏆 ¡Logro Desbloqueado: ${unlocked.first.name}!";
+        }
+      }
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(successMsg), backgroundColor: Colors.green),

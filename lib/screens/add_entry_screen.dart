@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
+import 'package:notch_app/services/achievement_engine.dart';
 import 'package:uuid/uuid.dart';
 import '../models/encounter.dart';
 import '../utils/translations.dart';
@@ -315,26 +316,60 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
       HapticFeedback.heavyImpact();
 
-      String? achievementMsg = await GamificationEngine.processEncounter(
-        newEncounter,
-      );
+      final List<Achievement> unlockedAchievements =
+          await GamificationEngine.processEncounter(newEncounter);
 
-      // Si desbloqueó algo, mostramos feedback
-      if (achievementMsg != null && context.mounted) {
-        // Opcional: Vibración especial
-        HapticFeedback.heavyImpact();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(achievementMsg),
-            backgroundColor: Colors.amber[700],
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+      if (context.mounted) {
+        Navigator.pop(context);
       }
 
-      // 5. Cerrar
-      Navigator.pop(context, true);
+      if (unlockedAchievements.isNotEmpty && context.mounted) {
+        // Usamos un pequeño delay para asegurarnos de que la pantalla anterior se haya reconstruido
+        await Future.delayed(const Duration(milliseconds: 300));
+
+        for (var achievement in unlockedAchievements) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Text(achievement.icon, style: const TextStyle(fontSize: 24)),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "¡Logro Desbloqueado!",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          achievement.name,
+                          style: const TextStyle(color: Colors.white70),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              backgroundColor: Colors.amber[800],
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: const EdgeInsets.all(10),
+              duration: const Duration(seconds: 3),
+            ),
+          );
+          // Esperamos un poco entre cada notificación si hay varias
+          await Future.delayed(const Duration(milliseconds: 500));
+        }
+      }
     } else {
+      HapticFeedback.vibrate();
       print("Validation failed");
     }
   }

@@ -1,53 +1,177 @@
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/services/achievement_engine.dart';
 import '../models/encounter.dart';
 import '../models/monthly_progress.dart';
 
 class GamificationEngine {
   // 1. SISTEMA DE NIVELES (Ranks)
   static const List<Map<String, dynamic>> levels = [
-    {'name': 'Cobre I', 'xp': 0},
-    {'name': 'Cobre II', 'xp': 100},
-    {'name': 'Cobre III', 'xp': 250},
-    {'name': 'Plata I', 'xp': 500},
-    {'name': 'Plata II', 'xp': 800},
-    {'name': 'Plata III', 'xp': 1200},
-    {'name': 'Oro I', 'xp': 1700},
-    {'name': 'Oro II', 'xp': 2300},
-    {'name': 'Oro III', 'xp': 3000},
-    {'name': 'Platino I', 'xp': 4000},
-    {'name': 'Platino II', 'xp': 5500},
-    {'name': 'Platino III', 'xp': 7500},
-    {'name': 'Esmeralda I', 'xp': 10000},
-    {'name': 'Esmeralda II', 'xp': 13000},
-    {'name': 'Esmeralda III', 'xp': 17000},
-    {'name': 'Maestro', 'xp': 22000},
-    {'name': 'Gran Maestro', 'xp': 30000},
+    // Nivel Inicial: Aprendizaje y descubrimiento
+    {
+      'name': 'Iniciado I',
+      'xp': 0,
+      'desc': 'El primer paso en el camino del autoconocimiento íntimo.',
+    },
+    {
+      'name': 'Iniciado II',
+      'xp': 100,
+      'desc': 'Comienzas a reconocer patrones y a entender tus ritmos.',
+    },
+    {
+      'name': 'Iniciado III',
+      'xp': 250,
+      'desc': 'La curiosidad se convierte en un hábito de registro consciente.',
+    },
+
+    // Nivel Intermedio: Práctica y consistencia
+    {
+      'name': 'Practicante I',
+      'xp': 500,
+      'desc': 'La disciplina del registro revela sus primeros frutos.',
+    },
+    {
+      'name': 'Practicante II',
+      'xp': 800,
+      'desc': 'Desarrollas una mayor conciencia de tus deseos y límites.',
+    },
+    {
+      'name': 'Practicante III',
+      'xp': 1200,
+      'desc':
+          'La consistencia demuestra un compromiso con tu bienestar sexual.',
+    },
+
+    // Nivel Avanzado: Habilidad y conocimiento
+    {
+      'name': 'Adepto I',
+      'xp': 1700,
+      'desc':
+          'Dominas las herramientas y comienzas a experimentar con confianza.',
+    },
+    {
+      'name': 'Adepto II',
+      'xp': 2300,
+      'desc': 'Tu entendimiento de la dinámica íntima se profundiza.',
+    },
+    {
+      'name': 'Adepto III',
+      'xp': 3000,
+      'desc':
+          'La calidad de tus experiencias se vuelve tan importante como la cantidad.',
+    },
+
+    // Nivel Experto: Refinamiento y destreza
+    {
+      'name': 'Virtuoso I',
+      'xp': 4000,
+      'desc': 'Tus acciones son intencionadas y tus registros, detallados.',
+    },
+    {
+      'name': 'Virtuoso II',
+      'xp': 5500,
+      'desc':
+          'Inspiras confianza y demuestras una gran habilidad comunicativa.',
+    },
+    {
+      'name': 'Virtuoso III',
+      'xp': 7500,
+      'desc': 'La intimidad se convierte en una forma de arte que dominas.',
+    },
+
+    // Nivel de Maestría: Profundo entendimiento
+    {
+      'name': 'Conocedor I',
+      'xp': 10000,
+      'desc': 'Posees un conocimiento profundo de ti mismo y de tus parejas.',
+    },
+    {
+      'name': 'Conocedor II',
+      'xp': 13000,
+      'desc':
+          'Tu experiencia te permite anticipar y crear momentos inolvidables.',
+    },
+    {
+      'name': 'Conocedor III',
+      'xp': 17000,
+      'desc': 'Eres un referente de madurez y salud sexual.',
+    },
+
+    // Niveles Legendarios: La cúspide
+    {
+      'name': 'Maestro',
+      'xp': 22000,
+      'desc':
+          'Has alcanzado la cima del autoconocimiento y la maestría íntima.',
+    },
+    {
+      'name': 'Gran Maestro',
+      'xp': 30000,
+      'desc':
+          'Tu viaje inspira a otros. Has trascendido el simple acto físico.',
+    },
+    {
+      'name': 'Leyenda',
+      'xp': 40000,
+      'desc': 'Tu legado está escrito en las estrellas de la intimidad.',
+    },
   ];
 
-  // 2. DEFINICIÓN DE TROFEOS (Badges)
-  static const Map<String, Map<String, String>> badges = {
-    'rookie': {
-      'name': 'El Debut',
-      'desc': 'Registra tu primer encuentro.',
-      'icon': '🌱',
-    },
-    'legend': {
-      'name': 'Legend',
-      'desc': 'Logra una calificación perfecta de 10/10 en un mes.',
-      'icon': '🦄',
-    },
-    'sprinter': {
-      'name': 'The Sprinter',
-      'desc': '3 encuentros en menos de 24 horas en un mes.',
-      'icon': '⚡',
-    },
-    'safe_player': {
-      'name': 'Safe Player',
-      'desc': 'Racha de 10 encuentros protegidos seguidos en un mes.',
-      'icon': '🛡️',
-    },
-  };
+  // static const List<Map<String, dynamic>> levels = [
+  //     // Nivel Inicial
+  //     {'name': 'Aspirante I', 'xp': 0},
+  //     {'name': 'Aspirante II', 'xp': 100},
+  //     {'name': 'Aspirante III', 'xp': 250},
+
+  //     // Nivel Intermedio
+  //     {'name': 'Explorador I', 'xp': 500},
+  //     {'name': 'Explorador II', 'xp': 800},
+  //     {'name': 'Explorador III', 'xp': 1200},
+
+  //     // Nivel Avanzado
+  //     {'name': 'Conquistador I', 'xp': 1700},
+  //     {'name': 'Conquistador II', 'xp': 2300},
+  //     {'name': 'Conquistador III', 'xp': 3000},
+
+  //     // Nivel Experto
+  //     {'name': 'Titán I', 'xp': 4000},
+  //     {'name': 'Titán II', 'xp': 5500},
+  //     {'name': 'Titán III', 'xp': 7500},
+
+  //     // Nivel de Maestría
+  //     {'name': 'Semidiós I', 'xp': 10000},
+  //     {'name': 'Semidiós II', 'xp': 13000},
+  //     {'name': 'Semidiós III', 'xp': 17000},
+
+  //     // Niveles Finales
+  //     {'name': 'Deidad', 'xp': 22000},
+  //     {'name': 'Ícono', 'xp': 30000},
+  //     {'name': 'Leyenda Viviente', 'xp': 40000},
+  //   ];
+
+  static const List<int> streakMilestones = [
+    3,
+    5,
+    7,
+    10,
+    14,
+    21,
+    30,
+    50,
+    75,
+    100,
+  ];
+
+  static Map<String, int> getNextStreakMilestone(int currentStreak) {
+    // Encuentra el primer hito que es mayor que la racha actual
+    for (int milestone in streakMilestones) {
+      if (currentStreak < milestone) {
+        return {'milestone': milestone, 'remaining': milestone - currentStreak};
+      }
+    }
+    // Si ya se superaron todos, devolvemos el último hito
+    return {'milestone': streakMilestones.last, 'remaining': 0};
+  }
 
   // 3. OBTENER EL PROGRESO DEL MES ACTUAL (Lógica de Reset)
   static Future<MonthlyProgress> getCurrentMonthlyProgress() async {
@@ -74,23 +198,20 @@ class GamificationEngine {
   }
 
   // 4. PROCESAR NUEVO ENCUENTRO
-  static Future<String?> processEncounter(Encounter newEncounter) async {
+  static Future<List<Achievement>> processEncounter(
+    Encounter newEncounter,
+  ) async {
     final progress = await getCurrentMonthlyProgress();
     final encounterBox = Hive.box<Encounter>('encounters');
 
-    // A. CALCULAR XP
+    // 1. CALCULAR XP
     int xpGained = 50 + (newEncounter.rating * 10);
     if (newEncounter.protected) xpGained += 20;
     progress.xp += xpGained;
+    await progress.save();
 
-    // B. VERIFICAR LOGROS
-    List<String> newBadges = [];
-
-    // --- OBTENEMOS AMBOS TIPOS DE DATOS ---
-    // Lista de TODOS los encuentros para logros de "una vez en la vida"
-    final List<Encounter> allEncounters = encounterBox.values.toList();
-
-    // Lista de encuentros SOLO de este mes para logros de temporada
+    // 2. DISPARAR EVENTO DE LOGRO
+    final allEncounters = encounterBox.values.toList()..add(newEncounter);
     final currentMonth = DateTime.now();
     final List<Encounter> monthlyEncounters = allEncounters
         .where(
@@ -100,53 +221,23 @@ class GamificationEngine {
         )
         .toList();
 
-    // Ordenar por fecha reciente (útil para rachas)
-    monthlyEncounters.sort((a, b) => b.date.compareTo(a.date));
+    final streaksData = calculateStreaks(encounterBox);
+    final levelData = getCurrentLevel(progress.xp);
 
-    // --- INICIO DE LAS COMPROBACIONES ---
+    // Preparamos los datos que las reglas podrían necesitar
+    final data = {
+      'newEncounter': newEncounter,
+      'allEncounters': allEncounters,
+      'monthlyEncounters': monthlyEncounters,
+      'streaks': streaksData,
+      'level': levelData,
+    };
 
-    // --- CHECK 1: THE DEBUT (Rookie) ---
-    // Se basa en el total de encuentros. Solo se puede ganar una vez.
-    if (allEncounters.length == 1 && !_hasBadge(progress, 'rookie')) {
-      newBadges.add('rookie');
-    }
-
-    // --- CHECK 2: LEGEND (Rating 10) ---
-    // Se puede ganar cada mes.
-    if (!_hasBadge(progress, 'legend') && newEncounter.rating == 10) {
-      newBadges.add('legend');
-    }
-
-    // --- CHECK 3: SPRINTER (3 en 24h) ---
-    // Se basa en los encuentros del mes actual.
-    if (!_hasBadge(progress, 'sprinter') && monthlyEncounters.length >= 3) {
-      final first = monthlyEncounters[0].date;
-      final third = monthlyEncounters[2].date;
-      if (first.difference(third).inHours < 24) {
-        newBadges.add('sprinter');
-      }
-    }
-
-    // --- CHECK 4: SAFE PLAYER (Racha de 10) ---
-    // Se basa en los encuentros del mes actual.
-    if (!_hasBadge(progress, 'safe_player') && monthlyEncounters.length >= 10) {
-      final recentTen = monthlyEncounters.take(10);
-      if (recentTen.every((e) => e.protected)) {
-        newBadges.add('safe_player');
-      }
-    }
-
-    // C. GUARDAR CAMBIOS
-    if (newBadges.isNotEmpty) {
-      progress.unlockedBadges = List<String>.from(progress.unlockedBadges)
-        ..addAll(newBadges);
-    }
-    await progress.save();
-
-    if (newBadges.isNotEmpty) {
-      return "¡Logro Desbloqueado: ${badges[newBadges.first]!['name']}!";
-    }
-    return null;
+    // Devolvemos la lista de logros desbloqueados
+    return await AchievementEngine.processEvent(
+      event: AchievementEvent.encounterSaved,
+      data: data,
+    );
   }
 
   // 5. HELPER PARA SABER SI UN BADGE YA ESTÁ DESBLOQUEADO EN EL MES
@@ -183,6 +274,7 @@ class GamificationEngine {
   // 7. HELPER PARA ARCHIVAR EL RANGO DEL MES PASADO
   static Future<void> _archiveLastMonthRank() async {
     final box = Hive.box<MonthlyProgress>('monthly_progress');
+    final encounterBox = Hive.box<Encounter>('encounters');
     final lastMonth = DateTime.now().subtract(
       const Duration(days: 15),
     ); // Un día del mes pasado
@@ -195,10 +287,79 @@ class GamificationEngine {
       // Si no tiene rango final, se lo asignamos
       if (lastProgress.finalRank == null) {
         lastProgress.finalRank = getCurrentLevel(lastProgress.xp)['name'];
-        await lastProgress.save();
       }
+
+      if (lastProgress.longestStreakOfMonth == null) {
+        final streaksOfLastMonth = calculateStreaks(
+          encounterBox,
+          monthId: lastMonthId,
+        );
+        lastProgress.longestStreakOfMonth = streaksOfLastMonth['longest'];
+      }
+
+      await lastProgress.save();
     } catch (e) {
       // No había progreso el mes pasado, no hacemos nada
     }
+  }
+
+  static Map<String, int> calculateStreaks(
+    Box<Encounter> encounterBox, {
+    String? monthId,
+  }) {
+    var encounters = encounterBox.values;
+
+    // Si se proporciona un monthId, filtramos los encuentros solo para ese mes
+    if (monthId != null) {
+      final monthDate = DateFormat('yyyy-MM').parse(monthId);
+      encounters = encounters
+          .where(
+            (e) =>
+                e.date.year == monthDate.year &&
+                e.date.month == monthDate.month,
+          )
+          .toList();
+    }
+
+    // El resto de la lógica es la misma que antes
+    if (encounters.isEmpty) return {'current': 0, 'longest': 0};
+
+    final uniqueDays = encounters
+        .map((e) => DateTime(e.date.year, e.date.month, e.date.day))
+        .toSet()
+        .toList();
+    uniqueDays.sort();
+
+    if (uniqueDays.isEmpty) return {'current': 0, 'longest': 0};
+
+    int currentStreak = 1;
+    int longestStreak = 1;
+
+    for (int i = 1; i < uniqueDays.length; i++) {
+      if (uniqueDays[i].difference(uniqueDays[i - 1]).inDays == 1) {
+        currentStreak++;
+      } else {
+        if (currentStreak > longestStreak) longestStreak = currentStreak;
+        currentStreak = 1;
+      }
+    }
+    if (currentStreak > longestStreak) longestStreak = currentStreak;
+
+    // La 'racha actual' solo tiene sentido si no estamos filtrando por un mes pasado
+    if (monthId == null) {
+      final lastDay = uniqueDays.last;
+      final today = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      );
+      if (today.difference(lastDay).inDays > 1) {
+        currentStreak = 0;
+      }
+    } else {
+      currentStreak = 0; // No hay 'racha actual' para un mes pasado
+    }
+
+    return {'current': currentStreak, 'longest': longestStreak};
   }
 }

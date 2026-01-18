@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/utils/gamification_engine.dart';
 import '../models/health_log.dart';
 import '../services/notification_service.dart';
 
@@ -96,6 +98,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                       label: const Text("Guardar & Programar"),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
+                        foregroundColor: Colors.white,
                       ),
                       onPressed: () async {
                         if (testTypeController.text.isEmpty) return;
@@ -112,6 +115,25 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                         await NotificationService().scheduleCheckupReminder(
                           months: 6,
                         );
+
+                        final unlocked = await AchievementEngine.processEvent(
+                          event: AchievementEvent.healthLogSaved,
+                          data: {
+                            'allHealthLogs': Hive.box<HealthLog>(
+                              'health_logs',
+                            ).values.toList(),
+                          },
+                        );
+
+                        if (unlocked.isNotEmpty && context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "🏆 ¡Logro Desbloqueado: ${unlocked.first.name}!",
+                              ),
+                            ),
+                          );
+                        }
 
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(

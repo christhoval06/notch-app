@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:notch_app/models/encounter.dart';
 import 'package:notch_app/screens/share_preview_screen.dart';
+import 'package:notch_app/services/achievement_engine.dart';
 import '../models/monthly_progress.dart';
 import '../utils/gamification_engine.dart';
 
@@ -14,6 +16,38 @@ class TrophyRoomScreen extends StatefulWidget {
 class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   String? _selectedMonthId;
   bool _isSharing = false;
+
+  late final ValueNotifier<int> _updateNotifier;
+  late final Listenable _combinedListenable;
+
+  @override
+  void initState() {
+    super.initState();
+    // 1. Combinamos los "oyentes" de ambas cajas
+    _combinedListenable = Listenable.merge([
+      Hive.box<MonthlyProgress>('monthly_progress').listenable(),
+      Hive.box<Encounter>('encounters').listenable(),
+    ]);
+
+    // 2. Creamos un ValueNotifier que se actualizará
+    _updateNotifier = ValueNotifier(0);
+
+    // 3. Cada vez que cualquiera de las cajas cambie, actualizamos el notifier
+    _combinedListenable.addListener(_onDataChanged);
+  }
+
+  void _onDataChanged() {
+    // Simplemente cambiamos el valor para que el ValueListenableBuilder se dispare
+    _updateNotifier.value++;
+  }
+
+  @override
+  void dispose() {
+    // Limpiamos todo para evitar fugas de memoria
+    _combinedListenable.removeListener(_onDataChanged);
+    _updateNotifier.dispose();
+    super.dispose();
+  }
 
   Future<void> _shareRank() async {
     setState(() => _isSharing = true);
@@ -56,16 +90,16 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   @override
   Widget build(BuildContext context) {
     // Escuchamos la caja para que la UI se actualice automáticamente
-    return ValueListenableBuilder(
-      valueListenable: Hive.box<MonthlyProgress>(
-        'monthly_progress',
-      ).listenable(),
-      builder: (context, Box<MonthlyProgress> box, _) {
-        // Antes de construir la UI, llamamos a la lógica para asegurarnos de que el mes actual exista
+    return ValueListenableBuilder<int>(
+      valueListenable: _updateNotifier,
+      builder: (context, _, __) {
+        final progressBox = Hive.box<MonthlyProgress>('monthly_progress');
+        final encounterBox = Hive.box<Encounter>('encounters');
+
         return FutureBuilder<MonthlyProgress>(
           future: GamificationEngine.getCurrentMonthlyProgress(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData || box.isEmpty) {
+            if (!snapshot.hasData || progressBox.isEmpty) {
               return Scaffold(
                 backgroundColor: const Color(0xFF121212),
                 body: Center(
@@ -82,17 +116,24 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             }
 
             // Lista de meses disponibles para el historial
-            final monthIds = box.values.map((p) => p.monthId).toList();
-            monthIds.sort((a, b) => b.compareTo(a)); // Más reciente primero
-            _selectedMonthId ??=
-                monthIds.first; // Seleccionar el actual por defecto
+            final monthIds = progressBox.values.map((p) => p.monthId).toList();
+            monthIds.sort((a, b) => b.compareTo(a));
+            _selectedMonthId ??= monthIds.first;
 
-            final progress = box.values.firstWhere(
+            final progress = progressBox.values.firstWhere(
               (p) => p.monthId == _selectedMonthId,
             );
             final isCurrentMonth =
                 _selectedMonthId ==
                 DateFormat('yyyy-MM').format(DateTime.now());
+
+            final streaksOfSelectedMonth = GamificationEngine.calculateStreaks(
+              encounterBox,
+              monthId: _selectedMonthId,
+            );
+            final allTimeStreaks = GamificationEngine.calculateStreaks(
+              encounterBox,
+            );
 
             return Scaffold(
               backgroundColor: const Color(0xFF121212),
@@ -108,6 +149,17 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     // 2. PANEL DE NIVEL
                     _buildLevelPanel(progress, isCurrentMonth),
                     const SizedBox(height: 30),
+
+                    // --- NUEVA SECCIÓN DE RACHAS ---
+                    _buildStreaksSection(
+                      isCurrentMonth: isCurrentMonth,
+                      currentStreak: allTimeStreaks['current']!,
+                      seasonBestStreak:
+                          progress.longestStreakOfMonth ??
+                          streaksOfSelectedMonth['longest']!,
+                      allTimeBestStreak: allTimeStreaks['longest']!,
+                    ),
+                    const SizedBox(height: 25),
 
                     // 3. SECCIÓN DE INSIGNIAS
                     const Text(
@@ -299,15 +351,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   }
 
   Widget _buildBadgesGrid(MonthlyProgress progress) {
-    // Si no hay trofeos, muestra un mensaje
-    if (GamificationEngine.badges.isEmpty) {
-      return const Center(
-        child: Text(
-          "No hay insignias disponibles.",
-          style: TextStyle(color: Colors.grey),
-        ),
-      );
-    }
+    final allAchievements = AchievementEngine.getAllAchievements();
 
     return GridView.builder(
       shrinkWrap: true,
@@ -318,15 +362,13 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
         crossAxisSpacing: 15,
         mainAxisSpacing: 15,
       ),
-      itemCount: GamificationEngine.badges.length,
+      itemCount: allAchievements.length,
       itemBuilder: (context, index) {
-        String key = GamificationEngine.badges.keys.elementAt(index);
-        Map<String, String> badgeData = GamificationEngine.badges[key]!;
-        bool unlocked = progress.unlockedBadges.contains(key);
+        final achievement = allAchievements[index];
+        bool unlocked = progress.unlockedBadges.contains(achievement.id);
 
         return Tooltip(
-          // Añadimos un tooltip para ver la descripción
-          message: unlocked ? badgeData['desc']! : "Bloqueado",
+          message: unlocked ? achievement.description : "Bloqueado",
           child: Container(
             decoration: BoxDecoration(
               color: unlocked
@@ -343,13 +385,10 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    badgeData['icon']!,
-                    style: const TextStyle(fontSize: 36),
-                  ),
+                  Text(achievement.icon, style: const TextStyle(fontSize: 36)),
                   const SizedBox(height: 8),
                   Text(
-                    badgeData['name']!,
+                    achievement.name!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: unlocked ? Colors.white : Colors.grey[600],
@@ -368,6 +407,265 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildStreaksSection({
+    required bool isCurrentMonth,
+    required int currentStreak,
+    required int seasonBestStreak,
+    required int allTimeBestStreak,
+  }) {
+    // Obtenemos el próximo hito desde el motor
+    final nextMilestoneData = GamificationEngine.getNextStreakMilestone(
+      currentStreak,
+    );
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E), // Negro suave
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        children: [
+          // 1. Racha Actual (Parte Superior)
+          _buildCurrentStreakDisplay(currentStreak),
+          const SizedBox(height: 24),
+
+          // 2. Récords (Parte Media)
+          Row(
+            children: [
+              // Récord del Mes
+              Expanded(
+                child: _buildRecordCard(
+                  title: "RÉCORD MES",
+                  icon: Icons.military_tech,
+                  days: seasonBestStreak,
+                  color: const Color(0xFF448AFF), // Azul
+                  currentStreak: currentStreak,
+                  recordToBeat: allTimeBestStreak,
+                ),
+              ),
+              const SizedBox(width: 16),
+              // Récord Histórico
+              Expanded(
+                child: _buildRecordCard(
+                  title: "HISTÓRICO",
+                  icon: Icons.star,
+                  days: allTimeBestStreak,
+                  color: const Color(0xFFFFC107), // Amarillo/Dorado
+                  currentStreak: currentStreak,
+                  recordToBeat: allTimeBestStreak,
+                  isAllTime: true,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          // 3. Próximo Hito (Parte Inferior)
+          _buildMilestoneProgress(currentStreak, nextMilestoneData),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCurrentStreakDisplay(int currentStreak) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color(0xFFFF9800).withOpacity(0.15),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFF9800).withOpacity(0.5),
+                blurRadius: 20,
+                spreadRadius: 2,
+              ),
+            ],
+          ),
+          child: const Icon(
+            Icons.local_fire_department_rounded,
+            color: Color(0xFFFF9800),
+            size: 36,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: [
+            Text(
+              currentStreak.toString(),
+              style: GoogleFonts.montserrat(
+                color: Colors.white,
+                fontSize: 64,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              "días",
+              style: GoogleFonts.lato(color: Colors.grey[400], fontSize: 20),
+            ),
+          ],
+        ),
+        Text(
+          "RACHA ACTUAL",
+          style: GoogleFonts.lato(
+            color: const Color(0xFFFFC107),
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRecordCard({
+    required String title,
+    required IconData icon,
+    required int days,
+    required Color color,
+    required int currentStreak,
+    required int recordToBeat,
+    bool isAllTime = false,
+  }) {
+    String bottomText;
+    double progress = 0.0;
+
+    if (isAllTime) {
+      if (currentStreak >= recordToBeat && recordToBeat > 0) {
+        bottomText = "Récord alcanzado";
+        progress = 1.0;
+      } else if (recordToBeat > 0) {
+        bottomText = "Superando récord";
+        progress = currentStreak / recordToBeat;
+      } else {
+        bottomText = "Sin récord";
+      }
+    } else {
+      if (days > 0) {
+        progress = days / recordToBeat;
+        bottomText = "${(progress * 100).toStringAsFixed(0)}% del histórico";
+      } else {
+        bottomText = "Sin racha este mes";
+      }
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey[800]!, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                days.toString(),
+                style: GoogleFonts.montserrat(
+                  color: color,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "días",
+                style: GoogleFonts.lato(color: Colors.grey[500], fontSize: 14),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Icon(icon, color: color, size: 12),
+              const SizedBox(width: 4),
+              Text(
+                title,
+                style: GoogleFonts.lato(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: LinearProgressIndicator(
+              value: progress.clamp(0.0, 1.0),
+              backgroundColor: Colors.grey[800],
+              color: color,
+              minHeight: 6,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              if (isAllTime && progress == 1.0)
+                Icon(Icons.check_circle, color: color, size: 12),
+              const SizedBox(width: 4),
+              Text(
+                bottomText,
+                style: GoogleFonts.lato(color: Colors.grey[500], fontSize: 10),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMilestoneProgress(
+    int currentStreak,
+    Map<String, int> milestoneData,
+  ) {
+    final int milestone = milestoneData['milestone']!;
+    final int remaining = milestoneData['remaining']!;
+    final double progress = (milestone > 0) ? (currentStreak / milestone) : 1.0;
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Próximo hito: $milestone días",
+              style: GoogleFonts.lato(color: Colors.white, fontSize: 12),
+            ),
+            Text(
+              remaining > 0 ? "$remaining días faltantes" : "¡Hito alcanzado!",
+              style: GoogleFonts.lato(
+                color: const Color(0xFFFF9800),
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: LinearProgressIndicator(
+            value: progress.clamp(0.0, 1.0),
+            backgroundColor: Colors.grey[800],
+            color: const Color(0xFFFF9800),
+            minHeight: 8,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/services/achievement_engine.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hive/hive.dart';
@@ -25,6 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String _appVersion = "Cargando...";
   String _buildNumber = "";
   final _storage = const FlutterSecureStorage();
+  bool _isRecalculating = false;
 
   @override
   void initState() {
@@ -285,6 +287,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
             subtitle: "Borrar todos los datos y reiniciar",
             onTap: _factoryReset,
           ),
+
+          _buildSectionHeader("MANTENIMIENTO"),
+          _isRecalculating
+              ? const Center(child: CircularProgressIndicator())
+              : _buildTile(
+                  icon: Icons.refresh,
+                  color: Colors.greenAccent,
+                  title: "Re-calcular Logros",
+                  subtitle: "Actualiza tus medallas si crees que falta alguna.",
+                  onTap: () async {
+                    setState(() => _isRecalculating = true);
+
+                    await AchievementEngine.recalculateAllAchievements();
+
+                    if (mounted) {
+                      setState(() => _isRecalculating = false);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Logros actualizados correctamente."),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
+                  },
+                ),
 
           const SizedBox(height: 40),
           Center(

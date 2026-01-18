@@ -1,15 +1,40 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/utils/analyzer.dart';
+import 'package:notch_app/utils/translations.dart';
+
 import '../models/encounter.dart';
 
-class StatsScreen extends StatelessWidget {
+enum StatPeriod { month, sixMonths, allTime }
+
+class StatsScreen extends StatefulWidget {
+  @override
+  _StatsScreenState createState() => _StatsScreenState();
+}
+
+class _StatsScreenState extends State<StatsScreen> {
+  StatPeriod _selectedPeriod = StatPeriod.sixMonths;
   @override
   Widget build(BuildContext context) {
     // Obtenemos la caja de datos
     final box = Hive.box<Encounter>('encounters');
-    final encounters = box.values.toList();
+    List<Encounter> encounters = box.values.toList();
+
+    final now = DateTime.now();
+    if (_selectedPeriod == StatPeriod.month) {
+      encounters = encounters
+          .where((e) => e.date.isAfter(now.subtract(const Duration(days: 30))))
+          .toList();
+    } else if (_selectedPeriod == StatPeriod.sixMonths) {
+      encounters = encounters
+          .where((e) => e.date.isAfter(now.subtract(const Duration(days: 180))))
+          .toList();
+    }
+
+    final analyzer = Analyzer(encounters, []);
 
     // Si no hay datos, mostramos mensaje
     if (encounters.isEmpty) {
@@ -36,6 +61,8 @@ class StatsScreen extends StatelessWidget {
     // Datos para el gráfico (Últimos 6 meses)
     final monthlyData = _getMonthlyData(encounters);
 
+    final heatmapData = analyzer.getHeatmapData();
+
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       body: SingleChildScrollView(
@@ -43,6 +70,38 @@ class StatsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: ToggleButtons(
+                isSelected: [
+                  _selectedPeriod == StatPeriod.month,
+                  _selectedPeriod == StatPeriod.sixMonths,
+                  _selectedPeriod == StatPeriod.allTime,
+                ],
+                onPressed: (index) {
+                  setState(() {
+                    _selectedPeriod = StatPeriod.values[index];
+                  });
+                },
+                borderRadius: BorderRadius.circular(8),
+                selectedColor: Colors.white,
+                fillColor: Colors.blueAccent.withOpacity(0.3),
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text("30 Días"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text("6 Meses"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text("Total"),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
             // 1. TARJETAS DE RESUMEN (SCOREBOARD)
             Row(
               children: [
@@ -67,6 +126,21 @@ class StatsScreen extends StatelessWidget {
                   Colors.purpleAccent,
                 ),
               ],
+            ),
+            const SizedBox(height: 10),
+
+            Text(
+              "Distribución de Actividad",
+              style: TextStyle(
+                color: Colors.grey[400],
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 30),
+            SizedBox(
+              height: 200,
+              child: _buildPieChart(analyzer.getTagDistribution()),
             ),
 
             const SizedBox(height: 40),
@@ -133,6 +207,50 @@ class StatsScreen extends StatelessWidget {
                   borderData: FlBorderData(show: false),
                   barGroups: _generateBarGroups(monthlyData),
                 ),
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
+            // --- 3. NUEVO: HEATMAP CALENDAR ---
+            Text(
+              "Mapa de Actividad Anual",
+              style: TextStyle(
+                color: Colors.grey[400],
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[900],
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: HeatMap(
+                datasets: heatmapData,
+                // endDate: DateTime.now(), // Por defecto muestra el último año
+                fontSize: 10,
+                // Colores personalizados para el Dark Mode
+                textColor: Colors.white,
+                colorMode: ColorMode.opacity,
+                showColorTip: false, // Más limpio
+                scrollable: true,
+                colorsets: const {
+                  1: Colors.blueAccent, // Color base para la intensidad
+                },
+                onClick: (date) {
+                  // Opcional: Mostrar un SnackBar o diálogo con la info de ese día
+                  final count = heatmapData[date] ?? 0;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        '${DateFormat('d MMM y').format(date)}: $count encuentros',
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
 
@@ -306,5 +424,47 @@ class StatsScreen extends StatelessWidget {
         ],
       );
     });
+  }
+
+  Widget _buildPieChart(Map<String, double> data) {
+    if (data.isEmpty)
+      return const Center(
+        child: Text(
+          "Sin datos de etiquetas",
+          style: TextStyle(color: Colors.grey),
+        ),
+      );
+
+    final colors = [
+      Colors.blueAccent,
+      Colors.purpleAccent,
+      Colors.orangeAccent,
+      Colors.greenAccent,
+      Colors.redAccent,
+    ];
+    int colorIndex = 0;
+
+    return PieChart(
+      PieChartData(
+        sections: data.entries.map((entry) {
+          final color = colors[colorIndex % colors.length];
+          colorIndex++;
+          return PieChartSectionData(
+            color: color,
+            value: entry.value,
+            title: AppStrings.get(entry.key, lang: currentLang),
+            radius: 80,
+            titleStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              shadows: [Shadow(color: Colors.black, blurRadius: 2)],
+            ),
+          );
+        }).toList(),
+        sectionsSpace: 2,
+        centerSpaceRadius: 40,
+      ),
+    );
   }
 }

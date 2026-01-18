@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/screens/insights_screen.dart';
+import 'package:notch_app/screens/path_screen.dart';
 import 'package:notch_app/screens/settings_screen.dart';
 
 // Vistas que mostraremos
@@ -24,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // El orden aquí debe coincidir con el de la barra de navegación
   static final List<Widget> _widgetOptions = <Widget>[
     CalendarView(),
+    PathScreen(),
     BlackBookScreen(),
     TrophyRoomScreen(),
     HealthPassportScreen(),
@@ -33,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // 2. TÍTULOS PARA EL APPBAR
   static const List<String> _appBarTitles = [
     'NOTCH',
+    'Camino de Maestría ✨',
     'Black Book 📒',
     'Trophy Room 🏆',
     'Health Passport 🏥',
@@ -68,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          if (_selectedIndex == 4)
+          if (_selectedIndex == 5)
             IconButton(
               icon: const Icon(Icons.psychology, color: Colors.blueAccent),
               onPressed: () {
@@ -104,6 +107,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'Calendario',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.trending_up),
+            label: 'Camino',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
