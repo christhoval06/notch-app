@@ -61,7 +61,12 @@ class _AuthScreenState extends State<AuthScreen> {
         biometricOnly: true,
       );
     } catch (e) {
-      print(e);
+      print("Error durante la autenticación biométrica: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error de biometría: ${e.toString()}")),
+        );
+      }
     }
 
     if (authenticated) {

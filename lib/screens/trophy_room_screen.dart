@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/models/challenge.dart';
 import 'package:notch_app/models/encounter.dart';
+import 'package:notch_app/screens/challenges_screen.dart';
+import 'package:notch_app/screens/path_screen.dart';
 import 'package:notch_app/screens/share_preview_screen.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/services/challenge_service.dart';
 import '../models/monthly_progress.dart';
 import '../utils/gamification_engine.dart';
 
@@ -147,7 +152,25 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     const SizedBox(height: 25),
 
                     // 2. PANEL DE NIVEL
-                    _buildLevelPanel(progress, isCurrentMonth),
+                    GestureDetector(
+                      onTap: () {
+                        // Importante: Añadir un print para depurar
+                        print(
+                          "Panel de Nivel Tocado! Navegando a PathScreen...",
+                        );
+                        HapticFeedback.lightImpact(); // Buen feedback para el usuario
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PathScreen()),
+                        );
+                      },
+                      // Esta es la línea mágica que soluciona el problema:
+                      behavior: HitTestBehavior.opaque,
+
+                      child: _buildLevelPanel(progress, isCurrentMonth),
+                    ),
+                    // _buildLevelPanel(progress, isCurrentMonth),
                     const SizedBox(height: 30),
 
                     // --- NUEVA SECCIÓN DE RACHAS ---
@@ -159,6 +182,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                           streaksOfSelectedMonth['longest']!,
                       allTimeBestStreak: allTimeStreaks['longest']!,
                     ),
+                    const SizedBox(height: 25),
+
+                    _buildFeaturedChallengeCard(context),
                     const SizedBox(height: 25),
 
                     // 3. SECCIÓN DE INSIGNIAS
@@ -345,6 +371,27 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 ),
               ),
             ),
+          // Positioned(
+          //   bottom: 10,
+          //   right: 15,
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         "Ver Camino",
+          //         style: TextStyle(
+          //           color: Colors.white.withOpacity(0.6),
+          //           fontSize: 10,
+          //         ),
+          //       ),
+          //       const SizedBox(width: 4),
+          //       Icon(
+          //         Icons.arrow_forward_ios,
+          //         color: Colors.white.withOpacity(0.6),
+          //         size: 10,
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
@@ -664,6 +711,131 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             color: const Color(0xFFFF9800),
             minHeight: 8,
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFeaturedChallengeCard(BuildContext context) {
+    final featuredChallenge = ChallengeService.getFeaturedChallenge();
+    final allEncounters = Hive.box<Encounter>('encounters').values.toList();
+
+    return GestureDetector(
+      onTap: () {
+        // La acción de navegar es la misma en ambos casos
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ChallengesScreen()),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.grey[900],
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: Colors.purpleAccent.withOpacity(0.5)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // --- CABECERA ---
+            Row(
+              children: [
+                const Icon(Icons.track_changes, color: Colors.purpleAccent),
+                const SizedBox(width: 10),
+                Text(
+                  "RETOS ACTIVOS", // Título más general
+                  style: GoogleFonts.lato(
+                    color: Colors.purpleAccent,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                  ),
+                ),
+                const Spacer(),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.grey,
+                  size: 14,
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // --- LÓGICA CONDICIONAL ---
+            if (featuredChallenge != null)
+              // ESTADO 1: Hay un reto para mostrar
+              _buildActiveChallengeContent(featuredChallenge, allEncounters)
+            else
+              // ESTADO 2: No hay retos o todos están completos
+              _buildEmptyChallengeContent(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActiveChallengeContent(
+    Challenge challenge,
+    List<Encounter> allEncounters,
+  ) {
+    final progress = challenge.getProgress(allEncounters);
+    final progressPercent = challenge.getProgressPercent(allEncounters);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          challenge.title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: LinearProgressIndicator(
+                  value: progressPercent,
+                  minHeight: 8,
+                  backgroundColor: Colors.black26,
+                  color: Colors.purpleAccent,
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Text(
+              "${progress.toInt()} / ${challenge.goal}",
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmptyChallengeContent() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Explora nuevos objetivos",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          "Toca para ver todos los retos disponibles y seguir mejorando.",
+          style: TextStyle(color: Colors.grey, fontSize: 13),
         ),
       ],
     );

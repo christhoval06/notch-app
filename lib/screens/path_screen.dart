@@ -11,7 +11,6 @@ import '../utils/gamification_engine.dart';
 class PathScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Escuchamos la caja para que la UI se actualice automáticamente
     return ValueListenableBuilder(
       valueListenable: Hive.box<MonthlyProgress>(
         'monthly_progress',
@@ -41,7 +40,13 @@ class PathScreen extends StatelessWidget {
 
             return Scaffold(
               backgroundColor: const Color(0xFF121212),
-              // No necesitamos AppBar si es una pestaña de la barra inferior
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                title: const Text(
+                  "Camino de Maestría ✨",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
               body: Stack(
                 children: [
                   // 1. El pintor que dibuja la línea de conexión vertical
@@ -55,6 +60,7 @@ class PathScreen extends StatelessWidget {
 
                   // 2. La lista de niveles (nodos) que se puede scrollear
                   ListView.builder(
+                    reverse: true,
                     padding: const EdgeInsets.symmetric(
                       vertical: 40,
                       horizontal: 20,
@@ -93,7 +99,9 @@ class PathScreen extends StatelessWidget {
     required bool isUnlocked,
     required bool isCurrent,
   }) {
-    final bool isLeftAligned = index % 2 == 0;
+    final bool isLeftAligned =
+        (GamificationEngine.levels.length - 1 - index) % 2 != 0;
+    // final bool isLeftAligned = index % 2 == 0;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 25),
@@ -335,8 +343,8 @@ class _PathPainter extends CustomPainter {
     canvas.drawPath(path, backgroundPaint);
 
     final progressPath = Path();
-    progressPath.moveTo(size.width / 2, 0);
-    progressPath.lineTo(size.width / 2, size.height * progress);
+    progressPath.moveTo(size.width / 2, size.height);
+    progressPath.lineTo(size.width / 2, size.height * (1.0 - progress));
 
     canvas.drawPath(progressPath, foregroundPaint);
   }

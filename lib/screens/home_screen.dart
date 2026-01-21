@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // El orden aquí debe coincidir con el de la barra de navegación
   static final List<Widget> _widgetOptions = <Widget>[
     CalendarView(),
-    PathScreen(),
     BlackBookScreen(),
     TrophyRoomScreen(),
     HealthPassportScreen(),
@@ -35,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // 2. TÍTULOS PARA EL APPBAR
   static const List<String> _appBarTitles = [
     'NOTCH',
-    'Camino de Maestría ✨',
     'Black Book 📒',
     'Trophy Room 🏆',
     'Health Passport 🏥',
@@ -71,7 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          if (_selectedIndex == 5)
+          if (_selectedIndex == 2)
+            IconButton(
+              icon: const Icon(Icons.map, color: Colors.blueAccent),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => PathScreen()),
+                );
+              },
+            ),
+
+          if (_selectedIndex == 4)
             IconButton(
               icon: const Icon(Icons.psychology, color: Colors.blueAccent),
               onPressed: () {
@@ -104,14 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // 3. LA BARRA DE NAVEGACIÓN
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Calendario',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
-            label: 'Camino',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
             label: 'Black Book',

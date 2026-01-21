@@ -55,10 +55,8 @@ class AchievementEngine {
       description: 'Registra tu primer encuentro.',
       icon: '🌱',
       event: AchievementEvent.encounterSaved,
-      condition: (data) {
-        final encounters = data['allEncounters'] as List<Encounter>;
-        return encounters.isNotEmpty;
-      },
+      condition: (data) =>
+          (data['allEncounters'] as List<Encounter>).length == 1,
       type: AchievementType.once,
     ),
     Achievement(
