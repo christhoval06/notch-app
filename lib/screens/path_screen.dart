@@ -8,7 +8,49 @@ import 'package:intl/intl.dart';
 import '../models/monthly_progress.dart';
 import '../utils/gamification_engine.dart';
 
-class PathScreen extends StatelessWidget {
+class PathScreen extends StatefulWidget {
+  @override
+  _PathScreenState createState() => _PathScreenState();
+}
+
+class _PathScreenState extends State<PathScreen> {
+  late List<GlobalKey> _nodeKeys;
+  final ScrollController _scrollController = ScrollController();
+  int _currentLevelIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _nodeKeys = List.generate(
+      GamificationEngine.levels.length,
+      (_) => GlobalKey(),
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _scrollToCurrentLevel(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToCurrentLevel() {
+    final realIndex = GamificationEngine.levels.length - 1 - _currentLevelIndex;
+
+    final currentContext = _nodeKeys[realIndex].currentContext;
+    if (currentContext != null) {
+      Scrollable.ensureVisible(
+        currentContext,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOutCubic,
+        alignment: 0.5, // 0.5 para centrarlo
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -27,11 +69,9 @@ class PathScreen extends StatelessWidget {
             final currentXp = progress.xp;
             final levels = GamificationEngine.levels;
 
-            // Encontrar el índice del nivel actual del usuario
-            int currentLevelIndex = 0;
             for (int i = levels.length - 1; i >= 0; i--) {
               if (currentXp >= (levels[i]['xp'] as int)) {
-                currentLevelIndex = i;
+                _currentLevelIndex = i;
                 break;
               }
             }
@@ -60,6 +100,7 @@ class PathScreen extends StatelessWidget {
 
                   // 2. La lista de niveles (nodos) que se puede scrollear
                   ListView.builder(
+                    controller: _scrollController,
                     reverse: true,
                     padding: const EdgeInsets.symmetric(
                       vertical: 40,
@@ -69,14 +110,16 @@ class PathScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final level = levels[index];
                       final isUnlocked = currentXp >= (level['xp'] as int);
-                      final isCurrent = index == currentLevelIndex;
+                      final isCurrent = index == _currentLevelIndex;
 
-                      return _buildNodeRow(
-                        index: index,
-                        levelName: level['name'],
-                        xpRequired: level['xp'],
-                        isUnlocked: isUnlocked,
-                        isCurrent: isCurrent,
+                      return Container(
+                        key: _nodeKeys[index],
+                        child: _buildNodeRow(
+                          index: index,
+                          level: level,
+                          isUnlocked: isUnlocked,
+                          isCurrent: isCurrent,
+                        ),
                       );
                     },
                   ),
@@ -94,8 +137,7 @@ class PathScreen extends StatelessWidget {
   // Construye la fila para cada nodo, alternando la alineación
   Widget _buildNodeRow({
     required int index,
-    required String levelName,
-    required int xpRequired,
+    required Map<String, dynamic> level,
     required bool isUnlocked,
     required bool isCurrent,
   }) {
@@ -115,8 +157,9 @@ class PathScreen extends StatelessWidget {
 
           // El Nodo (la "burbuja" del nivel)
           _PathNode(
-            levelName: levelName,
-            xpRequired: xpRequired,
+            levelName: level['name'],
+            xpRequired: level['xp'],
+            description: level['desc'],
             isUnlocked: isUnlocked,
             isCurrent: isCurrent,
             icon: isUnlocked ? Icons.check : Icons.lock_outline,
@@ -134,6 +177,7 @@ class PathScreen extends StatelessWidget {
 class _PathNode extends StatefulWidget {
   final String levelName;
   final int xpRequired;
+  final String description;
   final bool isUnlocked;
   final bool isCurrent;
   final IconData icon;
@@ -142,6 +186,7 @@ class _PathNode extends StatefulWidget {
     Key? key,
     required this.levelName,
     required this.xpRequired,
+    required this.description,
     required this.isUnlocked,
     required this.isCurrent,
     required this.icon,
@@ -168,7 +213,6 @@ class _PathNodeState extends State<_PathNode>
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
 
-    // Si este es el nodo actual (el siguiente objetivo), iniciamos la animación en bucle
     if (widget.isCurrent) {
       _animationController.repeat(reverse: true);
     }
