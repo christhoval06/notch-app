@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:notch_app/models/global_progress.dart';
@@ -302,127 +303,226 @@ class AchievementEngine {
   // Helper para la UI: obtener la lista de todos los logros para el TrophyRoom
   static List<Achievement> getAllAchievements() => _achievements;
 
-  static Future<void> recalculateAllAchievements() async {
+  static Future<void> recalculateAllDBAchievements() async {
     print("--- Iniciando re-cálculo de todos los logros ---");
 
-    // 1. OBTENER LAS BASES DE DATOS
+    // 1. OBTENER Y ORDENAR TODOS LOS DATOS
     final encounterBox = Hive.box<Encounter>('encounters');
     final healthBox = Hive.box<HealthLog>('health_logs');
-    // ... (añade aquí otras cajas si son necesarias para futuros logros)
 
-    final allEncounters = encounterBox.values.toList();
-    final allHealthLogs = healthBox.values.toList();
+    // Ordenamos los encuentros cronológicamente, del más antiguo al más reciente
+    final allEncounters = encounterBox.values.toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+    final allHealthLogs = healthBox.values.toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
 
-    // No podemos simular el evento de backup, ya que no es un dato guardado
-
-    // 2. OBTENER EL PROGRESO GLOBAL Y DE TODOS LOS MESES
+    // 2. RESETEAR EL PROGRESO
     final globalProgressBox = Hive.box<GlobalProgress>('global_progress');
     final monthlyProgressBox = Hive.box<MonthlyProgress>('monthly_progress');
-
     GlobalProgress globalProgress = globalProgressBox.isNotEmpty
         ? globalProgressBox.getAt(0)!
         : GlobalProgress();
 
-    // Limpiamos los logros para empezar de cero
-    globalProgress.unlockedOnceAchievements = [];
+    globalProgress.unlockedOnceAchievements.clear();
     for (var progress in monthlyProgressBox.values) {
-      progress.unlockedBadges = [];
+      progress.unlockedBadges.clear();
     }
 
-    // 3. ITERAR SOBRE CADA LOGRO Y VERIFICAR SU CONDICIÓN
-    for (final achievement in _achievements) {
-      bool unlocked = false;
+    // 3. SIMULAR EL HISTORIAL PASO A PASO
 
-      // Preparamos los datos según el evento que el logro espera
-      Map<String, dynamic> data = {};
+    // --- FASE 1: RE-EVALUAR LOGROS BASADOS EN ENCUENTROS ---
+    for (int i = 0; i < allEncounters.length; i++) {
+      final currentEncounter = allEncounters[i];
+      final monthId = DateFormat('yyyy-MM').format(currentEncounter.date);
 
-      switch (achievement.event) {
-        case AchievementEvent.appStarted:
-          // Los logros de 'appStarted' no se pueden re-calcular con datos pasados.
-          // Simplemente continuamos con el siguiente logro.
-          continue;
-        case AchievementEvent.encounterSaved:
-          // Para logros de encuentro, iteramos sobre cada encuentro
-          for (int i = 0; i < allEncounters.length; i++) {
-            final currentEncounter = allEncounters[i];
-
-            // Reconstruimos el estado de los datos como si acabáramos de guardar este encuentro
-            final encountersUpToThisPoint = allEncounters.sublist(0, i + 1);
-            final monthlyEncounters = encountersUpToThisPoint
-                .where(
-                  (e) =>
-                      e.date.year == currentEncounter.date.year &&
-                      e.date.month == currentEncounter.date.month,
-                )
-                .toList();
-
-            // NOTA: Para las rachas y el nivel, esto puede ser computacionalmente caro.
-            // Por ahora, lo simplificaremos. Una versión más avanzada podría ser más eficiente.
-
-            data = {
-              'newEncounter': currentEncounter,
-              'allEncounters': encountersUpToThisPoint,
-              'monthlyEncounters': monthlyEncounters,
-              'streaks': GamificationEngine.calculateStreaks(encounterBox),
-              'level': <String, dynamic>{'name': '', 'progress': 0.0},
-            };
-
-            if (achievement.condition(data)) {
-              unlocked = true;
-              break; // Una vez desbloqueado, no necesitamos seguir verificando este logro
-            }
-          }
-          break;
-
-        case AchievementEvent.healthLogSaved:
-          data = {'allHealthLogs': allHealthLogs};
-          if (achievement.condition(data)) {
-            unlocked = true;
-          }
-          break;
-
-        case AchievementEvent.backupCreated:
-          // No se puede re-calcular, se salta
-          continue;
+      // Obtenemos o creamos el progreso para el mes de este encuentro
+      MonthlyProgress progressOfMonth;
+      try {
+        progressOfMonth = monthlyProgressBox.values.firstWhere(
+          (p) => p.monthId == monthId,
+        );
+      } catch (e) {
+        progressOfMonth = MonthlyProgress(
+          monthId: monthId,
+          xp: 0,
+          unlockedBadges: [],
+        );
+        await monthlyProgressBox.add(progressOfMonth);
       }
 
-      // 4. SI SE DESBLOQUEÓ, GUARDAMOS EN EL LUGAR CORRECTO
-      if (unlocked) {
+      // Preparamos los datos del "estado del mundo" en este punto del tiempo
+      final encountersUpToThisPoint = allEncounters.sublist(0, i + 1);
+      final monthlyUpToThisPoint = encountersUpToThisPoint
+          .where((e) => DateFormat('yyyy-MM').format(e.date) == monthId)
+          .toList();
+
+      final dataForThisStep = {
+        'newEncounter': currentEncounter,
+        'allEncounters': encountersUpToThisPoint,
+        'monthlyEncounters': monthlyUpToThisPoint,
+        'streaks': GamificationEngine.calculateStreaks(
+          encounterBox,
+        ), // Simplificado
+        'level': GamificationEngine.getCurrentLevel(progressOfMonth.xp),
+      };
+
+      // Verificamos todos los logros de tipo 'encounterSaved'
+      final relevantAchievements = _achievements.where(
+        (a) => a.event == AchievementEvent.encounterSaved,
+      );
+      for (var achievement in relevantAchievements) {
+        bool alreadyUnlocked = false;
         if (achievement.type == AchievementType.once) {
-          if (!globalProgress.unlockedOnceAchievements.contains(
+          alreadyUnlocked = globalProgress.unlockedOnceAchievements.contains(
             achievement.id,
-          )) {
-            globalProgress.unlockedOnceAchievements.add(achievement.id);
-          }
+          );
         } else {
-          // Para logros de temporada, lo añadimos a CADA mes donde se cumplió
-          // Esta es una simplificación. Una lógica más precisa podría ser compleja.
-          // Por ahora, lo añadiremos al progreso del mes más reciente donde se cumplió.
-          final relevantMonthId = DateFormat(
-            'yyyy-MM',
-          ).format(allEncounters.last.date);
-          try {
-            final progress = monthlyProgressBox.values.firstWhere(
-              (p) => p.monthId == relevantMonthId,
-            );
-            if (!progress.unlockedBadges.contains(achievement.id)) {
-              progress.unlockedBadges.add(achievement.id);
-            }
-          } catch (e) {}
+          alreadyUnlocked = progressOfMonth.unlockedBadges.contains(
+            achievement.id,
+          );
+        }
+
+        if (!alreadyUnlocked && achievement.condition(dataForThisStep)) {
+          if (achievement.type == AchievementType.once) {
+            globalProgress.unlockedOnceAchievements.add(achievement.id);
+          } else {
+            progressOfMonth.unlockedBadges.add(achievement.id);
+          }
         }
       }
     }
 
-    // 5. GUARDAR TODOS LOS CAMBIOS
-    if (globalProgressBox.isNotEmpty) {
-      await globalProgress.save();
-    } else {
-      await globalProgressBox.add(globalProgress);
+    // --- FASE 2: RE-EVALUAR LOGROS BASADOS EN SALUD ---
+    // (Esta lógica es más simple porque el logro 'health_champion' es solo sobre el primero)
+    final healthAchievements = _achievements.where(
+      (a) => a.event == AchievementEvent.healthLogSaved,
+    );
+    for (var achievement in healthAchievements) {
+      if (achievement.condition({'allHealthLogs': allHealthLogs})) {
+        if (!globalProgress.unlockedOnceAchievements.contains(achievement.id)) {
+          globalProgress.unlockedOnceAchievements.add(achievement.id);
+        }
+      }
     }
 
+    // 4. GUARDAR TODOS LOS CAMBIOS
+    if (globalProgressBox.isNotEmpty)
+      await globalProgress.save();
+    else
+      await globalProgressBox.add(globalProgress);
+    for (var progress in monthlyProgressBox.values) await progress.save();
+
+    print("--- Re-cálculo de logros completado ---");
+  }
+
+  static Future<void> recalculateAllAchievements() async {
+    print("--- Iniciando re-cálculo de todos los logros ---");
+
+    // 1. OBTENER Y ORDENAR TODOS LOS DATOS
+    final encounterBox = Hive.box<Encounter>('encounters');
+    final healthBox = Hive.box<HealthLog>('health_logs');
+
+    // Ordenamos los encuentros cronológicamente, del más antiguo al más reciente
+    final allEncounters = encounterBox.values.toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+    final allHealthLogs = healthBox.values.toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+
+    // 2. RESETEAR EL PROGRESO
+    final globalProgressBox = Hive.box<GlobalProgress>('global_progress');
+    final monthlyProgressBox = Hive.box<MonthlyProgress>('monthly_progress');
+    GlobalProgress globalProgress = globalProgressBox.isNotEmpty
+        ? globalProgressBox.getAt(0)!
+        : GlobalProgress();
+
+    globalProgress.unlockedOnceAchievements.clear();
     for (var progress in monthlyProgressBox.values) {
-      await progress.save();
+      progress.unlockedBadges.clear();
     }
+
+    // 3. SIMULAR EL HISTORIAL PASO A PASO
+
+    // --- FASE 1: RE-EVALUAR LOGROS BASADOS EN ENCUENTROS ---
+    for (int i = 0; i < allEncounters.length; i++) {
+      final currentEncounter = allEncounters[i];
+      final monthId = DateFormat('yyyy-MM').format(currentEncounter.date);
+
+      // Obtenemos o creamos el progreso para el mes de este encuentro
+      MonthlyProgress progressOfMonth;
+      try {
+        progressOfMonth = monthlyProgressBox.values.firstWhere(
+          (p) => p.monthId == monthId,
+        );
+      } catch (e) {
+        progressOfMonth = MonthlyProgress(
+          monthId: monthId,
+          xp: 0,
+          unlockedBadges: [],
+        );
+        await monthlyProgressBox.add(progressOfMonth);
+      }
+
+      // Preparamos los datos del "estado del mundo" en este punto del tiempo
+      final encountersUpToThisPoint = allEncounters.sublist(0, i + 1);
+      final monthlyUpToThisPoint = encountersUpToThisPoint
+          .where((e) => DateFormat('yyyy-MM').format(e.date) == monthId)
+          .toList();
+
+      final dataForThisStep = {
+        'newEncounter': currentEncounter,
+        'allEncounters': encountersUpToThisPoint,
+        'monthlyEncounters': monthlyUpToThisPoint,
+        'streaks': GamificationEngine.calculateStreaks(
+          encounterBox,
+        ), // Simplificado
+        'level': GamificationEngine.getCurrentLevel(progressOfMonth.xp),
+      };
+
+      // Verificamos todos los logros de tipo 'encounterSaved'
+      final relevantAchievements = _achievements.where(
+        (a) => a.event == AchievementEvent.encounterSaved,
+      );
+      for (var achievement in relevantAchievements) {
+        bool alreadyUnlocked = false;
+        if (achievement.type == AchievementType.once) {
+          alreadyUnlocked = globalProgress.unlockedOnceAchievements.contains(
+            achievement.id,
+          );
+        } else {
+          alreadyUnlocked = progressOfMonth.unlockedBadges.contains(
+            achievement.id,
+          );
+        }
+
+        if (!alreadyUnlocked && achievement.condition(dataForThisStep)) {
+          if (achievement.type == AchievementType.once) {
+            globalProgress.unlockedOnceAchievements.add(achievement.id);
+          } else {
+            progressOfMonth.unlockedBadges.add(achievement.id);
+          }
+        }
+      }
+    }
+
+    // --- FASE 2: RE-EVALUAR LOGROS BASADOS EN SALUD ---
+    // (Esta lógica es más simple porque el logro 'health_champion' es solo sobre el primero)
+    final healthAchievements = _achievements.where(
+      (a) => a.event == AchievementEvent.healthLogSaved,
+    );
+    for (var achievement in healthAchievements) {
+      if (achievement.condition({'allHealthLogs': allHealthLogs})) {
+        if (!globalProgress.unlockedOnceAchievements.contains(achievement.id)) {
+          globalProgress.unlockedOnceAchievements.add(achievement.id);
+        }
+      }
+    }
+
+    // 4. GUARDAR TODOS LOS CAMBIOS
+    if (globalProgressBox.isNotEmpty)
+      await globalProgress.save();
+    else
+      await globalProgressBox.add(globalProgress);
+    for (var progress in monthlyProgressBox.values) await progress.save();
 
     print("--- Re-cálculo de logros completado ---");
   }
