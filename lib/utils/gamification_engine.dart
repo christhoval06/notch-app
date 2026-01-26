@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/models/global_progress.dart';
 import 'package:notch_app/services/achievement_engine.dart';
 import '../models/encounter.dart';
 import '../models/monthly_progress.dart';
@@ -361,5 +362,206 @@ class GamificationEngine {
     }
 
     return {'current': currentStreak, 'longest': longestStreak};
+  }
+
+  static Future<void> recalculateAllXp() async {
+    print("--- Iniciando re-cálculo de toda la experiencia (XP) ---");
+
+    final encounterBox = Hive.box<Encounter>('encounters');
+    final monthlyProgressBox = Hive.box<MonthlyProgress>('monthly_progress');
+
+    // 1. AGRUPAR TODOS LOS ENCUENTROS POR MES
+    final encountersByMonth = <String, List<Encounter>>{};
+    for (var encounter in encounterBox.values) {
+      final monthId = DateFormat('yyyy-MM').format(encounter.date);
+      encountersByMonth.putIfAbsent(monthId, () => []).add(encounter);
+    }
+
+    // 2. ITERAR Y RECALCULAR XP
+    for (var entry in encountersByMonth.entries) {
+      final monthId = entry.key;
+      final encountersOfMonth = entry.value;
+
+      int totalXpForMonth = 0;
+      for (var encounter in encountersOfMonth) {
+        int xpGained = 50 + (encounter.rating * 10);
+        if (encounter.protected) xpGained += 20;
+        totalXpForMonth += xpGained;
+      }
+
+      try {
+        final progress = monthlyProgressBox.values.firstWhere(
+          (p) => p.monthId == monthId,
+        );
+        progress.xp = totalXpForMonth;
+        await progress.save();
+      } catch (e) {
+        final newProgress = MonthlyProgress(
+          monthId: monthId,
+          xp: totalXpForMonth,
+        );
+        await monthlyProgressBox.add(newProgress);
+      }
+    }
+
+    // --- 3. LÓGICA DE LIMPIEZA DE MESES HUÉRFANOS ---
+    print("--- Limpiando meses sin actividad ---");
+
+    // Obtenemos una lista de todas las claves (IDs de mes) de los registros de progreso
+    final List<String> progressMonthIds = monthlyProgressBox.values
+        .map((p) => p.monthId)
+        .toList();
+
+    // Obtenemos una lista de todos los meses que SÍ tienen encuentros
+    final Set<String> monthsWithEncounters = encounterBox.values
+        .map((e) => DateFormat('yyyy-MM').format(e.date))
+        .toSet();
+
+    // Buscamos los meses que están en 'progress' pero NO en 'encounters'
+    final List<MonthlyProgress> orphanedProgress = [];
+    for (var progress in monthlyProgressBox.values) {
+      if (!monthsWithEncounters.contains(progress.monthId)) {
+        orphanedProgress.add(progress);
+      }
+    }
+
+    // Borramos los registros huérfanos
+    if (orphanedProgress.isNotEmpty) {
+      for (var orphan in orphanedProgress) {
+        print("Borrando progreso huérfano para el mes: ${orphan.monthId}");
+        await orphan.delete();
+      }
+    }
+    // -----------------------------------------------------
+
+    print("--- Re-cálculo de XP y limpieza completados ---");
+  }
+
+  static Future<void> _recalculateAchievementsForMonth(String monthId) async {
+    print("--- Re-evaluando logros para el mes: $monthId ---");
+
+    // 1. OBTENER DATOS RELEVANTES
+    final monthlyProgressBox = Hive.box<MonthlyProgress>('monthly_progress');
+    final encounterBox = Hive.box<Encounter>('encounters');
+    final globalProgressBox = Hive.box<GlobalProgress>('global_progress');
+
+    try {
+      final progress = monthlyProgressBox.values.firstWhere(
+        (p) => p.monthId == monthId,
+      );
+      final globalProgress = globalProgressBox.isNotEmpty
+          ? globalProgressBox.getAt(0)!
+          : GlobalProgress();
+
+      final allEncounters = encounterBox.values.toList();
+      final encountersOfMonth = allEncounters.where((e) {
+        return DateFormat('yyyy-MM').format(e.date) == monthId;
+      }).toList();
+
+      // 2. LIMPIAR LOGROS DE TEMPORADA DE ESTE MES PARA EMPEZAR DE CERO
+      // (No tocamos los logros 'once', esos son permanentes)
+      progress.unlockedBadges.clear();
+
+      // 3. ITERAR SOBRE CADA LOGRO Y VERIFICAR SU CONDICIÓN PARA ESE MES
+      for (final achievement in AchievementEngine.getAllAchievements()) {
+        // Si el logro ya fue ganado globalmente, no hay nada que hacer
+        if (achievement.type == AchievementType.once &&
+            globalProgress.unlockedOnceAchievements.contains(achievement.id)) {
+          continue;
+        }
+
+        bool unlockedThisMonth = false;
+
+        // Solo procesamos logros que reaccionan a 'encounterSaved'
+        if (achievement.event == AchievementEvent.encounterSaved) {
+          // Iteramos sobre los encuentros de este mes
+          for (int i = 0; i < encountersOfMonth.length; i++) {
+            final currentEncounter = encountersOfMonth[i];
+
+            // Reconstruimos el estado de los datos como si acabáramos de guardar este encuentro
+            final encountersUpToThisPoint = allEncounters
+                .where(
+                  (e) =>
+                      e.date.isBefore(currentEncounter.date) ||
+                      e.date == currentEncounter.date,
+                )
+                .toList();
+            final monthlyUpToThisPoint = encountersOfMonth
+                .where(
+                  (e) =>
+                      e.date.isBefore(currentEncounter.date) ||
+                      e.date == currentEncounter.date,
+                )
+                .toList();
+
+            final data = {
+              'newEncounter': currentEncounter,
+              'allEncounters': encountersUpToThisPoint,
+              'monthlyEncounters': monthlyUpToThisPoint,
+              'streaks': calculateStreaks(encounterBox),
+              'level': getCurrentLevel(progress.xp),
+            };
+
+            if (achievement.condition(data)) {
+              unlockedThisMonth = true;
+              break; // Una vez desbloqueado en el mes, no necesitamos seguir
+            }
+          }
+        }
+
+        // 4. SI SE DESBLOQUEÓ, LO AÑADIMOS A LA LISTA DEL MES
+        if (unlockedThisMonth) {
+          if (!progress.unlockedBadges.contains(achievement.id)) {
+            progress.unlockedBadges.add(achievement.id);
+          }
+        }
+      }
+
+      // 5. GUARDAR EL PROGRESO ACTUALIZADO DEL MES
+      await progress.save();
+      print("Logros para $monthId re-evaluados.");
+    } catch (e) {
+      print(
+        "No se encontró progreso para el mes $monthId, no se re-evalúan logros.",
+      );
+    }
+  }
+
+  static Future<void> deleteEncounter(Encounter encounterToDelete) async {
+    print(
+      "--- Procesando borrado de encuentro y actualizando gamificación ---",
+    );
+
+    final monthlyProgressBox = Hive.box<MonthlyProgress>('monthly_progress');
+    final encounterDate = encounterToDelete.date;
+    final monthId = DateFormat('yyyy-MM').format(encounterDate);
+
+    // 1. RESTAR EL XP
+    try {
+      final progress = monthlyProgressBox.values.firstWhere(
+        (p) => p.monthId == monthId,
+      );
+
+      int xpLost = 50 + (encounterToDelete.rating * 10);
+      if (encounterToDelete.protected) xpLost += 20;
+
+      progress.xp = (progress.xp - xpLost).clamp(0, double.infinity).toInt();
+
+      await progress.save();
+      print("XP actualizado para $monthId: ${progress.xp} XP");
+    } catch (e) {
+      print("No se encontró progreso para el mes del encuentro borrado.");
+    }
+
+    // 2. BORRAR EL ENCUENTRO DE LA BASE DE DATOS
+    // Lo hacemos ANTES de re-calcular los logros, para que los datos sean correctos.
+    await encounterToDelete.delete();
+
+    // --- 3. LLAMAR A LA NUEVA FUNCIÓN DE RE-CÁLCULO ---
+    // Re-evaluamos los logros del mes afectado por el borrado.
+    await _recalculateAchievementsForMonth(monthId);
+    // ----------------------------------------------------
+
+    print("--- Borrado completado ---");
   }
 }

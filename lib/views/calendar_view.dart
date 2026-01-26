@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notch_app/utils/gamification_engine.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../../models/encounter.dart';
@@ -250,7 +251,37 @@ class _CalendarViewState extends State<CalendarView> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => item.delete(),
+                      onTap: () => {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            backgroundColor: Colors.grey[900],
+                            title: const Text(
+                              "Confirmar Borrado",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            content: const Text(
+                              "Esta acción también ajustará tu XP y progreso. ¿Estás seguro?",
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(ctx),
+                                child: const Text("Cancelar"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  GamificationEngine.deleteEncounter(item);
+                                  Navigator.pop(ctx);
+                                },
+                                child: const Text(
+                                  "Borrar",
+                                  style: TextStyle(color: Colors.redAccent),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      },
                       child: Icon(
                         Icons.close,
                         size: 16,

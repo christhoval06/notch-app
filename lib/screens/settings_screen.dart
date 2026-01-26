@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/utils/gamification_engine.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hive/hive.dart';
@@ -27,6 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String _buildNumber = "";
   final _storage = const FlutterSecureStorage();
   bool _isRecalculating = false;
+  bool _isRecalculatingXp = false;
 
   @override
   void initState() {
@@ -306,6 +308,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("Logros actualizados correctamente."),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
+                  },
+                ),
+          _isRecalculatingXp
+              ? const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : _buildTile(
+                  icon: Icons.calculate,
+                  color: Colors.cyanAccent,
+                  title: "Re-calcular Experiencia (XP)",
+                  subtitle:
+                      "Sincroniza tu nivel con tu historial de encuentros.",
+                  onTap: () async {
+                    setState(() => _isRecalculatingXp = true);
+
+                    await GamificationEngine.recalculateAllXp();
+
+                    if (mounted) {
+                      setState(() => _isRecalculatingXp = false);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            "Experiencia (XP) actualizada correctamente.",
+                          ),
                           backgroundColor: Colors.green,
                         ),
                       );

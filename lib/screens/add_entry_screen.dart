@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
+import 'package:notch_app/models/partner.dart';
 import 'package:notch_app/services/achievement_engine.dart';
 import 'package:uuid/uuid.dart';
 import '../models/encounter.dart';
@@ -88,25 +89,26 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
               // 2. TEXT FIELD: PAREJA
               _buildLabel(AppStrings.get('partner', lang: currentLang)),
-              FormBuilderTextField(
-                name: 'partnerName',
-                validator: FormBuilderValidators.required(
-                  errorText: "Required / Requerido",
-                ),
-                style: const TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[900],
-                  hintText: "Ej. Alias 'X'...",
-                  hintStyle: TextStyle(color: Colors.grey[600]),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                ),
-              ),
+              _buildPartnerField(),
 
+              // FormBuilderTextField(
+              //   name: 'partnerName',
+              //   validator: FormBuilderValidators.required(
+              //     errorText: "Required / Requerido",
+              //   ),
+              //   style: const TextStyle(color: Colors.white),
+              //   decoration: InputDecoration(
+              //     filled: true,
+              //     fillColor: Colors.grey[900],
+              //     hintText: "Ej. Alias 'X'...",
+              //     hintStyle: TextStyle(color: Colors.grey[600]),
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(12),
+              //       borderSide: BorderSide.none,
+              //     ),
+              //     errorStyle: const TextStyle(color: Colors.redAccent),
+              //   ),
+              // ),
               const SizedBox(height: 25),
 
               // 3. FILTER CHIPS: TAGS (Traducción automática)
@@ -385,6 +387,110 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
     );
   }
 
+  Widget _buildPartnerField() {
+    final partnerBox = Hive.box<Partner>('partners');
+    final allPartnerNames = partnerBox.values
+        .map((p) => p.name)
+        .toSet()
+        .toList();
+
+    return FormBuilderField<String>(
+      name: 'partnerName',
+      validator: FormBuilderValidators.required(
+        errorText: "El nombre es requerido",
+      ),
+      builder: (FormFieldState<String> field) {
+        return Autocomplete<String>(
+          initialValue: TextEditingValue(text: field.value ?? ''),
+
+          optionsBuilder: (TextEditingValue textEditingValue) {
+            final String text = textEditingValue.text;
+
+            if (text.isEmpty || !text.startsWith('@')) {
+              return const Iterable<String>.empty();
+            }
+
+            final String query = text.substring(1).toLowerCase();
+
+            if (query.isEmpty) {
+              return const Iterable<String>.empty();
+            }
+
+            final results = allPartnerNames
+                .where((String option) {
+                  return option.toLowerCase().contains(query);
+                })
+                .take(4);
+
+            return results.map((name) => '@$name');
+          },
+
+          onSelected: (String selection) {
+            final String realName = selection.startsWith('@')
+                ? selection.substring(1)
+                : selection;
+            field.didChange(realName);
+            FocusScope.of(context).unfocus();
+          },
+
+          // Usamos nuestro nuevo widget helper para el campo de texto
+          fieldViewBuilder:
+              (
+                BuildContext context,
+                TextEditingController textEditingController,
+                FocusNode focusNode,
+                VoidCallback onFieldSubmitted,
+              ) {
+                return _PartnerTextField(
+                  controller: textEditingController,
+                  focusNode: focusNode,
+                  onFieldSubmitted: onFieldSubmitted,
+                  field: field,
+                );
+              },
+
+          optionsViewBuilder:
+              (
+                BuildContext context,
+                AutocompleteOnSelected<String> onSelected,
+                Iterable<String> options,
+              ) {
+                return Align(
+                  alignment: Alignment.topLeft,
+                  child: Material(
+                    elevation: 4.0,
+                    color: Colors.grey[850],
+                    borderRadius: BorderRadius.circular(8),
+                    child: SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width -
+                          40, // Ancho del campo
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: options.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          final String option = options.elementAt(index);
+                          return ListTile(
+                            title: Text(
+                              option,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            onTap: () {
+                              onSelected(option);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                );
+              },
+        );
+      },
+    );
+  }
+
   Widget _roundButton(IconData icon, VoidCallback onPressed) {
     return Container(
       decoration: BoxDecoration(
@@ -394,6 +500,71 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
       child: IconButton(
         icon: Icon(icon, color: Colors.white),
         onPressed: onPressed,
+      ),
+    );
+  }
+}
+
+class _PartnerTextField extends StatefulWidget {
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final VoidCallback onFieldSubmitted;
+  final FormFieldState<String> field;
+
+  const _PartnerTextField({
+    Key? key,
+    required this.controller,
+    required this.focusNode,
+    required this.onFieldSubmitted,
+    required this.field,
+  }) : super(key: key);
+
+  @override
+  __PartnerTextFieldState createState() => __PartnerTextFieldState();
+}
+
+class __PartnerTextFieldState extends State<_PartnerTextField> {
+  @override
+  void initState() {
+    super.initState();
+    // Añadimos el listener de forma segura en initState
+    widget.controller.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    // Limpiamos el listener para evitar fugas de memoria
+    widget.controller.removeListener(_onTextChanged);
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    final String text = widget.controller.text;
+
+    final String valueToSave = text.startsWith('@') ? text.substring(1) : text;
+
+    if (valueToSave != widget.field.value) {
+      widget.field.didChange(valueToSave);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      onSubmitted: (_) => widget.onFieldSubmitted(),
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.grey[900],
+        hintText: "Escribe '@' para buscar o un nombre nuevo...",
+        hintStyle: TextStyle(color: Colors.grey[600]),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        errorText: widget.field.errorText,
       ),
     );
   }
