@@ -75,8 +75,8 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("release")
 
-            isMinifyEnabled = false // Flutter suele poner esto en true por defecto para release
-            isShrinkResources = false // Reduce el tamaño del APK
+            isMinifyEnabled = true // Flutter suele poner esto en true por defecto para release
+            isShrinkResources = true // Reduce el tamaño del APK
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }

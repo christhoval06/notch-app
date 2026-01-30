@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
@@ -260,7 +259,8 @@ class _PathNodeState extends State<_PathNode>
                     // Nombre del nivel
                     Text(
                       widget.levelName,
-                      style: GoogleFonts.lato(
+                      style: TextStyle(
+                        fontFamily: 'Lato',
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -328,7 +328,8 @@ class _PathNodeState extends State<_PathNode>
           const SizedBox(height: 8),
           Text(
             widget.levelName,
-            style: GoogleFonts.lato(
+            style: TextStyle(
+              fontFamily: 'Lato',
               color: widget.isUnlocked ? Colors.white : Colors.grey[600],
               fontWeight: widget.isCurrent
                   ? FontWeight.bold
@@ -340,7 +341,8 @@ class _PathNodeState extends State<_PathNode>
           ),
           Text(
             "${widget.xpRequired} XP",
-            style: GoogleFonts.lato(
+            style: TextStyle(
+              fontFamily: 'Lato',
               color: widget.isUnlocked
                   ? nodeColor.withOpacity(0.8)
                   : Colors.grey[700],

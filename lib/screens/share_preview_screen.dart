@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../services/share_service.dart';
 
@@ -107,7 +106,8 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
               children: [
                 Text(
                   "TEMPORADA ACTUAL",
-                  style: GoogleFonts.lato(
+                  style: TextStyle(
+                    fontFamily: 'Lato',
                     color: Colors.white.withOpacity(0.7),
                     fontSize: 14,
                     letterSpacing: 3,
@@ -125,7 +125,8 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
                   ),
                   child: Text(
                     widget.rankName,
-                    style: GoogleFonts.bebasNeue(
+                    style: TextStyle(
+                      fontFamily: 'BebasNeue',
                       color: Colors.white,
                       fontSize: 40,
                       letterSpacing: 4,
@@ -155,7 +156,8 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
             // Sección Inferior (Logo)
             Text(
               "NOTCH",
-              style: GoogleFonts.lato(
+              style: TextStyle(
+                fontFamily: 'Lato',
                 color: Colors.white.withOpacity(0.6),
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -182,7 +184,8 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
             const SizedBox(width: 10),
             Text(
               label,
-              style: GoogleFonts.lato(
+              style: TextStyle(
+                fontFamily: 'Lato',
                 color: Colors.white.withOpacity(0.8),
                 fontSize: 16,
               ),
@@ -191,7 +194,8 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
         ),
         Text(
           value,
-          style: GoogleFonts.lato(
+          style: TextStyle(
+            fontFamily: 'Lato',
             color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,

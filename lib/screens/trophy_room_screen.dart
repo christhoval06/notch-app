@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:notch_app/models/challenge.dart';
@@ -548,7 +547,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           children: [
             Text(
               currentStreak.toString(),
-              style: GoogleFonts.montserrat(
+              style: TextStyle(
+                fontFamily: 'Montserrat',
                 color: Colors.white,
                 fontSize: 64,
                 fontWeight: FontWeight.bold,
@@ -557,13 +557,18 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             const SizedBox(width: 8),
             Text(
               "días",
-              style: GoogleFonts.lato(color: Colors.grey[400], fontSize: 20),
+              style: TextStyle(
+                fontFamily: 'Lato',
+                color: Colors.grey[400],
+                fontSize: 20,
+              ),
             ),
           ],
         ),
         Text(
           "RACHA ACTUAL",
-          style: GoogleFonts.lato(
+          style: TextStyle(
+            fontFamily: 'Lato',
             color: const Color(0xFFFFC107),
             fontSize: 12,
             fontWeight: FontWeight.bold,
@@ -620,7 +625,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             children: [
               Text(
                 days.toString(),
-                style: GoogleFonts.montserrat(
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
                   color: color,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -628,7 +634,11 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               ),
               Text(
                 "días",
-                style: GoogleFonts.lato(color: Colors.grey[500], fontSize: 14),
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  color: Colors.grey[500],
+                  fontSize: 14,
+                ),
               ),
             ],
           ),
@@ -639,7 +649,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               const SizedBox(width: 4),
               Text(
                 title,
-                style: GoogleFonts.lato(
+                style: TextStyle(
+                  fontFamily: 'Lato',
                   color: Colors.white,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -666,7 +677,11 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               const SizedBox(width: 4),
               Text(
                 bottomText,
-                style: GoogleFonts.lato(color: Colors.grey[500], fontSize: 10),
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  color: Colors.grey[500],
+                  fontSize: 10,
+                ),
               ),
             ],
           ),
@@ -690,11 +705,16 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           children: [
             Text(
               "Próximo hito: $milestone días",
-              style: GoogleFonts.lato(color: Colors.white, fontSize: 12),
+              style: TextStyle(
+                fontFamily: 'Lato',
+                color: Colors.white,
+                fontSize: 12,
+              ),
             ),
             Text(
               remaining > 0 ? "$remaining días faltantes" : "¡Hito alcanzado!",
-              style: GoogleFonts.lato(
+              style: TextStyle(
+                fontFamily: 'Lato',
                 color: const Color(0xFFFF9800),
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -745,7 +765,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 const SizedBox(width: 10),
                 Text(
                   "RETOS ACTIVOS", // Título más general
-                  style: GoogleFonts.lato(
+                  style: TextStyle(
+                    fontFamily: 'Lato',
                     color: Colors.purpleAccent,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,

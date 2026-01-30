@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/challenge.dart';
 import '../models/encounter.dart';
@@ -96,7 +95,8 @@ class ChallengesScreen extends StatelessWidget {
               Expanded(
                 child: Text(
                   challenge.title,
-                  style: GoogleFonts.lato(
+                  style: TextStyle(
+                    fontFamily: 'Lato',
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

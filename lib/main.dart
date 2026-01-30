@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
 import 'package:notch_app/models/global_progress.dart';
@@ -58,22 +57,42 @@ void main() async {
 class NotchApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ThemeData base = ThemeData.dark();
+
     return MaterialApp(
       navigatorKey: navigatorKey,
       title: 'NOTCH',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // Tema Oscuro General
-        brightness: Brightness.dark,
+      theme: base.copyWith(
+        textTheme: base.textTheme
+            .apply(
+              fontFamily: 'Lato',
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            )
+            .copyWith(
+              headlineSmall: base.textTheme.headlineSmall?.copyWith(
+                fontFamily: 'BebasNeue',
+              ),
+              headlineMedium: base.textTheme.headlineMedium?.copyWith(
+                fontFamily: 'BebasNeue',
+              ),
+            ),
+
         scaffoldBackgroundColor: const Color(0xFF121212),
         primaryColor: Colors.blueAccent,
-        // Usamos fuente Google Fonts "Lato" para estilo moderno
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context).textTheme,
-        ).apply(bodyColor: Colors.white, displayColor: Colors.white),
-        colorScheme: const ColorScheme.dark(
+        colorScheme: base.colorScheme.copyWith(
           primary: Colors.blueAccent,
           secondary: Colors.purpleAccent,
+          brightness: Brightness.dark,
+        ),
+
+        appBarTheme: base.appBarTheme.copyWith(
+          titleTextStyle: const TextStyle(
+            fontFamily: 'BebasNeue', // Fuente especial para títulos de AppBar
+            fontSize: 22,
+            color: Colors.white,
+          ),
         ),
       ),
       builder: (context, child) {

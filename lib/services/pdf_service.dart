@@ -16,8 +16,14 @@ class PdfService {
     // Ordenar por fecha
     encounters.sort((a, b) => b.date.compareTo(a.date));
 
-    // Cargar fuente (opcional, usa standard si falla)
-    final font = await PdfGoogleFonts.nunitoExtraLight();
+    final fontData = await rootBundle.load(
+      "assets/fonts/Nunito-ExtraLight.ttf",
+    );
+    final ttf = pw.Font.ttf(fontData);
+
+    // Opcional: Cargar también la versión Bold
+    final boldFontData = await rootBundle.load("assets/fonts/Nunito-Bold.ttf");
+    final boldTtf = pw.Font.ttf(boldFontData);
 
     pdf.addPage(
       pw.MultiPage(
@@ -35,12 +41,12 @@ class PdfService {
                     style: pw.TextStyle(
                       fontSize: 24,
                       fontWeight: pw.FontWeight.bold,
-                      font: font,
+                      font: boldTtf,
                     ),
                   ),
                   pw.Text(
                     DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                    style: pw.TextStyle(font: font),
+                    style: pw.TextStyle(font: ttf),
                   ),
                 ],
               ),
@@ -75,7 +81,7 @@ class PdfService {
             pw.SizedBox(height: 20),
             pw.Text(
               "Últimos Registros",
-              style: pw.TextStyle(fontSize: 18, font: font),
+              style: pw.TextStyle(fontSize: 18, font: boldTtf),
             ),
             pw.Divider(),
 
