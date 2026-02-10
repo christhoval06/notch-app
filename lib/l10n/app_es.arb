@@ -1,0 +1,449 @@
+{
+  "@@locale": "es",
+  "welcome": "Bienvenido a NOTCH",
+  "authReason": "Por favor autentícate para acceder a tus registros",
+  "save": "Guardar Notch",
+  "mood": "Estado de Ánimo",
+  "partner": "Pareja",
+  "tags": "Etiquetas",
+  "orgasms": "Orgasmos",
+  "usedProtection": "Usé Protección",
+  "rating": "Calificación",
+  "safe": "Seguro",
+  "unsafe": "Riesgo",
+  "tagMorning": "Mañanero",
+  "tagQuickie": "Rápido",
+  "tagOral": "Oral",
+  "tagAnal": "Anal",
+  "tagToys": "Juguetes",
+  "tagDate": "Cita",
+  "tagTravel": "Viaje",
+  "tagKinky": "Kinky",
+  "tagOutdoor": "Aire Libre",
+  "tagAnniversary": "Aniversario",
+  "tagOns": "Aventura de una Noche",
+  "tagFwb": "Amigos con Beneficios",
+  "tagReconciliation": "Reconciliación",
+  "tagCelebration": "Celebración",
+  "tagVanilla": "Vainilla",
+  "tagDomsub": "Dom/Sub",
+  "tagMassage": "Masaje Erótico",
+  "tagCar": "En el Coche",
+  "tagHotel": "Hotel",
+  "tagShower": "Ducha / Baño",
+  "insightsTitle": "Inteligencia de Datos",
+  "insightsEmpty": "Aún no hay suficientes datos para generar insights.\\n¡Sigue registrando!",
+  "settingsTitle": "Ajustes",
+  "settingsTagline": "Private Intimacy Tracker",
+  "settingsGeneral": "GENERAL",
+  "settingsAbout": "ACERCA DE",
+  "settingsDangerZone": "ZONA DE PELIGRO",
+  "settingsMaintenance": "MANTENIMIENTO",
+  "settingsSecurityAccess": "Seguridad y Accesos",
+  "settingsSecurityAccessSubtitle": "Configurar PIN, Pánico y Kill Switch",
+  "settingsDataBackup": "Datos y Respaldo",
+  "settingsDataBackupSubtitle": "Copias de seguridad y Exportar PDF",
+  "settingsLanguage": "Idioma",
+  "settingsDeveloper": "Desarrollador",
+  "settingsDeveloperSubtitle": "Creado con privacidad en mente",
+  "settingsAboutDevTitle": "Sobre el Dev",
+  "settingsAboutDevDescription": "Hola, soy @christhoval. Creé NOTCH para el registro privado y seguro de la actividad sexual. Porque creo que los datos íntimos deben permanecer privados, esta app no tiene servidores, no tiene trackers y tú eres el único dueño de tu información.",
+  "settingsContactSupport": "Contacto / Soporte",
+  "settingsContactSupportSubtitle": "Reportar bugs o sugerir ideas",
+  "settingsResetApp": "Restablecer App",
+  "settingsResetAppSubtitle": "Borrar todos los datos y reiniciar",
+  "settingsRecalculateAchievements": "Re-calcular Logros",
+  "settingsRecalculateAchievementsSubtitle": "Actualiza tus medallas si crees que falta alguna.",
+  "settingsAchievementsUpdated": "Logros actualizados correctamente.",
+  "settingsRecalculateXp": "Re-calcular Experiencia (XP)",
+  "settingsRecalculateXpSubtitle": "Sincroniza tu nivel con tu historial de encuentros.",
+  "settingsXpUpdated": "Experiencia (XP) actualizada correctamente.",
+  "settingsMadeWithFlutter": "Made with ❤️ & Flutter",
+  "settingsLanguageUpdated": "Idioma actualizado",
+  "settingsCouldNotOpen": "No se pudo abrir {url}",
+  "@settingsCouldNotOpen": {
+    "placeholders": {
+      "url": {}
+    }
+  },
+  "settingsFactoryResetTitle": "¿Restablecer de Fábrica?",
+  "settingsFactoryResetMessage": "Esta acción borrará TODOS tus registros, parejas, progreso y configuraciones de seguridad. No se puede deshacer.",
+  "cancel": "Cancelar",
+  "deleteAll": "BORRAR TODO",
+  "onboardingSkip": "Saltar",
+  "onboardingSlide1Title": "Privacidad Absoluta. Cero Compromisos.",
+  "onboardingSlide1Description": "Lo que pasa en NOTCH, se queda en NOTCH. Todos tus registros se guardan de forma encriptada solo en tu dispositivo. No usamos servidores. Tu vida íntima es solo tuya.",
+  "onboardingSlide2Title": "Entiende tus Patrones. Mejora tu Bienestar.",
+  "onboardingSlide2Description": "Registra tus encuentros para descubrir insights sobre tu frecuencia, satisfacción y hábitos. NOTCH es tu herramienta personal para entender mejor tu salud sexual.",
+  "onboardingSlide3Title": "Mide tu Progreso. Celebra tus Hitos.",
+  "onboardingSlide3Description": "Establece objetivos, monitorea tus rachas y sigue tu 'Camino de Maestría'. La gamificación está diseñada para motivarte a ser más consciente y consistente con tu bienestar.",
+  "onboardingGoToApp": "Entendido, ir a la App",
+  "onboardingPinsTitle": "Tus Claves de Acceso",
+  "onboardingPinsDescription": "Estos son tus PINs por defecto. ¡Memorízalos y cámbialos en Ajustes lo antes posible!",
+  "onboardingRealPin": "PIN REAL",
+  "onboardingRealPinSubtitle": "Para acceder a NOTCH.",
+  "onboardingPanicPin": "PIN PÁNICO",
+  "onboardingPanicPinSubtitle": "Para abrir la app falsa (tareas).",
+  "statsNoData": "Sin datos",
+  "statsPeriod30Days": "30 Días",
+  "statsPeriod6Months": "6 Meses",
+  "statsPeriodTotal": "Total",
+  "statsHighestRankReached": "MAYOR RANGO ALCANZADO",
+  "statsXpTotal": "{xp} XP en total",
+  "@statsXpTotal": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "statsTotal": "Total",
+  "statsAvgRating": "Promedio",
+  "statsActivityDistribution": "Distribución de Actividad",
+  "statsActivityLast6Months": "Actividad (Últimos 6 Meses)",
+  "statsAnnualActivityMap": "Mapa de Actividad Anual",
+  "statsHeatmapSnackBar": "{date}: {count} encuentros",
+  "@statsHeatmapSnackBar": {
+    "placeholders": {
+      "date": {},
+      "count": {}
+    }
+  },
+  "statsQualityBreakdown": "Desglose de Calidad",
+  "statsLegendary": "Legendario (9-10)",
+  "statsGood": "Bueno (7-8)",
+  "statsAverage": "Regular (5-6)",
+  "statsBad": "Malo (1-4)",
+  "statsNoTagData": "Sin datos de etiquetas",
+  "statsNoDescription": "Sin descripción.",
+  "calendarNoActivity": "Sin actividad este día.",
+  "calendarConfirmDeleteTitle": "Confirmar Borrado",
+  "calendarConfirmDeleteMessage": "Esta acción también ajustará tu XP y progreso. ¿Estás seguro?",
+  "delete": "Borrar",
+  "authBiometricError": "Error de biometría: {error}",
+  "@authBiometricError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "authIncorrectCode": "Código Incorrecto",
+  "authKillSwitchExecuted": "⚠️ PROTOCOLO EXECUTADO. DATOS ELIMINADOS.",
+  "authBiometricButton": "Biometría / FaceID",
+  "insightAverageSatisfactionTitle": "Satisfacción Promedio",
+  "insightAverageSatisfactionDescription": "Tu calificación promedio de todos los encuentros es de {avg} sobre 10.",
+  "@insightAverageSatisfactionDescription": {
+    "placeholders": {
+      "avg": {}
+    }
+  },
+  "insightWeeklyFrequencyTitle": "Frecuencia Semanal",
+  "insightWeeklyFrequencyDescription": "En promedio, registras {freq} encuentros por semana.",
+  "@insightWeeklyFrequencyDescription": {
+    "placeholders": {
+      "freq": {}
+    }
+  },
+  "insightBestChemistryTitle": "Mejor Química",
+  "insightBestChemistryDescription": "Tus encuentros con '{partner}' tienen la calificación promedio más alta ({avg}/10).",
+  "@insightBestChemistryDescription": {
+    "placeholders": {
+      "partner": {},
+      "avg": {}
+    }
+  },
+  "insightDatesMatterTitle": "Las Citas Importan",
+  "insightDatesMatterDescription": "Tu calificación promedio es un {diff}% {trend} en encuentros con la etiqueta '{tagA}' en comparación con '{tagB}'.",
+  "@insightDatesMatterDescription": {
+    "placeholders": {
+      "diff": {},
+      "trend": {},
+      "tagA": {},
+      "tagB": {}
+    }
+  },
+  "insightHigher": "más alta",
+  "insightLower": "más baja",
+  "insightRhythmChangeTitle": "Cambio de Ritmo",
+  "insightRhythmChangeDescription": "Tu frecuencia de actividad ha {direction} un {percent}% este mes en comparación con el anterior.",
+  "@insightRhythmChangeDescription": {
+    "placeholders": {
+      "direction": {},
+      "percent": {}
+    }
+  },
+  "insightIncreased": "aumentado",
+  "insightDecreased": "disminuido",
+  "insightHealthCheckTitle": "Chequeo de Salud Sugerido",
+  "insightHealthCheckDescription": "Han pasado más de 6 meses desde tu último registro en el Health Passport. Considera programar uno.",
+  "insightInTheZoneTitle": "¡En la Zona!",
+  "insightInTheZoneDescription": "Estás en una racha de {streak} encuentros seguidos con calificación 'Buena' o 'Legendaria' (8+). ¡Sigue así!",
+  "@insightInTheZoneDescription": {
+    "placeholders": {
+      "streak": {}
+    }
+  },
+  "insightDayMonday": "Lunes",
+  "insightDayTuesday": "Martes",
+  "insightDayWednesday": "Miércoles",
+  "insightDayThursday": "Jueves",
+  "insightDayFriday": "Viernes",
+  "insightDaySaturday": "Sábado",
+  "insightDaySunday": "Domingo",
+  "insightGoldenDayTitle": "Tu Día Dorado",
+  "insightGoldenDayDescription": "Tus encuentros de los {day} suelen tener la calificación promedio más alta ({avg}/10).",
+  "@insightGoldenDayDescription": {
+    "placeholders": {
+      "day": {},
+      "avg": {}
+    }
+  },
+  "insightProtectionStatsTitle": "Estadística de Protección",
+  "insightProtectionStatsDescription": "Has usado protección en un {percentage}% de tus encuentros registrados.",
+  "@insightProtectionStatsDescription": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "insightDominantStyleTitle": "Tu Estilo Predominante",
+  "insightDominantStyleDescription": "Tu etiqueta más frecuente es '{tag}'. Parece que es una parte importante de tu rutina.",
+  "@insightDominantStyleDescription": {
+    "placeholders": {
+      "tag": {}
+    }
+  },
+  "homeBlackBookTitle": "Black Book",
+  "homeTrophyRoomTitle": "Trophy Room",
+  "homeHealthPassportTitle": "Health Passport",
+  "homeStatsTitle": "Estadísticas",
+  "homeTab": "Inicio",
+  "homeTrophiesTab": "Trofeos",
+  "homeHealthTab": "Salud",
+  "homeStatsTab": "Stats",
+  "blackBookNoRecords": "No hay registros aún",
+  "blackBookSummary": "{count} Encuentros • Último: {date}",
+  "@blackBookSummary": {
+    "placeholders": {
+      "count": {},
+      "date": {}
+    }
+  },
+  "fakeNewTask": "Nueva Tarea",
+  "fakeTaskHint": "Ej. Comprar leche",
+  "fakeAdd": "Añadir",
+  "fakeMyTasks": "Mis Tareas",
+  "fakeAllDone": "Todo listo por hoy.\n¡Añade una nueva tarea!",
+  "fakeTaskDeleted": "Tarea \"{title}\" eliminada",
+  "@fakeTaskDeleted": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "pinEnter4Digits": "Ingresa 4 dígitos",
+  "securityUpdated": "Seguridad Actualizada ✅",
+  "securityTitle": "Seguridad",
+  "securityConfigureKeys": "Configura tus llaves de acceso.",
+  "securityRealPinTitle": "PIN Real",
+  "securityRealPinDesc": "Tu acceso principal",
+  "securityPanicPinTitle": "PIN Pánico",
+  "securityPanicPinDesc": "Abre la lista de tareas falsa",
+  "securityKillSwitchTitle": "KILL SWITCH",
+  "securityKillSwitchDesc": "⚠️ BORRA TODOS LOS DATOS",
+  "securitySaveConfig": "Guardar Configuración",
+  "securityConfigurePin": "Configurar {title}",
+  "@securityConfigurePin": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "securityNotSet": "Sin definir",
+  "dataTitle": "Datos y Respaldos",
+  "dataBackupSection": "COPIA DE SEGURIDAD (BACKUP)",
+  "dataCreateBackup": "Crear Respaldo Encriptado",
+  "dataCreateBackupSubtitle": "Genera un archivo .notch cifrado para guardar en Drive/iCloud.",
+  "dataBackupSuccess": "Backup generado exitosamente",
+  "dataRestoreBackup": "Restaurar Respaldo",
+  "dataRestoreBackupSubtitle": "Importa un archivo .notch. ⚠️ Sobrescribirá los datos actuales.",
+  "dataRestoreSuccess": "Datos restaurados correctamente",
+  "dataExportSection": "EXPORTACIÓN",
+  "dataGeneratePdf": "Generar Reporte PDF",
+  "dataGeneratePdfSubtitle": "Crea un documento visual con tus estadísticas y registros.",
+  "dataPdfSuccess": "PDF generado",
+  "dataAchievementUnlocked": "¡Logro Desbloqueado: {name}!",
+  "@dataAchievementUnlocked": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dataError": "Error: {error}",
+  "@dataError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "healthResultNegative": "Negativo",
+  "healthResultPositive": "Positivo",
+  "healthResultPending": "Pendiente",
+  "healthNewRecord": "Nuevo Registro Médico",
+  "healthTestTypeLabel": "Tipo de Prueba (Ej. Panel Completo)",
+  "healthResultLabel": "Resultado:",
+  "healthSaveAndSchedule": "Guardar & Programar",
+  "healthSavedReminder": "Guardado. Te avisaremos en 6 meses.",
+  "healthRegisterTest": "Registrar Prueba",
+  "healthNoRecords": "Sin registros médicos",
+  "healthNoRecordsSubtitle": "La salud es sexy. ¡Hazte un chequeo!",
+  "addEntryPartnerHint": "Escribe '@' para buscar o un nombre nuevo...",
+  "sharePreviewTitle": "Previsualización",
+  "shareCardText": "¡Nuevo rango desbloqueado en NOTCH! 🏆 #NOTCHapp",
+  "shareCurrentSeason": "TEMPORADA ACTUAL",
+  "shareSeasonXp": "XP de Temporada",
+  "shareMonthEncounters": "Encuentros del Mes",
+  "shareErrorGeneratingImage": "Error al generar la imagen para compartir",
+  "partnerChangeAvatar": "Cambiar Avatar",
+  "partnerChooseFromGallery": "Elegir de Galería",
+  "partnerChooseEmoji": "Elegir un Emoji",
+  "partnerChooseEmojiTitle": "Elige un Emoji",
+  "partnerNotesSaved": "Notas guardadas",
+  "partnerEdit": "Editar",
+  "partnerPrivateNotes": "NOTAS PRIVADAS",
+  "partnerNotesHint": "Gustos, disgustos, cumpleaños...",
+  "partnerNotesTapToAdd": "Toca el lápiz para añadir notas.",
+  "partnerHistoryTitle": "HISTORIAL DE ENCUENTROS",
+  "partnerNoEncounters": "Sin encuentros registrados.",
+  "trophyMonthRecord": "RÉCORD MES",
+  "trophyHistorical": "HISTÓRICO",
+  "challengesTitle": "Retos",
+  "challengesSubtitle": "Completa estos objetivos para demostrar tu maestría y compromiso.",
+  "challengeMorningMasterTitle": "Maestro Mañanero",
+  "challengeMorningMasterDesc": "Registra 5 encuentros con la etiqueta 'Mañanero'.",
+  "challengeWeeklyExplorerTitle": "Explorador Semanal",
+  "challengeWeeklyExplorerDesc": "Usa 3 etiquetas diferentes en los últimos 7 días.",
+  "challengeQualityWeekTitle": "Semana de Calidad",
+  "challengeQualityWeekDesc": "Logra un promedio de 8.0+ en los últimos 7 días.",
+  "challengeSafetyChampionTitle": "Campeón de la Seguridad",
+  "challengeSafetyChampionDesc": "Logra 100% de protección en tus últimos 5 encuentros.",
+  "challengePreludeMasterTitle": "Maestro del Preludio",
+  "challengePreludeMasterDesc": "Promedio de 9.0+ en 5 encuentros seguidos con la etiqueta 'Oral'.",
+  "challengeSteelConsistencyTitle": "Constancia de Acero",
+  "challengeSteelConsistencyDesc": "Registra al menos 8 encuentros en la temporada actual.",
+  "challengeQualityClubTitle": "El Club del 9+",
+  "challengeQualityClubDesc": "Logra 5 encuentros este mes con calificación de 9 o 10.",
+  "challengeGuardianOfSafetyTitle": "Guardián de la Seguridad",
+  "challengeGuardianOfSafetyDesc": "Logra una racha de 15 encuentros seguidos usando protección.",
+  "challengePerfectWeekendTitle": "Fin de Semana Perfecto",
+  "challengePerfectWeekendDesc": "Registra encuentros el Viernes, Sábado y Domingo en un finde, todos con calificación 8+.",
+  "challengeEpicMorningTitle": "Muy Buenos Días",
+  "challengeEpicMorningDesc": "Acumula 50 encuentros con la etiqueta 'Mañanero'.",
+  "challengeFrequentFlyerTitle": "Viajero Frecuente",
+  "challengeFrequentFlyerDesc": "Acumula 15 encuentros con la etiqueta 'Viaje'.",
+  "challengeStarCollectorTitle": "Coleccionista de Estrellas",
+  "challengeStarCollectorDesc": "Logra 100 encuentros con calificación de 8 o más.",
+  "challengeCenturionTitle": "El Centurión",
+  "challengeCenturionDesc": "Registra tus primeros 100 encuentros en total.",
+  "challengeLegendaryGuardianTitle": "Guardián Legendario",
+  "challengeLegendaryGuardianDesc": "Mantén una tasa de protección del 95%+ sobre al menos 50 encuentros.",
+  "challengePolymathTitle": "El Polímata",
+  "challengePolymathDesc": "Usa cada una de las etiquetas disponibles al menos una vez.",
+  "levelInitiated1Name": "Iniciado I",
+  "levelInitiated1Desc": "El primer paso en el camino del autoconocimiento íntimo.",
+  "levelInitiated2Name": "Iniciado II",
+  "levelInitiated2Desc": "Comienzas a reconocer patrones y a entender tus ritmos.",
+  "levelInitiated3Name": "Iniciado III",
+  "levelInitiated3Desc": "La curiosidad se convierte en un hábito de registro consciente.",
+  "levelPractitioner1Name": "Practicante I",
+  "levelPractitioner1Desc": "La disciplina del registro revela sus primeros frutos.",
+  "levelPractitioner2Name": "Practicante II",
+  "levelPractitioner2Desc": "Desarrollas una mayor conciencia de tus deseos y límites.",
+  "levelPractitioner3Name": "Practicante III",
+  "levelPractitioner3Desc": "La consistencia demuestra un compromiso con tu bienestar sexual.",
+  "levelAdept1Name": "Adepto I",
+  "levelAdept1Desc": "Dominas las herramientas y comienzas a experimentar con confianza.",
+  "levelAdept2Name": "Adepto II",
+  "levelAdept2Desc": "Tu entendimiento de la dinámica íntima se profundiza.",
+  "levelAdept3Name": "Adepto III",
+  "levelAdept3Desc": "La calidad de tus experiencias se vuelve tan importante como la cantidad.",
+  "levelVirtuoso1Name": "Virtuoso I",
+  "levelVirtuoso1Desc": "Tus acciones son intencionadas y tus registros, detallados.",
+  "levelVirtuoso2Name": "Virtuoso II",
+  "levelVirtuoso2Desc": "Inspiras confianza y demuestras una gran habilidad comunicativa.",
+  "levelVirtuoso3Name": "Virtuoso III",
+  "levelVirtuoso3Desc": "La intimidad se convierte en una forma de arte que dominas.",
+  "levelKnower1Name": "Conocedor I",
+  "levelKnower1Desc": "Posees un conocimiento profundo de ti mismo y de tus parejas.",
+  "levelKnower2Name": "Conocedor II",
+  "levelKnower2Desc": "Tu experiencia te permite anticipar y crear momentos inolvidables.",
+  "levelKnower3Name": "Conocedor III",
+  "levelKnower3Desc": "Eres un referente de madurez y salud sexual.",
+  "levelMasterName": "Maestro",
+  "levelMasterDesc": "Has alcanzado la cima del autoconocimiento y la maestría íntima.",
+  "levelGrandMasterName": "Gran Maestro",
+  "levelGrandMasterDesc": "Tu viaje inspira a otros. Has trascendido el simple acto físico.",
+  "levelLegendName": "Leyenda",
+  "levelLegendDesc": "Tu legado está escrito en las estrellas de la intimidad.",
+  "trophyActiveChallenges": "RETOS ACTIVOS",
+  "trophyExploreGoals": "Explora nuevos objetivos",
+  "trophyExploreGoalsSubtitle": "Toca para ver todos los retos disponibles y seguir mejorando.",
+  "trophyUnlockedBadges": "INSIGNIAS DESBLOQUEADAS",
+  "trophyCurrentLevel": "NIVEL ACTUAL",
+  "trophyFinalRank": "RANGO FINAL",
+  "trophyNextLevelInXp": "Siguiente nivel en {xp} XP",
+  "@trophyNextLevelInXp": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "trophyCurrentStreak": "RACHA ACTUAL",
+  "badgeLocked": "Bloqueado",
+  "achievementUnlockedTitle": "¡Logro Desbloqueado!",
+  "achievementRookieName": "El Debut",
+  "achievementRookieDesc": "Registra tu primer encuentro.",
+  "achievementLegendName": "Legendario",
+  "achievementLegendDesc": "Logra una calificación perfecta de 10/10.",
+  "achievementSprinterName": "Sprinter",
+  "achievementSprinterDesc": "3 encuentros en menos de 24 horas.",
+  "achievementSafePlayerName": "Jugador Seguro",
+  "achievementSafePlayerDesc": "Racha de 10 encuentros protegidos.",
+  "achievementHatTrickName": "Hat-Trick",
+  "achievementHatTrickDesc": "3 orgasmos o más en un solo encuentro.",
+  "achievementMarathonerName": "Maratonista",
+  "achievementMarathonerDesc": "5 encuentros en un fin de semana (Vie-Dom) en un mes.",
+  "achievementRenaissanceName": "Hombre Renacentista",
+  "achievementRenaissanceDesc": "Actividad en cada día de la semana en un mes.",
+  "achievementFireStreakName": "Racha de Fuego",
+  "achievementFireStreakDesc": "Mantén una racha de 7 días seguidos.",
+  "achievementTopCriticName": "Crítico Exigente",
+  "achievementTopCriticDesc": "5 encuentros seguidos con calificación de 9+.",
+  "achievementGrandMasterName": "Gran Maestro",
+  "achievementGrandMasterDesc": "Alcanza el rango \"Gran Maestro\" en una temporada.",
+  "achievementExplorerName": "Explorador",
+  "achievementExplorerDesc": "Usa 5 etiquetas diferentes en un mes.",
+  "achievementGlobetrotterName": "Trotamundos",
+  "achievementGlobetrotterDesc": "Registra un encuentro con la etiqueta \"Viaje\".",
+  "achievementNightOwlName": "Noctámbulo",
+  "achievementNightOwlDesc": "10 encuentros registrados después de la medianoche.",
+  "achievementHealthChampionName": "Campeón de la Salud",
+  "achievementHealthChampionDesc": "Registra tu primer chequeo en el Health Passport.",
+  "achievementArchivistName": "Archivista",
+  "achievementArchivistDesc": "Realiza tu primer Backup de datos.",
+  "trophyDays": "días",
+  "trophyRecordReached": "Récord alcanzado",
+  "trophyBeatingRecord": "Superando récord",
+  "trophyNoRecord": "Sin récord",
+  "trophyPercentOfHistorical": "{percent}% del histórico",
+  "@trophyPercentOfHistorical": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "trophyNoStreakThisMonth": "Sin racha este mes",
+  "trophyNextMilestoneDays": "Próximo hito: {days} días",
+  "@trophyNextMilestoneDays": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "trophyDaysRemaining": "{days} días faltantes",
+  "@trophyDaysRemaining": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "trophyMilestoneReached": "¡Hito alcanzado!"
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -96,7 +97,7 @@ class _CalendarViewState extends State<CalendarView> {
               child: selectedEncounters.isEmpty
                   ? Center(
                       child: Text(
-                        "Sin actividad este día.",
+                        AppLocalizations.of(context).calendarNoActivity,
                         style: TextStyle(color: Colors.grey),
                       ),
                     )
@@ -178,6 +179,8 @@ class _CalendarViewState extends State<CalendarView> {
   }
 
   Widget _buildEncounterCard(Encounter item) {
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       padding: const EdgeInsets.all(16),
@@ -256,25 +259,23 @@ class _CalendarViewState extends State<CalendarView> {
                           context: context,
                           builder: (ctx) => AlertDialog(
                             backgroundColor: Colors.grey[900],
-                            title: const Text(
-                              "Confirmar Borrado",
+                            title: Text(
+                              l10n.calendarConfirmDeleteTitle,
                               style: TextStyle(color: Colors.white),
                             ),
-                            content: const Text(
-                              "Esta acción también ajustará tu XP y progreso. ¿Estás seguro?",
-                            ),
+                            content: Text(l10n.calendarConfirmDeleteMessage),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(ctx),
-                                child: const Text("Cancelar"),
+                                child: Text(l10n.cancel),
                               ),
                               TextButton(
                                 onPressed: () {
                                   GamificationEngine.deleteEncounter(item);
                                   Navigator.pop(ctx);
                                 },
-                                child: const Text(
-                                  "Borrar",
+                                child: Text(
+                                  l10n.delete,
                                   style: TextStyle(color: Colors.redAccent),
                                 ),
                               ),
@@ -298,7 +299,7 @@ class _CalendarViewState extends State<CalendarView> {
                     Icon(Icons.bolt, size: 14, color: Colors.orange[300]),
                     const SizedBox(width: 4),
                     Text(
-                      "${item.orgasmCount} ${AppStrings.get('orgasms', lang: currentLang)}",
+                      "${item.orgasmCount} ${l10n.orgasms}",
                       style: TextStyle(color: Colors.grey[400], fontSize: 13),
                     ),
 
@@ -313,9 +314,7 @@ class _CalendarViewState extends State<CalendarView> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      item.protected
-                          ? "Safe"
-                          : "Unsafe", // O usar traducciones si prefieres
+                      item.protected ? l10n.safe : l10n.unsafe,
                       style: TextStyle(
                         color: item.protected
                             ? Colors.greenAccent
@@ -335,10 +334,7 @@ class _CalendarViewState extends State<CalendarView> {
                     runSpacing: 4,
                     children: item.tags.map((tagKey) {
                       // Traducimos la key (ej: 'tag_morning') al idioma actual
-                      final translatedTag = AppStrings.get(
-                        tagKey,
-                        lang: currentLang,
-                      );
+                      final translatedTag = tagLabelFromL10n(l10n, tagKey);
 
                       return Container(
                         padding: const EdgeInsets.symmetric(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import '../models/challenge.dart';
 import '../models/encounter.dart';
 import '../services/challenge_service.dart';
@@ -7,13 +8,14 @@ import '../services/challenge_service.dart';
 class ChallengesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text(
-          "Retos 💪",
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          "${l10n.challengesTitle} 💪",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: ValueListenableBuilder(
@@ -31,7 +33,7 @@ class ChallengesScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Completa estos objetivos para demostrar tu maestría y compromiso.",
+                      l10n.challengesSubtitle,
                       style: TextStyle(color: Colors.grey[400], fontSize: 14),
                     ),
                   ],
@@ -46,7 +48,11 @@ class ChallengesScreen extends StatelessWidget {
                       const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final challenge = challenges[index];
-                    return _buildChallengeCard(challenge, allEncounters);
+                    return _buildChallengeCard(
+                      context,
+                      challenge,
+                      allEncounters,
+                    );
                   },
                 ),
               ),
@@ -58,9 +64,11 @@ class ChallengesScreen extends StatelessWidget {
   }
 
   Widget _buildChallengeCard(
+    BuildContext context,
     Challenge challenge,
     List<Encounter> allEncounters,
   ) {
+    final l10n = AppLocalizations.of(context);
     final progress = challenge.getProgress(allEncounters);
     final progressPercent = challenge.getProgressPercent(allEncounters);
     final isCompleted = progressPercent >= 1.0;
@@ -94,7 +102,7 @@ class ChallengesScreen extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  challenge.title,
+                  _challengeTitle(l10n, challenge.id),
                   style: TextStyle(
                     fontFamily: 'Lato',
                     color: Colors.white,
@@ -109,7 +117,7 @@ class ChallengesScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            challenge.description,
+            _challengeDescription(l10n, challenge.id),
             style: TextStyle(color: Colors.grey[400], fontSize: 13),
           ),
           const SizedBox(height: 16),
@@ -140,5 +148,79 @@ class ChallengesScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _challengeTitle(AppLocalizations l10n, String id) {
+    switch (id) {
+      case 'morning_master':
+        return l10n.challengeMorningMasterTitle;
+      case 'weekly_explorer':
+        return l10n.challengeWeeklyExplorerTitle;
+      case 'quality_week':
+        return l10n.challengeQualityWeekTitle;
+      case 'safety_champion':
+        return l10n.challengeSafetyChampionTitle;
+      case 'prelude_master':
+        return l10n.challengePreludeMasterTitle;
+      case 'steel_consistency':
+        return l10n.challengeSteelConsistencyTitle;
+      case 'quality_club':
+        return l10n.challengeQualityClubTitle;
+      case 'guardian_of_safety':
+        return l10n.challengeGuardianOfSafetyTitle;
+      case 'perfect_weekend':
+        return l10n.challengePerfectWeekendTitle;
+      case 'epic_morning':
+        return l10n.challengeEpicMorningTitle;
+      case 'frequent_flyer':
+        return l10n.challengeFrequentFlyerTitle;
+      case 'star_collector':
+        return l10n.challengeStarCollectorTitle;
+      case 'centurion':
+        return l10n.challengeCenturionTitle;
+      case 'legendary_guardian':
+        return l10n.challengeLegendaryGuardianTitle;
+      case 'polymath':
+        return l10n.challengePolymathTitle;
+      default:
+        return id;
+    }
+  }
+
+  String _challengeDescription(AppLocalizations l10n, String id) {
+    switch (id) {
+      case 'morning_master':
+        return l10n.challengeMorningMasterDesc;
+      case 'weekly_explorer':
+        return l10n.challengeWeeklyExplorerDesc;
+      case 'quality_week':
+        return l10n.challengeQualityWeekDesc;
+      case 'safety_champion':
+        return l10n.challengeSafetyChampionDesc;
+      case 'prelude_master':
+        return l10n.challengePreludeMasterDesc;
+      case 'steel_consistency':
+        return l10n.challengeSteelConsistencyDesc;
+      case 'quality_club':
+        return l10n.challengeQualityClubDesc;
+      case 'guardian_of_safety':
+        return l10n.challengeGuardianOfSafetyDesc;
+      case 'perfect_weekend':
+        return l10n.challengePerfectWeekendDesc;
+      case 'epic_morning':
+        return l10n.challengeEpicMorningDesc;
+      case 'frequent_flyer':
+        return l10n.challengeFrequentFlyerDesc;
+      case 'star_collector':
+        return l10n.challengeStarCollectorDesc;
+      case 'centurion':
+        return l10n.challengeCenturionDesc;
+      case 'legendary_guardian':
+        return l10n.challengeLegendaryGuardianDesc;
+      case 'polymath':
+        return l10n.challengePolymathDesc;
+      default:
+        return id;
+    }
   }
 }

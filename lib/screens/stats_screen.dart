@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/utils/analyzer.dart';
+import 'package:notch_app/utils/level_localization.dart';
 import 'package:notch_app/utils/translations.dart';
+
+import 'package:notch_app/utils/gamification_engine.dart';
+import 'package:notch_app/models/monthly_progress.dart';
 
 import '../models/encounter.dart';
 
@@ -17,8 +22,96 @@ class StatsScreen extends StatefulWidget {
 
 class _StatsScreenState extends State<StatsScreen> {
   StatPeriod _selectedPeriod = StatPeriod.sixMonths;
+
+  Map<String, dynamic> _getHighestRankData() {
+    final progressBox = Hive.box<MonthlyProgress>('monthly_progress');
+    if (progressBox.isEmpty) {
+      // Si no hay datos, devolvemos el primer nivel como default
+      return GamificationEngine.getCurrentLevel(0);
+    }
+
+    int maxXP = 0;
+    for (var progress in progressBox.values) {
+      if (progress.xp > maxXP) {
+        maxXP = progress.xp;
+      }
+    }
+
+    return GamificationEngine.getCurrentLevel(maxXP);
+  }
+
+  Widget _buildHighestRankPanel(
+    Map<String, dynamic> levelData,
+    AppLocalizations l10n,
+  ) {
+    final rawLevelName = levelData['name'] as String;
+    final levelName = localizeLevelName(l10n, rawLevelName);
+    final levelDescription = localizeLevelDescription(l10n, rawLevelName);
+
+    return Container(
+      padding: const EdgeInsets.all(25),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.amber.shade700, Colors.orange.shade400],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.amber.withOpacity(0.3),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            l10n.statsHighestRankReached,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.8),
+              letterSpacing: 2,
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            levelName,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              shadows: [Shadow(color: Colors.black26, blurRadius: 5)],
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            l10n.statsXpTotal(levelData['current_total_xp'].toString()),
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white, fontSize: 14),
+          ),
+          const SizedBox(height: 15),
+          Text(
+            levelDescription,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.9),
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     // Obtenemos la caja de datos
     final box = Hive.box<Encounter>('encounters');
     List<Encounter> encounters = box.values.toList();
@@ -41,10 +134,7 @@ class _StatsScreenState extends State<StatsScreen> {
       return Scaffold(
         backgroundColor: const Color(0xFF121212),
         body: Center(
-          child: Text(
-            "No data yet / Sin datos",
-            style: TextStyle(color: Colors.grey),
-          ),
+          child: Text(l10n.statsNoData, style: TextStyle(color: Colors.grey)),
         ),
       );
     }
@@ -85,42 +175,47 @@ class _StatsScreenState extends State<StatsScreen> {
                 borderRadius: BorderRadius.circular(8),
                 selectedColor: Colors.white,
                 fillColor: Colors.blueAccent.withOpacity(0.3),
-                children: const [
+                children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text("30 Días"),
+                    child: Text(l10n.statsPeriod30Days),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text("6 Meses"),
+                    child: Text(l10n.statsPeriod6Months),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text("Total"),
+                    child: Text(l10n.statsPeriodTotal),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
+
+            // --- MAYOR RANGO ALCANZADO ---
+            _buildHighestRankPanel(_getHighestRankData(), l10n),
+
+            const SizedBox(height: 30),
             // 1. TARJETAS DE RESUMEN (SCOREBOARD)
             Row(
               children: [
                 _buildStatCard(
-                  "Total",
+                  l10n.statsTotal,
                   "$totalEncounters",
                   Icons.flag,
                   Colors.blueAccent,
                 ),
                 const SizedBox(width: 10),
                 _buildStatCard(
-                  "Orgasms",
+                  l10n.orgasms,
                   "$totalOrgasms",
                   Icons.bolt,
                   Colors.orangeAccent,
                 ),
                 const SizedBox(width: 10),
                 _buildStatCard(
-                  "Avg Rating",
+                  l10n.statsAvgRating,
                   avgRating.toStringAsFixed(1),
                   Icons.star,
                   Colors.purpleAccent,
@@ -130,7 +225,7 @@ class _StatsScreenState extends State<StatsScreen> {
             const SizedBox(height: 10),
 
             Text(
-              "Distribución de Actividad",
+              l10n.statsActivityDistribution,
               style: TextStyle(
                 color: Colors.grey[400],
                 fontSize: 16,
@@ -147,7 +242,7 @@ class _StatsScreenState extends State<StatsScreen> {
 
             // 2. GRÁFICO DE BARRAS (ACTIVIDAD MENSUAL)
             Text(
-              "Activity (Last 6 Months)",
+              l10n.statsActivityLast6Months,
               style: TextStyle(
                 color: Colors.grey[400],
                 fontSize: 16,
@@ -214,7 +309,7 @@ class _StatsScreenState extends State<StatsScreen> {
 
             // --- 3. NUEVO: HEATMAP CALENDAR ---
             Text(
-              "Mapa de Actividad Anual",
+              l10n.statsAnnualActivityMap,
               style: TextStyle(
                 color: Colors.grey[400],
                 fontSize: 16,
@@ -246,7 +341,10 @@ class _StatsScreenState extends State<StatsScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        '${DateFormat('d MMM y').format(date)}: $count encuentros',
+                        l10n.statsHeatmapSnackBar(
+                          DateFormat('d MMM y').format(date),
+                          count.toString(),
+                        ),
                       ),
                     ),
                   );
@@ -258,7 +356,7 @@ class _StatsScreenState extends State<StatsScreen> {
 
             // 3. DESGLOSE DE CALIDAD (Rating Breakdown)
             Text(
-              "Quality Breakdown",
+              l10n.statsQualityBreakdown,
               style: TextStyle(
                 color: Colors.grey[400],
                 fontSize: 16,
@@ -267,25 +365,25 @@ class _StatsScreenState extends State<StatsScreen> {
             ),
             const SizedBox(height: 15),
             _buildQualityRow(
-              "Legendary (9-10)",
+              l10n.statsLegendary,
               _countRatings(encounters, 9, 10),
               Colors.purpleAccent,
               totalEncounters,
             ),
             _buildQualityRow(
-              "Good (7-8)",
+              l10n.statsGood,
               _countRatings(encounters, 7, 8),
               Colors.greenAccent,
               totalEncounters,
             ),
             _buildQualityRow(
-              "Average (5-6)",
+              l10n.statsAverage,
               _countRatings(encounters, 5, 6),
               Colors.blueAccent,
               totalEncounters,
             ),
             _buildQualityRow(
-              "Bad (1-4)",
+              l10n.statsBad,
               _countRatings(encounters, 1, 4),
               Colors.redAccent,
               totalEncounters,
@@ -428,9 +526,9 @@ class _StatsScreenState extends State<StatsScreen> {
 
   Widget _buildPieChart(Map<String, double> data) {
     if (data.isEmpty)
-      return const Center(
+      return Center(
         child: Text(
-          "Sin datos de etiquetas",
+          AppLocalizations.of(context).statsNoTagData,
           style: TextStyle(color: Colors.grey),
         ),
       );
@@ -452,7 +550,7 @@ class _StatsScreenState extends State<StatsScreen> {
           return PieChartSectionData(
             color: color,
             value: entry.value,
-            title: AppStrings.get(entry.key, lang: currentLang),
+            title: tagLabelFromLanguageCode(entry.key, currentLang),
             radius: 80,
             titleStyle: const TextStyle(
               fontSize: 12,

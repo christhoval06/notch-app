@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import '../widgets/pin_selection_sheet.dart'; // Importa el modal
 
 class SecuritySettingsScreen extends StatefulWidget {
@@ -38,6 +39,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
   }
 
   Future<void> _saveForm() async {
+    final l10n = AppLocalizations.of(context);
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final values = _formKey.currentState!.value;
 
@@ -47,7 +49,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Seguridad Actualizada ✅"),
+          content: Text(l10n.securityUpdated),
           backgroundColor: Colors.green,
         ),
       );
@@ -56,6 +58,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (_isLoading)
       return Scaffold(
         backgroundColor: Colors.black,
@@ -66,7 +69,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Seguridad"),
+        title: Text(l10n.securityTitle),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -76,7 +79,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
           child: Column(
             children: [
               Text(
-                "Configura tus llaves de acceso.",
+                l10n.securityConfigureKeys,
                 style: TextStyle(color: Colors.grey[400]),
               ),
               const SizedBox(height: 30),
@@ -84,8 +87,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
               // CAMPO 1: PIN REAL
               _buildPinField(
                 name: 'real_pin',
-                title: "PIN Real",
-                desc: "Tu acceso principal",
+                title: l10n.securityRealPinTitle,
+                desc: l10n.securityRealPinDesc,
                 color: Colors.blueAccent,
                 icon: Icons.vpn_key,
               ),
@@ -95,8 +98,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
               // CAMPO 2: PIN PÁNICO
               _buildPinField(
                 name: 'fake_pin',
-                title: "PIN Pánico",
-                desc: "Abre la lista de tareas falsa",
+                title: l10n.securityPanicPinTitle,
+                desc: l10n.securityPanicPinDesc,
                 color: Colors.orangeAccent,
                 icon: Icons.masks, // Icono de máscara o similar
               ),
@@ -106,8 +109,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
               // CAMPO 3: KILL SWITCH
               _buildPinField(
                 name: 'kill_pin',
-                title: "KILL SWITCH",
-                desc: "⚠️ BORRA TODOS LOS DATOS",
+                title: l10n.securityKillSwitchTitle,
+                desc: l10n.securityKillSwitchDesc,
                 color: Colors.redAccent,
                 icon: Icons.delete_forever,
               ),
@@ -125,8 +128,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: const Text(
-                    "Guardar Configuración",
+                  child: Text(
+                    l10n.securitySaveConfig,
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
@@ -157,8 +160,10 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
             final newPin = await showModalBottomSheet<String>(
               context: context,
               isScrollControlled: true, // Para que ocupe pantalla casi completa
-              builder: (context) =>
-                  PinSelectionSheet(title: "Configurar $title", color: color),
+              builder: (context) => PinSelectionSheet(
+                title: AppLocalizations.of(context).securityConfigurePin(title),
+                color: color,
+              ),
             );
 
             if (newPin != null) {
@@ -209,8 +214,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                 ),
                 // Visualización del PIN (Puntitos o Texto "Sin definir")
                 if (isEmpty)
-                  const Text(
-                    "Sin definir",
+                  Text(
+                    AppLocalizations.of(context).securityNotSet,
                     style: TextStyle(color: Colors.grey, fontSize: 12),
                   )
                 else

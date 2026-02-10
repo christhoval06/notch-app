@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/services/achievement_engine.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -6,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:hive/hive.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/services.dart'; // Para Haptics
+import 'package:notch_app/utils/locale_controller.dart';
 
 // IMPORTS DE TUS PANTALLAS
 import 'security_settings_screen.dart'; // La pantalla de PINs antigua
@@ -30,6 +32,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _isRecalculating = false;
   bool _isRecalculatingXp = false;
 
+  Future<void> _pickLanguage() async {
+    final l10n = AppLocalizations.of(context);
+    final selectedCode = await showModalBottomSheet<String>(
+      context: context,
+      backgroundColor: Colors.grey[900],
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: const Text(
+                "Español",
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: AppLocaleController.instance.languageCode == 'es'
+                  ? const Icon(Icons.check, color: Colors.blueAccent)
+                  : null,
+              onTap: () => Navigator.pop(ctx, 'es'),
+            ),
+            ListTile(
+              title: const Text(
+                "English",
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: AppLocaleController.instance.languageCode == 'en'
+                  ? const Icon(Icons.check, color: Colors.blueAccent)
+                  : null,
+              onTap: () => Navigator.pop(ctx, 'en'),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (selectedCode == null ||
+        selectedCode == AppLocaleController.instance.languageCode) {
+      return;
+    }
+
+    await AppLocaleController.instance.setLanguageCode(selectedCode);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l10n.settingsLanguageUpdated),
+        backgroundColor: Colors.green,
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,16 +98,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   // Abrir Correo o Web
   Future<void> _launchContact(String urlStr) async {
+    final l10n = AppLocalizations.of(context);
     final Uri url = Uri.parse(urlStr);
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("No se pudo abrir $urlStr")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.settingsCouldNotOpen(urlStr))),
+      );
     }
   }
 
   // Lógica de Reseteo de Fábrica (Manual)
   Future<void> _factoryReset() async {
+    final l10n = AppLocalizations.of(context);
     // Diálogo de confirmación
     bool confirm =
         await showDialog(
@@ -64,22 +117,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
           builder: (ctx) => AlertDialog(
             backgroundColor: Colors.grey[900],
             title: Text(
-              "¿Restablecer de Fábrica?",
+              l10n.settingsFactoryResetTitle,
               style: TextStyle(color: Colors.white),
             ),
             content: Text(
-              "Esta acción borrará TODOS tus registros, parejas, progreso y configuraciones de seguridad. No se puede deshacer.",
+              l10n.settingsFactoryResetMessage,
               style: TextStyle(color: Colors.grey[300]),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
-                child: Text("Cancelar"),
+                child: Text(l10n.cancel),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(ctx, true),
                 child: Text(
-                  "BORRAR TODO",
+                  l10n.deleteAll,
                   style: TextStyle(
                     color: Colors.redAccent,
                     fontWeight: FontWeight.bold,
@@ -130,11 +183,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Ajustes"),
+        title: Text(l10n.settingsTitle),
       ),
       body: ListView(
         children: [
@@ -182,7 +236,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 10),
           Center(
             child: Text(
-              "Private Intimacy Tracker",
+              l10n.settingsTagline,
               style: TextStyle(
                 color: Colors.blueAccent.withOpacity(0.8),
                 fontSize: 14,
@@ -192,12 +246,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 30),
 
           // 2. SECCIÓN GENERAL
-          _buildSectionHeader("GENERAL"),
+          _buildSectionHeader(l10n.settingsGeneral),
           _buildTile(
             icon: Icons.shield_outlined,
             color: Colors.orangeAccent,
-            title: "Seguridad y Accesos",
-            subtitle: "Configurar PIN, Pánico y Kill Switch",
+            title: l10n.settingsSecurityAccess,
+            subtitle: l10n.settingsSecurityAccessSubtitle,
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => SecuritySettingsScreen()),
@@ -206,21 +260,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildTile(
             icon: Icons.cloud_sync_outlined,
             color: Colors.blueAccent,
-            title: "Datos y Respaldo",
-            subtitle: "Copias de seguridad y Exportar PDF",
+            title: l10n.settingsDataBackup,
+            subtitle: l10n.settingsDataBackupSubtitle,
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => DataManagementScreen()),
             ),
           ),
+          _buildTile(
+            icon: Icons.language,
+            color: Colors.tealAccent,
+            title: l10n.settingsLanguage,
+            subtitle: AppLocaleController.instance.languageCode == 'es'
+                ? "Español"
+                : "English",
+            onTap: _pickLanguage,
+          ),
 
           // 3. SOBRE EL DESARROLLADOR
-          _buildSectionHeader("ACERCA DE"),
+          _buildSectionHeader(l10n.settingsAbout),
           _buildTile(
             icon: Icons.code,
             color: Colors.purpleAccent,
-            title: "Desarrollador",
-            subtitle: "Creado con privacidad en mente",
+            title: l10n.settingsDeveloper,
+            subtitle: l10n.settingsDeveloperSubtitle,
             onTap: () {
               showModalBottomSheet(
                 context: context,
@@ -230,8 +293,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 300,
                   child: Column(
                     children: [
-                      const Text(
-                        "Sobre el Dev 👨‍💻",
+                      Text(
+                        "${l10n.settingsAboutDevTitle} 👨‍💻",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -239,8 +302,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const Text(
-                        "Hola, soy @christhoval. Creé NOTCH para el registro privado y seguro de la actividad sexual. Porque creo que los datos íntimos deben permanecer privados, esta app no tiene servidores, no tiene trackers y tú eres el único dueño de tu información.",
+                      Text(
+                        l10n.settingsAboutDevDescription,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.grey),
                       ),
@@ -264,8 +327,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildTile(
             icon: Icons.mail_outline,
             color: Colors.white,
-            title: "Contacto / Soporte",
-            subtitle: "Reportar bugs o sugerir ideas",
+            title: l10n.settingsContactSupport,
+            subtitle: l10n.settingsContactSupportSubtitle,
             onTap: () => _launchContact(
               'mailto:me@christhoval.com?subject=Soporte NOTCH',
             ),
@@ -281,23 +344,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // ),
 
           // 4. ZONA DE PELIGRO
-          _buildSectionHeader("ZONA DE PELIGRO"),
+          _buildSectionHeader(l10n.settingsDangerZone),
           _buildTile(
             icon: Icons.delete_forever,
             color: Colors.redAccent,
-            title: "Restablecer App",
-            subtitle: "Borrar todos los datos y reiniciar",
+            title: l10n.settingsResetApp,
+            subtitle: l10n.settingsResetAppSubtitle,
             onTap: _factoryReset,
           ),
 
-          _buildSectionHeader("MANTENIMIENTO"),
+          _buildSectionHeader(l10n.settingsMaintenance),
           _isRecalculating
               ? const Center(child: CircularProgressIndicator())
               : _buildTile(
                   icon: Icons.refresh,
                   color: Colors.greenAccent,
-                  title: "Re-calcular Logros",
-                  subtitle: "Actualiza tus medallas si crees que falta alguna.",
+                  title: l10n.settingsRecalculateAchievements,
+                  subtitle: l10n.settingsRecalculateAchievementsSubtitle,
                   onTap: () async {
                     setState(() => _isRecalculating = true);
 
@@ -306,8 +369,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (mounted) {
                       setState(() => _isRecalculating = false);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Logros actualizados correctamente."),
+                        SnackBar(
+                          content: Text(l10n.settingsAchievementsUpdated),
                           backgroundColor: Colors.green,
                         ),
                       );
@@ -324,9 +387,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               : _buildTile(
                   icon: Icons.calculate,
                   color: Colors.cyanAccent,
-                  title: "Re-calcular Experiencia (XP)",
-                  subtitle:
-                      "Sincroniza tu nivel con tu historial de encuentros.",
+                  title: l10n.settingsRecalculateXp,
+                  subtitle: l10n.settingsRecalculateXpSubtitle,
                   onTap: () async {
                     setState(() => _isRecalculatingXp = true);
 
@@ -335,10 +397,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (mounted) {
                       setState(() => _isRecalculatingXp = false);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Experiencia (XP) actualizada correctamente.",
-                          ),
+                        SnackBar(
+                          content: Text(l10n.settingsXpUpdated),
                           backgroundColor: Colors.green,
                         ),
                       );
@@ -349,7 +409,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 40),
           Center(
             child: Text(
-              "Made with ❤️ & Flutter",
+              l10n.settingsMadeWithFlutter,
               style: TextStyle(color: Colors.grey[800], fontSize: 10),
             ),
           ),

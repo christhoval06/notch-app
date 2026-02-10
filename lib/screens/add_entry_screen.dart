@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
 import 'package:notch_app/models/partner.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/utils/achievement_localization.dart';
 import 'package:uuid/uuid.dart';
 import '../models/encounter.dart';
 import '../utils/translations.dart';
@@ -23,11 +25,13 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text(AppStrings.get('save', lang: currentLang)),
+        title: Text(l10n.save),
         actions: [
           // Botón Guardar en la barra superior (opcional, o abajo)
           IconButton(
@@ -44,7 +48,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 1. CAMPO PERSONALIZADO: EMOJI SELECTOR
-              _buildLabel(AppStrings.get('mood', lang: currentLang)),
+              _buildLabel(l10n.mood),
               FormBuilderField<String>(
                 name: 'moodEmoji',
                 builder: (FormFieldState<String> field) {
@@ -88,7 +92,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               const SizedBox(height: 25),
 
               // 2. TEXT FIELD: PAREJA
-              _buildLabel(AppStrings.get('partner', lang: currentLang)),
+              _buildLabel(l10n.partner),
               _buildPartnerField(),
 
               // FormBuilderTextField(
@@ -112,7 +116,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               const SizedBox(height: 25),
 
               // 3. FILTER CHIPS: TAGS (Traducción automática)
-              _buildLabel(AppStrings.get('tags', lang: currentLang)),
+              _buildLabel(l10n.tags),
               FormBuilderField<List<String>>(
                 name: 'tags',
                 initialValue: [], // Valor inicial lista vacía
@@ -131,7 +135,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                         final isSelected = currentList.contains(key);
 
                         return FilterChip(
-                          label: Text(AppStrings.get(key, lang: currentLang)),
+                          label: Text(tagLabelFromL10n(l10n, key)),
                           selected: isSelected,
                           // Diseño Dark Mode
                           backgroundColor: Colors.grey[900],
@@ -171,7 +175,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               const SizedBox(height: 25),
 
               // 4. CAMPO PERSONALIZADO: CONTADOR DE ORGASMOS
-              _buildLabel(AppStrings.get('orgasms', lang: currentLang)),
+              _buildLabel(l10n.orgasms),
               FormBuilderField<int>(
                 name: 'orgasmCount',
                 initialValue: 1,
@@ -220,7 +224,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                       Icon(Icons.security, color: Colors.greenAccent, size: 20),
                       SizedBox(width: 10),
                       Text(
-                        AppStrings.get('protected', lang: currentLang),
+                        l10n.usedProtection,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -248,7 +252,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                 activeColor: Colors.blueAccent,
                 inactiveColor: Colors.grey[800],
                 decoration: InputDecoration(
-                  labelText: AppStrings.get('rating', lang: currentLang),
+                  labelText: l10n.rating,
                   labelStyle: const TextStyle(color: Colors.grey, fontSize: 18),
                   border: InputBorder.none,
                 ),
@@ -277,7 +281,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                     ),
                   ),
                   child: Text(
-                    AppStrings.get('save', lang: currentLang),
+                    l10n.save,
                     style: const TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
@@ -291,6 +295,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
   // --- LÓGICA DE GUARDADO ---
   Future<void> _submitForm(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
     // 1. Validar y Guardar el estado del formulario
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       // 2. Obtener los valores en un Mapa limpio
@@ -341,15 +346,19 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
-                          "¡Logro Desbloqueado!",
+                        Text(
+                          l10n.achievementUnlockedTitle,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
                         Text(
-                          achievement.name,
+                          localizeAchievementName(
+                            l10n,
+                            achievement.id,
+                            achievement.name,
+                          ),
                           style: const TextStyle(color: Colors.white70),
                         ),
                       ],
@@ -558,7 +567,7 @@ class __PartnerTextFieldState extends State<_PartnerTextField> {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.grey[900],
-        hintText: "Escribe '@' para buscar o un nombre nuevo...",
+        hintText: AppLocalizations.of(context).addEntryPartnerHint,
         hintStyle: TextStyle(color: Colors.grey[600]),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

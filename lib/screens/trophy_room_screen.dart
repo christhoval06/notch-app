@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/models/challenge.dart';
 import 'package:notch_app/models/encounter.dart';
 import 'package:notch_app/screens/challenges_screen.dart';
@@ -10,7 +11,9 @@ import 'package:notch_app/screens/share_preview_screen.dart';
 import 'package:notch_app/services/achievement_engine.dart';
 import 'package:notch_app/services/challenge_service.dart';
 import '../models/monthly_progress.dart';
+import '../utils/achievement_localization.dart';
 import '../utils/gamification_engine.dart';
+import '../utils/level_localization.dart';
 
 class TrophyRoomScreen extends StatefulWidget {
   @override
@@ -82,7 +85,10 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
       context,
       MaterialPageRoute(
         builder: (_) => SharePreviewScreen(
-          rankName: levelData['name'],
+          rankName: localizeLevelName(
+            AppLocalizations.of(context),
+            levelData['name'] as String,
+          ),
           currentXp: progress.xp,
           progressToNextLevel: levelData['progress'],
           totalEncountersThisMonth: totalEncountersThisMonth,
@@ -144,32 +150,28 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               body: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // 1. SELECTOR DE TEMPORADA
                     _buildSeasonSelector(monthIds),
                     const SizedBox(height: 25),
 
-                    // 2. PANEL DE NIVEL
                     GestureDetector(
                       onTap: () {
-                        // Importante: Añadir un print para depurar
-                        print(
-                          "Panel de Nivel Tocado! Navegando a PathScreen...",
-                        );
-                        HapticFeedback.lightImpact(); // Buen feedback para el usuario
+                        if (!isCurrentMonth) {
+                          return;
+                        }
+
+                        HapticFeedback.lightImpact();
 
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => PathScreen()),
                         );
                       },
-                      // Esta es la línea mágica que soluciona el problema:
                       behavior: HitTestBehavior.opaque,
-
                       child: _buildLevelPanel(progress, isCurrentMonth),
                     ),
-                    // _buildLevelPanel(progress, isCurrentMonth),
+
                     const SizedBox(height: 30),
 
                     // --- NUEVA SECCIÓN DE RACHAS ---
@@ -187,8 +189,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     const SizedBox(height: 25),
 
                     // 3. SECCIÓN DE INSIGNIAS
-                    const Text(
-                      "INSIGNIAS DESBLOQUEADAS",
+                    Text(
+                      AppLocalizations.of(context).trophyUnlockedBadges,
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
@@ -269,9 +271,13 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
         clipBehavior: Clip.none,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                isCurrentMonth ? "NIVEL ACTUAL" : "RANGO FINAL",
+                isCurrentMonth
+                    ? AppLocalizations.of(context).trophyCurrentLevel
+                    : AppLocalizations.of(context).trophyFinalRank,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.8),
                   letterSpacing: 2,
@@ -280,10 +286,13 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               ),
               const SizedBox(height: 10),
               Text(
-                // Si es un mes pasado y tiene rango final, lo mostramos. Si no, calculamos el nivel.
-                isCurrentMonth
-                    ? levelData['name']
-                    : (progress.finalRank ?? levelData['name']),
+                localizeLevelName(
+                  AppLocalizations.of(context),
+                  (isCurrentMonth
+                          ? levelData['name']
+                          : (progress.finalRank ?? levelData['name']))
+                      as String,
+                ),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
@@ -295,6 +304,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               const SizedBox(height: 5),
               Text(
                 "${progress.xp} XP",
+                textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
               const SizedBox(height: 20),
@@ -314,7 +324,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "Siguiente nivel en ${levelData['next_xp']} XP",
+                      AppLocalizations.of(
+                        context,
+                      ).trophyNextLevelInXp(levelData['next_xp'].toString()),
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 10,
@@ -410,11 +422,18 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
       ),
       itemCount: allAchievements.length,
       itemBuilder: (context, index) {
+        final l10n = AppLocalizations.of(context);
         final achievement = allAchievements[index];
         bool unlocked = progress.unlockedBadges.contains(achievement.id);
 
         return Tooltip(
-          message: unlocked ? achievement.description : "Bloqueado",
+          message: unlocked
+              ? localizeAchievementDescription(
+                  l10n,
+                  achievement.id,
+                  achievement.description,
+                )
+              : l10n.badgeLocked,
           child: Container(
             decoration: BoxDecoration(
               color: unlocked
@@ -434,7 +453,11 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                   Text(achievement.icon, style: const TextStyle(fontSize: 36)),
                   const SizedBox(height: 8),
                   Text(
-                    achievement.name!,
+                    localizeAchievementName(
+                      l10n,
+                      achievement.id,
+                      achievement.name,
+                    ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: unlocked ? Colors.white : Colors.grey[600],
@@ -485,7 +508,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               // Récord del Mes
               Expanded(
                 child: _buildRecordCard(
-                  title: "RÉCORD MES",
+                  title: AppLocalizations.of(context).trophyMonthRecord,
                   icon: Icons.military_tech,
                   days: seasonBestStreak,
                   color: const Color(0xFF448AFF), // Azul
@@ -497,7 +520,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               // Récord Histórico
               Expanded(
                 child: _buildRecordCard(
-                  title: "HISTÓRICO",
+                  title: AppLocalizations.of(context).trophyHistorical,
                   icon: Icons.star,
                   days: allTimeBestStreak,
                   color: const Color(0xFFFFC107), // Amarillo/Dorado
@@ -556,7 +579,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              "días",
+              AppLocalizations.of(context).trophyDays,
               style: TextStyle(
                 fontFamily: 'Lato',
                 color: Colors.grey[400],
@@ -566,7 +589,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           ],
         ),
         Text(
-          "RACHA ACTUAL",
+          AppLocalizations.of(context).trophyCurrentStreak,
           style: TextStyle(
             fontFamily: 'Lato',
             color: const Color(0xFFFFC107),
@@ -588,25 +611,28 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     required int recordToBeat,
     bool isAllTime = false,
   }) {
+    final l10n = AppLocalizations.of(context);
     String bottomText;
     double progress = 0.0;
 
     if (isAllTime) {
       if (currentStreak >= recordToBeat && recordToBeat > 0) {
-        bottomText = "Récord alcanzado";
+        bottomText = l10n.trophyRecordReached;
         progress = 1.0;
       } else if (recordToBeat > 0) {
-        bottomText = "Superando récord";
+        bottomText = l10n.trophyBeatingRecord;
         progress = currentStreak / recordToBeat;
       } else {
-        bottomText = "Sin récord";
+        bottomText = l10n.trophyNoRecord;
       }
     } else {
       if (days > 0) {
         progress = days / recordToBeat;
-        bottomText = "${(progress * 100).toStringAsFixed(0)}% del histórico";
+        bottomText = l10n.trophyPercentOfHistorical(
+          (progress * 100).toStringAsFixed(0),
+        );
       } else {
-        bottomText = "Sin racha este mes";
+        bottomText = l10n.trophyNoStreakThisMonth;
       }
     }
 
@@ -633,7 +659,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 ),
               ),
               Text(
-                "días",
+                l10n.trophyDays,
                 style: TextStyle(
                   fontFamily: 'Lato',
                   color: Colors.grey[500],
@@ -694,6 +720,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     int currentStreak,
     Map<String, int> milestoneData,
   ) {
+    final l10n = AppLocalizations.of(context);
     final int milestone = milestoneData['milestone']!;
     final int remaining = milestoneData['remaining']!;
     final double progress = (milestone > 0) ? (currentStreak / milestone) : 1.0;
@@ -704,7 +731,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Próximo hito: $milestone días",
+              l10n.trophyNextMilestoneDays(milestone.toString()),
               style: TextStyle(
                 fontFamily: 'Lato',
                 color: Colors.white,
@@ -712,7 +739,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               ),
             ),
             Text(
-              remaining > 0 ? "$remaining días faltantes" : "¡Hito alcanzado!",
+              remaining > 0
+                  ? l10n.trophyDaysRemaining(remaining.toString())
+                  : l10n.trophyMilestoneReached,
               style: TextStyle(
                 fontFamily: 'Lato',
                 color: const Color(0xFFFF9800),
@@ -764,7 +793,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 const Icon(Icons.track_changes, color: Colors.purpleAccent),
                 const SizedBox(width: 10),
                 Text(
-                  "RETOS ACTIVOS", // Título más general
+                  AppLocalizations.of(context).trophyActiveChallenges,
                   style: TextStyle(
                     fontFamily: 'Lato',
                     color: Colors.purpleAccent,
@@ -806,7 +835,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          challenge.title,
+          _challengeTitle(AppLocalizations.of(context), challenge.id),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -842,23 +871,60 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   }
 
   Widget _buildEmptyChallengeContent() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Explora nuevos objetivos",
+          AppLocalizations.of(context).trophyExploreGoals,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
-          "Toca para ver todos los retos disponibles y seguir mejorando.",
+          AppLocalizations.of(context).trophyExploreGoalsSubtitle,
           style: TextStyle(color: Colors.grey, fontSize: 13),
         ),
       ],
     );
+  }
+
+  String _challengeTitle(AppLocalizations l10n, String id) {
+    switch (id) {
+      case 'morning_master':
+        return l10n.challengeMorningMasterTitle;
+      case 'weekly_explorer':
+        return l10n.challengeWeeklyExplorerTitle;
+      case 'quality_week':
+        return l10n.challengeQualityWeekTitle;
+      case 'safety_champion':
+        return l10n.challengeSafetyChampionTitle;
+      case 'prelude_master':
+        return l10n.challengePreludeMasterTitle;
+      case 'steel_consistency':
+        return l10n.challengeSteelConsistencyTitle;
+      case 'quality_club':
+        return l10n.challengeQualityClubTitle;
+      case 'guardian_of_safety':
+        return l10n.challengeGuardianOfSafetyTitle;
+      case 'perfect_weekend':
+        return l10n.challengePerfectWeekendTitle;
+      case 'epic_morning':
+        return l10n.challengeEpicMorningTitle;
+      case 'frequent_flyer':
+        return l10n.challengeFrequentFlyerTitle;
+      case 'star_collector':
+        return l10n.challengeStarCollectorTitle;
+      case 'centurion':
+        return l10n.challengeCenturionTitle;
+      case 'legendary_guardian':
+        return l10n.challengeLegendaryGuardianTitle;
+      case 'polymath':
+        return l10n.challengePolymathTitle;
+      default:
+        return id;
+    }
   }
 }

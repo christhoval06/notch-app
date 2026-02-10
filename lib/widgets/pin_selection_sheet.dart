@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 
 import 'pin_pad.dart';
 
@@ -39,6 +40,7 @@ class _PinSelectionSheetState extends State<PinSelectionSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       height: 600, // Altura suficiente para el teclado
       color: Colors.black,
@@ -55,7 +57,7 @@ class _PinSelectionSheetState extends State<PinSelectionSheet> {
             ),
           ),
           const SizedBox(height: 10),
-          const Text("Ingresa 4 dígitos", style: TextStyle(color: Colors.grey)),
+          Text(l10n.pinEnter4Digits, style: TextStyle(color: Colors.grey)),
           const SizedBox(height: 40),
 
           // Usamos nuestro widget de Puntos

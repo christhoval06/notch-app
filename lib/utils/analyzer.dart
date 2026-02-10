@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/models/health_log.dart';
 import 'package:notch_app/models/insight.dart';
 import 'package:notch_app/utils/translations.dart';
@@ -129,41 +130,43 @@ class Analyzer {
     return tagCounts.map((key, value) => MapEntry(key, value.toDouble()));
   }
 
-  List<Insight> generateInsights() {
+  List<Insight> generateInsights(AppLocalizations l10n) {
     final List<Insight> insights = [];
 
     // Llama a todas las funciones. Si devuelven un insight, se añade.
-    _getAverageSatisfaction()?.let((it) => insights.add(it));
-    _getAverageWeeklyFrequency()?.let((it) => insights.add(it));
-    _findBestPartner()?.let((it) => insights.add(it));
-    _findBestDayOfWeek()?.let((it) => insights.add(it));
-    _getMostFrequentTag()?.let((it) => insights.add(it));
-    _getProtectionStats()?.let((it) => insights.add(it));
+    _getAverageSatisfaction(l10n)?.let((it) => insights.add(it));
+    _getAverageWeeklyFrequency(l10n)?.let((it) => insights.add(it));
+    _findBestPartner(l10n)?.let((it) => insights.add(it));
+    _findBestDayOfWeek(l10n)?.let((it) => insights.add(it));
+    _getMostFrequentTag(l10n)?.let((it) => insights.add(it));
+    _getProtectionStats(l10n)?.let((it) => insights.add(it));
     _compareTagRatings(
       'tag_date',
       'tag_quickie',
+      l10n,
     )?.let((it) => insights.add(it));
-    _analyzeFrequencyTrend()?.let((it) => insights.add(it));
-    _checkQualityStreak()?.let((it) => insights.add(it));
-    _checkHealthLog()?.let((it) => insights.add(it));
+    _analyzeFrequencyTrend(l10n)?.let((it) => insights.add(it));
+    _checkQualityStreak(l10n)?.let((it) => insights.add(it));
+    _checkHealthLog(l10n)?.let((it) => insights.add(it));
 
     return insights;
   }
 
-  Insight? _getAverageSatisfaction() {
+  Insight? _getAverageSatisfaction(AppLocalizations l10n) {
     if (data.length < 3) return null;
     final avgRating = data.map((e) => e.rating).average;
     return Insight(
-      title: "Satisfacción Promedio",
-      description:
-          "Tu calificación promedio de todos los encuentros es de ${avgRating.toStringAsFixed(1)} sobre 10.",
+      title: l10n.insightAverageSatisfactionTitle,
+      description: l10n.insightAverageSatisfactionDescription(
+        avgRating.toStringAsFixed(1),
+      ),
       icon: Icons.star_half,
       color: Colors.amber,
     );
   }
 
   // 2. FRECUENCIA SEMANAL PROMEDIO
-  Insight? _getAverageWeeklyFrequency() {
+  Insight? _getAverageWeeklyFrequency(AppLocalizations l10n) {
     if (data.length < 5) return null;
     // Calculamos el número de semanas entre el primer y último encuentro
     final sorted = List<Encounter>.from(data)
@@ -177,16 +180,17 @@ class Analyzer {
     final avgFreq = data.length / weeks;
 
     return Insight(
-      title: "Frecuencia Semanal",
-      description:
-          "En promedio, registras ${avgFreq.toStringAsFixed(1)} encuentros por semana.",
+      title: l10n.insightWeeklyFrequencyTitle,
+      description: l10n.insightWeeklyFrequencyDescription(
+        avgFreq.toStringAsFixed(1),
+      ),
       icon: Icons.repeat,
       color: Colors.cyanAccent,
     );
   }
 
   // 3. MEJOR QUÍMICA (MEJOR PAREJA)
-  Insight? _findBestPartner() {
+  Insight? _findBestPartner(AppLocalizations l10n) {
     if (data.length < 5) return null;
 
     // Agrupamos encuentros por nombre de pareja
@@ -208,15 +212,17 @@ class Analyzer {
 
     if (bestPartner == null) return null;
     return Insight(
-      title: "Mejor Química",
-      description:
-          "Tus encuentros con '$bestPartner' tienen la calificación promedio más alta (${maxAvg.toStringAsFixed(1)}/10).",
+      title: l10n.insightBestChemistryTitle,
+      description: l10n.insightBestChemistryDescription(
+        bestPartner!,
+        maxAvg.toStringAsFixed(1),
+      ),
       icon: Icons.favorite,
       color: Colors.pinkAccent,
     );
   }
 
-  Insight? _compareTagRatings(String tagA, String tagB) {
+  Insight? _compareTagRatings(String tagA, String tagB, AppLocalizations l10n) {
     final ratingsA = data
         .where((e) => e.tags.contains(tagA))
         .map((e) => e.rating)
@@ -232,10 +238,15 @@ class Analyzer {
     final diff = (avgA - avgB) / avgB * 100;
 
     if (diff.abs() > 15) {
+      final trendLabel = diff > 0 ? l10n.insightHigher : l10n.insightLower;
       return Insight(
-        title: "Las Citas Importan",
-        description:
-            "Tu calificación promedio es un ${diff.toStringAsFixed(0)}% ${diff > 0 ? 'más alta' : 'más baja'} en encuentros con la etiqueta 'Cita' en comparación con los 'Rápidos'.",
+        title: l10n.insightDatesMatterTitle,
+        description: l10n.insightDatesMatterDescription(
+          diff.toStringAsFixed(0),
+          trendLabel,
+          l10n.tagDate,
+          l10n.tagQuickie,
+        ),
         icon: Icons.favorite,
         color: Colors.redAccent,
       );
@@ -244,7 +255,7 @@ class Analyzer {
   }
 
   // 2. Tendencia de Frecuencia Mensual
-  Insight? _analyzeFrequencyTrend() {
+  Insight? _analyzeFrequencyTrend(AppLocalizations l10n) {
     final now = DateTime.now();
     final currentMonthEncounters = data
         .where((e) => e.date.year == now.year && e.date.month == now.month)
@@ -264,10 +275,15 @@ class Analyzer {
         100;
 
     if (diff.abs() > 20) {
+      final directionLabel = diff > 0
+          ? l10n.insightIncreased
+          : l10n.insightDecreased;
       return Insight(
-        title: "Cambio de Ritmo",
-        description:
-            "Tu frecuencia de actividad ha ${diff > 0 ? 'aumentado' : 'disminuido'} un ${diff.abs().toStringAsFixed(0)}% este mes en comparación con el anterior.",
+        title: l10n.insightRhythmChangeTitle,
+        description: l10n.insightRhythmChangeDescription(
+          directionLabel,
+          diff.abs().toStringAsFixed(0),
+        ),
         icon: Icons.trending_up,
         color: diff > 0 ? Colors.greenAccent : Colors.orangeAccent,
       );
@@ -276,16 +292,15 @@ class Analyzer {
   }
 
   // 3. Recordatorio de Salud
-  Insight? _checkHealthLog() {
+  Insight? _checkHealthLog(AppLocalizations l10n) {
     if (healthData.isEmpty) return null;
     final lastLog = healthData.reduce((a, b) => a.date.isAfter(b.date) ? a : b);
     final monthsSince = DateTime.now().difference(lastLog.date).inDays / 30;
 
     if (monthsSince >= 6) {
       return Insight(
-        title: "Chequeo de Salud Sugerido",
-        description:
-            "Han pasado más de 6 meses desde tu último registro en el Health Passport. Considera programar uno.",
+        title: l10n.insightHealthCheckTitle,
+        description: l10n.insightHealthCheckDescription,
         icon: Icons.local_hospital,
         color: Colors.blueAccent,
       );
@@ -294,7 +309,7 @@ class Analyzer {
   }
 
   // 4. Racha de Alta Calidad
-  Insight? _checkQualityStreak() {
+  Insight? _checkQualityStreak(AppLocalizations l10n) {
     int streak = 0;
     final sortedData = List<Encounter>.from(data)
       ..sort((a, b) => b.date.compareTo(a.date));
@@ -307,9 +322,8 @@ class Analyzer {
     }
     if (streak >= 3) {
       return Insight(
-        title: "¡En la Zona!",
-        description:
-            "Estás en una racha de $streak encuentros seguidos con calificación 'Buena' o 'Legendaria' (8+). ¡Sigue así!",
+        title: l10n.insightInTheZoneTitle,
+        description: l10n.insightInTheZoneDescription(streak.toString()),
         icon: Icons.military_tech,
         color: Colors.amberAccent,
       );
@@ -318,7 +332,7 @@ class Analyzer {
   }
 
   // 5. Día de la Semana con Mejor Rating
-  Insight? _findBestDayOfWeek() {
+  Insight? _findBestDayOfWeek(AppLocalizations l10n) {
     if (data.length < 5) return null;
     Map<int, List<int>> dayRatings = {};
     for (var e in data) {
@@ -337,40 +351,43 @@ class Analyzer {
     if (bestDay == 0) return null;
 
     final dayNames = [
-      "",
-      "Lunes",
-      "Martes",
-      "Miércoles",
-      "Jueves",
-      "Viernes",
-      "Sábado",
-      "Domingo",
+      '',
+      l10n.insightDayMonday,
+      l10n.insightDayTuesday,
+      l10n.insightDayWednesday,
+      l10n.insightDayThursday,
+      l10n.insightDayFriday,
+      l10n.insightDaySaturday,
+      l10n.insightDaySunday,
     ];
     return Insight(
-      title: "Tu Día Dorado",
-      description:
-          "Tus encuentros de los ${dayNames[bestDay]} suelen tener la calificación promedio más alta (${bestAvg.toStringAsFixed(1)}/10).",
+      title: l10n.insightGoldenDayTitle,
+      description: l10n.insightGoldenDayDescription(
+        dayNames[bestDay],
+        bestAvg.toStringAsFixed(1),
+      ),
       icon: Icons.calendar_today,
       color: Colors.orangeAccent,
     );
   }
 
   // 6. Tasa de Uso de Protección
-  Insight? _getProtectionStats() {
+  Insight? _getProtectionStats(AppLocalizations l10n) {
     if (data.length < 3) return null;
     int protectedCount = data.where((e) => e.protected).length;
     double percentage = (protectedCount / data.length) * 100;
     return Insight(
-      title: "Estadística de Protección",
-      description:
-          "Has usado protección en un ${percentage.toStringAsFixed(0)}% de tus encuentros registrados.",
+      title: l10n.insightProtectionStatsTitle,
+      description: l10n.insightProtectionStatsDescription(
+        percentage.toStringAsFixed(0),
+      ),
       icon: Icons.security,
       color: Colors.greenAccent,
     );
   }
 
   // 7. Tag Más Frecuente
-  Insight? _getMostFrequentTag() {
+  Insight? _getMostFrequentTag(AppLocalizations l10n) {
     final tagCounts = <String, int>{};
     for (var e in data) {
       for (var tag in e.tags) {
@@ -384,9 +401,10 @@ class Analyzer {
     final mostFrequentTag = sortedTags.first.key;
 
     return Insight(
-      title: "Tu Estilo Predominante",
-      description:
-          "Tu etiqueta más frecuente es '${AppStrings.get(mostFrequentTag, lang: currentLang)}'. Parece que es una parte importante de tu rutina.",
+      title: l10n.insightDominantStyleTitle,
+      description: l10n.insightDominantStyleDescription(
+        tagLabelFromL10n(l10n, mostFrequentTag),
+      ),
       icon: Icons.local_offer,
       color: Colors.purpleAccent,
     );

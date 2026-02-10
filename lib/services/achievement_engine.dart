@@ -304,8 +304,6 @@ class AchievementEngine {
   static List<Achievement> getAllAchievements() => _achievements;
 
   static Future<void> recalculateAllDBAchievements() async {
-    print("--- Iniciando re-cálculo de todos los logros ---");
-
     // 1. OBTENER Y ORDENAR TODOS LOS DATOS
     final encounterBox = Hive.box<Encounter>('encounters');
     final healthBox = Hive.box<HealthLog>('health_logs');

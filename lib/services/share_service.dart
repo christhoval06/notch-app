@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -39,8 +40,8 @@ class ShareService {
     } catch (e) {
       print("Error al compartir: $e");
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Error al generar la imagen para compartir"),
+        SnackBar(
+          content: Text(AppLocalizations.of(context).shareErrorGeneratingImage),
         ),
       );
     }

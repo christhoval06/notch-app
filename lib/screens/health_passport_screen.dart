@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/utils/achievement_localization.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import '../models/health_log.dart';
 import '../services/notification_service.dart';
@@ -13,8 +15,9 @@ class HealthPassportScreen extends StatefulWidget {
 
 class _HealthPassportScreenState extends State<HealthPassportScreen> {
   void _addNewLog(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final testTypeController = TextEditingController();
-    String result = 'Negativo'; // Valor por defecto
+    String result = l10n.healthResultNegative; // Valor por defecto
     DateTime selectedDate = DateTime.now();
 
     showModalBottomSheet(
@@ -38,8 +41,8 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Nuevo Registro Médico",
+                  Text(
+                    l10n.healthNewRecord,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -52,8 +55,8 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   TextField(
                     controller: testTypeController,
                     style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                      labelText: "Tipo de Prueba (Ej. Panel Completo)",
+                    decoration: InputDecoration(
+                      labelText: l10n.healthTestTypeLabel,
                       labelStyle: TextStyle(color: Colors.grey),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
@@ -66,26 +69,31 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   const SizedBox(height: 20),
 
                   // Selector de Resultado
-                  const Text(
-                    "Resultado:",
+                  Text(
+                    l10n.healthResultLabel,
                     style: TextStyle(color: Colors.grey),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: ['Negativo', 'Positivo', 'Pendiente'].map((val) {
-                      return ChoiceChip(
-                        label: Text(val),
-                        selected: result == val,
-                        selectedColor: val == 'Negativo'
-                            ? Colors.green
-                            : (val == 'Positivo'
-                                  ? Colors.redAccent
-                                  : Colors.orange),
-                        onSelected: (selected) {
-                          setModalState(() => result = val);
-                        },
-                      );
-                    }).toList(),
+                    children:
+                        [
+                          l10n.healthResultNegative,
+                          l10n.healthResultPositive,
+                          l10n.healthResultPending,
+                        ].map((val) {
+                          return ChoiceChip(
+                            label: Text(val),
+                            selected: result == val,
+                            selectedColor: val == l10n.healthResultNegative
+                                ? Colors.green
+                                : (val == l10n.healthResultPositive
+                                      ? Colors.redAccent
+                                      : Colors.orange),
+                            onSelected: (selected) {
+                              setModalState(() => result = val);
+                            },
+                          );
+                        }).toList(),
                   ),
                   const SizedBox(height: 20),
 
@@ -95,7 +103,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                     height: 50,
                     child: ElevatedButton.icon(
                       icon: const Icon(Icons.save),
-                      label: const Text("Guardar & Programar"),
+                      label: Text(l10n.healthSaveAndSchedule),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
                         foregroundColor: Colors.white,
@@ -129,7 +137,13 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                "🏆 ¡Logro Desbloqueado: ${unlocked.first.name}!",
+                                l10n.dataAchievementUnlocked(
+                                  localizeAchievementName(
+                                    l10n,
+                                    unlocked.first.id,
+                                    unlocked.first.name,
+                                  ),
+                                ),
                               ),
                             ),
                           );
@@ -137,10 +151,8 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
 
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              "Guardado. Te avisaremos en 6 meses.",
-                            ),
+                          SnackBar(
+                            content: Text(l10n.healthSavedReminder),
                             backgroundColor: Colors.green,
                           ),
                         );
@@ -158,6 +170,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final box = Hive.box<HealthLog>('health_logs');
 
     return Scaffold(
@@ -166,7 +179,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
         onPressed: () => _addNewLog(context),
         backgroundColor: Colors.blueAccent,
         icon: const Icon(Icons.add),
-        label: const Text("Registrar Prueba"),
+        label: Text(l10n.healthRegisterTest),
       ),
       body: ValueListenableBuilder(
         valueListenable: box.listenable(),
@@ -186,13 +199,13 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                     color: Colors.grey[800],
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Sin registros médicos",
+                  Text(
+                    l10n.healthNoRecords,
                     style: TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    "La salud es sexy. ¡Hazte un chequeo!",
+                  Text(
+                    l10n.healthNoRecordsSubtitle,
                     style: TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                 ],
@@ -255,14 +268,18 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
   }
 
   Color _getColor(String result) {
-    if (result == 'Negativo') return Colors.greenAccent;
-    if (result == 'Positivo') return Colors.redAccent;
+    if (result == AppLocalizations.of(context).healthResultNegative)
+      return Colors.greenAccent;
+    if (result == AppLocalizations.of(context).healthResultPositive)
+      return Colors.redAccent;
     return Colors.orangeAccent;
   }
 
   IconData _getIcon(String result) {
-    if (result == 'Negativo') return Icons.check_circle_outline;
-    if (result == 'Positivo') return Icons.warning_amber_rounded;
+    if (result == AppLocalizations.of(context).healthResultNegative)
+      return Icons.check_circle_outline;
+    if (result == AppLocalizations.of(context).healthResultPositive)
+      return Icons.warning_amber_rounded;
     return Icons.hourglass_empty;
   }
 }

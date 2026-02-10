@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/screens/insights_screen.dart';
 import 'package:notch_app/screens/path_screen.dart';
 import 'package:notch_app/screens/settings_screen.dart';
@@ -31,15 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     StatsScreen(),
   ];
 
-  // 2. TÍTULOS PARA EL APPBAR
-  static const List<String> _appBarTitles = [
-    'NOTCH',
-    'Black Book 📒',
-    'Trophy Room 🏆',
-    'Health Passport 🏥',
-    'Estadísticas 📊',
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -48,6 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final appBarTitles = [
+      'NOTCH',
+      '${l10n.homeBlackBookTitle} 📒',
+      '${l10n.homeTrophyRoomTitle} 🏆',
+      '${l10n.homeHealthPassportTitle} 🏥',
+      '${l10n.homeStatsTitle} 📊',
+    ];
+
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
@@ -55,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         // Título dinámico según la pestaña
         title: Text(
-          _appBarTitles[_selectedIndex],
+          appBarTitles[_selectedIndex],
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           if (_selectedIndex == 2)
             IconButton(
-              icon: const Icon(Icons.map, color: Colors.blueAccent),
+              icon: const Icon(Icons.map, color: Colors.white),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           if (_selectedIndex == 4)
             IconButton(
-              icon: const Icon(Icons.psychology, color: Colors.blueAccent),
+              icon: const Icon(Icons.psychology, color: Colors.white),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -112,21 +113,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
       // 3. LA BARRA DE NAVEGACIÓN
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: l10n.homeTab),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
-            label: 'Black Book',
+            label: l10n.homeBlackBookTitle,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.emoji_events),
-            label: 'Trofeos',
+            label: l10n.homeTrophiesTab,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_hospital),
-            label: 'Salud',
+            label: l10n.homeHealthTab,
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Stats'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: l10n.homeStatsTab,
+          ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,

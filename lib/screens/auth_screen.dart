@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 
 import 'home_screen.dart';
 import 'fake_home_screen.dart';
-import 'package:notch_app/utils/translations.dart';
 import 'package:notch_app/widgets/pin_pad.dart';
+import '../utils/constants.dart';
 
 import 'package:notch_app/models/encounter.dart';
 import 'package:notch_app/models/partner.dart';
@@ -55,16 +55,17 @@ class _AuthScreenState extends State<AuthScreen> {
   // 1. BIOMETRÍA (Siempre va a la app REAL)
   Future<void> _authenticateBiometric() async {
     bool authenticated = false;
+    final l10n = AppLocalizations.of(context);
     try {
       authenticated = await auth.authenticate(
-        localizedReason: AppStrings.get('auth_reason', lang: currentLang),
+        localizedReason: l10n.authReason,
         biometricOnly: true,
       );
     } catch (e) {
       print("Error durante la autenticación biométrica: $e");
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error de biometría: ${e.toString()}")),
+          SnackBar(content: Text(l10n.authBiometricError(e.toString()))),
         );
       }
     }
@@ -76,21 +77,15 @@ class _AuthScreenState extends State<AuthScreen> {
 
   // 2. LÓGICA DE PIN (Decide a dónde ir)
   Future<void> _checkPin() async {
+    final l10n = AppLocalizations.of(context);
     String? realPin = await _storage.read(key: 'real_pin');
     String? fakePin = await _storage.read(key: 'fake_pin');
     String? killPin = await _storage.read(key: 'kill_pin');
 
-    // Si no hay pines configurados, usamos "1234" y "0000" por defecto para pruebas
-    // realPin ??= "1234";
-    // fakePin ??= "0000";
-    if (realPin == null || realPin.isEmpty) {
-      realPin = "1234";
-    }
+    // Usamos las constantes como valor por defecto
+    if (realPin == null || realPin.isEmpty) realPin = DEFAULT_REAL_PIN;
+    if (fakePin == null || fakePin.isEmpty) fakePin = DEFAULT_PANIC_PIN;
 
-    // Lo mismo para el fake pin
-    if (fakePin == null || fakePin.isEmpty) {
-      fakePin = "0000";
-    }
     // killPin no tiene valor por defecto por seguridad, debe configurarse explícitamente
 
     if (_enteredPin == realPin) {
@@ -111,7 +106,7 @@ class _AuthScreenState extends State<AuthScreen> {
       });
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("Código Incorrecto")));
+      ).showSnackBar(SnackBar(content: Text(l10n.authIncorrectCode)));
     }
   }
 
@@ -175,13 +170,15 @@ class _AuthScreenState extends State<AuthScreen> {
     if (mounted) {
       // Mostrar mensaje de alerta roja
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Row(
             children: [
               Icon(Icons.warning_amber_rounded, color: Colors.white),
               SizedBox(width: 10),
               Expanded(
-                child: Text("⚠️ PROTOCOLO EXECUTADO. DATOS ELIMINADOS."),
+                child: Text(
+                  AppLocalizations.of(context).authKillSwitchExecuted,
+                ),
               ),
             ],
           ),
@@ -225,6 +222,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -248,7 +246,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 onPressed: _authenticateBiometric,
                 icon: Icon(Icons.fingerprint, color: Colors.blueAccent),
                 label: Text(
-                  "Biometría / FaceID",
+                  l10n.authBiometricButton,
                   style: TextStyle(color: Colors.blueAccent),
                 ),
               ),

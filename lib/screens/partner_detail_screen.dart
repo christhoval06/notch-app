@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/widgets/partner_avatar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -45,10 +46,10 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
-                "Cambiar Avatar",
+                AppLocalizations.of(context).partnerChangeAvatar,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -61,8 +62,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                 Icons.photo_library,
                 color: Colors.blueAccent,
               ),
-              title: const Text(
-                "Elegir de Galería",
+              title: Text(
+                AppLocalizations.of(context).partnerChooseFromGallery,
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
@@ -75,8 +76,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                 Icons.emoji_emotions,
                 color: Colors.orangeAccent,
               ),
-              title: const Text(
-                "Elegir un Emoji",
+              title: Text(
+                AppLocalizations.of(context).partnerChooseEmoji,
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
@@ -136,8 +137,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: Colors.grey[850],
-        title: const Text(
-          "Elige un Emoji",
+        title: Text(
+          AppLocalizations.of(context).partnerChooseEmojiTitle,
           style: TextStyle(color: Colors.white),
         ),
         content: Wrap(
@@ -156,7 +157,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Cancelar"),
+            child: Text(AppLocalizations.of(context).cancel),
           ),
         ],
       ),
@@ -176,9 +177,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
     widget.partner.save(); // Guarda en Hive automáticamente
     setState(() => _isEditingNotes = false);
     HapticFeedback.mediumImpact();
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text("Notas guardadas")));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(AppLocalizations.of(context).partnerNotesSaved)),
+    );
   }
 
   @override
@@ -222,13 +223,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                         ),
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       bottom: 10,
                       right: 10,
                       child: Row(
                         children: [
                           Text(
-                            "Editar",
+                            AppLocalizations.of(context).partnerEdit,
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 12,
@@ -257,8 +258,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "NOTAS PRIVADAS",
+                        Text(
+                          AppLocalizations.of(context).partnerPrivateNotes,
                           style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
@@ -285,7 +286,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                             maxLines: 5,
                             autofocus: true,
                             decoration: InputDecoration(
-                              hintText: "Gustos, disgustos, cumpleaños...",
+                              hintText: AppLocalizations.of(
+                                context,
+                              ).partnerNotesHint,
                               hintStyle: const TextStyle(color: Colors.grey),
                               border: const OutlineInputBorder(),
                               filled: true,
@@ -295,7 +298,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                         : Text(
                             (widget.partner.notes == null ||
                                     widget.partner.notes!.isEmpty)
-                                ? "Toca el lápiz para añadir notas."
+                                ? AppLocalizations.of(
+                                    context,
+                                  ).partnerNotesTapToAdd
                                 : widget.partner.notes!,
                             style: const TextStyle(
                               color: Colors.white70,
@@ -309,10 +314,10 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
               // SECCIÓN DE HISTORIAL
               const Divider(color: Colors.grey),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(15.0),
                 child: Text(
-                  "HISTORIAL DE ENCUENTROS",
+                  AppLocalizations.of(context).partnerHistoryTitle,
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
@@ -339,11 +344,11 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
         history.sort((a, b) => b.date.compareTo(a.date));
 
         if (history.isEmpty) {
-          return const Center(
+          return Center(
             child: Padding(
               padding: EdgeInsets.all(40.0),
               child: Text(
-                "Sin encuentros registrados.",
+                AppLocalizations.of(context).partnerNoEncounters,
                 style: TextStyle(color: Colors.grey),
               ),
             ),

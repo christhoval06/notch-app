@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:notch_app/models/health_log.dart';
 import 'package:notch_app/models/insight.dart';
 import '../models/encounter.dart';
 import '../utils/analyzer.dart';
-import '../utils/translations.dart';
 
 class InsightsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final encounters = Hive.box<Encounter>('encounters').values.toList();
     final healthLogs = Hive.box<HealthLog>('health_logs').values.toList();
 
     final analyzer = Analyzer(encounters, healthLogs);
 
-    final insights = analyzer.generateInsights();
+    final insights = analyzer.generateInsights(l10n);
 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Inteligencia de Datos 🧠"),
+        title: Text("${l10n.insightsTitle} 🧠"),
       ),
       body: insights.isEmpty
-          ? const Center(
+          ? Center(
               child: Text(
-                "Aún no hay suficientes datos para generar insights.\n¡Sigue registrando!",
+                l10n.insightsEmpty,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey),
               ),

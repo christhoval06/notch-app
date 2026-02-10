@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/models/encounter.dart';
 import 'package:notch_app/models/partner.dart';
 import 'package:notch_app/widgets/partner_avatar.dart';
@@ -10,6 +11,7 @@ import 'partner_detail_screen.dart'; // La crearemos en el paso 4
 class BlackBookScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final encounterBox = Hive.box<Encounter>('encounters');
     final partnerBox = Hive.box<Partner>('partners');
 
@@ -30,7 +32,7 @@ class BlackBookScreen extends StatelessWidget {
           if (namesList.isEmpty) {
             return Center(
               child: Text(
-                "No hay registros aún",
+                l10n.blackBookNoRecords,
                 style: TextStyle(color: Colors.grey),
               ),
             );
@@ -85,7 +87,10 @@ class BlackBookScreen extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    "$count Encuentros • Último: ${_formatDate(lastEncounter.date)}",
+                    l10n.blackBookSummary(
+                      count.toString(),
+                      _formatDate(lastEncounter.date),
+                    ),
                     style: TextStyle(color: Colors.grey),
                   ),
                   trailing: Icon(

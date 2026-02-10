@@ -1,0 +1,449 @@
+{
+  "@@locale": "en",
+  "welcome": "Welcome to NOTCH",
+  "authReason": "Please authenticate to access your logs",
+  "save": "Save Notch",
+  "mood": "Mood",
+  "partner": "Partner",
+  "tags": "Tags",
+  "orgasms": "Orgasms",
+  "usedProtection": "Used Protection",
+  "rating": "Rating",
+  "safe": "Safe",
+  "unsafe": "Unsafe",
+  "tagMorning": "Morning Wood",
+  "tagQuickie": "Quickie",
+  "tagOral": "Oral",
+  "tagAnal": "Anal",
+  "tagToys": "Toys",
+  "tagDate": "Date Night",
+  "tagTravel": "Travel",
+  "tagKinky": "Kinky",
+  "tagOutdoor": "Outdoor",
+  "tagAnniversary": "Anniversary",
+  "tagOns": "One-Night Stand",
+  "tagFwb": "Friends w/ Benefits",
+  "tagReconciliation": "Make-up Sex",
+  "tagCelebration": "Celebration",
+  "tagVanilla": "Vanilla",
+  "tagDomsub": "Dom/Sub",
+  "tagMassage": "Erotic Massage",
+  "tagCar": "Car Sex",
+  "tagHotel": "Hotel",
+  "tagShower": "Shower / Bath",
+  "insightsTitle": "Data Intelligence",
+  "insightsEmpty": "Not enough data to generate insights yet.\\nKeep logging!",
+  "settingsTitle": "Settings",
+  "settingsTagline": "Private Intimacy Tracker",
+  "settingsGeneral": "GENERAL",
+  "settingsAbout": "ABOUT",
+  "settingsDangerZone": "DANGER ZONE",
+  "settingsMaintenance": "MAINTENANCE",
+  "settingsSecurityAccess": "Security & Access",
+  "settingsSecurityAccessSubtitle": "Configure PIN, Panic and Kill Switch",
+  "settingsDataBackup": "Data & Backup",
+  "settingsDataBackupSubtitle": "Backups and PDF export",
+  "settingsLanguage": "Language",
+  "settingsDeveloper": "Developer",
+  "settingsDeveloperSubtitle": "Built with privacy in mind",
+  "settingsAboutDevTitle": "About the Dev",
+  "settingsAboutDevDescription": "Hi, I'm @christhoval. I built NOTCH for private and secure sexual activity tracking. I believe intimate data should stay private, so this app has no servers, no trackers, and you are the only owner of your information.",
+  "settingsContactSupport": "Contact / Support",
+  "settingsContactSupportSubtitle": "Report bugs or suggest ideas",
+  "settingsResetApp": "Reset App",
+  "settingsResetAppSubtitle": "Delete all data and restart",
+  "settingsRecalculateAchievements": "Recalculate Achievements",
+  "settingsRecalculateAchievementsSubtitle": "Refresh your medals if you think one is missing.",
+  "settingsAchievementsUpdated": "Achievements updated successfully.",
+  "settingsRecalculateXp": "Recalculate Experience (XP)",
+  "settingsRecalculateXpSubtitle": "Sync your level with your encounter history.",
+  "settingsXpUpdated": "Experience (XP) updated successfully.",
+  "settingsMadeWithFlutter": "Made with ❤️ & Flutter",
+  "settingsLanguageUpdated": "Language updated",
+  "settingsCouldNotOpen": "Could not open {url}",
+  "@settingsCouldNotOpen": {
+    "placeholders": {
+      "url": {}
+    }
+  },
+  "settingsFactoryResetTitle": "Factory Reset?",
+  "settingsFactoryResetMessage": "This action will delete ALL your logs, partners, progress and security settings. It cannot be undone.",
+  "cancel": "Cancel",
+  "deleteAll": "DELETE ALL",
+  "onboardingSkip": "Skip",
+  "onboardingSlide1Title": "Absolute Privacy. Zero Compromises.",
+  "onboardingSlide1Description": "What happens in NOTCH stays in NOTCH. All your records are encrypted and stored only on your device. We don't use servers. Your intimate life is yours alone.",
+  "onboardingSlide2Title": "Understand Your Patterns. Improve Your Well-being.",
+  "onboardingSlide2Description": "Track your encounters to discover insights about your frequency, satisfaction and habits. NOTCH is your personal tool to better understand your sexual health.",
+  "onboardingSlide3Title": "Measure Your Progress. Celebrate Milestones.",
+  "onboardingSlide3Description": "Set goals, monitor streaks and follow your 'Path of Mastery'. Gamification is designed to motivate you to be more aware and consistent with your well-being.",
+  "onboardingGoToApp": "Got it, go to app",
+  "onboardingPinsTitle": "Your Access Keys",
+  "onboardingPinsDescription": "These are your default PINs. Memorize them and change them in Settings as soon as possible!",
+  "onboardingRealPin": "REAL PIN",
+  "onboardingRealPinSubtitle": "To access NOTCH.",
+  "onboardingPanicPin": "PANIC PIN",
+  "onboardingPanicPinSubtitle": "To open the fake app (tasks).",
+  "statsNoData": "No data yet",
+  "statsPeriod30Days": "30 Days",
+  "statsPeriod6Months": "6 Months",
+  "statsPeriodTotal": "Total",
+  "statsHighestRankReached": "HIGHEST RANK REACHED",
+  "statsXpTotal": "{xp} XP total",
+  "@statsXpTotal": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "statsTotal": "Total",
+  "statsAvgRating": "Avg Rating",
+  "statsActivityDistribution": "Activity Distribution",
+  "statsActivityLast6Months": "Activity (Last 6 Months)",
+  "statsAnnualActivityMap": "Annual Activity Map",
+  "statsHeatmapSnackBar": "{date}: {count} encounters",
+  "@statsHeatmapSnackBar": {
+    "placeholders": {
+      "date": {},
+      "count": {}
+    }
+  },
+  "statsQualityBreakdown": "Quality Breakdown",
+  "statsLegendary": "Legendary (9-10)",
+  "statsGood": "Good (7-8)",
+  "statsAverage": "Average (5-6)",
+  "statsBad": "Bad (1-4)",
+  "statsNoTagData": "No tag data",
+  "statsNoDescription": "No description.",
+  "calendarNoActivity": "No activity this day.",
+  "calendarConfirmDeleteTitle": "Confirm Delete",
+  "calendarConfirmDeleteMessage": "This action will also adjust your XP and progress. Are you sure?",
+  "delete": "Delete",
+  "authBiometricError": "Biometric error: {error}",
+  "@authBiometricError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "authIncorrectCode": "Incorrect code",
+  "authKillSwitchExecuted": "⚠️ PROTOCOL EXECUTED. DATA DELETED.",
+  "authBiometricButton": "Biometrics / FaceID",
+  "insightAverageSatisfactionTitle": "Average Satisfaction",
+  "insightAverageSatisfactionDescription": "Your average rating across all encounters is {avg} out of 10.",
+  "@insightAverageSatisfactionDescription": {
+    "placeholders": {
+      "avg": {}
+    }
+  },
+  "insightWeeklyFrequencyTitle": "Weekly Frequency",
+  "insightWeeklyFrequencyDescription": "On average, you log {freq} encounters per week.",
+  "@insightWeeklyFrequencyDescription": {
+    "placeholders": {
+      "freq": {}
+    }
+  },
+  "insightBestChemistryTitle": "Best Chemistry",
+  "insightBestChemistryDescription": "Your encounters with '{partner}' have the highest average rating ({avg}/10).",
+  "@insightBestChemistryDescription": {
+    "placeholders": {
+      "partner": {},
+      "avg": {}
+    }
+  },
+  "insightDatesMatterTitle": "Dates Matter",
+  "insightDatesMatterDescription": "Your average rating is {diff}% {trend} in encounters tagged '{tagA}' compared with '{tagB}'.",
+  "@insightDatesMatterDescription": {
+    "placeholders": {
+      "diff": {},
+      "trend": {},
+      "tagA": {},
+      "tagB": {}
+    }
+  },
+  "insightHigher": "higher",
+  "insightLower": "lower",
+  "insightRhythmChangeTitle": "Rhythm Change",
+  "insightRhythmChangeDescription": "Your activity frequency has {direction} by {percent}% this month compared with last month.",
+  "@insightRhythmChangeDescription": {
+    "placeholders": {
+      "direction": {},
+      "percent": {}
+    }
+  },
+  "insightIncreased": "increased",
+  "insightDecreased": "decreased",
+  "insightHealthCheckTitle": "Health Check Suggested",
+  "insightHealthCheckDescription": "It has been over 6 months since your last Health Passport log. Consider scheduling one.",
+  "insightInTheZoneTitle": "In the Zone!",
+  "insightInTheZoneDescription": "You're on a streak of {streak} encounters rated as 'Good' or 'Legendary' (8+). Keep it going!",
+  "@insightInTheZoneDescription": {
+    "placeholders": {
+      "streak": {}
+    }
+  },
+  "insightDayMonday": "Monday",
+  "insightDayTuesday": "Tuesday",
+  "insightDayWednesday": "Wednesday",
+  "insightDayThursday": "Thursday",
+  "insightDayFriday": "Friday",
+  "insightDaySaturday": "Saturday",
+  "insightDaySunday": "Sunday",
+  "insightGoldenDayTitle": "Your Golden Day",
+  "insightGoldenDayDescription": "Your encounters on {day} usually have the highest average rating ({avg}/10).",
+  "@insightGoldenDayDescription": {
+    "placeholders": {
+      "day": {},
+      "avg": {}
+    }
+  },
+  "insightProtectionStatsTitle": "Protection Stats",
+  "insightProtectionStatsDescription": "You used protection in {percentage}% of your logged encounters.",
+  "@insightProtectionStatsDescription": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "insightDominantStyleTitle": "Your Dominant Style",
+  "insightDominantStyleDescription": "Your most frequent tag is '{tag}'. It seems to be an important part of your routine.",
+  "@insightDominantStyleDescription": {
+    "placeholders": {
+      "tag": {}
+    }
+  },
+  "homeBlackBookTitle": "Black Book",
+  "homeTrophyRoomTitle": "Trophy Room",
+  "homeHealthPassportTitle": "Health Passport",
+  "homeStatsTitle": "Stats",
+  "homeTab": "Home",
+  "homeTrophiesTab": "Trophies",
+  "homeHealthTab": "Health",
+  "homeStatsTab": "Stats",
+  "blackBookNoRecords": "No records yet",
+  "blackBookSummary": "{count} Encounters • Last: {date}",
+  "@blackBookSummary": {
+    "placeholders": {
+      "count": {},
+      "date": {}
+    }
+  },
+  "fakeNewTask": "New Task",
+  "fakeTaskHint": "e.g. Buy milk",
+  "fakeAdd": "Add",
+  "fakeMyTasks": "My Tasks",
+  "fakeAllDone": "All done for today.\nAdd a new task!",
+  "fakeTaskDeleted": "Task \"{title}\" deleted",
+  "@fakeTaskDeleted": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "pinEnter4Digits": "Enter 4 digits",
+  "securityUpdated": "Security updated ✅",
+  "securityTitle": "Security",
+  "securityConfigureKeys": "Configure your access keys.",
+  "securityRealPinTitle": "Real PIN",
+  "securityRealPinDesc": "Your main access",
+  "securityPanicPinTitle": "Panic PIN",
+  "securityPanicPinDesc": "Opens the fake task list",
+  "securityKillSwitchTitle": "KILL SWITCH",
+  "securityKillSwitchDesc": "⚠️ DELETES ALL DATA",
+  "securitySaveConfig": "Save Settings",
+  "securityConfigurePin": "Configure {title}",
+  "@securityConfigurePin": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "securityNotSet": "Not set",
+  "dataTitle": "Data & Backups",
+  "dataBackupSection": "BACKUP",
+  "dataCreateBackup": "Create Encrypted Backup",
+  "dataCreateBackupSubtitle": "Generate an encrypted .notch file to save in Drive/iCloud.",
+  "dataBackupSuccess": "Backup generated successfully",
+  "dataRestoreBackup": "Restore Backup",
+  "dataRestoreBackupSubtitle": "Import a .notch file. ⚠️ It will overwrite current data.",
+  "dataRestoreSuccess": "Data restored successfully",
+  "dataExportSection": "EXPORT",
+  "dataGeneratePdf": "Generate PDF Report",
+  "dataGeneratePdfSubtitle": "Create a visual document with your stats and records.",
+  "dataPdfSuccess": "PDF generated",
+  "dataAchievementUnlocked": "Achievement unlocked: {name}!",
+  "@dataAchievementUnlocked": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dataError": "Error: {error}",
+  "@dataError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "healthResultNegative": "Negative",
+  "healthResultPositive": "Positive",
+  "healthResultPending": "Pending",
+  "healthNewRecord": "New Health Record",
+  "healthTestTypeLabel": "Test Type (e.g. Full Panel)",
+  "healthResultLabel": "Result:",
+  "healthSaveAndSchedule": "Save & Schedule",
+  "healthSavedReminder": "Saved. We'll remind you in 6 months.",
+  "healthRegisterTest": "Log Test",
+  "healthNoRecords": "No health records",
+  "healthNoRecordsSubtitle": "Health is sexy. Get checked!",
+  "addEntryPartnerHint": "Type '@' to search or a new name...",
+  "sharePreviewTitle": "Preview",
+  "shareCardText": "New rank unlocked in NOTCH! 🏆 #NOTCHapp",
+  "shareCurrentSeason": "CURRENT SEASON",
+  "shareSeasonXp": "Season XP",
+  "shareMonthEncounters": "Month Encounters",
+  "shareErrorGeneratingImage": "Error generating image to share",
+  "partnerChangeAvatar": "Change Avatar",
+  "partnerChooseFromGallery": "Choose from Gallery",
+  "partnerChooseEmoji": "Choose an Emoji",
+  "partnerChooseEmojiTitle": "Choose an Emoji",
+  "partnerNotesSaved": "Notes saved",
+  "partnerEdit": "Edit",
+  "partnerPrivateNotes": "PRIVATE NOTES",
+  "partnerNotesHint": "Likes, dislikes, birthdays...",
+  "partnerNotesTapToAdd": "Tap the pencil to add notes.",
+  "partnerHistoryTitle": "ENCOUNTER HISTORY",
+  "partnerNoEncounters": "No encounters recorded.",
+  "trophyMonthRecord": "MONTH RECORD",
+  "trophyHistorical": "HISTORICAL",
+  "challengesTitle": "Challenges",
+  "challengesSubtitle": "Complete these goals to prove your mastery and commitment.",
+  "challengeMorningMasterTitle": "Morning Master",
+  "challengeMorningMasterDesc": "Log 5 encounters with the 'Morning Wood' tag.",
+  "challengeWeeklyExplorerTitle": "Weekly Explorer",
+  "challengeWeeklyExplorerDesc": "Use 3 different tags in the last 7 days.",
+  "challengeQualityWeekTitle": "Quality Week",
+  "challengeQualityWeekDesc": "Reach an average of 8.0+ in the last 7 days.",
+  "challengeSafetyChampionTitle": "Safety Champion",
+  "challengeSafetyChampionDesc": "Reach 100% protection in your last 5 encounters.",
+  "challengePreludeMasterTitle": "Prelude Master",
+  "challengePreludeMasterDesc": "Average 9.0+ in 5 straight encounters tagged 'Oral'.",
+  "challengeSteelConsistencyTitle": "Steel Consistency",
+  "challengeSteelConsistencyDesc": "Log at least 8 encounters in the current season.",
+  "challengeQualityClubTitle": "9+ Club",
+  "challengeQualityClubDesc": "Log 5 encounters this month with rating 9 or 10.",
+  "challengeGuardianOfSafetyTitle": "Guardian of Safety",
+  "challengeGuardianOfSafetyDesc": "Achieve a streak of 15 consecutive encounters using protection.",
+  "challengePerfectWeekendTitle": "Perfect Weekend",
+  "challengePerfectWeekendDesc": "Log encounters on Friday, Saturday and Sunday in one weekend, all rated 8+.",
+  "challengeEpicMorningTitle": "Very Good Mornings",
+  "challengeEpicMorningDesc": "Accumulate 50 encounters with the 'Morning Wood' tag.",
+  "challengeFrequentFlyerTitle": "Frequent Flyer",
+  "challengeFrequentFlyerDesc": "Accumulate 15 encounters with the 'Travel' tag.",
+  "challengeStarCollectorTitle": "Star Collector",
+  "challengeStarCollectorDesc": "Reach 100 encounters rated 8 or higher.",
+  "challengeCenturionTitle": "Centurion",
+  "challengeCenturionDesc": "Log your first 100 total encounters.",
+  "challengeLegendaryGuardianTitle": "Legendary Guardian",
+  "challengeLegendaryGuardianDesc": "Maintain a 95%+ protection rate across at least 50 encounters.",
+  "challengePolymathTitle": "Polymath",
+  "challengePolymathDesc": "Use each available tag at least once.",
+  "levelInitiated1Name": "Initiate I",
+  "levelInitiated1Desc": "The first step on the path of intimate self-discovery.",
+  "levelInitiated2Name": "Initiate II",
+  "levelInitiated2Desc": "You begin to recognize patterns and understand your rhythms.",
+  "levelInitiated3Name": "Initiate III",
+  "levelInitiated3Desc": "Curiosity becomes a conscious logging habit.",
+  "levelPractitioner1Name": "Practitioner I",
+  "levelPractitioner1Desc": "The discipline of logging reveals its first rewards.",
+  "levelPractitioner2Name": "Practitioner II",
+  "levelPractitioner2Desc": "You develop deeper awareness of your desires and limits.",
+  "levelPractitioner3Name": "Practitioner III",
+  "levelPractitioner3Desc": "Consistency shows commitment to your sexual well-being.",
+  "levelAdept1Name": "Adept I",
+  "levelAdept1Desc": "You master the tools and begin experimenting with confidence.",
+  "levelAdept2Name": "Adept II",
+  "levelAdept2Desc": "Your understanding of intimate dynamics deepens.",
+  "levelAdept3Name": "Adept III",
+  "levelAdept3Desc": "The quality of your experiences becomes as important as quantity.",
+  "levelVirtuoso1Name": "Virtuoso I",
+  "levelVirtuoso1Desc": "Your actions are intentional and your logs are detailed.",
+  "levelVirtuoso2Name": "Virtuoso II",
+  "levelVirtuoso2Desc": "You inspire confidence and show strong communication skills.",
+  "levelVirtuoso3Name": "Virtuoso III",
+  "levelVirtuoso3Desc": "Intimacy becomes an art form you master.",
+  "levelKnower1Name": "Knower I",
+  "levelKnower1Desc": "You hold deep knowledge of yourself and your partners.",
+  "levelKnower2Name": "Knower II",
+  "levelKnower2Desc": "Your experience lets you anticipate and create unforgettable moments.",
+  "levelKnower3Name": "Knower III",
+  "levelKnower3Desc": "You are a reference point for maturity and sexual health.",
+  "levelMasterName": "Master",
+  "levelMasterDesc": "You reached the summit of self-knowledge and intimate mastery.",
+  "levelGrandMasterName": "Grand Master",
+  "levelGrandMasterDesc": "Your journey inspires others. You transcended the purely physical.",
+  "levelLegendName": "Legend",
+  "levelLegendDesc": "Your legacy is written in the stars of intimacy.",
+  "trophyActiveChallenges": "ACTIVE CHALLENGES",
+  "trophyExploreGoals": "Explore new goals",
+  "trophyExploreGoalsSubtitle": "Tap to view all available challenges and keep improving.",
+  "trophyUnlockedBadges": "UNLOCKED BADGES",
+  "trophyCurrentLevel": "CURRENT LEVEL",
+  "trophyFinalRank": "FINAL RANK",
+  "trophyNextLevelInXp": "Next level in {xp} XP",
+  "@trophyNextLevelInXp": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "trophyCurrentStreak": "CURRENT STREAK",
+  "badgeLocked": "Locked",
+  "achievementUnlockedTitle": "Achievement Unlocked!",
+  "achievementRookieName": "Debut",
+  "achievementRookieDesc": "Log your first encounter.",
+  "achievementLegendName": "Legendary",
+  "achievementLegendDesc": "Get a perfect 10/10 rating.",
+  "achievementSprinterName": "Sprinter",
+  "achievementSprinterDesc": "3 encounters in less than 24 hours.",
+  "achievementSafePlayerName": "Safe Player",
+  "achievementSafePlayerDesc": "Streak of 10 protected encounters.",
+  "achievementHatTrickName": "Hat-Trick",
+  "achievementHatTrickDesc": "3 or more orgasms in one encounter.",
+  "achievementMarathonerName": "Marathoner",
+  "achievementMarathonerDesc": "5 encounters in one weekend (Fri-Sun) in a month.",
+  "achievementRenaissanceName": "Renaissance Man",
+  "achievementRenaissanceDesc": "Activity on every weekday within a month.",
+  "achievementFireStreakName": "Fire Streak",
+  "achievementFireStreakDesc": "Keep a 7-day streak.",
+  "achievementTopCriticName": "Top Critic",
+  "achievementTopCriticDesc": "5 straight encounters rated 9+.",
+  "achievementGrandMasterName": "Grand Master",
+  "achievementGrandMasterDesc": "Reach the \"Grand Master\" rank in a season.",
+  "achievementExplorerName": "Explorer",
+  "achievementExplorerDesc": "Use 5 different tags in a month.",
+  "achievementGlobetrotterName": "Globetrotter",
+  "achievementGlobetrotterDesc": "Log an encounter with the \"Travel\" tag.",
+  "achievementNightOwlName": "Night Owl",
+  "achievementNightOwlDesc": "10 encounters logged after midnight.",
+  "achievementHealthChampionName": "Health Champion",
+  "achievementHealthChampionDesc": "Log your first Health Passport checkup.",
+  "achievementArchivistName": "Archivist",
+  "achievementArchivistDesc": "Create your first data backup.",
+  "trophyDays": "days",
+  "trophyRecordReached": "Record reached",
+  "trophyBeatingRecord": "Beating record",
+  "trophyNoRecord": "No record",
+  "trophyPercentOfHistorical": "{percent}% of historical",
+  "@trophyPercentOfHistorical": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "trophyNoStreakThisMonth": "No streak this month",
+  "trophyNextMilestoneDays": "Next milestone: {days} days",
+  "@trophyNextMilestoneDays": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "trophyDaysRemaining": "{days} days remaining",
+  "@trophyDaysRemaining": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "trophyMilestoneReached": "Milestone reached!"
+}

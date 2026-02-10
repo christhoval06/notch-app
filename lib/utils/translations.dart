@@ -1,50 +1,6 @@
-class AppStrings {
-  static String get(String key, {String lang = 'es'}) {
-    final Map<String, Map<String, String>> data = {
-      'welcome': {'es': 'Bienvenido a NOTCH', 'en': 'Welcome to NOTCH'},
-      'auth_reason': {
-        'es': 'Por favor autentícate para acceder a tus registros',
-        'en': 'Please authenticate to access your logs',
-      },
-      'partner': {'es': 'Pareja', 'en': 'Partner'},
-      'orgasms': {'es': 'Orgasmos', 'en': 'Orgasms'},
-      'rating': {'es': 'Calificación', 'en': 'Rating'},
-      'save': {'es': 'Guardar Notch', 'en': 'Save Notch'},
-      'stats': {'es': 'Estadísticas', 'en': 'Statistics'},
+import 'package:notch_app/l10n/app_localizations.dart';
 
-      'tag_morning': {'es': 'Mañanero', 'en': 'Morning Wood'},
-      'tag_quickie': {'es': 'Rápido', 'en': 'Quickie'},
-      'tag_oral': {'es': 'Oral', 'en': 'Oral'},
-      'tag_anal': {'es': 'Anal', 'en': 'Anal'},
-      'tag_toys': {'es': 'Juguetes', 'en': 'Toys'},
-      'tag_date': {'es': 'Cita', 'en': 'Date Night'},
-      'tag_travel': {'es': 'Viaje', 'en': 'Travel'},
-      'tag_kinky': {'es': 'Kinky', 'en': 'Kinky'},
-      'tag_outdoor': {'es': 'Aire Libre', 'en': 'Outdoor'},
-      'tag_anniversary': {'es': 'Aniversario', 'en': 'Anniversary'},
-
-      // Nuevos - Contexto y Situación
-      'tag_ons': {'es': 'Aventura de una Noche', 'en': 'One-Night Stand'},
-      'tag_fwb': {'es': 'Amigos con Beneficios', 'en': 'Friends w/ Benefits'},
-      'tag_reconciliation': {'es': 'Reconciliación', 'en': 'Make-up Sex'},
-      'tag_celebration': {'es': 'Celebración', 'en': 'Celebration'},
-
-      // Nuevos - Prácticas y Estilos
-      'tag_vanilla': {'es': 'Vainilla', 'en': 'Vanilla'},
-      'tag_domsub': {'es': 'Dom/Sub', 'en': 'Dom/Sub'},
-      'tag_massage': {'es': 'Masaje Erótico', 'en': 'Erotic Massage'},
-
-      // Nuevos - Ubicación y Ambiente
-      'tag_car': {'es': 'En el Coche', 'en': 'Car Sex'},
-      'tag_hotel': {'es': 'Hotel', 'en': 'Hotel'},
-      'tag_shower': {'es': 'Ducha / Baño', 'en': 'Shower / Bath'},
-
-      'mood': {'es': 'Estado de Ánimo', 'en': 'Mood'},
-      'protected': {'es': 'Usé Protección', 'en': 'Used Protection'},
-    };
-    return data[key]?[lang] ?? key;
-  }
-}
+import 'locale_controller.dart';
 
 const List<String> tagKeys = [
   // Originales
@@ -75,4 +31,99 @@ const List<String> moodEmojis = [
   '🏆',
 ];
 
-String currentLang = 'es';
+String get currentLang => AppLocaleController.instance.languageCode;
+
+String tagLabelFromL10n(AppLocalizations l10n, String tagKey) {
+  switch (tagKey) {
+    case 'tag_morning':
+      return l10n.tagMorning;
+    case 'tag_quickie':
+      return l10n.tagQuickie;
+    case 'tag_oral':
+      return l10n.tagOral;
+    case 'tag_anal':
+      return l10n.tagAnal;
+    case 'tag_toys':
+      return l10n.tagToys;
+    case 'tag_date':
+      return l10n.tagDate;
+    case 'tag_travel':
+      return l10n.tagTravel;
+    case 'tag_kinky':
+      return l10n.tagKinky;
+    case 'tag_outdoor':
+      return l10n.tagOutdoor;
+    case 'tag_anniversary':
+      return l10n.tagAnniversary;
+    case 'tag_ons':
+      return l10n.tagOns;
+    case 'tag_fwb':
+      return l10n.tagFwb;
+    case 'tag_reconciliation':
+      return l10n.tagReconciliation;
+    case 'tag_celebration':
+      return l10n.tagCelebration;
+    case 'tag_vanilla':
+      return l10n.tagVanilla;
+    case 'tag_domsub':
+      return l10n.tagDomsub;
+    case 'tag_massage':
+      return l10n.tagMassage;
+    case 'tag_car':
+      return l10n.tagCar;
+    case 'tag_hotel':
+      return l10n.tagHotel;
+    case 'tag_shower':
+      return l10n.tagShower;
+    default:
+      return tagKey;
+  }
+}
+
+String tagLabelFromLanguageCode(String tagKey, String languageCode) {
+  final bool isEnglish = languageCode.toLowerCase() == 'en';
+  switch (tagKey) {
+    case 'tag_morning':
+      return isEnglish ? 'Morning Wood' : 'Mananero';
+    case 'tag_quickie':
+      return isEnglish ? 'Quickie' : 'Rapido';
+    case 'tag_oral':
+      return 'Oral';
+    case 'tag_anal':
+      return 'Anal';
+    case 'tag_toys':
+      return isEnglish ? 'Toys' : 'Juguetes';
+    case 'tag_date':
+      return isEnglish ? 'Date Night' : 'Cita';
+    case 'tag_travel':
+      return isEnglish ? 'Travel' : 'Viaje';
+    case 'tag_kinky':
+      return 'Kinky';
+    case 'tag_outdoor':
+      return isEnglish ? 'Outdoor' : 'Aire Libre';
+    case 'tag_anniversary':
+      return isEnglish ? 'Anniversary' : 'Aniversario';
+    case 'tag_ons':
+      return isEnglish ? 'One-Night Stand' : 'Aventura de una Noche';
+    case 'tag_fwb':
+      return isEnglish ? 'Friends w/ Benefits' : 'Amigos con Beneficios';
+    case 'tag_reconciliation':
+      return isEnglish ? 'Make-up Sex' : 'Reconciliacion';
+    case 'tag_celebration':
+      return isEnglish ? 'Celebration' : 'Celebracion';
+    case 'tag_vanilla':
+      return isEnglish ? 'Vanilla' : 'Vainilla';
+    case 'tag_domsub':
+      return 'Dom/Sub';
+    case 'tag_massage':
+      return isEnglish ? 'Erotic Massage' : 'Masaje Erotico';
+    case 'tag_car':
+      return isEnglish ? 'Car Sex' : 'En el Coche';
+    case 'tag_hotel':
+      return 'Hotel';
+    case 'tag_shower':
+      return isEnglish ? 'Shower / Bath' : 'Ducha / Bano';
+    default:
+      return tagKey;
+  }
+}

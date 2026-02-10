@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 
 import '../services/share_service.dart';
 
@@ -27,22 +28,24 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
   bool _isLoading = false;
 
   Future<void> _shareCard() async {
+    final l10n = AppLocalizations.of(context);
     setState(() => _isLoading = true);
     await _shareService.captureAndShareWidget(
       context,
       widgetKey: _shareCardKey,
-      text: "¡Nuevo rango desbloqueado en NOTCH! 🏆 #NOTCHapp",
+      text: l10n.shareCardText,
     );
     setState(() => _isLoading = false);
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Previsualización"),
+        title: Text(l10n.sharePreviewTitle),
         actions: [
           // Botón para iniciar el proceso de compartir
           _isLoading
@@ -105,7 +108,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
             Column(
               children: [
                 Text(
-                  "TEMPORADA ACTUAL",
+                  AppLocalizations.of(context).shareCurrentSeason,
                   style: TextStyle(
                     fontFamily: 'Lato',
                     color: Colors.white.withOpacity(0.7),
@@ -141,13 +144,13 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
               children: [
                 _buildStatRow(
                   icon: Icons.flash_on,
-                  label: "XP de Temporada",
+                  label: AppLocalizations.of(context).shareSeasonXp,
                   value: widget.currentXp.toString(),
                 ),
                 const SizedBox(height: 15),
                 _buildStatRow(
                   icon: Icons.flag,
-                  label: "Encuentros del Mes",
+                  label: AppLocalizations.of(context).shareMonthEncounters,
                   value: widget.totalEncountersThisMonth.toString(),
                 ),
               ],

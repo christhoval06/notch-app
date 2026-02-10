@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:uuid/uuid.dart';
 import '../models/fake_task.dart';
 
@@ -13,6 +14,7 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
 
   // DIÁLOGO PARA AÑADIR NUEVA TAREA
   Future<void> _showAddTaskDialog() async {
+    final l10n = AppLocalizations.of(context);
     final titleController = TextEditingController();
 
     return showDialog<void>(
@@ -20,26 +22,20 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey[200],
-          title: const Text(
-            'Nueva Tarea',
-            style: TextStyle(color: Colors.black),
-          ),
+          title: Text(l10n.fakeNewTask, style: TextStyle(color: Colors.black)),
           content: TextField(
             controller: titleController,
             autofocus: true,
             style: TextStyle(color: Colors.black87),
-            decoration: const InputDecoration(hintText: 'Ej. Comprar leche'),
+            decoration: InputDecoration(hintText: l10n.fakeTaskHint),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text(
-                'Cancelar',
-                style: TextStyle(color: Colors.grey),
-              ),
+              child: Text(l10n.cancel, style: TextStyle(color: Colors.grey)),
               onPressed: () => Navigator.of(context).pop(),
             ),
             TextButton(
-              child: const Text('Añadir', style: TextStyle(color: Colors.blue)),
+              child: Text(l10n.fakeAdd, style: TextStyle(color: Colors.blue)),
               onPressed: () {
                 if (titleController.text.isNotEmpty) {
                   final newTask = FakeTask(
@@ -59,11 +55,12 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
         // Título con texto negro y fondo blanco
-        title: const Text(
-          "Mis Tareas",
+        title: Text(
+          l10n.fakeMyTasks,
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.white,
@@ -84,7 +81,7 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
           final tasks = box.values.toList();
 
           if (tasks.isEmpty) {
-            return const Center(
+            return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -95,7 +92,7 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "Todo listo por hoy.\n¡Añade una nueva tarea!",
+                    l10n.fakeAllDone,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
@@ -120,7 +117,7 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
                       task.title; // Guardamos el título antes de borrar
                   task.delete();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Tarea "$taskTitle" eliminada')),
+                    SnackBar(content: Text(l10n.fakeTaskDeleted(taskTitle))),
                   );
                 },
                 background: Container(

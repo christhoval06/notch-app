@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -62,6 +64,9 @@ dependencies:
   path: ^1.9.1
   flutter_heatmap_calendar: ^1.0.5
   collection: ^1.19.1
+  shared_preferences: ^2.5.4
+  dots_indicator: ^4.0.1
+  animated_text_kit: ^4.3.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +86,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -164,3 +170,14 @@ flutter_native_splash:
 
   # Opcional: Si quieres que el logo ocupe toda la pantalla o no
   fullscreen: true
+
+  package_rename_config:
+    android:
+      app_name: "Notch" # Display name
+      package_name: "dev.christhoval.apps.notch" # Package name
+      lang: "kotlin" # Optional: "kotlin" (default) or "java"
+
+    ios:
+      app_name: "Notch" # Display name
+      bundle_name: "Notch" # Bundle name
+      package_name: "dev.christhoval.apps.notch" # Product Bundle Identifier

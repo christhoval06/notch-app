@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/utils/achievement_localization.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import '../services/backup_service.dart';
 import '../services/pdf_service.dart';
@@ -18,6 +20,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
     Future<void> Function() action,
     String successMsg,
   ) async {
+    final l10n = AppLocalizations.of(context);
     setState(() => _isLoading = true);
     try {
       await action();
@@ -27,7 +30,8 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
           event: AchievementEvent.backupCreated,
         );
         if (unlocked.isNotEmpty) {
-          successMsg += " 🏆 ¡Logro Desbloqueado: ${unlocked.first.name}!";
+          successMsg +=
+              " 🏆 ${l10n.dataAchievementUnlocked(localizeAchievementName(l10n, unlocked.first.id, unlocked.first.name))}";
         }
       }
 
@@ -39,7 +43,10 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error: $e"), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text(l10n.dataError(e.toString())),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {
@@ -49,41 +56,40 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Datos y Respaldos"),
+        title: Text(l10n.dataTitle),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               padding: const EdgeInsets.all(20),
               children: [
-                _buildSectionTitle("COPIA DE SEGURIDAD (BACKUP)"),
+                _buildSectionTitle(l10n.dataBackupSection),
                 _buildCard(
                   icon: Icons.cloud_upload,
                   color: Colors.blueAccent,
-                  title: "Crear Respaldo Encriptado",
-                  subtitle:
-                      "Genera un archivo .notch cifrado para guardar en Drive/iCloud.",
+                  title: l10n.dataCreateBackup,
+                  subtitle: l10n.dataCreateBackupSubtitle,
                   onTap: () => _handleAction(
                     _backupService.createEncryptedBackup,
-                    "Backup generado exitosamente",
+                    l10n.dataBackupSuccess,
                   ),
                 ),
                 _buildCard(
                   icon: Icons.restore_page,
                   color: Colors.orangeAccent,
-                  title: "Restaurar Respaldo",
-                  subtitle:
-                      "Importa un archivo .notch. ⚠️ Sobrescribirá los datos actuales.",
+                  title: l10n.dataRestoreBackup,
+                  subtitle: l10n.dataRestoreBackupSubtitle,
                   onTap: () async {
                     bool success = await _backupService.restoreBackup();
                     if (success && mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Datos restaurados correctamente"),
+                        SnackBar(
+                          content: Text(l10n.dataRestoreSuccess),
                           backgroundColor: Colors.green,
                         ),
                       );
@@ -94,15 +100,16 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
 
                 const SizedBox(height: 30),
 
-                _buildSectionTitle("EXPORTACIÓN"),
+                _buildSectionTitle(l10n.dataExportSection),
                 _buildCard(
                   icon: Icons.picture_as_pdf,
                   color: Colors.redAccent,
-                  title: "Generar Reporte PDF",
-                  subtitle:
-                      "Crea un documento visual con tus estadísticas y registros.",
-                  onTap: () =>
-                      _handleAction(_pdfService.generateReport, "PDF generado"),
+                  title: l10n.dataGeneratePdf,
+                  subtitle: l10n.dataGeneratePdfSubtitle,
+                  onTap: () => _handleAction(
+                    _pdfService.generateReport,
+                    l10n.dataPdfSuccess,
+                  ),
                 ),
               ],
             ),
