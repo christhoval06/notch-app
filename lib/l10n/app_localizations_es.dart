@@ -112,7 +112,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsTitle => 'Ajustes';
 
   @override
-  String get settingsTagline => 'Private Intimacy Tracker';
+  String get settingsTagline => 'Registro íntimo privado';
 
   @override
   String get settingsGeneral => 'GENERAL';
