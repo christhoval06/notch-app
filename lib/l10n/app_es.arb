@@ -381,6 +381,8 @@
   "trophyExploreGoals": "Explora nuevos objetivos",
   "trophyExploreGoalsSubtitle": "Toca para ver todos los retos disponibles y seguir mejorando.",
   "trophyUnlockedBadges": "INSIGNIAS DESBLOQUEADAS",
+  "trophySeasonLabel": "Temporada",
+  "trophyCurrentShort": "Actual",
   "trophyCurrentLevel": "NIVEL ACTUAL",
   "trophyFinalRank": "RANGO FINAL",
   "trophyNextLevelInXp": "Siguiente nivel en {xp} XP",

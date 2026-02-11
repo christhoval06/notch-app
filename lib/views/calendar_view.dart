@@ -31,6 +31,7 @@ class _CalendarViewState extends State<CalendarView> {
   @override
   Widget build(BuildContext context) {
     final box = Hive.box<Encounter>('encounters');
+    final localeCode = Localizations.localeOf(context).toString();
 
     return ValueListenableBuilder<Box<Encounter>>(
       valueListenable: box.listenable(),
@@ -75,14 +76,14 @@ class _CalendarViewState extends State<CalendarView> {
             //     ],
             //   ),
             // ),
-            _buildCalendar(box),
+            _buildCalendar(box, localeCode),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   Text(
-                    DateFormat('MMMM d, y').format(_selectedDay!),
+                    DateFormat('MMMM d, y', localeCode).format(_selectedDay!),
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
@@ -116,7 +117,7 @@ class _CalendarViewState extends State<CalendarView> {
     );
   }
 
-  Widget _buildCalendar(Box<Encounter> box) {
+  Widget _buildCalendar(Box<Encounter> box, String localeCode) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -124,6 +125,7 @@ class _CalendarViewState extends State<CalendarView> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: TableCalendar(
+        locale: localeCode,
         firstDay: DateTime.utc(2020, 1, 1),
         lastDay: DateTime.utc(2030, 12, 31),
         focusedDay: _focusedDay,

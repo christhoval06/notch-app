@@ -79,14 +79,14 @@ class Numpad extends StatelessWidget {
               icon: const Icon(Icons.backspace_outlined, color: Colors.white),
               iconSize: 28,
               onPressed: () {
-                HapticFeedback.lightImpact();
+                HapticFeedback.selectionClick();
                 onDeletePress();
               },
             );
           }
           return InkWell(
             onTap: () {
-              HapticFeedback.lightImpact();
+              HapticFeedback.selectionClick();
               onDigitPress(d);
             },
             borderRadius: BorderRadius.circular(40),

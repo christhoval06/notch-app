@@ -199,12 +199,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
   // Teclado numérico
   void _onDigitPress(String digit) {
-    HapticFeedback.lightImpact();
     if (_enteredPin.length < 4) {
       setState(() {
         _enteredPin += digit;
       });
       if (_enteredPin.length == 4) {
+        HapticFeedback.mediumImpact();
         // Verificar automáticamente al llegar a 4 dígitos
         Future.delayed(Duration(milliseconds: 200), _checkPin);
       }
@@ -212,7 +212,6 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void _onDeletePress() {
-    HapticFeedback.lightImpact();
     if (_enteredPin.isNotEmpty) {
       setState(() {
         _enteredPin = _enteredPin.substring(0, _enteredPin.length - 1);
@@ -243,7 +242,10 @@ class _AuthScreenState extends State<AuthScreen> {
             // Botón Biometría
             if (_canCheckBiometrics)
               TextButton.icon(
-                onPressed: _authenticateBiometric,
+                onPressed: () {
+                  HapticFeedback.mediumImpact();
+                  _authenticateBiometric();
+                },
                 icon: Icon(Icons.fingerprint, color: Colors.blueAccent),
                 label: Text(
                   l10n.authBiometricButton,

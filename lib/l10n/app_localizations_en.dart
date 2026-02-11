@@ -949,6 +949,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trophyUnlockedBadges => 'UNLOCKED BADGES';
 
   @override
+  String get trophySeasonLabel => 'Season';
+
+  @override
+  String get trophyCurrentShort => 'Current';
+
+  @override
   String get trophyCurrentLevel => 'CURRENT LEVEL';
 
   @override

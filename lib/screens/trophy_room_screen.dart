@@ -214,6 +214,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   // --- WIDGETS AUXILIARES ---
 
   Widget _buildSeasonSelector(List<String> monthIds) {
+    final l10n = AppLocalizations.of(context);
+    final localeCode = Localizations.localeOf(context).toString();
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
@@ -229,13 +232,13 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           style: const TextStyle(color: Colors.white, fontSize: 16),
           items: monthIds.map((id) {
             final date = DateFormat('yyyy-MM').parse(id);
-            final formatted = DateFormat('MMMM yyyy').format(date);
+            final formatted = DateFormat('MMMM yyyy', localeCode).format(date);
             final isCurrent =
                 id == DateFormat('yyyy-MM').format(DateTime.now());
             return DropdownMenuItem(
               value: id,
               child: Text(
-                "Temporada: $formatted ${isCurrent ? '(Actual)' : ''}",
+                "${l10n.trophySeasonLabel}: $formatted ${isCurrent ? '(${l10n.trophyCurrentShort})' : ''}",
               ),
             );
           }).toList(),

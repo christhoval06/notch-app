@@ -1801,6 +1801,18 @@ abstract class AppLocalizations {
   /// **'UNLOCKED BADGES'**
   String get trophyUnlockedBadges;
 
+  /// No description provided for @trophySeasonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Season'**
+  String get trophySeasonLabel;
+
+  /// No description provided for @trophyCurrentShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get trophyCurrentShort;
+
   /// No description provided for @trophyCurrentLevel.
   ///
   /// In en, this message translates to:
