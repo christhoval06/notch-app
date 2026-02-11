@@ -171,6 +171,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final localeCode = Localizations.localeOf(context).toString();
     final box = Hive.box<HealthLog>('health_logs');
 
     return Scaffold(
@@ -236,7 +237,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                     ),
                   ),
                   subtitle: Text(
-                    DateFormat('d MMMM y').format(log.date),
+                    DateFormat('d MMMM y', localeCode).format(log.date),
                     style: const TextStyle(color: Colors.grey),
                   ),
                   trailing: Container(
