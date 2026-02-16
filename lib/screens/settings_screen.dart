@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notch_app/config/feature_flags.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/monetization/premium_access.dart';
+import 'package:notch_app/monetization/premium_feature.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/services/subscription_service.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,11 +12,13 @@ import 'package:hive/hive.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/services.dart'; // Para Haptics
 import 'package:notch_app/utils/locale_controller.dart';
+import 'package:notch_app/widgets/feature_guard.dart';
 
 // IMPORTS DE TUS PANTALLAS
 import 'security_settings_screen.dart'; // La pantalla de PINs antigua
 import 'data_management_screen.dart'; // La pantalla de Backup/PDF
 import 'home_screen.dart';
+import 'premium_upsell_screen.dart';
 
 // IMPORTS DE MODELOS (Para el reseteo)
 import '../models/encounter.dart';
@@ -262,10 +268,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
             color: Colors.blueAccent,
             title: l10n.settingsDataBackup,
             subtitle: l10n.settingsDataBackupSubtitle,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => DataManagementScreen()),
+            onTap: () => PremiumAccess.guard(
+              context: context,
+              feature: PremiumFeature.dataBackup,
+              onAllowed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => DataManagementScreen()),
+                );
+              },
             ),
+          ),
+          FeatureGuard(
+            featureName: FeatureNames.showPremiumSettingsItem,
+            child: _buildTile(
+              icon: Icons.workspace_premium,
+              color: Colors.amberAccent,
+              title: l10n.monetizationPremiumTitle,
+              subtitle: l10n.monetizationManagePlansSubtitle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PremiumUpsellScreen()),
+              ),
+            ),
+          ),
+          _buildTile(
+            icon: Icons.manage_accounts,
+            color: Colors.cyanAccent,
+            title: l10n.settingsCustomerCenter,
+            subtitle: l10n.settingsCustomerCenterSubtitle,
+            onTap: () => SubscriptionService().presentCustomerCenter(),
           ),
           _buildTile(
             icon: Icons.language,

@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
 import 'package:notch_app/screens/onboarding_screen.dart';
+import 'package:notch_app/config/feature_flags.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:notch_app/models/global_progress.dart';
@@ -18,6 +19,7 @@ import 'package:notch_app/widgets/app_lifecycle_observer.dart';
 import 'package:notch_app/utils/locale_controller.dart';
 
 import 'services/notification_service.dart';
+import 'services/subscription_service.dart';
 import 'screens/auth_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -64,6 +66,10 @@ void main() async {
   if (isFirstTime) {
     // Si es la primera vez, guardamos la bandera como 'false' para el futuro
     await prefs.setBool('isFirstTime', false);
+  }
+
+  if (FeatureFlags.enableMonetizationInitialization) {
+    await SubscriptionService().init();
   }
 
   runApp(NotchApp(isFirstTime: isFirstTime));
