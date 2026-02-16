@@ -2082,6 +2082,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Milestone reached!'**
   String get trophyMilestoneReached;
+
+  /// No description provided for @monetizationPremiumTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH Premium'**
+  String get monetizationPremiumTitle;
+
+  /// No description provided for @monetizationManagePlansSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage plans and restore purchases'**
+  String get monetizationManagePlansSubtitle;
+
+  /// No description provided for @monetizationActiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH Premium active'**
+  String get monetizationActiveTitle;
+
+  /// No description provided for @monetizationActiveDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have full access to premium features.'**
+  String get monetizationActiveDescription;
+
+  /// No description provided for @monetizationContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get monetizationContinue;
+
+  /// No description provided for @monetizationUnlockAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock all advanced features.'**
+  String get monetizationUnlockAll;
+
+  /// No description provided for @monetizationUnlockFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock: {feature}'**
+  String monetizationUnlockFeature(Object feature);
+
+  /// No description provided for @monetizationFallbackDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced privacy, encrypted backups, complete insights, and more.'**
+  String get monetizationFallbackDescription;
+
+  /// No description provided for @monetizationRestorePurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get monetizationRestorePurchases;
+
+  /// No description provided for @monetizationStoreUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Products could not be loaded. Verify the IDs in App Store Connect / Play Console.'**
+  String get monetizationStoreUnavailable;
+
+  /// No description provided for @monetizationRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get monetizationRecommended;
+
+  /// No description provided for @monetizationContinueWithPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue - {price}'**
+  String monetizationContinueWithPrice(Object price);
+
+  /// No description provided for @premiumFeatureInsightsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover full correlations and trends from your history.'**
+  String get premiumFeatureInsightsDescription;
+
+  /// No description provided for @premiumFeatureDataBackupDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Export, restore, and protect your history when changing devices.'**
+  String get premiumFeatureDataBackupDescription;
+
+  /// No description provided for @premiumFeatureHealthPassportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Log health checks and schedule automatic reminders.'**
+  String get premiumFeatureHealthPassportDescription;
+
+  /// No description provided for @premiumFeatureBlackBookDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock detailed profiles, private notes, and customization.'**
+  String get premiumFeatureBlackBookDescription;
+
+  /// No description provided for @monetizationOpenNativePaywall.
+  ///
+  /// In en, this message translates to:
+  /// **'Open RevenueCat Paywall'**
+  String get monetizationOpenNativePaywall;
+
+  /// No description provided for @settingsCustomerCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Center'**
+  String get settingsCustomerCenter;
+
+  /// No description provided for @settingsCustomerCenterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage subscriptions and billing'**
+  String get settingsCustomerCenterSubtitle;
 }
 
 class _AppLocalizationsDelegate

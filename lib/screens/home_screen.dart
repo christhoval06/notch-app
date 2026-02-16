@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/monetization/premium_access.dart';
+import 'package:notch_app/monetization/premium_feature.dart';
 import 'package:notch_app/screens/insights_screen.dart';
 import 'package:notch_app/screens/path_screen.dart';
 import 'package:notch_app/screens/settings_screen.dart';
@@ -32,7 +34,29 @@ class _HomeScreenState extends State<HomeScreen> {
     StatsScreen(),
   ];
 
-  void _onItemTapped(int index) {
+  PremiumFeature? _featureForTab(int index) {
+    if (index == 1) return PremiumFeature.blackBook;
+    if (index == 2) return PremiumFeature.trophyRoom;
+    if (index == 3) return PremiumFeature.healthPassport;
+    if (index == 4) return PremiumFeature.stats;
+    return null;
+  }
+
+  void _onItemTapped(int index) async {
+    final feature = _featureForTab(index);
+    if (feature != null) {
+      await PremiumAccess.guard(
+        context: context,
+        feature: feature,
+        onAllowed: () {
+          if (!mounted) return;
+          setState(() => _selectedIndex = index);
+        },
+      );
+      return;
+    }
+
+    if (!mounted) return;
     setState(() {
       _selectedIndex = index;
     });
@@ -84,10 +108,16 @@ class _HomeScreenState extends State<HomeScreen> {
           if (_selectedIndex == 4)
             IconButton(
               icon: const Icon(Icons.psychology, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => InsightsScreen()),
+              onPressed: () async {
+                await PremiumAccess.guard(
+                  context: context,
+                  feature: PremiumFeature.insights,
+                  onAllowed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => InsightsScreen()),
+                    );
+                  },
                 );
               },
             ),

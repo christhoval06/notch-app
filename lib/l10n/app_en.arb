@@ -447,5 +447,34 @@
       "days": {}
     }
   },
-  "trophyMilestoneReached": "Milestone reached!"
+  "trophyMilestoneReached": "Milestone reached!",
+  "monetizationPremiumTitle": "NOTCH Premium",
+  "monetizationManagePlansSubtitle": "Manage plans and restore purchases",
+  "monetizationActiveTitle": "NOTCH Premium active",
+  "monetizationActiveDescription": "You already have full access to premium features.",
+  "monetizationContinue": "Continue",
+  "monetizationUnlockAll": "Unlock all advanced features.",
+  "monetizationUnlockFeature": "Unlock: {feature}",
+  "@monetizationUnlockFeature": {
+    "placeholders": {
+      "feature": {}
+    }
+  },
+  "monetizationFallbackDescription": "Advanced privacy, encrypted backups, complete insights, and more.",
+  "monetizationRestorePurchases": "Restore purchases",
+  "monetizationStoreUnavailable": "Products could not be loaded. Verify the IDs in App Store Connect / Play Console.",
+  "monetizationRecommended": "Recommended",
+  "monetizationContinueWithPrice": "Continue - {price}",
+  "@monetizationContinueWithPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "premiumFeatureInsightsDescription": "Discover full correlations and trends from your history.",
+  "premiumFeatureDataBackupDescription": "Export, restore, and protect your history when changing devices.",
+  "premiumFeatureHealthPassportDescription": "Log health checks and schedule automatic reminders.",
+  "premiumFeatureBlackBookDescription": "Unlock detailed profiles, private notes, and customization.",
+  "monetizationOpenNativePaywall": "Open RevenueCat Paywall",
+  "settingsCustomerCenter": "Customer Center",
+  "settingsCustomerCenterSubtitle": "Manage subscriptions and billing"
 }

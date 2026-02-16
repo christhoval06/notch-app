@@ -1111,4 +1111,75 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get trophyMilestoneReached => '¡Hito alcanzado!';
+
+  @override
+  String get monetizationPremiumTitle => 'NOTCH Premium';
+
+  @override
+  String get monetizationManagePlansSubtitle =>
+      'Gestiona planes y restaura compras';
+
+  @override
+  String get monetizationActiveTitle => 'NOTCH Premium activo';
+
+  @override
+  String get monetizationActiveDescription =>
+      'Ya tienes acceso completo a las funciones premium.';
+
+  @override
+  String get monetizationContinue => 'Continuar';
+
+  @override
+  String get monetizationUnlockAll =>
+      'Desbloquea todas las funciones avanzadas.';
+
+  @override
+  String monetizationUnlockFeature(Object feature) {
+    return 'Desbloquea: $feature';
+  }
+
+  @override
+  String get monetizationFallbackDescription =>
+      'Privacidad avanzada, backups cifrados, insights completos y mas.';
+
+  @override
+  String get monetizationRestorePurchases => 'Restaurar compras';
+
+  @override
+  String get monetizationStoreUnavailable =>
+      'No se pudieron cargar los productos. Verifica que los IDs existan en App Store Connect / Play Console.';
+
+  @override
+  String get monetizationRecommended => 'Recomendado';
+
+  @override
+  String monetizationContinueWithPrice(Object price) {
+    return 'Continuar - $price';
+  }
+
+  @override
+  String get premiumFeatureInsightsDescription =>
+      'Descubre correlaciones y tendencias completas de tu historial.';
+
+  @override
+  String get premiumFeatureDataBackupDescription =>
+      'Exporta, restaura y protege tu historial al cambiar de dispositivo.';
+
+  @override
+  String get premiumFeatureHealthPassportDescription =>
+      'Registra chequeos de salud y programa recordatorios automaticos.';
+
+  @override
+  String get premiumFeatureBlackBookDescription =>
+      'Desbloquea perfiles detallados, notas privadas y personalizacion.';
+
+  @override
+  String get monetizationOpenNativePaywall => 'Abrir Paywall de RevenueCat';
+
+  @override
+  String get settingsCustomerCenter => 'Customer Center';
+
+  @override
+  String get settingsCustomerCenterSubtitle =>
+      'Gestiona suscripciones y facturacion';
 }

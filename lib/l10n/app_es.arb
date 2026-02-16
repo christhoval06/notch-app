@@ -447,5 +447,34 @@
       "days": {}
     }
   },
-  "trophyMilestoneReached": "¡Hito alcanzado!"
+  "trophyMilestoneReached": "¡Hito alcanzado!",
+  "monetizationPremiumTitle": "NOTCH Premium",
+  "monetizationManagePlansSubtitle": "Gestiona planes y restaura compras",
+  "monetizationActiveTitle": "NOTCH Premium activo",
+  "monetizationActiveDescription": "Ya tienes acceso completo a las funciones premium.",
+  "monetizationContinue": "Continuar",
+  "monetizationUnlockAll": "Desbloquea todas las funciones avanzadas.",
+  "monetizationUnlockFeature": "Desbloquea: {feature}",
+  "@monetizationUnlockFeature": {
+    "placeholders": {
+      "feature": {}
+    }
+  },
+  "monetizationFallbackDescription": "Privacidad avanzada, backups cifrados, insights completos y mas.",
+  "monetizationRestorePurchases": "Restaurar compras",
+  "monetizationStoreUnavailable": "No se pudieron cargar los productos. Verifica que los IDs existan en App Store Connect / Play Console.",
+  "monetizationRecommended": "Recomendado",
+  "monetizationContinueWithPrice": "Continuar - {price}",
+  "@monetizationContinueWithPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "premiumFeatureInsightsDescription": "Descubre correlaciones y tendencias completas de tu historial.",
+  "premiumFeatureDataBackupDescription": "Exporta, restaura y protege tu historial al cambiar de dispositivo.",
+  "premiumFeatureHealthPassportDescription": "Registra chequeos de salud y programa recordatorios automaticos.",
+  "premiumFeatureBlackBookDescription": "Desbloquea perfiles detallados, notas privadas y personalizacion.",
+  "monetizationOpenNativePaywall": "Abrir Paywall de RevenueCat",
+  "settingsCustomerCenter": "Customer Center",
+  "settingsCustomerCenterSubtitle": "Gestiona suscripciones y facturacion"
 }

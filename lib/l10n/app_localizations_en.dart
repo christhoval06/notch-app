@@ -1101,4 +1101,74 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trophyMilestoneReached => 'Milestone reached!';
+
+  @override
+  String get monetizationPremiumTitle => 'NOTCH Premium';
+
+  @override
+  String get monetizationManagePlansSubtitle =>
+      'Manage plans and restore purchases';
+
+  @override
+  String get monetizationActiveTitle => 'NOTCH Premium active';
+
+  @override
+  String get monetizationActiveDescription =>
+      'You already have full access to premium features.';
+
+  @override
+  String get monetizationContinue => 'Continue';
+
+  @override
+  String get monetizationUnlockAll => 'Unlock all advanced features.';
+
+  @override
+  String monetizationUnlockFeature(Object feature) {
+    return 'Unlock: $feature';
+  }
+
+  @override
+  String get monetizationFallbackDescription =>
+      'Advanced privacy, encrypted backups, complete insights, and more.';
+
+  @override
+  String get monetizationRestorePurchases => 'Restore purchases';
+
+  @override
+  String get monetizationStoreUnavailable =>
+      'Products could not be loaded. Verify the IDs in App Store Connect / Play Console.';
+
+  @override
+  String get monetizationRecommended => 'Recommended';
+
+  @override
+  String monetizationContinueWithPrice(Object price) {
+    return 'Continue - $price';
+  }
+
+  @override
+  String get premiumFeatureInsightsDescription =>
+      'Discover full correlations and trends from your history.';
+
+  @override
+  String get premiumFeatureDataBackupDescription =>
+      'Export, restore, and protect your history when changing devices.';
+
+  @override
+  String get premiumFeatureHealthPassportDescription =>
+      'Log health checks and schedule automatic reminders.';
+
+  @override
+  String get premiumFeatureBlackBookDescription =>
+      'Unlock detailed profiles, private notes, and customization.';
+
+  @override
+  String get monetizationOpenNativePaywall => 'Open RevenueCat Paywall';
+
+  @override
+  String get settingsCustomerCenter => 'Customer Center';
+
+  @override
+  String get settingsCustomerCenterSubtitle =>
+      'Manage subscriptions and billing';
 }
