@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:notch_app/screens/onboarding_screen.dart';
 import 'package:notch_app/config/feature_flags.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:notch_app/theme/app_theme.dart';
 
 import 'package:notch_app/models/global_progress.dart';
 import 'models/encounter.dart';
@@ -78,12 +79,10 @@ void main() async {
 class NotchApp extends StatelessWidget {
   final bool isFirstTime;
 
-  const NotchApp({Key? key, required this.isFirstTime}) : super(key: key);
+  const NotchApp({super.key, required this.isFirstTime});
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData base = ThemeData.dark();
-
     return ValueListenableBuilder<Locale>(
       valueListenable: AppLocaleController.instance.localeNotifier,
       builder: (context, locale, _) => MaterialApp(
@@ -98,36 +97,7 @@ class NotchApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        theme: base.copyWith(
-          textTheme: base.textTheme
-              .apply(
-                fontFamily: 'Lato',
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
-              )
-              .copyWith(
-                headlineSmall: base.textTheme.headlineSmall?.copyWith(
-                  fontFamily: 'BebasNeue',
-                ),
-                headlineMedium: base.textTheme.headlineMedium?.copyWith(
-                  fontFamily: 'BebasNeue',
-                ),
-              ),
-          scaffoldBackgroundColor: const Color(0xFF121212),
-          primaryColor: Colors.blueAccent,
-          colorScheme: base.colorScheme.copyWith(
-            primary: Colors.blueAccent,
-            secondary: Colors.purpleAccent,
-            brightness: Brightness.dark,
-          ),
-          appBarTheme: base.appBarTheme.copyWith(
-            titleTextStyle: const TextStyle(
-              fontFamily: 'BebasNeue', // Fuente especial para títulos de AppBar
-              fontSize: 22,
-              color: Colors.white,
-            ),
-          ),
-        ),
+        theme: AppTheme.dark(),
         builder: (context, child) {
           return AppLifecycleObserver(child: child!);
         },
