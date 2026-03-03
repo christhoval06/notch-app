@@ -42,6 +42,8 @@
 	<string>Esta app necesita acceso a tu fototeca para que puedas seleccionar y subir fotos en tu perfil y contenidos.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Esta app necesita permiso para guardar imágenes generadas o descargadas en tu fototeca.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>NOTCH usa Face ID para autenticarte y proteger el acceso a tu información privada.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

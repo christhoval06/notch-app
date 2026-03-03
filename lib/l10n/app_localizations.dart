@@ -955,6 +955,12 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get homeTab;
 
+  /// No description provided for @homePeopleTab.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get homePeopleTab;
+
   /// No description provided for @homeTrophiesTab.
   ///
   /// In en, this message translates to:
@@ -2196,6 +2202,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Manage subscriptions and billing'**
   String get settingsCustomerCenterSubtitle;
+
+  /// No description provided for @homeAbstinenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Time'**
+  String get homeAbstinenceTitle;
+
+  /// No description provided for @homeAbstinenceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Since your last encounter'**
+  String get homeAbstinenceSubtitle;
+
+  /// No description provided for @homeAbstinenceNoDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No encounters logged yet.'**
+  String get homeAbstinenceNoDataSubtitle;
+
+  /// No description provided for @homeAbstinenceNoDataValue.
+  ///
+  /// In en, this message translates to:
+  /// **'No data'**
+  String get homeAbstinenceNoDataValue;
+
+  /// No description provided for @homeAbstinenceDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days {hours} hours {minutes} minutes'**
+  String homeAbstinenceDuration(Object days, Object hours, Object minutes);
 }
 
 class _AppLocalizationsDelegate

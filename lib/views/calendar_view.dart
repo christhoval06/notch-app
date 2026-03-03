@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
+import 'package:notch_app/widgets/abstinence_counter_card.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../../models/encounter.dart';
@@ -40,6 +41,8 @@ class _CalendarViewState extends State<CalendarView> {
         return Column(
           children: [
             const SizedBox(height: 20),
+            const AbstinenceCounterCard(),
+            const SizedBox(height: 14),
 
             // Padding(
             //   padding: const EdgeInsets.symmetric(
