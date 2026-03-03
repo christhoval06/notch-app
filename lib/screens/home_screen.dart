@@ -96,31 +96,33 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildTopBar(String title, double topInset) {
+    final scheme = Theme.of(context).colorScheme;
+    final background = Theme.of(context).scaffoldBackgroundColor;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
+      value: SystemUiOverlayStyle(
+        statusBarColor: background,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
       child: Container(
         height: topInset + kToolbarHeight,
         padding: EdgeInsets.only(top: topInset),
-        color: Colors.black,
+        color: background,
         child: Row(
           children: [
             const SizedBox(width: 16),
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: scheme.onSurface,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.settings, color: Colors.white),
+              icon: Icon(Icons.settings, color: scheme.onSurface),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -130,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             if (_selectedIndex == 2)
               IconButton(
-                icon: const Icon(Icons.map, color: Colors.white),
+                icon: Icon(Icons.map, color: scheme.onSurface),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -140,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             if (_selectedIndex == 4)
               IconButton(
-                icon: const Icon(Icons.psychology, color: Colors.white),
+                icon: Icon(Icons.psychology, color: scheme.onSurface),
                 onPressed: () async {
                   await PremiumAccess.guard(
                     context: context,
@@ -215,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const double bottomPadding = 98.0;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           AnimatedPadding(
@@ -286,8 +288,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
-              backgroundColor: Colors.blueAccent,
-              child: const Icon(Icons.add, color: Colors.white),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              child: Icon(
+                Icons.add,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,

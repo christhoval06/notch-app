@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 
 import '../models/monthly_progress.dart';
 import '../utils/gamification_engine.dart';
@@ -78,7 +79,7 @@ class _PathScreenState extends State<PathScreen> {
             final double totalProgress = currentXp / (levels.last['xp'] as int);
 
             return Scaffold(
-              backgroundColor: const Color(0xFF121212),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 title: const Text(
@@ -93,6 +94,11 @@ class _PathScreenState extends State<PathScreen> {
                     child: CustomPaint(
                       painter: _PathPainter(
                         progress: totalProgress.clamp(0.0, 1.0),
+                        backgroundColor: Theme.of(
+                          context,
+                        ).colorScheme.outlineVariant,
+                        gradientTop: Theme.of(context).colorScheme.primary,
+                        gradientBottom: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ),
@@ -225,17 +231,20 @@ class _PathNodeState extends State<_PathNode>
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final Color activeColor = widget.isCurrent
-        ? Colors.amberAccent
-        : Colors.blueAccent;
-    final Color nodeColor = widget.isUnlocked ? activeColor : Colors.grey[800]!;
+        ? scheme.warning
+        : scheme.primary;
+    final Color nodeColor = widget.isUnlocked
+        ? activeColor
+        : scheme.outlineVariant;
     return GestureDetector(
       onTap: () {
         if (widget.isUnlocked) {
           HapticFeedback.mediumImpact();
           showModalBottomSheet(
             context: context,
-            backgroundColor: Colors.grey[900],
+            backgroundColor: scheme.surface,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
@@ -263,14 +272,17 @@ class _PathNodeState extends State<_PathNode>
                         fontFamily: 'Lato',
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: scheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 5),
                     // XP requerido
                     Text(
                       "Desbloqueado a los ${widget.xpRequired} XP",
-                      style: TextStyle(color: Colors.grey[400], fontSize: 12),
+                      style: TextStyle(
+                        color: scheme.onSurfaceVariant,
+                        fontSize: 12,
+                      ),
                     ),
                     const SizedBox(height: 15),
                     // Descripción
@@ -279,7 +291,10 @@ class _PathNodeState extends State<_PathNode>
                         (level) => level['name'] == widget.levelName,
                       )['desc'],
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.grey[300], height: 1.5),
+                      style: TextStyle(
+                        color: scheme.onSurfaceVariant,
+                        height: 1.5,
+                      ),
                     ),
                   ],
                 ),
@@ -330,7 +345,7 @@ class _PathNodeState extends State<_PathNode>
             widget.levelName,
             style: TextStyle(
               fontFamily: 'Lato',
-              color: widget.isUnlocked ? Colors.white : Colors.grey[600],
+              color: widget.isUnlocked ? scheme.onSurface : scheme.outline,
               fontWeight: widget.isCurrent
                   ? FontWeight.bold
                   : FontWeight.normal,
@@ -345,7 +360,7 @@ class _PathNodeState extends State<_PathNode>
               fontFamily: 'Lato',
               color: widget.isUnlocked
                   ? nodeColor.withOpacity(0.8)
-                  : Colors.grey[700],
+                  : scheme.outline,
               fontSize: 10,
             ),
           ),
@@ -358,13 +373,21 @@ class _PathNodeState extends State<_PathNode>
 // --- PINTOR PARA LA LÍNEA DEL CAMINO ---
 class _PathPainter extends CustomPainter {
   final double progress;
+  final Color backgroundColor;
+  final Color gradientTop;
+  final Color gradientBottom;
 
-  _PathPainter({required this.progress});
+  _PathPainter({
+    required this.progress,
+    required this.backgroundColor,
+    required this.gradientTop,
+    required this.gradientBottom,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
     final backgroundPaint = Paint()
-      ..color = Colors.grey[850]!
+      ..color = backgroundColor
       ..strokeWidth = 4
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -372,7 +395,7 @@ class _PathPainter extends CustomPainter {
     final foregroundPaint = Paint()
       ..shader = LinearGradient(
         // <-- Usamos un gradiente para un efecto "energético"
-        colors: [Colors.blueAccent, Colors.purpleAccent],
+        colors: [gradientTop, gradientBottom],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ).createShader(Rect.fromLTWH(0, 0, 0, size.height))

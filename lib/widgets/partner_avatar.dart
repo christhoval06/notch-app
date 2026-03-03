@@ -11,17 +11,18 @@ class PartnerAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     switch (partner.avatarType) {
       case AvatarType.image:
         return CircleAvatar(
           radius: radius,
           backgroundImage: FileImage(File(partner.avatarContent)),
-          backgroundColor: Colors.grey[800],
+          backgroundColor: scheme.surfaceContainerHighest,
         );
       case AvatarType.emoji:
         return CircleAvatar(
           radius: radius,
-          backgroundColor: Colors.grey[900],
+          backgroundColor: scheme.surface,
           child: Text(
             partner.avatarContent,
             style: TextStyle(fontSize: radius),
@@ -30,7 +31,7 @@ class PartnerAvatar extends StatelessWidget {
       case AvatarType.initial:
       default:
         // El color se guarda como un String, lo convertimos a int
-        final colorValue = int.tryParse(partner.avatarContent) ?? 0xFF000000;
+        final colorValue = int.tryParse(partner.avatarContent) ?? scheme.scrim.toARGB32();
         final color = Color(colorValue);
 
         return CircleAvatar(
@@ -40,7 +41,7 @@ class PartnerAvatar extends StatelessWidget {
             partner.name.isNotEmpty ? partner.name[0].toUpperCase() : '?',
             style: TextStyle(
               fontSize: radius * 0.9,
-              color: Colors.white,
+              color: scheme.onPrimary,
               fontWeight: FontWeight.bold,
             ),
           ),

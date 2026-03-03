@@ -15,27 +15,34 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
   // DIÁLOGO PARA AÑADIR NUEVA TAREA
   Future<void> _showAddTaskDialog() async {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final titleController = TextEditingController();
 
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.grey[200],
-          title: Text(l10n.fakeNewTask, style: TextStyle(color: Colors.black)),
+          backgroundColor: scheme.surface,
+          title: Text(
+            l10n.fakeNewTask,
+            style: TextStyle(color: scheme.onSurface),
+          ),
           content: TextField(
             controller: titleController,
             autofocus: true,
-            style: TextStyle(color: Colors.black87),
+            style: TextStyle(color: scheme.onSurface),
             decoration: InputDecoration(hintText: l10n.fakeTaskHint),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(l10n.cancel, style: TextStyle(color: Colors.grey)),
+              child: Text(
+                l10n.cancel,
+                style: TextStyle(color: scheme.onSurfaceVariant),
+              ),
               onPressed: () => Navigator.of(context).pop(),
             ),
             TextButton(
-              child: Text(l10n.fakeAdd, style: TextStyle(color: Colors.blue)),
+              child: Text(l10n.fakeAdd, style: TextStyle(color: scheme.primary)),
               onPressed: () {
                 if (titleController.text.isNotEmpty) {
                   final newTask = FakeTask(
@@ -56,23 +63,24 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         // Título con texto negro y fondo blanco
         title: Text(
           l10n.fakeMyTasks,
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+          style: TextStyle(color: scheme.onSurface, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: scheme.surface,
         elevation: 1.0, // Sombra sutil para separar
-        iconTheme: const IconThemeData(color: Colors.black54),
+        iconTheme: IconThemeData(color: scheme.onSurfaceVariant),
       ),
-      backgroundColor: Colors.grey[200], // Un gris muy claro para el fondo
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddTaskDialog,
-        backgroundColor: Colors.blueAccent, // Color de acción estándar
-        child: const Icon(Icons.add, color: Colors.white),
+        backgroundColor: scheme.primary, // Color de acción estándar
+        child: Icon(Icons.add, color: scheme.onPrimary),
       ),
 
       body: ValueListenableBuilder(
@@ -88,13 +96,16 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
                   Icon(
                     Icons.check_box_outline_blank,
                     size: 60,
-                    color: Colors.grey,
+                    color: scheme.onSurfaceVariant,
                   ),
                   SizedBox(height: 10),
                   Text(
                     l10n.fakeAllDone,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(
+                      color: scheme.onSurfaceVariant,
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),
@@ -121,10 +132,13 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
                   );
                 },
                 background: Container(
-                  color: Colors.red.shade400, // Un rojo menos intenso
+                  color: scheme.error,
                   alignment: Alignment.centerRight,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Icon(Icons.delete_outline, color: Colors.white),
+                  child: Icon(
+                    Icons.delete_outline,
+                    color: scheme.onError,
+                  ),
                 ),
                 child: ListTile(
                   contentPadding: const EdgeInsets.symmetric(
@@ -146,10 +160,12 @@ class _FakeHomeScreenState extends State<FakeHomeScreen> {
                       decoration: task.isDone
                           ? TextDecoration.lineThrough
                           : null,
-                      decorationColor: Colors.black54,
+                      decorationColor: scheme.onSurfaceVariant,
                       decorationThickness: 1.5,
                       // Color del texto: Negro si no está hecha, gris si está hecha
-                      color: task.isDone ? Colors.black45 : Colors.black87,
+                      color: task.isDone
+                          ? scheme.onSurfaceVariant
+                          : scheme.onSurface,
                     ),
                   ),
                 ),

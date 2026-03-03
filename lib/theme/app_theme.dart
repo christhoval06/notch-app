@@ -11,6 +11,8 @@ class AppTheme {
       brightness: Brightness.dark,
     ).copyWith(
       secondary: AppColors.accentPurple,
+      tertiary: AppColors.success,
+      error: AppColors.error,
       surface: AppColors.bgSecondary,
     );
 
@@ -21,8 +23,8 @@ class AppTheme {
       textTheme: base.textTheme
           .apply(
             fontFamily: 'Lato',
-            bodyColor: Colors.white,
-            displayColor: Colors.white,
+            bodyColor: scheme.onSurface,
+            displayColor: scheme.onSurface,
           )
           .copyWith(
             headlineSmall: base.textTheme.headlineSmall?.copyWith(
@@ -34,11 +36,11 @@ class AppTheme {
           ),
       appBarTheme: base.appBarTheme.copyWith(
         backgroundColor: AppColors.bgPrimary,
-        foregroundColor: Colors.white,
-        titleTextStyle: const TextStyle(
+        foregroundColor: scheme.onSurface,
+        titleTextStyle: TextStyle(
           fontFamily: 'BebasNeue',
           fontSize: 22,
-          color: Colors.white,
+          color: scheme.onSurface,
         ),
       ),
       cardTheme: CardThemeData(

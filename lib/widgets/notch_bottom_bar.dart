@@ -36,7 +36,7 @@ class NotchBottomBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(34),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.08),
+                color: scheme.scrim.withValues(alpha: 0.08),
                 blurRadius: 22,
                 offset: const Offset(0, 10),
               ),

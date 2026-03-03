@@ -10,6 +10,7 @@ class InsightsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final encounters = Hive.box<Encounter>('encounters').values.toList();
     final healthLogs = Hive.box<HealthLog>('health_logs').values.toList();
 
@@ -18,7 +19,7 @@ class InsightsScreen extends StatelessWidget {
     final insights = analyzer.generateInsights(l10n);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text("${l10n.insightsTitle} 🧠"),
@@ -28,25 +29,26 @@ class InsightsScreen extends StatelessWidget {
               child: Text(
                 l10n.insightsEmpty,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: scheme.onSurfaceVariant),
               ),
             )
           : ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: insights.length,
               itemBuilder: (context, index) {
-                return _buildInsightCard(insights[index]);
+                return _buildInsightCard(context, insights[index]);
               },
             ),
     );
   }
 
-  Widget _buildInsightCard(Insight insight) {
+  Widget _buildInsightCard(BuildContext context, Insight insight) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: scheme.surface,
         borderRadius: BorderRadius.circular(15),
         border: Border(left: BorderSide(color: insight.color, width: 5)),
       ),
@@ -60,8 +62,8 @@ class InsightsScreen extends StatelessWidget {
               Expanded(
                 child: Text(
                   insight.title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: scheme.onSurface,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -73,7 +75,7 @@ class InsightsScreen extends StatelessWidget {
           Text(
             insight.description,
             style: TextStyle(
-              color: Colors.grey[300],
+              color: scheme.onSurfaceVariant,
               fontSize: 14,
               height: 1.4,
             ),

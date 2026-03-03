@@ -10,6 +10,7 @@ import 'package:notch_app/screens/path_screen.dart';
 import 'package:notch_app/screens/share_preview_screen.dart';
 import 'package:notch_app/services/achievement_engine.dart';
 import 'package:notch_app/services/challenge_service.dart';
+import 'package:notch_app/theme/app_colors.dart';
 import '../models/monthly_progress.dart';
 import '../utils/achievement_localization.dart';
 import '../utils/gamification_engine.dart';
@@ -99,6 +100,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     // Escuchamos la caja para que la UI se actualice automáticamente
     return ValueListenableBuilder<int>(
       valueListenable: _updateNotifier,
@@ -111,14 +113,14 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           builder: (context, snapshot) {
             if (!snapshot.hasData || progressBox.isEmpty) {
               return Scaffold(
-                backgroundColor: const Color(0xFF121212),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 body: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Text(
                       "Registra una actividad para empezar la temporada.",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.grey[600]),
+                      style: TextStyle(color: scheme.onSurfaceVariant),
                     ),
                   ),
                 ),
@@ -146,7 +148,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             );
 
             return Scaffold(
-              backgroundColor: const Color(0xFF121212),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               body: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -192,7 +194,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     Text(
                       AppLocalizations.of(context).trophyUnlockedBadges,
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: scheme.onSurfaceVariant,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
                       ),
@@ -216,20 +218,21 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   Widget _buildSeasonSelector(List<String> monthIds) {
     final l10n = AppLocalizations.of(context);
     final localeCode = Localizations.localeOf(context).toString();
+    final scheme = Theme.of(context).colorScheme;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: scheme.surface,
         borderRadius: BorderRadius.circular(10),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: _selectedMonthId,
           isExpanded: true,
-          dropdownColor: Colors.grey[800],
-          icon: Icon(Icons.arrow_drop_down, color: Colors.blueAccent),
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          dropdownColor: scheme.surfaceContainerHighest,
+          icon: Icon(Icons.arrow_drop_down, color: scheme.primary),
+          style: TextStyle(color: scheme.onSurface, fontSize: 16),
           items: monthIds.map((id) {
             final date = DateFormat('yyyy-MM').parse(id);
             final formatted = DateFormat('MMMM yyyy', localeCode).format(date);
@@ -252,19 +255,20 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
 
   Widget _buildLevelPanel(MonthlyProgress progress, bool isCurrentMonth) {
     final levelData = GamificationEngine.getCurrentLevel(progress.xp);
+    final scheme = Theme.of(context).colorScheme;
 
     return Container(
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blueAccent.shade700, Colors.purpleAccent.shade400],
+          colors: [AppColors.levelGradientBlue, AppColors.levelGradientMagenta],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.blueAccent.withOpacity(0.3),
+            color: AppColors.levelGradientMagenta.withValues(alpha: 0.3),
             blurRadius: 15,
             offset: Offset(0, 5),
           ),
@@ -282,7 +286,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     : AppLocalizations.of(context).trophyFinalRank,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.8),
+                  color: scheme.onPrimary.withValues(alpha: 0.8),
                   letterSpacing: 2,
                   fontSize: 12,
                 ),
@@ -297,18 +301,18 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                       as String,
                 ),
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: scheme.onSurface,
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  shadows: [Shadow(color: Colors.black26, blurRadius: 5)],
+                  shadows: [Shadow(color: scheme.scrim, blurRadius: 5)],
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 "${progress.xp} XP",
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(color: scheme.onPrimary, fontSize: 16),
               ),
               const SizedBox(height: 20),
 
@@ -321,8 +325,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                       child: LinearProgressIndicator(
                         value: levelData['progress'],
                         minHeight: 12,
-                        backgroundColor: Colors.black38,
-                        color: Colors.amberAccent,
+                        backgroundColor: scheme.scrim.withValues(alpha: 0.38),
+                        color: scheme.tertiary,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -331,7 +335,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                         context,
                       ).trophyNextLevelInXp(levelData['next_xp'].toString()),
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
+                        color: scheme.onPrimary.withValues(alpha: 0.8),
                         fontSize: 10,
                       ),
                     ),
@@ -376,11 +380,11 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white,
-                  boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
+                  color: scheme.surface,
+                  boxShadow: [BoxShadow(color: scheme.scrim, blurRadius: 10)],
                 ),
                 child: IconButton(
-                  icon: const Icon(Icons.share, color: Colors.blueAccent),
+                  icon: Icon(Icons.share, color: scheme.primary),
                   onPressed: () => _navigateToSharePreview(progress),
                 ),
               ),
@@ -412,6 +416,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   }
 
   Widget _buildBadgesGrid(MonthlyProgress progress) {
+    final scheme = Theme.of(context).colorScheme;
     final allAchievements = AchievementEngine.getAllAchievements();
 
     return GridView.builder(
@@ -440,11 +445,11 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           child: Container(
             decoration: BoxDecoration(
               color: unlocked
-                  ? Colors.grey[900]
-                  : Colors.black.withOpacity(0.3),
+                  ? scheme.surface
+                  : scheme.scrim.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(15),
               border: Border.all(
-                color: unlocked ? Colors.amberAccent : Colors.grey[800]!,
+                color: unlocked ? scheme.tertiary : scheme.outlineVariant,
                 width: unlocked ? 2 : 1,
               ),
             ),
@@ -463,15 +468,21 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: unlocked ? Colors.white : Colors.grey[600],
+                      color: unlocked
+                          ? scheme.onSurface
+                          : scheme.onSurfaceVariant,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                     ),
                   ),
                   if (!unlocked)
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 4),
-                      child: Icon(Icons.lock, size: 12, color: Colors.grey),
+                      child: Icon(
+                        Icons.lock,
+                        size: 12,
+                        color: scheme.onSurfaceVariant,
+                      ),
                     ),
                 ],
               ),
@@ -488,6 +499,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     required int seasonBestStreak,
     required int allTimeBestStreak,
   }) {
+    final scheme = Theme.of(context).colorScheme;
     // Obtenemos el próximo hito desde el motor
     final nextMilestoneData = GamificationEngine.getNextStreakMilestone(
       currentStreak,
@@ -496,7 +508,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E1E), // Negro suave
+        color: scheme.surface, // Negro suave
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -514,7 +526,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                   title: AppLocalizations.of(context).trophyMonthRecord,
                   icon: Icons.military_tech,
                   days: seasonBestStreak,
-                  color: const Color(0xFF448AFF), // Azul
+                  color: scheme.primary, // Azul
                   currentStreak: currentStreak,
                   recordToBeat: allTimeBestStreak,
                 ),
@@ -526,7 +538,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                   title: AppLocalizations.of(context).trophyHistorical,
                   icon: Icons.star,
                   days: allTimeBestStreak,
-                  color: const Color(0xFFFFC107), // Amarillo/Dorado
+                  color: scheme.tertiary, // Amarillo/Dorado
                   currentStreak: currentStreak,
                   recordToBeat: allTimeBestStreak,
                   isAllTime: true,
@@ -544,24 +556,25 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   }
 
   Widget _buildCurrentStreakDisplay(int currentStreak) {
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: const Color(0xFFFF9800).withOpacity(0.15),
+            color: scheme.tertiary.withValues(alpha: 0.15),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFF9800).withOpacity(0.5),
+                color: scheme.tertiary.withValues(alpha: 0.5),
                 blurRadius: 20,
                 spreadRadius: 2,
               ),
             ],
           ),
-          child: const Icon(
+          child: Icon(
             Icons.local_fire_department_rounded,
-            color: Color(0xFFFF9800),
+            color: scheme.tertiary,
             size: 36,
           ),
         ),
@@ -575,7 +588,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               currentStreak.toString(),
               style: TextStyle(
                 fontFamily: 'Montserrat',
-                color: Colors.white,
+                color: scheme.onSurface,
                 fontSize: 64,
                 fontWeight: FontWeight.bold,
               ),
@@ -585,7 +598,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               AppLocalizations.of(context).trophyDays,
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: Colors.grey[400],
+                color: scheme.onSurfaceVariant,
                 fontSize: 20,
               ),
             ),
@@ -595,7 +608,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           AppLocalizations.of(context).trophyCurrentStreak,
           style: TextStyle(
             fontFamily: 'Lato',
-            color: const Color(0xFFFFC107),
+            color: scheme.tertiary,
             fontSize: 12,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
@@ -615,6 +628,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     bool isAllTime = false,
   }) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     String bottomText;
     double progress = 0.0;
 
@@ -642,9 +656,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.3),
+        color: scheme.scrim.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey[800]!, width: 1),
+        border: Border.all(color: scheme.outlineVariant, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -665,7 +679,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 l10n.trophyDays,
                 style: TextStyle(
                   fontFamily: 'Lato',
-                  color: Colors.grey[500],
+                  color: scheme.onSurfaceVariant,
                   fontSize: 14,
                 ),
               ),
@@ -680,7 +694,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 title,
                 style: TextStyle(
                   fontFamily: 'Lato',
-                  color: Colors.white,
+                  color: scheme.onSurface,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
@@ -693,7 +707,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: progress.clamp(0.0, 1.0),
-              backgroundColor: Colors.grey[800],
+              backgroundColor: scheme.surfaceContainerHighest,
               color: color,
               minHeight: 6,
             ),
@@ -708,7 +722,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 bottomText,
                 style: TextStyle(
                   fontFamily: 'Lato',
-                  color: Colors.grey[500],
+                  color: scheme.onSurfaceVariant,
                   fontSize: 10,
                 ),
               ),
@@ -724,6 +738,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     Map<String, int> milestoneData,
   ) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final int milestone = milestoneData['milestone']!;
     final int remaining = milestoneData['remaining']!;
     final double progress = (milestone > 0) ? (currentStreak / milestone) : 1.0;
@@ -737,7 +752,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               l10n.trophyNextMilestoneDays(milestone.toString()),
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: Colors.white,
+                color: scheme.onSurface,
                 fontSize: 12,
               ),
             ),
@@ -747,7 +762,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                   : l10n.trophyMilestoneReached,
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: const Color(0xFFFF9800),
+                color: scheme.tertiary,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
@@ -759,8 +774,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           borderRadius: BorderRadius.circular(10),
           child: LinearProgressIndicator(
             value: progress.clamp(0.0, 1.0),
-            backgroundColor: Colors.grey[800],
-            color: const Color(0xFFFF9800),
+            backgroundColor: scheme.surfaceContainerHighest,
+            color: scheme.tertiary,
             minHeight: 8,
           ),
         ),
@@ -769,6 +784,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   }
 
   Widget _buildFeaturedChallengeCard(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final featuredChallenge = ChallengeService.getFeaturedChallenge();
     final allEncounters = Hive.box<Encounter>('encounters').values.toList();
 
@@ -783,9 +799,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.grey[900],
+          color: scheme.surface,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.purpleAccent.withOpacity(0.5)),
+          border: Border.all(color: scheme.secondary.withValues(alpha: 0.5)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -793,21 +809,21 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             // --- CABECERA ---
             Row(
               children: [
-                const Icon(Icons.track_changes, color: Colors.purpleAccent),
+                Icon(Icons.track_changes, color: scheme.secondary),
                 const SizedBox(width: 10),
                 Text(
                   AppLocalizations.of(context).trophyActiveChallenges,
                   style: TextStyle(
                     fontFamily: 'Lato',
-                    color: Colors.purpleAccent,
+                    color: scheme.secondary,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
                   ),
                 ),
                 const Spacer(),
-                const Icon(
+                Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.grey,
+                  color: scheme.onSurfaceVariant,
                   size: 14,
                 ),
               ],
@@ -831,6 +847,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     Challenge challenge,
     List<Encounter> allEncounters,
   ) {
+    final scheme = Theme.of(context).colorScheme;
     final progress = challenge.getProgress(allEncounters);
     final progressPercent = challenge.getProgressPercent(allEncounters);
 
@@ -839,8 +856,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
       children: [
         Text(
           _challengeTitle(AppLocalizations.of(context), challenge.id),
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: scheme.onSurface,
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
@@ -854,16 +871,16 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                 child: LinearProgressIndicator(
                   value: progressPercent,
                   minHeight: 8,
-                  backgroundColor: Colors.black26,
-                  color: Colors.purpleAccent,
+                  backgroundColor: scheme.scrim.withValues(alpha: 0.26),
+                  color: scheme.secondary,
                 ),
               ),
             ),
             const SizedBox(width: 12),
             Text(
               "${progress.toInt()} / ${challenge.goal}",
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: scheme.onSurface,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -874,13 +891,14 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   }
 
   Widget _buildEmptyChallengeContent() {
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           AppLocalizations.of(context).trophyExploreGoals,
           style: TextStyle(
-            color: Colors.white,
+            color: scheme.onSurface,
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
@@ -888,7 +906,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
         const SizedBox(height: 4),
         Text(
           AppLocalizations.of(context).trophyExploreGoalsSubtitle,
-          style: TextStyle(color: Colors.grey, fontSize: 13),
+          style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 13),
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/models/health_log.dart';
 import 'package:notch_app/models/insight.dart';
+import 'package:notch_app/theme/app_colors.dart';
 import 'package:notch_app/utils/translations.dart';
 
 import '../models/encounter.dart';
@@ -161,7 +162,7 @@ class Analyzer {
         avgRating.toStringAsFixed(1),
       ),
       icon: Icons.star_half,
-      color: Colors.amber,
+      color: AppColors.warning,
     );
   }
 
@@ -248,7 +249,7 @@ class Analyzer {
           l10n.tagQuickie,
         ),
         icon: Icons.favorite,
-        color: Colors.redAccent,
+        color: AppColors.error,
       );
     }
     return null;
@@ -285,7 +286,7 @@ class Analyzer {
           diff.abs().toStringAsFixed(0),
         ),
         icon: Icons.trending_up,
-        color: diff > 0 ? Colors.greenAccent : Colors.orangeAccent,
+        color: diff > 0 ? AppColors.success : AppColors.warning,
       );
     }
     return null;
@@ -302,7 +303,7 @@ class Analyzer {
         title: l10n.insightHealthCheckTitle,
         description: l10n.insightHealthCheckDescription,
         icon: Icons.local_hospital,
-        color: Colors.blueAccent,
+        color: AppColors.seedBlue,
       );
     }
     return null;
@@ -325,7 +326,7 @@ class Analyzer {
         title: l10n.insightInTheZoneTitle,
         description: l10n.insightInTheZoneDescription(streak.toString()),
         icon: Icons.military_tech,
-        color: Colors.amberAccent,
+        color: AppColors.warning,
       );
     }
     return null;
@@ -367,7 +368,7 @@ class Analyzer {
         bestAvg.toStringAsFixed(1),
       ),
       icon: Icons.calendar_today,
-      color: Colors.orangeAccent,
+      color: AppColors.warning,
     );
   }
 
@@ -382,7 +383,7 @@ class Analyzer {
         percentage.toStringAsFixed(0),
       ),
       icon: Icons.security,
-      color: Colors.greenAccent,
+      color: AppColors.success,
     );
   }
 

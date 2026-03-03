@@ -6,6 +6,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
 import 'package:notch_app/models/partner.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import 'package:notch_app/utils/achievement_localization.dart';
 import 'package:uuid/uuid.dart';
 import '../models/encounter.dart';
@@ -26,9 +27,10 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(l10n.save),
@@ -68,8 +70,8 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: isSelected
-                                  ? Colors.blueAccent.withOpacity(0.3)
-                                  : Colors.grey[900],
+                                  ? Colors.blueAccent.withValues(alpha: 0.3)
+                                  : scheme.surface,
                               borderRadius: BorderRadius.circular(12),
                               border: isSelected
                                   ? Border.all(color: Colors.blueAccent)
@@ -110,7 +112,6 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               //       borderRadius: BorderRadius.circular(12),
               //       borderSide: BorderSide.none,
               //     ),
-              //     errorStyle: const TextStyle(color: Colors.redAccent),
               //   ),
               // ),
               const SizedBox(height: 25),
@@ -138,11 +139,13 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                           label: Text(tagLabelFromL10n(l10n, key)),
                           selected: isSelected,
                           // Diseño Dark Mode
-                          backgroundColor: Colors.grey[900],
+                          backgroundColor: scheme.surface,
                           selectedColor: Colors.blueAccent,
-                          checkmarkColor: Colors.white,
+                          checkmarkColor: scheme.onPrimary,
                           labelStyle: TextStyle(
-                            color: isSelected ? Colors.white : Colors.grey[400],
+                            color: isSelected
+                                ? scheme.onPrimary
+                                : scheme.onSurfaceVariant,
                             fontSize: 13,
                           ),
                           shape: RoundedRectangleBorder(
@@ -150,7 +153,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                             side: BorderSide(
                               color: isSelected
                                   ? Colors.transparent
-                                  : Colors.grey[800]!,
+                                  : scheme.outlineVariant,
                             ),
                           ),
                           // Lógica para agregar/quitar
@@ -190,8 +193,8 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                       }),
                       Text(
                         '${field.value}',
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: scheme.onSurface,
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                         ),
@@ -209,7 +212,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[900],
+                  color: scheme.surface,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 padding: const EdgeInsets.symmetric(
@@ -221,21 +224,21 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                   initialValue: true, // Valor por defecto activado
                   title: Row(
                     children: [
-                      Icon(Icons.security, color: Colors.greenAccent, size: 20),
+                      Icon(Icons.security, color: scheme.success, size: 20),
                       SizedBox(width: 10),
                       Text(
                         l10n.usedProtection,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: scheme.onSurface,
                           fontSize: 16,
                         ),
                       ),
                     ],
                   ),
                   decoration: const InputDecoration(border: InputBorder.none),
-                  activeColor: Colors.greenAccent,
-                  inactiveThumbColor: Colors.grey,
-                  inactiveTrackColor: Colors.grey[800],
+                  activeColor: scheme.success,
+                  inactiveThumbColor: scheme.onSurfaceVariant,
+                  inactiveTrackColor: scheme.surfaceContainerHighest,
                   onChanged: (val) => HapticFeedback.mediumImpact(),
                 ),
               ),
@@ -250,10 +253,13 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                 max: 10.0,
                 divisions: 9,
                 activeColor: Colors.blueAccent,
-                inactiveColor: Colors.grey[800],
+                inactiveColor: scheme.surfaceContainerHighest,
                 decoration: InputDecoration(
                   labelText: l10n.rating,
-                  labelStyle: const TextStyle(color: Colors.grey, fontSize: 18),
+                  labelStyle: TextStyle(
+                    color: scheme.onSurfaceVariant,
+                    fontSize: 18,
+                  ),
                   border: InputBorder.none,
                 ),
                 onChanged: (val) {
@@ -282,7 +288,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                   ),
                   child: Text(
                     l10n.save,
-                    style: const TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: scheme.onPrimary),
                   ),
                 ),
               ),
@@ -350,7 +356,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                           l10n.achievementUnlockedTitle,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                         Text(
@@ -359,14 +365,18 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                             achievement.id,
                             achievement.name,
                           ),
-                          style: const TextStyle(color: Colors.white70),
+                          style: TextStyle(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onPrimary.withValues(alpha: 0.9),
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-              backgroundColor: Colors.amber[800],
+              backgroundColor: Theme.of(context).colorScheme.warning,
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -387,16 +397,18 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
   // --- WIDGETS UI ---
   Widget _buildLabel(String text) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Text(
         text,
-        style: const TextStyle(color: Colors.grey, fontSize: 16),
+        style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 16),
       ),
     );
   }
 
   Widget _buildPartnerField() {
+    final scheme = Theme.of(context).colorScheme;
     final partnerBox = Hive.box<Partner>('partners');
     final allPartnerNames = partnerBox.values
         .map((p) => p.name)
@@ -468,7 +480,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                   alignment: Alignment.topLeft,
                   child: Material(
                     elevation: 4.0,
-                    color: Colors.grey[850],
+                    color: scheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(8),
                     child: SizedBox(
                       width:
@@ -483,7 +495,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                           return ListTile(
                             title: Text(
                               option,
-                              style: const TextStyle(color: Colors.white),
+                              style: TextStyle(color: scheme.onSurface),
                             ),
                             onTap: () {
                               onSelected(option);
@@ -501,13 +513,14 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   }
 
   Widget _roundButton(IconData icon, VoidCallback onPressed) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.grey[800],
+        color: scheme.surfaceContainerHighest,
       ),
       child: IconButton(
-        icon: Icon(icon, color: Colors.white),
+        icon: Icon(icon, color: scheme.onSurface),
         onPressed: onPressed,
       ),
     );
@@ -559,16 +572,17 @@ class __PartnerTextFieldState extends State<_PartnerTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return TextField(
       controller: widget.controller,
       focusNode: widget.focusNode,
       onSubmitted: (_) => widget.onFieldSubmitted(),
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: scheme.onSurface),
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey[900],
+        fillColor: scheme.surface,
         hintText: AppLocalizations.of(context).addEntryPartnerHint,
-        hintStyle: TextStyle(color: Colors.grey[600]),
+        hintStyle: TextStyle(color: scheme.onSurfaceVariant),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

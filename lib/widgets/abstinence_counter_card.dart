@@ -89,22 +89,23 @@ class _CardShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF1F2431), Color(0xFF141A24)],
+          colors: [scheme.surfaceContainerHigh, scheme.surface],
         ),
-        border: Border.all(color: const Color(0xFF2A3342)),
-        boxShadow: const [
+        border: Border.all(color: scheme.outlineVariant),
+        boxShadow: [
           BoxShadow(
-            color: Color(0x55000000),
+            color: scheme.scrim.withValues(alpha: 0.33),
             blurRadius: 16,
-            offset: Offset(0, 8),
+            offset: const Offset(0, 8),
           ),
         ],
       ),
@@ -127,7 +128,7 @@ class _CardShell extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    color: Colors.grey[300],
+                    color: scheme.onSurfaceVariant,
                     fontSize: 12,
                     letterSpacing: 0.4,
                   ),
@@ -135,8 +136,8 @@ class _CardShell extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   value,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: scheme.onSurface,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
@@ -144,7 +145,10 @@ class _CardShell extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                  style: TextStyle(
+                    color: scheme.onSurfaceVariant,
+                    fontSize: 12,
+                  ),
                 ),
               ],
             ),

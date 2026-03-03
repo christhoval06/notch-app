@@ -41,21 +41,22 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(l10n.sharePreviewTitle),
         actions: [
           // Botón para iniciar el proceso de compartir
           _isLoading
-              ? const Padding(
+              ? Padding(
                   padding: EdgeInsets.all(16.0),
                   child: SizedBox(
                     width: 24,
                     height: 24,
                     child: CircularProgressIndicator(
-                      color: Colors.white,
+                      color: scheme.onSurface,
                       strokeWidth: 2,
                     ),
                   ),
@@ -83,6 +84,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
 
   // EL DISEÑO DE LA TARJETA PERSONALIZADA
   Widget _buildShareCard() {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
@@ -111,7 +113,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
                   AppLocalizations.of(context).shareCurrentSeason,
                   style: TextStyle(
                     fontFamily: 'Lato',
-                    color: Colors.white.withOpacity(0.7),
+                    color: scheme.onPrimary.withValues(alpha: 0.7),
                     fontSize: 14,
                     letterSpacing: 3,
                   ),
@@ -123,14 +125,14 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.2),
+                    color: scheme.scrim.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Text(
                     widget.rankName,
                     style: TextStyle(
                       fontFamily: 'BebasNeue',
-                      color: Colors.white,
+                      color: scheme.onPrimary,
                       fontSize: 40,
                       letterSpacing: 4,
                     ),
@@ -161,7 +163,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
               "NOTCH",
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: Colors.white.withOpacity(0.6),
+                color: scheme.onPrimary.withValues(alpha: 0.6),
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 8,
@@ -178,18 +180,19 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
     required String label,
     required String value,
   }) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            Icon(icon, color: Colors.white.withOpacity(0.8), size: 18),
+            Icon(icon, color: scheme.onPrimary.withValues(alpha: 0.8), size: 18),
             const SizedBox(width: 10),
             Text(
               label,
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: Colors.white.withOpacity(0.8),
+                color: scheme.onPrimary.withValues(alpha: 0.8),
                 fontSize: 16,
               ),
             ),
@@ -199,7 +202,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
           value,
           style: TextStyle(
             fontFamily: 'Lato',
-            color: Colors.white,
+            color: scheme.onPrimary,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
