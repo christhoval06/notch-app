@@ -4,24 +4,24 @@ import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
-import 'package:notch_app/screens/onboarding_screen.dart';
-import 'package:notch_app/config/feature_flags.dart';
+import 'package:notch_app/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:notch_app/core/configs/feature_flags.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:notch_app/theme/app_theme.dart';
+import 'package:notch_app/core/theme/app_theme.dart';
 
-import 'package:notch_app/models/global_progress.dart';
-import 'models/encounter.dart';
-import 'models/partner.dart';
-import 'models/monthly_progress.dart';
-import 'models/health_log.dart';
-import 'models/fake_task.dart';
+import 'package:notch_app/data/models/global_progress.dart';
+import 'package:notch_app/data/models/encounter.dart';
+import 'package:notch_app/data/models/partner.dart';
+import 'package:notch_app/data/models/monthly_progress.dart';
+import 'package:notch_app/data/models/health_log.dart';
+import 'package:notch_app/data/models/fake_task.dart';
 
-import 'package:notch_app/widgets/app_lifecycle_observer.dart';
-import 'package:notch_app/utils/locale_controller.dart';
+import 'package:notch_app/features/common/widgets/app_lifecycle_observer.dart';
+import 'package:notch_app/core/utils/locale_controller.dart';
 
-import 'services/notification_service.dart';
-import 'services/subscription_service.dart';
-import 'screens/auth_screen.dart';
+import 'package:notch_app/core/services/notification_service.dart';
+import 'package:notch_app/core/services/subscription_service.dart';
+import 'package:notch_app/features/auth/presentation/auth_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
