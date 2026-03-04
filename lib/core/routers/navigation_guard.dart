@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notch_app/features/premium/models/premium_access.dart';
-import 'package:notch_app/features/premium/models/premium_feature.dart';
+import 'package:notch_app/features/feature/premium/models/premium_access.dart';
+import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
 
 void navigateWithPremiumGuard(
   BuildContext context, {

@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:notch_app/data/models/global_progress.dart';
-import 'package:notch_app/core/services/achievement_engine.dart';
+import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
 
