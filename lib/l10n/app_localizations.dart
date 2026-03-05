@@ -1021,6 +1021,36 @@ abstract class AppLocalizations {
   /// **'All done for today.\nAdd a new task!'**
   String get fakeAllDone;
 
+  /// No description provided for @fakeToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get fakeToday;
+
+  /// No description provided for @fakeYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get fakeYesterday;
+
+  /// No description provided for @fakeFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get fakeFilterAll;
+
+  /// No description provided for @fakeFilterPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get fakeFilterPending;
+
+  /// No description provided for @fakeFilterCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get fakeFilterCompleted;
+
   /// No description provided for @fakeTaskDeleted.
   ///
   /// In en, this message translates to:

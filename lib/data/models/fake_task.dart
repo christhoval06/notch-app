@@ -13,5 +13,13 @@ class FakeTask extends HiveObject {
   @HiveField(2)
   bool isDone;
 
-  FakeTask({required this.id, required this.title, this.isDone = false});
+  @HiveField(3)
+  DateTime createdAt;
+
+  FakeTask({
+    required this.id,
+    required this.title,
+    this.isDone = false,
+    DateTime? createdAt,
+  }) : createdAt = createdAt ?? DateTime.now();
 }

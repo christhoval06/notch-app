@@ -231,6 +231,11 @@
   "fakeAdd": "Añadir",
   "fakeMyTasks": "Mis Tareas",
   "fakeAllDone": "Todo listo por hoy.\n¡Añade una nueva tarea!",
+  "fakeToday": "Hoy",
+  "fakeYesterday": "Ayer",
+  "fakeFilterAll": "Todas",
+  "fakeFilterPending": "Pendientes",
+  "fakeFilterCompleted": "Completas",
   "fakeTaskDeleted": "Tarea \"{title}\" eliminada",
   "@fakeTaskDeleted": {
     "placeholders": {

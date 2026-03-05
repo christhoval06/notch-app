@@ -516,6 +516,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fakeAllDone => 'All done for today.\nAdd a new task!';
 
   @override
+  String get fakeToday => 'Today';
+
+  @override
+  String get fakeYesterday => 'Yesterday';
+
+  @override
+  String get fakeFilterAll => 'All';
+
+  @override
+  String get fakeFilterPending => 'Pending';
+
+  @override
+  String get fakeFilterCompleted => 'Completed';
+
+  @override
   String fakeTaskDeleted(Object title) {
     return 'Task \"$title\" deleted';
   }

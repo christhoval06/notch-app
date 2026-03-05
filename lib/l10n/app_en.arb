@@ -231,6 +231,11 @@
   "fakeAdd": "Add",
   "fakeMyTasks": "My Tasks",
   "fakeAllDone": "All done for today.\nAdd a new task!",
+  "fakeToday": "Today",
+  "fakeYesterday": "Yesterday",
+  "fakeFilterAll": "All",
+  "fakeFilterPending": "Pending",
+  "fakeFilterCompleted": "Completed",
   "fakeTaskDeleted": "Task \"{title}\" deleted",
   "@fakeTaskDeleted": {
     "placeholders": {
