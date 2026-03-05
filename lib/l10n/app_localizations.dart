@@ -1261,6 +1261,18 @@ abstract class AppLocalizations {
   /// **'Type \'@\' to search or a new name...'**
   String get addEntryPartnerHint;
 
+  /// No description provided for @addEntryPartnerSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select partner'**
+  String get addEntryPartnerSheetTitle;
+
+  /// No description provided for @addEntryPartnerCreateOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Create \"@{name}\"'**
+  String addEntryPartnerCreateOption(Object name);
+
   /// No description provided for @sharePreviewTitle.
   ///
   /// In en, this message translates to:
@@ -1566,6 +1578,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Use each available tag at least once.'**
   String get challengePolymathDesc;
+
+  /// No description provided for @challengeAbstinence21Title.
+  ///
+  /// In en, this message translates to:
+  /// **'21-Day Abstinence'**
+  String get challengeAbstinence21Title;
+
+  /// No description provided for @challengeAbstinence21Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep a 21-day streak without logging encounters.'**
+  String get challengeAbstinence21Desc;
+
+  /// No description provided for @challengeAbstinence30Title.
+  ///
+  /// In en, this message translates to:
+  /// **'30-Day Abstinence'**
+  String get challengeAbstinence30Title;
+
+  /// No description provided for @challengeAbstinence30Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep a 30-day streak without logging encounters.'**
+  String get challengeAbstinence30Desc;
 
   /// No description provided for @levelInitiated1Name.
   ///
@@ -1951,6 +1987,66 @@ abstract class AppLocalizations {
   /// **'Keep a 7-day streak.'**
   String get achievementFireStreakDesc;
 
+  /// No description provided for @achievementAbstinenceBronzeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Bronze'**
+  String get achievementAbstinenceBronzeName;
+
+  /// No description provided for @achievementAbstinenceBronzeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 7 days of abstinence.'**
+  String get achievementAbstinenceBronzeDesc;
+
+  /// No description provided for @achievementAbstinenceSilverName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Silver'**
+  String get achievementAbstinenceSilverName;
+
+  /// No description provided for @achievementAbstinenceSilverDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 14 days of abstinence.'**
+  String get achievementAbstinenceSilverDesc;
+
+  /// No description provided for @achievementAbstinenceGoldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Gold'**
+  String get achievementAbstinenceGoldName;
+
+  /// No description provided for @achievementAbstinenceGoldDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 30 days of abstinence.'**
+  String get achievementAbstinenceGoldDesc;
+
+  /// No description provided for @achievementAbstinenceDiamondName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Diamond'**
+  String get achievementAbstinenceDiamondName;
+
+  /// No description provided for @achievementAbstinenceDiamondDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 60 days of abstinence.'**
+  String get achievementAbstinenceDiamondDesc;
+
+  /// No description provided for @achievementMonkModeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Monk Mode'**
+  String get achievementMonkModeName;
+
+  /// No description provided for @achievementMonkModeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep 100% abstinence during the current month.'**
+  String get achievementMonkModeDesc;
+
   /// No description provided for @achievementTopCriticName.
   ///
   /// In en, this message translates to:
@@ -2088,6 +2184,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Milestone reached!'**
   String get trophyMilestoneReached;
+
+  /// No description provided for @trophyBadgeUnlockedInSeasons.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked in {count} season(s)'**
+  String trophyBadgeUnlockedInSeasons(Object count);
+
+  /// No description provided for @trophyBadgeNotUnlockedHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not unlocked this badge yet.'**
+  String get trophyBadgeNotUnlockedHistory;
 
   /// No description provided for @monetizationPremiumTitle.
   ///

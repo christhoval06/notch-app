@@ -7,6 +7,7 @@ import 'package:notch_app/data/models/monthly_progress.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/models/health_log.dart';
 import 'package:notch_app/core/utils/gamification_engine.dart';
+import 'package:notch_app/features/feature/gamification/services/abstinence_service.dart';
 
 // --- 1. DEFINICIÓN DE EVENTOS ---
 // Representan acciones clave en la app que pueden desbloquear logros.
@@ -138,6 +139,62 @@ class AchievementEngine {
       condition: (data) {
         final streaks = data['streaks'] as Map<String, int>;
         return (streaks['current'] ?? 0) >= 7 || (streaks['longest'] ?? 0) >= 7;
+      },
+    ),
+    Achievement(
+      id: 'abstinence_bronze',
+      name: 'Abstinencia Bronce',
+      description: 'Alcanza 7 días de abstinencia.',
+      icon: '🥉',
+      event: AchievementEvent.appStarted,
+      condition: (data) {
+        final allEncounters = data['allEncounters'] as List<Encounter>;
+        return AbstinenceService.longestAbstinenceDays(allEncounters) >= 7;
+      },
+    ),
+    Achievement(
+      id: 'abstinence_silver',
+      name: 'Abstinencia Plata',
+      description: 'Alcanza 14 días de abstinencia.',
+      icon: '🥈',
+      event: AchievementEvent.appStarted,
+      condition: (data) {
+        final allEncounters = data['allEncounters'] as List<Encounter>;
+        return AbstinenceService.longestAbstinenceDays(allEncounters) >= 14;
+      },
+    ),
+    Achievement(
+      id: 'abstinence_gold',
+      name: 'Abstinencia Oro',
+      description: 'Alcanza 30 días de abstinencia.',
+      icon: '🥇',
+      event: AchievementEvent.appStarted,
+      condition: (data) {
+        final allEncounters = data['allEncounters'] as List<Encounter>;
+        return AbstinenceService.longestAbstinenceDays(allEncounters) >= 30;
+      },
+    ),
+    Achievement(
+      id: 'abstinence_diamond',
+      name: 'Abstinencia Diamante',
+      description: 'Alcanza 60 días de abstinencia.',
+      icon: '💎',
+      event: AchievementEvent.appStarted,
+      condition: (data) {
+        final allEncounters = data['allEncounters'] as List<Encounter>;
+        return AbstinenceService.longestAbstinenceDays(allEncounters) >= 60;
+      },
+    ),
+    Achievement(
+      id: 'monk_mode',
+      name: 'Modo Monje',
+      description: 'Mantén 100% de abstinencia durante el mes actual.',
+      icon: '👑',
+      event: AchievementEvent.appStarted,
+      condition: (data) {
+        final monthlyEncounters = data['monthlyEncounters'] as List<Encounter>;
+        final now = data['now'] as DateTime;
+        return monthlyEncounters.isEmpty && now.day >= 7;
       },
     ),
     Achievement(
@@ -303,6 +360,25 @@ class AchievementEngine {
   // Helper para la UI: obtener la lista de todos los logros para el TrophyRoom
   static List<Achievement> getAllAchievements() => _achievements;
 
+  static Future<void> processAppStarted() async {
+    final now = DateTime.now();
+    final currentMonthId = DateFormat('yyyy-MM').format(now);
+    final encounterBox = Hive.box<Encounter>('encounters');
+    final allEncounters = encounterBox.values.toList();
+    final monthlyEncounters = allEncounters
+        .where((e) => DateFormat('yyyy-MM').format(e.date) == currentMonthId)
+        .toList();
+
+    await processEvent(
+      event: AchievementEvent.appStarted,
+      data: {
+        'allEncounters': allEncounters,
+        'monthlyEncounters': monthlyEncounters,
+        'now': now,
+      },
+    );
+  }
+
   static Future<void> recalculateAllDBAchievements() async {
     // 1. OBTENER Y ORDENAR TODOS LOS DATOS
     final encounterBox = Hive.box<Encounter>('encounters');
@@ -409,6 +485,7 @@ class AchievementEngine {
     else
       await globalProgressBox.add(globalProgress);
     for (var progress in monthlyProgressBox.values) await progress.save();
+    await processAppStarted();
 
     print("--- Re-cálculo de logros completado ---");
   }
@@ -521,6 +598,7 @@ class AchievementEngine {
     else
       await globalProgressBox.add(globalProgress);
     for (var progress in monthlyProgressBox.values) await progress.save();
+    await processAppStarted();
 
     print("--- Re-cálculo de logros completado ---");
   }

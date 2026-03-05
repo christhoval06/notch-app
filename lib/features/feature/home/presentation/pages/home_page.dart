@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show ScrollDirection;
 import 'package:notch_app/features/feature/gamification/presentation/pages/trophy_room_page.dart';
-import 'package:notch_app/features/feature/health/presentation/pages/add_entry_page.dart';
+import 'package:notch_app/features/feature/encounters/presentation/pages/add_entry_page.dart';
 import 'package:notch_app/features/feature/health/presentation/pages/health_passport_page.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/insights_page.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/stats_page.dart';

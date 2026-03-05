@@ -199,6 +199,21 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                         letterSpacing: 1,
                       ),
                     ),
+                    const SizedBox(height: 6),
+                    Builder(
+                      builder: (context) {
+                        final allCount =
+                            AchievementEngine.getAllAchievements().length;
+                        final unlockedCount = progress.unlockedBadges.length;
+                        return Text(
+                          '$unlockedCount / $allCount',
+                          style: TextStyle(
+                            color: scheme.onSurfaceVariant,
+                            fontSize: 12,
+                          ),
+                        );
+                      },
+                    ),
                     const SizedBox(height: 15),
 
                     // 4. GRID DE TROFEOS
@@ -411,6 +426,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   Widget _buildBadgesGrid(MonthlyProgress progress) {
     final scheme = Theme.of(context).colorScheme;
     final allAchievements = AchievementEngine.getAllAchievements();
+    final localeCode = Localizations.localeOf(context).toString();
+    final monthlyEntries = Hive.box<MonthlyProgress>('monthly_progress').values;
 
     return GridView.builder(
       shrinkWrap: true,
@@ -426,63 +443,173 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
         final l10n = AppLocalizations.of(context);
         final achievement = allAchievements[index];
         bool unlocked = progress.unlockedBadges.contains(achievement.id);
+        final localizedName = localizeAchievementName(
+          l10n,
+          achievement.id,
+          achievement.name,
+        );
+        final localizedDescription = localizeAchievementDescription(
+          l10n,
+          achievement.id,
+          achievement.description,
+        );
+        final unlockedSeasons = monthlyEntries
+            .where((p) => p.unlockedBadges.contains(achievement.id))
+            .map((p) => p.monthId)
+            .toList()
+          ..sort((a, b) => b.compareTo(a));
+        final seasonLabels = unlockedSeasons.map((monthId) {
+          final date = DateFormat('yyyy-MM').parse(monthId);
+          return DateFormat('MMMM yyyy', localeCode).format(date);
+        }).toList();
 
         return Tooltip(
-          message: unlocked
-              ? localizeAchievementDescription(
-                  l10n,
-                  achievement.id,
-                  achievement.description,
-                )
-              : l10n.badgeLocked,
-          child: Container(
-            decoration: BoxDecoration(
-              color: unlocked
-                  ? scheme.surface
-                  : scheme.scrim.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: unlocked ? scheme.tertiary : scheme.outlineVariant,
-                width: unlocked ? 2 : 1,
-              ),
+          message: localizedDescription,
+          child: GestureDetector(
+            onTap: () => _showBadgeInfoSheet(
+              name: localizedName,
+              description: localizedDescription,
+              icon: achievement.icon,
+              seasons: seasonLabels,
             ),
-            child: Opacity(
-              opacity: unlocked ? 1.0 : 0.4,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(achievement.icon, style: const TextStyle(fontSize: 36)),
-                  const SizedBox(height: 8),
-                  Text(
-                    localizeAchievementName(
-                      l10n,
-                      achievement.id,
-                      achievement.name,
-                    ),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: unlocked
-                          ? scheme.onSurface
-                          : scheme.onSurfaceVariant,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
-                  if (!unlocked)
-                    Padding(
-                      padding: EdgeInsets.only(top: 4),
-                      child: Icon(
-                        Icons.lock,
-                        size: 12,
-                        color: scheme.onSurfaceVariant,
+            child: Container(
+              decoration: BoxDecoration(
+                color: unlocked
+                    ? scheme.surface
+                    : scheme.scrim.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(
+                  color: unlocked ? scheme.tertiary : scheme.outlineVariant,
+                  width: unlocked ? 2 : 1,
+                ),
+              ),
+              child: Opacity(
+                opacity: unlocked ? 1.0 : 0.4,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(achievement.icon, style: const TextStyle(fontSize: 36)),
+                    const SizedBox(height: 8),
+                    Text(
+                      localizedName,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: unlocked
+                            ? scheme.onSurface
+                            : scheme.onSurfaceVariant,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
                       ),
                     ),
-                ],
+                    if (!unlocked)
+                      Padding(
+                        padding: EdgeInsets.only(top: 4),
+                        child: Icon(
+                          Icons.lock,
+                          size: 12,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  Future<void> _showBadgeInfoSheet({
+    required String name,
+    required String description,
+    required String icon,
+    required List<String> seasons,
+  }) async {
+    final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => SizedBox(
+        width: double.infinity,
+        child: Container(
+          decoration: BoxDecoration(
+            color: scheme.surface,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          ),
+          child: SafeArea(
+            top: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: scheme.outlineVariant,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(icon, style: const TextStyle(fontSize: 42)),
+                  const SizedBox(height: 8),
+                  Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: scheme.onSurface,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    description,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: scheme.onSurfaceVariant,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    l10n.trophyBadgeUnlockedInSeasons(seasons.length.toString()),
+                    style: TextStyle(
+                      color: scheme.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  if (seasons.isEmpty)
+                    Text(
+                      l10n.trophyBadgeNotUnlockedHistory,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: scheme.onSurfaceVariant),
+                    )
+                  else
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: seasons.map((season) {
+                        return Chip(label: Text(season));
+                      }).toList(),
+                    ),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(l10n.cancel),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -911,6 +1038,10 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
         return l10n.challengeMorningMasterTitle;
       case 'weekly_explorer':
         return l10n.challengeWeeklyExplorerTitle;
+      case 'abstinence_21':
+        return l10n.challengeAbstinence21Title;
+      case 'abstinence_30':
+        return l10n.challengeAbstinence30Title;
       case 'quality_week':
         return l10n.challengeQualityWeekTitle;
       case 'safety_champion':

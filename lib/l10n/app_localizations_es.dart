@@ -648,6 +648,14 @@ class AppLocalizationsEs extends AppLocalizations {
       'Escribe \'@\' para buscar o un nombre nuevo...';
 
   @override
+  String get addEntryPartnerSheetTitle => 'Seleccionar pareja';
+
+  @override
+  String addEntryPartnerCreateOption(Object name) {
+    return 'Crear \"@$name\"';
+  }
+
+  @override
   String get sharePreviewTitle => 'Previsualización';
 
   @override
@@ -817,6 +825,20 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get challengePolymathDesc =>
       'Usa cada una de las etiquetas disponibles al menos una vez.';
+
+  @override
+  String get challengeAbstinence21Title => 'Abstinencia 21 Días';
+
+  @override
+  String get challengeAbstinence21Desc =>
+      'Mantén 21 días seguidos sin registrar encuentros.';
+
+  @override
+  String get challengeAbstinence30Title => 'Abstinencia 30 Días';
+
+  @override
+  String get challengeAbstinence30Desc =>
+      'Mantén 30 días seguidos sin registrar encuentros.';
 
   @override
   String get levelInitiated1Name => 'Iniciado I';
@@ -1036,6 +1058,40 @@ class AppLocalizationsEs extends AppLocalizations {
       'Mantén una racha de 7 días seguidos.';
 
   @override
+  String get achievementAbstinenceBronzeName => 'Abstinencia Bronce';
+
+  @override
+  String get achievementAbstinenceBronzeDesc =>
+      'Alcanza 7 días de abstinencia.';
+
+  @override
+  String get achievementAbstinenceSilverName => 'Abstinencia Plata';
+
+  @override
+  String get achievementAbstinenceSilverDesc =>
+      'Alcanza 14 días de abstinencia.';
+
+  @override
+  String get achievementAbstinenceGoldName => 'Abstinencia Oro';
+
+  @override
+  String get achievementAbstinenceGoldDesc => 'Alcanza 30 días de abstinencia.';
+
+  @override
+  String get achievementAbstinenceDiamondName => 'Abstinencia Diamante';
+
+  @override
+  String get achievementAbstinenceDiamondDesc =>
+      'Alcanza 60 días de abstinencia.';
+
+  @override
+  String get achievementMonkModeName => 'Modo Monje';
+
+  @override
+  String get achievementMonkModeDesc =>
+      'Mantén 100% de abstinencia durante el mes actual.';
+
+  @override
   String get achievementTopCriticName => 'Crítico Exigente';
 
   @override
@@ -1114,6 +1170,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get trophyMilestoneReached => '¡Hito alcanzado!';
+
+  @override
+  String trophyBadgeUnlockedInSeasons(Object count) {
+    return 'Desbloqueada en $count temporada(s)';
+  }
+
+  @override
+  String get trophyBadgeNotUnlockedHistory =>
+      'Aún no has desbloqueado esta medalla.';
 
   @override
   String get monetizationPremiumTitle => 'NOTCH Premium';

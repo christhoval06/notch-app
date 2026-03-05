@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
 import 'package:notch_app/data/models/partner.dart';
 import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
@@ -12,6 +11,7 @@ import 'package:uuid/uuid.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/core/utils/translations.dart';
 import 'package:notch_app/core/utils/gamification_engine.dart';
+import 'package:notch_app/features/feature/encounters/widgets/partner_picker_sheet.dart';
 
 class AddEntryScreen extends StatefulWidget {
   @override
@@ -21,6 +21,7 @@ class AddEntryScreen extends StatefulWidget {
 class _AddEntryScreenState extends State<AddEntryScreen> {
   // Clave global para controlar el formulario
   final _formKey = GlobalKey<FormBuilderState>();
+  String _partnerDraftValue = '';
 
   double _lastHapticValue = 8.0;
 
@@ -306,6 +307,19 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       // 2. Obtener los valores en un Mapa limpio
       final values = _formKey.currentState!.value;
+      final String partnerFromForm = (values['partnerName'] as String? ?? '')
+          .trim();
+      final String partnerName = partnerFromForm.isNotEmpty
+          ? partnerFromForm
+          : _partnerDraftValue.trim();
+      final String normalizedPartner = partnerName.replaceFirst(
+        RegExp(r'^[@＠]'),
+        '',
+      );
+      if (normalizedPartner.isEmpty) {
+        HapticFeedback.vibrate();
+        return;
+      }
 
       print(
         values,
@@ -315,7 +329,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
       final newEncounter = Encounter(
         id: const Uuid().v4(),
         date: DateTime.now(),
-        partnerName: values['partnerName'],
+        partnerName: normalizedPartner,
         rating: values['rating'] as int,
         orgasmCount: values['orgasmCount'] ?? 0,
         tags: List<String>.from(values['tags'] ?? []),
@@ -408,105 +422,149 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   }
 
   Widget _buildPartnerField() {
-    final scheme = Theme.of(context).colorScheme;
-    final partnerBox = Hive.box<Partner>('partners');
-    final allPartnerNames = partnerBox.values
-        .map((p) => p.name)
-        .toSet()
-        .toList();
-
     return FormBuilderField<String>(
       name: 'partnerName',
-      validator: FormBuilderValidators.required(
-        errorText: "El nombre es requerido",
-      ),
+      validator: (value) {
+        final current = (value ?? '').trim();
+        final draft = _partnerDraftValue.trim();
+        if (current.isEmpty && draft.isEmpty) {
+          return "El nombre es requerido";
+        }
+        return null;
+      },
       builder: (FormFieldState<String> field) {
-        return Autocomplete<String>(
-          initialValue: TextEditingValue(text: field.value ?? ''),
+        final scheme = Theme.of(context).colorScheme;
+        final encounterBox = Hive.box<Encounter>('encounters');
+        final partnerBox = Hive.box<Partner>('partners');
+        final usageCounts = <String, int>{};
+        for (final encounter in encounterBox.values) {
+          final name = encounter.partnerName.trim();
+          if (name.isEmpty) continue;
+          usageCounts.update(name, (value) => value + 1, ifAbsent: () => 1);
+        }
+        final names = {
+          ...partnerBox.values.map((p) => p.name.trim()),
+          ...usageCounts.keys,
+        }.where((name) => name.isNotEmpty).toList()..sort();
+        final quickNames = usageCounts.entries.toList()
+          ..sort((a, b) => b.value.compareTo(a.value));
+        final currentValue = (field.value ?? _partnerDraftValue).trim();
+        final displayValue = currentValue.isEmpty ? '' : '@$currentValue';
 
-          optionsBuilder: (TextEditingValue textEditingValue) {
-            final String text = textEditingValue.text;
+        Future<void> openPicker() async {
+          final selected = await showModalBottomSheet<String>(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (_) => FractionallySizedBox(
+              heightFactor: 0.88,
+              child: PartnerPickerSheet(
+                partnerNames: names,
+                usageCounts: usageCounts,
+                initialValue: currentValue,
+              ),
+            ),
+          );
+          if (selected != null && selected.trim().isNotEmpty) {
+            final clean = selected.trim().replaceFirst(RegExp(r'^[@＠]'), '');
+            _partnerDraftValue = clean;
+            field.didChange(clean);
+            setState(() {});
+          }
+        }
 
-            if (text.isEmpty || !text.startsWith('@')) {
-              return const Iterable<String>.empty();
-            }
-
-            final String query = text.substring(1).toLowerCase();
-
-            if (query.isEmpty) {
-              return const Iterable<String>.empty();
-            }
-
-            final results = allPartnerNames
-                .where((String option) {
-                  return option.toLowerCase().contains(query);
-                })
-                .take(4);
-
-            return results.map((name) => '@$name');
-          },
-
-          onSelected: (String selection) {
-            final String realName = selection.startsWith('@')
-                ? selection.substring(1)
-                : selection;
-            field.didChange(realName);
-            FocusScope.of(context).unfocus();
-          },
-
-          // Usamos nuestro nuevo widget helper para el campo de texto
-          fieldViewBuilder:
-              (
-                BuildContext context,
-                TextEditingController textEditingController,
-                FocusNode focusNode,
-                VoidCallback onFieldSubmitted,
-              ) {
-                return _PartnerTextField(
-                  controller: textEditingController,
-                  focusNode: focusNode,
-                  onFieldSubmitted: onFieldSubmitted,
-                  field: field,
-                );
-              },
-
-          optionsViewBuilder:
-              (
-                BuildContext context,
-                AutocompleteOnSelected<String> onSelected,
-                Iterable<String> options,
-              ) {
-                return Align(
-                  alignment: Alignment.topLeft,
-                  child: Material(
-                    elevation: 4.0,
-                    color: scheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(8),
-                    child: SizedBox(
-                      width:
-                          MediaQuery.of(context).size.width -
-                          40, // Ancho del campo
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: options.length,
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          final String option = options.elementAt(index);
-                          return ListTile(
-                            title: Text(
-                              option,
-                              style: TextStyle(color: scheme.onSurface),
-                            ),
-                            onTap: () {
-                              onSelected(option);
-                            },
-                          );
-                        },
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: openPicker,
+              child: InputDecorator(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: scheme.surface,
+                  hintText: AppLocalizations.of(context).addEntryPartnerHint,
+                  hintStyle: TextStyle(color: scheme.onSurfaceVariant),
+                  errorText: field.errorText,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: scheme.primary.withValues(alpha: 0.14),
+                        shape: BoxShape.circle,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        '@',
+                        style: TextStyle(
+                          color: scheme.primary,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        displayValue.isEmpty
+                            ? AppLocalizations.of(context).addEntryPartnerHint
+                            : displayValue,
+                        style: TextStyle(
+                          color: displayValue.isEmpty
+                              ? scheme.onSurfaceVariant
+                              : scheme.onSurface,
+                          fontWeight: displayValue.isEmpty
+                              ? FontWeight.w400
+                              : FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    if (displayValue.isNotEmpty)
+                      IconButton(
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: scheme.onSurfaceVariant,
+                          size: 18,
+                        ),
+                        onPressed: () {
+                          _partnerDraftValue = '';
+                          field.didChange('');
+                          setState(() {});
+                        },
+                      ),
+                    Icon(Icons.keyboard_arrow_up, color: scheme.onSurfaceVariant),
+                  ],
+                ),
+              ),
+            ),
+            if (quickNames.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 40,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: quickNames.length,
+                  separatorBuilder: (_, __) => const SizedBox(width: 8),
+                  itemBuilder: (context, index) {
+                    final partner = quickNames[index].key;
+                    return ActionChip(
+                      onPressed: () {
+                        _partnerDraftValue = partner;
+                        field.didChange(partner);
+                        setState(() {});
+                      },
+                      label: Text('@$partner'),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ],
         );
       },
     );
@@ -522,72 +580,6 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
       child: IconButton(
         icon: Icon(icon, color: scheme.onSurface),
         onPressed: onPressed,
-      ),
-    );
-  }
-}
-
-class _PartnerTextField extends StatefulWidget {
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final VoidCallback onFieldSubmitted;
-  final FormFieldState<String> field;
-
-  const _PartnerTextField({
-    Key? key,
-    required this.controller,
-    required this.focusNode,
-    required this.onFieldSubmitted,
-    required this.field,
-  }) : super(key: key);
-
-  @override
-  __PartnerTextFieldState createState() => __PartnerTextFieldState();
-}
-
-class __PartnerTextFieldState extends State<_PartnerTextField> {
-  @override
-  void initState() {
-    super.initState();
-    // Añadimos el listener de forma segura en initState
-    widget.controller.addListener(_onTextChanged);
-  }
-
-  @override
-  void dispose() {
-    // Limpiamos el listener para evitar fugas de memoria
-    widget.controller.removeListener(_onTextChanged);
-    super.dispose();
-  }
-
-  void _onTextChanged() {
-    final String text = widget.controller.text;
-
-    final String valueToSave = text.startsWith('@') ? text.substring(1) : text;
-
-    if (valueToSave != widget.field.value) {
-      widget.field.didChange(valueToSave);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return TextField(
-      controller: widget.controller,
-      focusNode: widget.focusNode,
-      onSubmitted: (_) => widget.onFieldSubmitted(),
-      style: TextStyle(color: scheme.onSurface),
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: scheme.surface,
-        hintText: AppLocalizations.of(context).addEntryPartnerHint,
-        hintStyle: TextStyle(color: scheme.onSurfaceVariant),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        errorText: widget.field.errorText,
       ),
     );
   }

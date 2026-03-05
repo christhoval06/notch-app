@@ -291,6 +291,13 @@
   "healthNoRecords": "No health records",
   "healthNoRecordsSubtitle": "Health is sexy. Get checked!",
   "addEntryPartnerHint": "Type '@' to search or a new name...",
+  "addEntryPartnerSheetTitle": "Select partner",
+  "addEntryPartnerCreateOption": "Create \"@{name}\"",
+  "@addEntryPartnerCreateOption": {
+    "placeholders": {
+      "name": {}
+    }
+  },
   "sharePreviewTitle": "Preview",
   "shareCardText": "New rank unlocked in NOTCH! 🏆 #NOTCHapp",
   "shareCurrentSeason": "CURRENT SEASON",
@@ -342,6 +349,10 @@
   "challengeLegendaryGuardianDesc": "Maintain a 95%+ protection rate across at least 50 encounters.",
   "challengePolymathTitle": "Polymath",
   "challengePolymathDesc": "Use each available tag at least once.",
+  "challengeAbstinence21Title": "21-Day Abstinence",
+  "challengeAbstinence21Desc": "Keep a 21-day streak without logging encounters.",
+  "challengeAbstinence30Title": "30-Day Abstinence",
+  "challengeAbstinence30Desc": "Keep a 30-day streak without logging encounters.",
   "levelInitiated1Name": "Initiate I",
   "levelInitiated1Desc": "The first step on the path of intimate self-discovery.",
   "levelInitiated2Name": "Initiate II",
@@ -411,6 +422,16 @@
   "achievementRenaissanceDesc": "Activity on every weekday within a month.",
   "achievementFireStreakName": "Fire Streak",
   "achievementFireStreakDesc": "Keep a 7-day streak.",
+  "achievementAbstinenceBronzeName": "Abstinence Bronze",
+  "achievementAbstinenceBronzeDesc": "Reach 7 days of abstinence.",
+  "achievementAbstinenceSilverName": "Abstinence Silver",
+  "achievementAbstinenceSilverDesc": "Reach 14 days of abstinence.",
+  "achievementAbstinenceGoldName": "Abstinence Gold",
+  "achievementAbstinenceGoldDesc": "Reach 30 days of abstinence.",
+  "achievementAbstinenceDiamondName": "Abstinence Diamond",
+  "achievementAbstinenceDiamondDesc": "Reach 60 days of abstinence.",
+  "achievementMonkModeName": "Monk Mode",
+  "achievementMonkModeDesc": "Keep 100% abstinence during the current month.",
   "achievementTopCriticName": "Top Critic",
   "achievementTopCriticDesc": "5 straight encounters rated 9+.",
   "achievementGrandMasterName": "Grand Master",
@@ -449,6 +470,13 @@
     }
   },
   "trophyMilestoneReached": "Milestone reached!",
+  "trophyBadgeUnlockedInSeasons": "Unlocked in {count} season(s)",
+  "@trophyBadgeUnlockedInSeasons": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "trophyBadgeNotUnlockedHistory": "You have not unlocked this badge yet.",
   "monetizationPremiumTitle": "NOTCH Premium",
   "monetizationManagePlansSubtitle": "Manage plans and restore purchases",
   "monetizationActiveTitle": "NOTCH Premium active",

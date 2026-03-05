@@ -647,6 +647,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addEntryPartnerHint => 'Type \'@\' to search or a new name...';
 
   @override
+  String get addEntryPartnerSheetTitle => 'Select partner';
+
+  @override
+  String addEntryPartnerCreateOption(Object name) {
+    return 'Create \"@$name\"';
+  }
+
+  @override
   String get sharePreviewTitle => 'Preview';
 
   @override
@@ -812,6 +820,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get challengePolymathDesc => 'Use each available tag at least once.';
+
+  @override
+  String get challengeAbstinence21Title => '21-Day Abstinence';
+
+  @override
+  String get challengeAbstinence21Desc =>
+      'Keep a 21-day streak without logging encounters.';
+
+  @override
+  String get challengeAbstinence30Title => '30-Day Abstinence';
+
+  @override
+  String get challengeAbstinence30Desc =>
+      'Keep a 30-day streak without logging encounters.';
 
   @override
   String get levelInitiated1Name => 'Initiate I';
@@ -1028,6 +1050,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get achievementFireStreakDesc => 'Keep a 7-day streak.';
 
   @override
+  String get achievementAbstinenceBronzeName => 'Abstinence Bronze';
+
+  @override
+  String get achievementAbstinenceBronzeDesc => 'Reach 7 days of abstinence.';
+
+  @override
+  String get achievementAbstinenceSilverName => 'Abstinence Silver';
+
+  @override
+  String get achievementAbstinenceSilverDesc => 'Reach 14 days of abstinence.';
+
+  @override
+  String get achievementAbstinenceGoldName => 'Abstinence Gold';
+
+  @override
+  String get achievementAbstinenceGoldDesc => 'Reach 30 days of abstinence.';
+
+  @override
+  String get achievementAbstinenceDiamondName => 'Abstinence Diamond';
+
+  @override
+  String get achievementAbstinenceDiamondDesc => 'Reach 60 days of abstinence.';
+
+  @override
+  String get achievementMonkModeName => 'Monk Mode';
+
+  @override
+  String get achievementMonkModeDesc =>
+      'Keep 100% abstinence during the current month.';
+
+  @override
   String get achievementTopCriticName => 'Top Critic';
 
   @override
@@ -1104,6 +1157,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trophyMilestoneReached => 'Milestone reached!';
+
+  @override
+  String trophyBadgeUnlockedInSeasons(Object count) {
+    return 'Unlocked in $count season(s)';
+  }
+
+  @override
+  String get trophyBadgeNotUnlockedHistory =>
+      'You have not unlocked this badge yet.';
 
   @override
   String get monetizationPremiumTitle => 'NOTCH Premium';

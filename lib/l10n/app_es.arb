@@ -291,6 +291,13 @@
   "healthNoRecords": "Sin registros médicos",
   "healthNoRecordsSubtitle": "La salud es sexy. ¡Hazte un chequeo!",
   "addEntryPartnerHint": "Escribe '@' para buscar o un nombre nuevo...",
+  "addEntryPartnerSheetTitle": "Seleccionar pareja",
+  "addEntryPartnerCreateOption": "Crear \"@{name}\"",
+  "@addEntryPartnerCreateOption": {
+    "placeholders": {
+      "name": {}
+    }
+  },
   "sharePreviewTitle": "Previsualización",
   "shareCardText": "¡Nuevo rango desbloqueado en NOTCH! 🏆 #NOTCHapp",
   "shareCurrentSeason": "TEMPORADA ACTUAL",
@@ -342,6 +349,10 @@
   "challengeLegendaryGuardianDesc": "Mantén una tasa de protección del 95%+ sobre al menos 50 encuentros.",
   "challengePolymathTitle": "El Polímata",
   "challengePolymathDesc": "Usa cada una de las etiquetas disponibles al menos una vez.",
+  "challengeAbstinence21Title": "Abstinencia 21 Días",
+  "challengeAbstinence21Desc": "Mantén 21 días seguidos sin registrar encuentros.",
+  "challengeAbstinence30Title": "Abstinencia 30 Días",
+  "challengeAbstinence30Desc": "Mantén 30 días seguidos sin registrar encuentros.",
   "levelInitiated1Name": "Iniciado I",
   "levelInitiated1Desc": "El primer paso en el camino del autoconocimiento íntimo.",
   "levelInitiated2Name": "Iniciado II",
@@ -411,6 +422,16 @@
   "achievementRenaissanceDesc": "Actividad en cada día de la semana en un mes.",
   "achievementFireStreakName": "Racha de Fuego",
   "achievementFireStreakDesc": "Mantén una racha de 7 días seguidos.",
+  "achievementAbstinenceBronzeName": "Abstinencia Bronce",
+  "achievementAbstinenceBronzeDesc": "Alcanza 7 días de abstinencia.",
+  "achievementAbstinenceSilverName": "Abstinencia Plata",
+  "achievementAbstinenceSilverDesc": "Alcanza 14 días de abstinencia.",
+  "achievementAbstinenceGoldName": "Abstinencia Oro",
+  "achievementAbstinenceGoldDesc": "Alcanza 30 días de abstinencia.",
+  "achievementAbstinenceDiamondName": "Abstinencia Diamante",
+  "achievementAbstinenceDiamondDesc": "Alcanza 60 días de abstinencia.",
+  "achievementMonkModeName": "Modo Monje",
+  "achievementMonkModeDesc": "Mantén 100% de abstinencia durante el mes actual.",
   "achievementTopCriticName": "Crítico Exigente",
   "achievementTopCriticDesc": "5 encuentros seguidos con calificación de 9+.",
   "achievementGrandMasterName": "Gran Maestro",
@@ -449,6 +470,13 @@
     }
   },
   "trophyMilestoneReached": "¡Hito alcanzado!",
+  "trophyBadgeUnlockedInSeasons": "Desbloqueada en {count} temporada(s)",
+  "@trophyBadgeUnlockedInSeasons": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "trophyBadgeNotUnlockedHistory": "Aún no has desbloqueado esta medalla.",
   "monetizationPremiumTitle": "NOTCH Premium",
   "monetizationManagePlansSubtitle": "Gestiona planes y restaura compras",
   "monetizationActiveTitle": "NOTCH Premium activo",
