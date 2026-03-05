@@ -477,6 +477,8 @@
     }
   },
   "trophyBadgeNotUnlockedHistory": "You have not unlocked this badge yet.",
+  "trophyShowMore": "Show more",
+  "trophyShowLess": "Show less",
   "monetizationPremiumTitle": "NOTCH Premium",
   "monetizationManagePlansSubtitle": "Manage plans and restore purchases",
   "monetizationActiveTitle": "NOTCH Premium active",

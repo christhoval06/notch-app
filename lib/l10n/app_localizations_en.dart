@@ -1168,6 +1168,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'You have not unlocked this badge yet.';
 
   @override
+  String get trophyShowMore => 'Show more';
+
+  @override
+  String get trophyShowLess => 'Show less';
+
+  @override
   String get monetizationPremiumTitle => 'NOTCH Premium';
 
   @override

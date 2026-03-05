@@ -426,7 +426,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
   Widget _buildBadgesGrid(MonthlyProgress progress) {
     final scheme = Theme.of(context).colorScheme;
     final allAchievements = AchievementEngine.getAllAchievements();
-    final localeCode = Localizations.localeOf(context).toString();
+    final currentMonthId = DateFormat('yyyy-MM').format(DateTime.now());
     final monthlyEntries = Hive.box<MonthlyProgress>('monthly_progress').values;
 
     return GridView.builder(
@@ -453,15 +453,15 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
           achievement.id,
           achievement.description,
         );
-        final unlockedSeasons = monthlyEntries
+        final unlockedSeasonMonthIds = monthlyEntries
             .where((p) => p.unlockedBadges.contains(achievement.id))
             .map((p) => p.monthId)
             .toList()
-          ..sort((a, b) => b.compareTo(a));
-        final seasonLabels = unlockedSeasons.map((monthId) {
-          final date = DateFormat('yyyy-MM').parse(monthId);
-          return DateFormat('MMMM yyyy', localeCode).format(date);
-        }).toList();
+          ..sort((a, b) {
+            if (a == currentMonthId && b != currentMonthId) return -1;
+            if (b == currentMonthId && a != currentMonthId) return 1;
+            return b.compareTo(a);
+          });
 
         return Tooltip(
           message: localizedDescription,
@@ -470,7 +470,7 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
               name: localizedName,
               description: localizedDescription,
               icon: achievement.icon,
-              seasons: seasonLabels,
+              seasonMonthIds: unlockedSeasonMonthIds,
             ),
             child: Container(
               decoration: BoxDecoration(
@@ -524,15 +524,33 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
     required String name,
     required String description,
     required String icon,
-    required List<String> seasons,
+    required List<String> seasonMonthIds,
   }) async {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
+    final localeCode = Localizations.localeOf(context).toString();
+    final currentMonthId = DateFormat('yyyy-MM').format(DateTime.now());
+    bool showAllSeasons = false;
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => SizedBox(
+      builder: (_) => StatefulBuilder(
+        builder: (context, setModalState) {
+          final seasonLabels = seasonMonthIds.map((monthId) {
+            final date = DateFormat('yyyy-MM').parse(monthId);
+            final formatted = DateFormat('MMMM yyyy', localeCode).format(date);
+            if (monthId == currentMonthId) {
+              return '$formatted (${l10n.trophyCurrentShort})';
+            }
+            return formatted;
+          }).toList();
+          final visibleSeasons = showAllSeasons
+              ? seasonLabels
+              : seasonLabels.take(6).toList();
+          final hasOverflow = seasonLabels.length > 6;
+
+          return SizedBox(
         width: double.infinity,
         child: Container(
           decoration: BoxDecoration(
@@ -577,14 +595,16 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    l10n.trophyBadgeUnlockedInSeasons(seasons.length.toString()),
+                    l10n.trophyBadgeUnlockedInSeasons(
+                      seasonMonthIds.length.toString(),
+                    ),
                     style: TextStyle(
                       color: scheme.onSurface,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: 8),
-                  if (seasons.isEmpty)
+                  if (seasonLabels.isEmpty)
                     Text(
                       l10n.trophyBadgeNotUnlockedHistory,
                       textAlign: TextAlign.center,
@@ -595,9 +615,20 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                       alignment: WrapAlignment.center,
                       spacing: 8,
                       runSpacing: 8,
-                      children: seasons.map((season) {
+                      children: visibleSeasons.map((season) {
                         return Chip(label: Text(season));
                       }).toList(),
+                    ),
+                  if (hasOverflow)
+                    TextButton(
+                      onPressed: () {
+                        setModalState(() => showAllSeasons = !showAllSeasons);
+                      },
+                      child: Text(
+                        showAllSeasons
+                            ? l10n.trophyShowLess
+                            : l10n.trophyShowMore,
+                      ),
                     ),
                   const SizedBox(height: 10),
                   TextButton(
@@ -609,6 +640,8 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             ),
           ),
         ),
+      );
+        },
       ),
     );
   }

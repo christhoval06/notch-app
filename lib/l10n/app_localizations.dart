@@ -2197,6 +2197,18 @@ abstract class AppLocalizations {
   /// **'You have not unlocked this badge yet.'**
   String get trophyBadgeNotUnlockedHistory;
 
+  /// No description provided for @trophyShowMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get trophyShowMore;
+
+  /// No description provided for @trophyShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get trophyShowLess;
+
   /// No description provided for @monetizationPremiumTitle.
   ///
   /// In en, this message translates to:

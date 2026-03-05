@@ -477,6 +477,8 @@
     }
   },
   "trophyBadgeNotUnlockedHistory": "Aún no has desbloqueado esta medalla.",
+  "trophyShowMore": "Ver más",
+  "trophyShowLess": "Ver menos",
   "monetizationPremiumTitle": "NOTCH Premium",
   "monetizationManagePlansSubtitle": "Gestiona planes y restaura compras",
   "monetizationActiveTitle": "NOTCH Premium activo",

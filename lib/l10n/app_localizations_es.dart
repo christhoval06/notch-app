@@ -1181,6 +1181,12 @@ class AppLocalizationsEs extends AppLocalizations {
       'Aún no has desbloqueado esta medalla.';
 
   @override
+  String get trophyShowMore => 'Ver más';
+
+  @override
+  String get trophyShowLess => 'Ver menos';
+
+  @override
   String get monetizationPremiumTitle => 'NOTCH Premium';
 
   @override
