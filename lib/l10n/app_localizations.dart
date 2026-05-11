@@ -362,6 +362,66 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingsLanguage;
 
+  /// No description provided for @settingsAboutApp.
+  ///
+  /// In en, this message translates to:
+  /// **'About the app'**
+  String get settingsAboutApp;
+
+  /// No description provided for @settingsAboutAppSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why NOTCH exists and why it was created'**
+  String get settingsAboutAppSubtitle;
+
+  /// No description provided for @settingsAboutAppTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About NOTCH'**
+  String get settingsAboutAppTitle;
+
+  /// No description provided for @settingsAboutAppDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH exists to help you log your intimate activity in a private, secure, and intentional way. It was created because highly sensitive data should not live on external servers or be exposed to trackers. The app helps you understand patterns, improve your wellbeing, and keep full control of your information.'**
+  String get settingsAboutAppDescription;
+
+  /// No description provided for @settingsAboutAppPillarPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy first'**
+  String get settingsAboutAppPillarPrivacyTitle;
+
+  /// No description provided for @settingsAboutAppPillarPrivacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data stays with you, with no servers and no trackers.'**
+  String get settingsAboutAppPillarPrivacyBody;
+
+  /// No description provided for @settingsAboutAppPillarPurposeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear purpose'**
+  String get settingsAboutAppPillarPurposeTitle;
+
+  /// No description provided for @settingsAboutAppPillarPurposeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn your logs into useful insights for your wellbeing.'**
+  String get settingsAboutAppPillarPurposeBody;
+
+  /// No description provided for @settingsAboutAppPillarControlTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Full control'**
+  String get settingsAboutAppPillarControlTitle;
+
+  /// No description provided for @settingsAboutAppPillarControlBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You decide what to keep, export, or delete at any time.'**
+  String get settingsAboutAppPillarControlBody;
+
   /// No description provided for @settingsDeveloper.
   ///
   /// In en, this message translates to:
@@ -383,8 +443,44 @@ abstract class AppLocalizations {
   /// No description provided for @settingsAboutDevDescription.
   ///
   /// In en, this message translates to:
-  /// **'Hi, I\'m @christhoval. I built NOTCH for private and secure sexual activity tracking. I believe intimate data should stay private, so this app has no servers, no trackers, and you are the only owner of your information.'**
+  /// **'Hi, I\'m @christhoval, a fullstack engineer and Front-End Tech Lead based in Panama. I work with JavaScript and Python, and I build CLI tools, npm packages, and mobile apps. I focus on product, UX, and privacy by design. I created NOTCH because intimate data should stay in your hands: no servers, no trackers, and full control for you.'**
   String get settingsAboutDevDescription;
+
+  /// No description provided for @settingsAboutDevRoleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current role'**
+  String get settingsAboutDevRoleTitle;
+
+  /// No description provided for @settingsAboutDevRoleBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Fullstack Engineer and Front-End Tech Lead.'**
+  String get settingsAboutDevRoleBody;
+
+  /// No description provided for @settingsAboutDevStackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Core stack'**
+  String get settingsAboutDevStackTitle;
+
+  /// No description provided for @settingsAboutDevStackBody.
+  ///
+  /// In en, this message translates to:
+  /// **'JavaScript, TypeScript, Python, Flutter, CLI, and npm.'**
+  String get settingsAboutDevStackBody;
+
+  /// No description provided for @settingsAboutDevFocusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus'**
+  String get settingsAboutDevFocusTitle;
+
+  /// No description provided for @settingsAboutDevFocusBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Product, UX, and privacy by design.'**
+  String get settingsAboutDevFocusBody;
 
   /// No description provided for @settingsContactSupport.
   ///
@@ -1021,6 +1117,36 @@ abstract class AppLocalizations {
   /// **'All done for today.\nAdd a new task!'**
   String get fakeAllDone;
 
+  /// No description provided for @fakeToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get fakeToday;
+
+  /// No description provided for @fakeYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get fakeYesterday;
+
+  /// No description provided for @fakeFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get fakeFilterAll;
+
+  /// No description provided for @fakeFilterPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get fakeFilterPending;
+
+  /// No description provided for @fakeFilterCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get fakeFilterCompleted;
+
   /// No description provided for @fakeTaskDeleted.
   ///
   /// In en, this message translates to:
@@ -1260,6 +1386,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Type \'@\' to search or a new name...'**
   String get addEntryPartnerHint;
+
+  /// No description provided for @addEntryPartnerSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select partner'**
+  String get addEntryPartnerSheetTitle;
+
+  /// No description provided for @addEntryPartnerCreateOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Create \"@{name}\"'**
+  String addEntryPartnerCreateOption(Object name);
 
   /// No description provided for @sharePreviewTitle.
   ///
@@ -1567,6 +1705,30 @@ abstract class AppLocalizations {
   /// **'Use each available tag at least once.'**
   String get challengePolymathDesc;
 
+  /// No description provided for @challengeAbstinence21Title.
+  ///
+  /// In en, this message translates to:
+  /// **'21-Day Abstinence'**
+  String get challengeAbstinence21Title;
+
+  /// No description provided for @challengeAbstinence21Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep a 21-day streak without logging encounters.'**
+  String get challengeAbstinence21Desc;
+
+  /// No description provided for @challengeAbstinence30Title.
+  ///
+  /// In en, this message translates to:
+  /// **'30-Day Abstinence'**
+  String get challengeAbstinence30Title;
+
+  /// No description provided for @challengeAbstinence30Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep a 30-day streak without logging encounters.'**
+  String get challengeAbstinence30Desc;
+
   /// No description provided for @levelInitiated1Name.
   ///
   /// In en, this message translates to:
@@ -1843,6 +2005,108 @@ abstract class AppLocalizations {
   /// **'CURRENT STREAK'**
   String get trophyCurrentStreak;
 
+  /// No description provided for @trophyActivityRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Rhythm'**
+  String get trophyActivityRhythm;
+
+  /// No description provided for @trophyNightOwl.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a night owl'**
+  String get trophyNightOwl;
+
+  /// No description provided for @trophyDayExplorer.
+  ///
+  /// In en, this message translates to:
+  /// **'You are more active during the day'**
+  String get trophyDayExplorer;
+
+  /// No description provided for @trophyRhythmDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of your encounters happen between 10 PM and 2 AM.'**
+  String trophyRhythmDetail(Object percent);
+
+  /// No description provided for @trophyRhythmPeakWindowDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of your encounters happen between {range}.'**
+  String trophyRhythmPeakWindowDetail(Object percent, Object range);
+
+  /// No description provided for @trophyRhythmVibeNight1.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a night beast'**
+  String get trophyRhythmVibeNight1;
+
+  /// No description provided for @trophyRhythmVibeNight2.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon mode: activated'**
+  String get trophyRhythmVibeNight2;
+
+  /// No description provided for @trophyRhythmVibeNight3.
+  ///
+  /// In en, this message translates to:
+  /// **'Your prime time starts after dark'**
+  String get trophyRhythmVibeNight3;
+
+  /// No description provided for @trophyRhythmVibeDay1.
+  ///
+  /// In en, this message translates to:
+  /// **'You run on pure daylight energy'**
+  String get trophyRhythmVibeDay1;
+
+  /// No description provided for @trophyRhythmVibeDay2.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunlight champion, no doubt'**
+  String get trophyRhythmVibeDay2;
+
+  /// No description provided for @trophyRhythmVibeDay3.
+  ///
+  /// In en, this message translates to:
+  /// **'Day shift MVP'**
+  String get trophyRhythmVibeDay3;
+
+  /// No description provided for @trophyRhythmDominantLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dominant pattern'**
+  String get trophyRhythmDominantLabel;
+
+  /// No description provided for @trophyRhythmDominantDay.
+  ///
+  /// In en, this message translates to:
+  /// **'More daytime'**
+  String get trophyRhythmDominantDay;
+
+  /// No description provided for @trophyRhythmDominantNight.
+  ///
+  /// In en, this message translates to:
+  /// **'More nighttime'**
+  String get trophyRhythmDominantNight;
+
+  /// No description provided for @trophyPeakHour.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak hour'**
+  String get trophyPeakHour;
+
+  /// No description provided for @trophyWeeklyActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly activity'**
+  String get trophyWeeklyActivity;
+
+  /// No description provided for @trophyWeeklyActivityNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough data'**
+  String get trophyWeeklyActivityNoData;
+
   /// No description provided for @badgeLocked.
   ///
   /// In en, this message translates to:
@@ -1950,6 +2214,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep a 7-day streak.'**
   String get achievementFireStreakDesc;
+
+  /// No description provided for @achievementAbstinenceBronzeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Bronze'**
+  String get achievementAbstinenceBronzeName;
+
+  /// No description provided for @achievementAbstinenceBronzeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 7 days of abstinence.'**
+  String get achievementAbstinenceBronzeDesc;
+
+  /// No description provided for @achievementAbstinenceSilverName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Silver'**
+  String get achievementAbstinenceSilverName;
+
+  /// No description provided for @achievementAbstinenceSilverDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 14 days of abstinence.'**
+  String get achievementAbstinenceSilverDesc;
+
+  /// No description provided for @achievementAbstinenceGoldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Gold'**
+  String get achievementAbstinenceGoldName;
+
+  /// No description provided for @achievementAbstinenceGoldDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 30 days of abstinence.'**
+  String get achievementAbstinenceGoldDesc;
+
+  /// No description provided for @achievementAbstinenceDiamondName.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Diamond'**
+  String get achievementAbstinenceDiamondName;
+
+  /// No description provided for @achievementAbstinenceDiamondDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 60 days of abstinence.'**
+  String get achievementAbstinenceDiamondDesc;
+
+  /// No description provided for @achievementMonkModeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Monk Mode'**
+  String get achievementMonkModeName;
+
+  /// No description provided for @achievementMonkModeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep 100% abstinence during the current month.'**
+  String get achievementMonkModeDesc;
 
   /// No description provided for @achievementTopCriticName.
   ///
@@ -2088,6 +2412,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Milestone reached!'**
   String get trophyMilestoneReached;
+
+  /// No description provided for @trophyBadgeUnlockedInSeasons.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked in {count} season(s)'**
+  String trophyBadgeUnlockedInSeasons(Object count);
+
+  /// No description provided for @trophyBadgeNotUnlockedHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not unlocked this badge yet.'**
+  String get trophyBadgeNotUnlockedHistory;
+
+  /// No description provided for @trophyShowMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get trophyShowMore;
+
+  /// No description provided for @trophyShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get trophyShowLess;
 
   /// No description provided for @monetizationPremiumTitle.
   ///

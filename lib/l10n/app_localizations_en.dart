@@ -143,6 +143,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsLanguage => 'Language';
 
   @override
+  String get settingsAboutApp => 'About the app';
+
+  @override
+  String get settingsAboutAppSubtitle =>
+      'Why NOTCH exists and why it was created';
+
+  @override
+  String get settingsAboutAppTitle => 'About NOTCH';
+
+  @override
+  String get settingsAboutAppDescription =>
+      'NOTCH exists to help you log your intimate activity in a private, secure, and intentional way. It was created because highly sensitive data should not live on external servers or be exposed to trackers. The app helps you understand patterns, improve your wellbeing, and keep full control of your information.';
+
+  @override
+  String get settingsAboutAppPillarPrivacyTitle => 'Privacy first';
+
+  @override
+  String get settingsAboutAppPillarPrivacyBody =>
+      'Your data stays with you, with no servers and no trackers.';
+
+  @override
+  String get settingsAboutAppPillarPurposeTitle => 'Clear purpose';
+
+  @override
+  String get settingsAboutAppPillarPurposeBody =>
+      'Turn your logs into useful insights for your wellbeing.';
+
+  @override
+  String get settingsAboutAppPillarControlTitle => 'Full control';
+
+  @override
+  String get settingsAboutAppPillarControlBody =>
+      'You decide what to keep, export, or delete at any time.';
+
+  @override
   String get settingsDeveloper => 'Developer';
 
   @override
@@ -153,7 +188,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsAboutDevDescription =>
-      'Hi, I\'m @christhoval. I built NOTCH for private and secure sexual activity tracking. I believe intimate data should stay private, so this app has no servers, no trackers, and you are the only owner of your information.';
+      'Hi, I\'m @christhoval, a fullstack engineer and Front-End Tech Lead based in Panama. I work with JavaScript and Python, and I build CLI tools, npm packages, and mobile apps. I focus on product, UX, and privacy by design. I created NOTCH because intimate data should stay in your hands: no servers, no trackers, and full control for you.';
+
+  @override
+  String get settingsAboutDevRoleTitle => 'Current role';
+
+  @override
+  String get settingsAboutDevRoleBody =>
+      'Fullstack Engineer and Front-End Tech Lead.';
+
+  @override
+  String get settingsAboutDevStackTitle => 'Core stack';
+
+  @override
+  String get settingsAboutDevStackBody =>
+      'JavaScript, TypeScript, Python, Flutter, CLI, and npm.';
+
+  @override
+  String get settingsAboutDevFocusTitle => 'Focus';
+
+  @override
+  String get settingsAboutDevFocusBody => 'Product, UX, and privacy by design.';
 
   @override
   String get settingsContactSupport => 'Contact / Support';
@@ -516,6 +571,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fakeAllDone => 'All done for today.\nAdd a new task!';
 
   @override
+  String get fakeToday => 'Today';
+
+  @override
+  String get fakeYesterday => 'Yesterday';
+
+  @override
+  String get fakeFilterAll => 'All';
+
+  @override
+  String get fakeFilterPending => 'Pending';
+
+  @override
+  String get fakeFilterCompleted => 'Completed';
+
+  @override
   String fakeTaskDeleted(Object title) {
     return 'Task \"$title\" deleted';
   }
@@ -645,6 +715,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addEntryPartnerHint => 'Type \'@\' to search or a new name...';
+
+  @override
+  String get addEntryPartnerSheetTitle => 'Select partner';
+
+  @override
+  String addEntryPartnerCreateOption(Object name) {
+    return 'Create \"@$name\"';
+  }
 
   @override
   String get sharePreviewTitle => 'Preview';
@@ -814,6 +892,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get challengePolymathDesc => 'Use each available tag at least once.';
 
   @override
+  String get challengeAbstinence21Title => '21-Day Abstinence';
+
+  @override
+  String get challengeAbstinence21Desc =>
+      'Keep a 21-day streak without logging encounters.';
+
+  @override
+  String get challengeAbstinence30Title => '30-Day Abstinence';
+
+  @override
+  String get challengeAbstinence30Desc =>
+      'Keep a 30-day streak without logging encounters.';
+
+  @override
   String get levelInitiated1Name => 'Initiate I';
 
   @override
@@ -972,6 +1064,61 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trophyCurrentStreak => 'CURRENT STREAK';
 
   @override
+  String get trophyActivityRhythm => 'Activity Rhythm';
+
+  @override
+  String get trophyNightOwl => 'You are a night owl';
+
+  @override
+  String get trophyDayExplorer => 'You are more active during the day';
+
+  @override
+  String trophyRhythmDetail(Object percent) {
+    return '$percent% of your encounters happen between 10 PM and 2 AM.';
+  }
+
+  @override
+  String trophyRhythmPeakWindowDetail(Object percent, Object range) {
+    return '$percent% of your encounters happen between $range.';
+  }
+
+  @override
+  String get trophyRhythmVibeNight1 => 'You are a night beast';
+
+  @override
+  String get trophyRhythmVibeNight2 => 'Moon mode: activated';
+
+  @override
+  String get trophyRhythmVibeNight3 => 'Your prime time starts after dark';
+
+  @override
+  String get trophyRhythmVibeDay1 => 'You run on pure daylight energy';
+
+  @override
+  String get trophyRhythmVibeDay2 => 'Sunlight champion, no doubt';
+
+  @override
+  String get trophyRhythmVibeDay3 => 'Day shift MVP';
+
+  @override
+  String get trophyRhythmDominantLabel => 'Dominant pattern';
+
+  @override
+  String get trophyRhythmDominantDay => 'More daytime';
+
+  @override
+  String get trophyRhythmDominantNight => 'More nighttime';
+
+  @override
+  String get trophyPeakHour => 'Peak hour';
+
+  @override
+  String get trophyWeeklyActivity => 'Weekly activity';
+
+  @override
+  String get trophyWeeklyActivityNoData => 'Not enough data';
+
+  @override
   String get badgeLocked => 'Locked';
 
   @override
@@ -1026,6 +1173,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get achievementFireStreakDesc => 'Keep a 7-day streak.';
+
+  @override
+  String get achievementAbstinenceBronzeName => 'Abstinence Bronze';
+
+  @override
+  String get achievementAbstinenceBronzeDesc => 'Reach 7 days of abstinence.';
+
+  @override
+  String get achievementAbstinenceSilverName => 'Abstinence Silver';
+
+  @override
+  String get achievementAbstinenceSilverDesc => 'Reach 14 days of abstinence.';
+
+  @override
+  String get achievementAbstinenceGoldName => 'Abstinence Gold';
+
+  @override
+  String get achievementAbstinenceGoldDesc => 'Reach 30 days of abstinence.';
+
+  @override
+  String get achievementAbstinenceDiamondName => 'Abstinence Diamond';
+
+  @override
+  String get achievementAbstinenceDiamondDesc => 'Reach 60 days of abstinence.';
+
+  @override
+  String get achievementMonkModeName => 'Monk Mode';
+
+  @override
+  String get achievementMonkModeDesc =>
+      'Keep 100% abstinence during the current month.';
 
   @override
   String get achievementTopCriticName => 'Top Critic';
@@ -1104,6 +1282,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trophyMilestoneReached => 'Milestone reached!';
+
+  @override
+  String trophyBadgeUnlockedInSeasons(Object count) {
+    return 'Unlocked in $count season(s)';
+  }
+
+  @override
+  String get trophyBadgeNotUnlockedHistory =>
+      'You have not unlocked this badge yet.';
+
+  @override
+  String get trophyShowMore => 'Show more';
+
+  @override
+  String get trophyShowLess => 'Show less';
 
   @override
   String get monetizationPremiumTitle => 'NOTCH Premium';

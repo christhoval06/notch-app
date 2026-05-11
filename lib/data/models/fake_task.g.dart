@@ -20,19 +20,22 @@ class FakeTaskAdapter extends TypeAdapter<FakeTask> {
       id: fields[0] as String,
       title: fields[1] as String,
       isDone: fields[2] as bool,
+      createdAt: fields[3] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FakeTask obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.isDone);
+      ..write(obj.isDone)
+      ..writeByte(3)
+      ..write(obj.createdAt);
   }
 
   @override

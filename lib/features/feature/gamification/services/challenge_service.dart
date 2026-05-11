@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:notch_app/data/models/challenge.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/core/utils/translations.dart';
+import 'package:notch_app/features/feature/gamification/services/abstinence_service.dart';
 
 class ChallengeService {
   // --- LISTA MAESTRA DE TODOS LOS RETOS ---
@@ -18,6 +19,28 @@ class ChallengeService {
         return encounters
             .where((e) => e.tags.contains('tag_morning'))
             .length
+            .toDouble();
+      },
+    ),
+    Challenge(
+      id: 'abstinence_21',
+      title: 'Reto 21 de Abstinencia',
+      description: 'Mantén 21 días seguidos sin registrar encuentros.',
+      icon: Icons.self_improvement,
+      goal: 21,
+      progressCalculator: (allEncounters) {
+        return AbstinenceService.currentAbstinenceDays(allEncounters)
+            .toDouble();
+      },
+    ),
+    Challenge(
+      id: 'abstinence_30',
+      title: 'Reto 30 de Abstinencia',
+      description: 'Mantén 30 días seguidos sin registrar encuentros.',
+      icon: Icons.workspace_premium,
+      goal: 30,
+      progressCalculator: (allEncounters) {
+        return AbstinenceService.currentAbstinenceDays(allEncounters)
             .toDouble();
       },
     ),

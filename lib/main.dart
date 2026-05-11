@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:notch_app/features/feature/health/services/notification_service.dart';
 import 'package:notch_app/features/feature/premium/services/subscription_service.dart';
 import 'package:notch_app/features/feature/auth/presentation/pages/auth_page.dart';
+import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -24,6 +25,7 @@ void main() async {
 
   // 2. Inicializar Hive (adapters + boxes centralizados en data/hive)
   await HiveInit.init();
+  await AchievementEngine.processAppStarted();
 
   // 5. Formato de fechas
   await initializeDateFormatting();

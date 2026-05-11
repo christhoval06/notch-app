@@ -6,9 +6,10 @@ class HomeTopBar extends StatelessWidget {
     required this.title,
     required this.topInset,
     required this.showPathAction,
+    required this.showStatsAction,
     required this.showInsightsAction,
-    required this.onSettingsTap,
     required this.onPathTap,
+    required this.onStatsTap,
     required this.onInsightsTap,
     super.key,
   });
@@ -16,9 +17,10 @@ class HomeTopBar extends StatelessWidget {
   final String title;
   final double topInset;
   final bool showPathAction;
+  final bool showStatsAction;
   final bool showInsightsAction;
-  final VoidCallback onSettingsTap;
   final VoidCallback onPathTap;
+  final VoidCallback onStatsTap;
   final VoidCallback onInsightsTap;
 
   @override
@@ -48,14 +50,15 @@ class HomeTopBar extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              icon: Icon(Icons.settings, color: scheme.onSurface),
-              onPressed: onSettingsTap,
-            ),
             if (showPathAction)
               IconButton(
                 icon: Icon(Icons.map, color: scheme.onSurface),
                 onPressed: onPathTap,
+              ),
+            if (showStatsAction)
+              IconButton(
+                icon: Icon(Icons.bar_chart, color: scheme.onSurface),
+                onPressed: onStatsTap,
               ),
             if (showInsightsAction)
               IconButton(

@@ -113,7 +113,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
                   AppLocalizations.of(context).shareCurrentSeason,
                   style: TextStyle(
                     fontFamily: 'Lato',
-                    color: scheme.onPrimary.withValues(alpha: 0.7),
+                    color: Colors.white.withValues(alpha: 0.92),
                     fontSize: 14,
                     letterSpacing: 3,
                   ),
@@ -132,7 +132,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
                     widget.rankName,
                     style: TextStyle(
                       fontFamily: 'BebasNeue',
-                      color: scheme.onPrimary,
+                      color: Colors.white,
                       fontSize: 40,
                       letterSpacing: 4,
                     ),
@@ -163,7 +163,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
               "NOTCH",
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: scheme.onPrimary.withValues(alpha: 0.6),
+                color: Colors.white.withValues(alpha: 0.88),
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 8,
@@ -186,13 +186,13 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
       children: [
         Row(
           children: [
-            Icon(icon, color: scheme.onPrimary.withValues(alpha: 0.8), size: 18),
+            Icon(icon, color: Colors.white.withValues(alpha: 0.95), size: 18),
             const SizedBox(width: 10),
             Text(
               label,
               style: TextStyle(
                 fontFamily: 'Lato',
-                color: scheme.onPrimary.withValues(alpha: 0.8),
+                color: Colors.white.withValues(alpha: 0.95),
                 fontSize: 16,
               ),
             ),
@@ -202,7 +202,7 @@ class _SharePreviewScreenState extends State<SharePreviewScreen> {
           value,
           style: TextStyle(
             fontFamily: 'Lato',
-            color: scheme.onPrimary,
+            color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

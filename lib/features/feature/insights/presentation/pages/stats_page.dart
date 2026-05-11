@@ -8,6 +8,9 @@ import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/core/utils/analyzer.dart';
 import 'package:notch_app/core/utils/level_localization.dart';
 import 'package:notch_app/core/utils/translations.dart';
+import 'package:notch_app/features/feature/insights/presentation/pages/insights_page.dart';
+import 'package:notch_app/features/feature/premium/models/premium_access.dart';
+import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
 
 import 'package:notch_app/core/utils/gamification_engine.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
@@ -23,6 +26,17 @@ class StatsScreen extends StatefulWidget {
 
 class _StatsScreenState extends State<StatsScreen> {
   StatPeriod _selectedPeriod = StatPeriod.sixMonths;
+
+  Future<void> _openInsights() async {
+    await PremiumAccess.guard(
+      context: context,
+      feature: PremiumFeature.insights,
+      onAllowed: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => InsightsScreen()),
+      ),
+    );
+  }
 
   Map<String, dynamic> _getHighestRankData() {
     final progressBox = Hive.box<MonthlyProgress>('monthly_progress');
@@ -123,6 +137,16 @@ class _StatsScreenState extends State<StatsScreen> {
     if (encounters.isEmpty) {
       return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(l10n.homeStatsTitle),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.psychology),
+              onPressed: _openInsights,
+            ),
+          ],
+        ),
         body: Center(
           child: Text(
             l10n.statsNoData,
@@ -148,6 +172,16 @@ class _StatsScreenState extends State<StatsScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(l10n.homeStatsTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.psychology),
+            onPressed: _openInsights,
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(

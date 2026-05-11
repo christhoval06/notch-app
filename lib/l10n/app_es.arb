@@ -44,10 +44,26 @@
   "settingsDataBackup": "Datos y Respaldo",
   "settingsDataBackupSubtitle": "Copias de seguridad y Exportar PDF",
   "settingsLanguage": "Idioma",
+  "settingsAboutApp": "Sobre la app",
+  "settingsAboutAppSubtitle": "Para qué existe NOTCH y por qué se creó",
+  "settingsAboutAppTitle": "Sobre NOTCH",
+  "settingsAboutAppDescription": "NOTCH existe para ayudarte a registrar tu actividad íntima de forma privada, segura y consciente. Se creó porque los datos más sensibles no deberían vivir en servidores externos ni estar expuestos a trackers. La app te permite entender patrones, mejorar tu bienestar y mantener el control total de tu información.",
+  "settingsAboutAppPillarPrivacyTitle": "Privacidad primero",
+  "settingsAboutAppPillarPrivacyBody": "Tus datos se quedan contigo, sin servidores ni rastreadores.",
+  "settingsAboutAppPillarPurposeTitle": "Propósito claro",
+  "settingsAboutAppPillarPurposeBody": "Transformar tus registros en insights útiles para tu bienestar.",
+  "settingsAboutAppPillarControlTitle": "Control total",
+  "settingsAboutAppPillarControlBody": "Tú decides qué guardar, exportar o eliminar en cualquier momento.",
   "settingsDeveloper": "Desarrollador",
   "settingsDeveloperSubtitle": "Creado con privacidad en mente",
   "settingsAboutDevTitle": "Sobre el Dev",
-  "settingsAboutDevDescription": "Hola, soy @christhoval. Creé NOTCH para el registro privado y seguro de la actividad sexual. Porque creo que los datos íntimos deben permanecer privados, esta app no tiene servidores, no tiene trackers y tú eres el único dueño de tu información.",
+  "settingsAboutDevDescription": "Hola, soy @christhoval, ingeniero fullstack y Tech Lead Front-End en Panamá. Trabajo con JavaScript y Python, y construyo herramientas CLI, paquetes npm y apps móviles. Me enfoco en producto, UX y privacidad por diseño. Creé NOTCH porque los datos íntimos deben quedarse en tus manos: sin servidores, sin trackers y con control total para ti.",
+  "settingsAboutDevRoleTitle": "Rol actual",
+  "settingsAboutDevRoleBody": "Ingeniero Fullstack y Tech Lead Front-End.",
+  "settingsAboutDevStackTitle": "Stack principal",
+  "settingsAboutDevStackBody": "JavaScript, TypeScript, Python, Flutter, CLI y npm.",
+  "settingsAboutDevFocusTitle": "Enfoque",
+  "settingsAboutDevFocusBody": "Producto, UX y privacidad por diseño.",
   "settingsContactSupport": "Contacto / Soporte",
   "settingsContactSupportSubtitle": "Reportar bugs o sugerir ideas",
   "settingsResetApp": "Restablecer App",
@@ -231,6 +247,11 @@
   "fakeAdd": "Añadir",
   "fakeMyTasks": "Mis Tareas",
   "fakeAllDone": "Todo listo por hoy.\n¡Añade una nueva tarea!",
+  "fakeToday": "Hoy",
+  "fakeYesterday": "Ayer",
+  "fakeFilterAll": "Todas",
+  "fakeFilterPending": "Pendientes",
+  "fakeFilterCompleted": "Completas",
   "fakeTaskDeleted": "Tarea \"{title}\" eliminada",
   "@fakeTaskDeleted": {
     "placeholders": {
@@ -291,6 +312,13 @@
   "healthNoRecords": "Sin registros médicos",
   "healthNoRecordsSubtitle": "La salud es sexy. ¡Hazte un chequeo!",
   "addEntryPartnerHint": "Escribe '@' para buscar o un nombre nuevo...",
+  "addEntryPartnerSheetTitle": "Seleccionar pareja",
+  "addEntryPartnerCreateOption": "Crear \"@{name}\"",
+  "@addEntryPartnerCreateOption": {
+    "placeholders": {
+      "name": {}
+    }
+  },
   "sharePreviewTitle": "Previsualización",
   "shareCardText": "¡Nuevo rango desbloqueado en NOTCH! 🏆 #NOTCHapp",
   "shareCurrentSeason": "TEMPORADA ACTUAL",
@@ -342,6 +370,10 @@
   "challengeLegendaryGuardianDesc": "Mantén una tasa de protección del 95%+ sobre al menos 50 encuentros.",
   "challengePolymathTitle": "El Polímata",
   "challengePolymathDesc": "Usa cada una de las etiquetas disponibles al menos una vez.",
+  "challengeAbstinence21Title": "Abstinencia 21 Días",
+  "challengeAbstinence21Desc": "Mantén 21 días seguidos sin registrar encuentros.",
+  "challengeAbstinence30Title": "Abstinencia 30 Días",
+  "challengeAbstinence30Desc": "Mantén 30 días seguidos sin registrar encuentros.",
   "levelInitiated1Name": "Iniciado I",
   "levelInitiated1Desc": "El primer paso en el camino del autoconocimiento íntimo.",
   "levelInitiated2Name": "Iniciado II",
@@ -393,6 +425,34 @@
     }
   },
   "trophyCurrentStreak": "RACHA ACTUAL",
+  "trophyActivityRhythm": "Ritmo de actividad",
+  "trophyNightOwl": "Eres un ave nocturna",
+  "trophyDayExplorer": "Eres más activo durante el día",
+  "trophyRhythmDetail": "El {percent}% de tus encuentros ocurren entre las 10 PM y las 2 AM.",
+  "@trophyRhythmDetail": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "trophyRhythmPeakWindowDetail": "El {percent}% de tus encuentros ocurren entre {range}.",
+  "@trophyRhythmPeakWindowDetail": {
+    "placeholders": {
+      "percent": {},
+      "range": {}
+    }
+  },
+  "trophyRhythmVibeNight1": "Eres un animal nocturno",
+  "trophyRhythmVibeNight2": "Modo luna: activado",
+  "trophyRhythmVibeNight3": "Tu prime time empieza cuando cae el sol",
+  "trophyRhythmVibeDay1": "Te mueve la energia del dia",
+  "trophyRhythmVibeDay2": "Campeon de la luz solar",
+  "trophyRhythmVibeDay3": "MVP del turno diurno",
+  "trophyRhythmDominantLabel": "Predominio",
+  "trophyRhythmDominantDay": "Mas diurno",
+  "trophyRhythmDominantNight": "Mas nocturno",
+  "trophyPeakHour": "Hora pico",
+  "trophyWeeklyActivity": "Actividad semanal",
+  "trophyWeeklyActivityNoData": "Sin datos suficientes",
   "badgeLocked": "Bloqueado",
   "achievementUnlockedTitle": "¡Logro Desbloqueado!",
   "achievementRookieName": "El Debut",
@@ -411,6 +471,16 @@
   "achievementRenaissanceDesc": "Actividad en cada día de la semana en un mes.",
   "achievementFireStreakName": "Racha de Fuego",
   "achievementFireStreakDesc": "Mantén una racha de 7 días seguidos.",
+  "achievementAbstinenceBronzeName": "Abstinencia Bronce",
+  "achievementAbstinenceBronzeDesc": "Alcanza 7 días de abstinencia.",
+  "achievementAbstinenceSilverName": "Abstinencia Plata",
+  "achievementAbstinenceSilverDesc": "Alcanza 14 días de abstinencia.",
+  "achievementAbstinenceGoldName": "Abstinencia Oro",
+  "achievementAbstinenceGoldDesc": "Alcanza 30 días de abstinencia.",
+  "achievementAbstinenceDiamondName": "Abstinencia Diamante",
+  "achievementAbstinenceDiamondDesc": "Alcanza 60 días de abstinencia.",
+  "achievementMonkModeName": "Modo Monje",
+  "achievementMonkModeDesc": "Mantén 100% de abstinencia durante el mes actual.",
   "achievementTopCriticName": "Crítico Exigente",
   "achievementTopCriticDesc": "5 encuentros seguidos con calificación de 9+.",
   "achievementGrandMasterName": "Gran Maestro",
@@ -449,6 +519,15 @@
     }
   },
   "trophyMilestoneReached": "¡Hito alcanzado!",
+  "trophyBadgeUnlockedInSeasons": "Desbloqueada en {count} temporada(s)",
+  "@trophyBadgeUnlockedInSeasons": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "trophyBadgeNotUnlockedHistory": "Aún no has desbloqueado esta medalla.",
+  "trophyShowMore": "Ver más",
+  "trophyShowLess": "Ver menos",
   "monetizationPremiumTitle": "NOTCH Premium",
   "monetizationManagePlansSubtitle": "Gestiona planes y restaura compras",
   "monetizationActiveTitle": "NOTCH Premium activo",

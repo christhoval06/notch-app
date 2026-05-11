@@ -22,6 +22,16 @@ String localizeAchievementName(
       return l10n.achievementRenaissanceName;
     case 'fire_streak':
       return l10n.achievementFireStreakName;
+    case 'abstinence_bronze':
+      return l10n.achievementAbstinenceBronzeName;
+    case 'abstinence_silver':
+      return l10n.achievementAbstinenceSilverName;
+    case 'abstinence_gold':
+      return l10n.achievementAbstinenceGoldName;
+    case 'abstinence_diamond':
+      return l10n.achievementAbstinenceDiamondName;
+    case 'monk_mode':
+      return l10n.achievementMonkModeName;
     case 'top_critic':
       return l10n.achievementTopCriticName;
     case 'grand_master':
@@ -63,6 +73,16 @@ String localizeAchievementDescription(
       return l10n.achievementRenaissanceDesc;
     case 'fire_streak':
       return l10n.achievementFireStreakDesc;
+    case 'abstinence_bronze':
+      return l10n.achievementAbstinenceBronzeDesc;
+    case 'abstinence_silver':
+      return l10n.achievementAbstinenceSilverDesc;
+    case 'abstinence_gold':
+      return l10n.achievementAbstinenceGoldDesc;
+    case 'abstinence_diamond':
+      return l10n.achievementAbstinenceDiamondDesc;
+    case 'monk_mode':
+      return l10n.achievementMonkModeDesc;
     case 'top_critic':
       return l10n.achievementTopCriticDesc;
     case 'grand_master':

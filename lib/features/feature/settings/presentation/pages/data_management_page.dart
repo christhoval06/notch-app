@@ -3,7 +3,6 @@ import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
 import 'package:notch_app/core/theme/color_scheme_semantics.dart';
 import 'package:notch_app/core/utils/achievement_localization.dart';
-import 'package:notch_app/core/utils/gamification_engine.dart';
 import 'package:notch_app/features/feature/settings/services/backup_service.dart';
 import 'package:notch_app/features/feature/settings/services/pdf_service.dart';
 
@@ -91,15 +90,33 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
                   title: l10n.dataRestoreBackup,
                   subtitle: l10n.dataRestoreBackupSubtitle,
                   onTap: () async {
-                    bool success = await _backupService.restoreBackup();
-                    if (success && mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(l10n.dataRestoreSuccess),
-                          backgroundColor: scheme.success,
-                        ),
-                      );
-                      // Opcional: Reiniciar app o navegar al Home
+                    setState(() => _isLoading = true);
+                    try {
+                      bool success = await _backupService.restoreBackup();
+                      if (success) {
+                        await AchievementEngine.recalculateAllAchievements();
+                      }
+                      if (success && mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(l10n.dataRestoreSuccess),
+                            backgroundColor: scheme.success,
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(l10n.dataError(e.toString())),
+                            backgroundColor: scheme.error,
+                          ),
+                        );
+                      }
+                    } finally {
+                      if (mounted) {
+                        setState(() => _isLoading = false);
+                      }
                     }
                   },
                 ),

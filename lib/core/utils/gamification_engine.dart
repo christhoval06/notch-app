@@ -212,8 +212,9 @@ class GamificationEngine {
     await progress.save();
 
     // 2. DISPARAR EVENTO DE LOGRO
-    final allEncounters = encounterBox.values.toList()..add(newEncounter);
-    final currentMonth = DateTime.now();
+    // newEncounter is already persisted before this call, so avoid double counting.
+    final allEncounters = encounterBox.values.toList();
+    final currentMonth = newEncounter.date;
     final List<Encounter> monthlyEncounters = allEncounters
         .where(
           (e) =>
@@ -221,6 +222,15 @@ class GamificationEngine {
               e.date.month == currentMonth.month,
         )
         .toList();
+
+    // Monk Mode is a seasonal abstinence badge; if there is any encounter
+    // in the month, it should not remain unlocked for that season.
+    if (monthlyEncounters.isNotEmpty &&
+        progress.unlockedBadges.contains('monk_mode')) {
+      progress.unlockedBadges = List<String>.from(progress.unlockedBadges)
+        ..remove('monk_mode');
+      await progress.save();
+    }
 
     final streaksData = calculateStreaks(encounterBox);
     final levelData = getCurrentLevel(progress.xp);

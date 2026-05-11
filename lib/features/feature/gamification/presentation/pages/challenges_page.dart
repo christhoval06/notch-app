@@ -164,6 +164,10 @@ class ChallengesScreen extends StatelessWidget {
         return l10n.challengeMorningMasterTitle;
       case 'weekly_explorer':
         return l10n.challengeWeeklyExplorerTitle;
+      case 'abstinence_21':
+        return l10n.challengeAbstinence21Title;
+      case 'abstinence_30':
+        return l10n.challengeAbstinence30Title;
       case 'quality_week':
         return l10n.challengeQualityWeekTitle;
       case 'safety_champion':
@@ -201,6 +205,10 @@ class ChallengesScreen extends StatelessWidget {
         return l10n.challengeMorningMasterDesc;
       case 'weekly_explorer':
         return l10n.challengeWeeklyExplorerDesc;
+      case 'abstinence_21':
+        return l10n.challengeAbstinence21Desc;
+      case 'abstinence_30':
+        return l10n.challengeAbstinence30Desc;
       case 'quality_week':
         return l10n.challengeQualityWeekDesc;
       case 'safety_champion':
