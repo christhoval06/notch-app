@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import '../models/challenge.dart';
 import '../models/encounter.dart';
 import '../services/challenge_service.dart';
@@ -9,8 +10,9 @@ class ChallengesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
@@ -34,7 +36,10 @@ class ChallengesScreen extends StatelessWidget {
                   children: [
                     Text(
                       l10n.challengesSubtitle,
-                      style: TextStyle(color: Colors.grey[400], fontSize: 14),
+                      style: TextStyle(
+                        color: scheme.onSurfaceVariant,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),
@@ -69,6 +74,7 @@ class ChallengesScreen extends StatelessWidget {
     List<Encounter> allEncounters,
   ) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final progress = challenge.getProgress(allEncounters);
     final progressPercent = challenge.getProgressPercent(allEncounters);
     final isCompleted = progressPercent >= 1.0;
@@ -83,10 +89,12 @@ class ChallengesScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isCompleted ? Colors.green.withOpacity(0.1) : Colors.grey[900],
+        color: isCompleted
+            ? scheme.success.withValues(alpha: 0.1)
+            : scheme.surface,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: isCompleted ? Colors.green : Colors.grey[800]!,
+          color: isCompleted ? scheme.success : scheme.outlineVariant,
           width: isCompleted ? 2 : 1,
         ),
       ),
@@ -97,7 +105,7 @@ class ChallengesScreen extends StatelessWidget {
             children: [
               Icon(
                 challenge.icon,
-                color: isCompleted ? Colors.green : Colors.blueAccent,
+                color: isCompleted ? scheme.success : scheme.primary,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -105,20 +113,20 @@ class ChallengesScreen extends StatelessWidget {
                   _challengeTitle(l10n, challenge.id),
                   style: TextStyle(
                     fontFamily: 'Lato',
-                    color: Colors.white,
+                    color: scheme.onSurface,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               if (isCompleted)
-                const Icon(Icons.check_circle, color: Colors.green, size: 20),
+                Icon(Icons.check_circle, color: scheme.success, size: 20),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             _challengeDescription(l10n, challenge.id),
-            style: TextStyle(color: Colors.grey[400], fontSize: 13),
+            style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 13),
           ),
           const SizedBox(height: 16),
           Row(
@@ -130,8 +138,8 @@ class ChallengesScreen extends StatelessWidget {
                   child: LinearProgressIndicator(
                     value: progressPercent,
                     minHeight: 10,
-                    backgroundColor: Colors.black26,
-                    color: isCompleted ? Colors.green : Colors.blueAccent,
+                    backgroundColor: scheme.scrim.withValues(alpha: 0.26),
+                    color: isCompleted ? scheme.success : scheme.primary,
                   ),
                 ),
               ),
@@ -139,7 +147,7 @@ class ChallengesScreen extends StatelessWidget {
               Text(
                 progressText,
                 style: TextStyle(
-                  color: isCompleted ? Colors.green : Colors.white,
+                  color: isCompleted ? scheme.success : scheme.onSurface,
                   fontWeight: FontWeight.bold,
                 ),
               ),

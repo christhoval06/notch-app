@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 
 import '../utils/constants.dart';
 import 'auth_screen.dart';
@@ -45,10 +46,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     bool isLastPage = _currentPage >= _numPages - 1;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -58,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onPressed: _finishOnboarding,
                 child: Text(
                   l10n.onboardingSkip,
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: scheme.onSurfaceVariant),
                 ),
               ),
             ),
@@ -105,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       dotsCount: 3,
                       position: _currentPage,
                       decorator: DotsDecorator(
-                        color: Colors.grey[800]!,
+                        color: scheme.outlineVariant,
                         activeColor: Colors.blueAccent,
                         size: const Size.square(9.0),
                         activeSize: const Size(18.0, 9.0),
@@ -122,7 +124,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           child: Text(
                             l10n.onboardingGoToApp,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: scheme.onPrimary),
                           ),
                         )
                       : ElevatedButton(
@@ -135,9 +137,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(15),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.arrow_forward_ios,
-                            color: Colors.white,
+                            color: scheme.onPrimary,
                           ),
                         ),
                 ],
@@ -204,6 +206,7 @@ class _OnboardingSlideState extends State<_OnboardingSlide> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: Column(
@@ -218,10 +221,10 @@ class _OnboardingSlideState extends State<_OnboardingSlide> {
           Text(
             widget.title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'BebasNeue',
               fontSize: 36,
-              color: Colors.white,
+              color: scheme.onSurface,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
@@ -235,7 +238,7 @@ class _OnboardingSlideState extends State<_OnboardingSlide> {
                 widget.description,
                 textAlign: TextAlign.center,
                 textStyle: TextStyle(
-                  color: Colors.grey[400],
+                  color: scheme.onSurfaceVariant,
                   fontSize: 16,
                   height: 1.5,
                 ),
@@ -270,12 +273,13 @@ class _FinalOnboardingSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.vpn_key, size: 80, color: Colors.amberAccent),
+          Icon(Icons.vpn_key, size: 80, color: scheme.warning),
           const SizedBox(height: 30),
           Text(
             title,
@@ -284,7 +288,7 @@ class _FinalOnboardingSlide extends StatelessWidget {
               fontFamily: 'Lato',
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: scheme.onSurface,
             ),
           ),
           const SizedBox(height: 15),
@@ -292,13 +296,14 @@ class _FinalOnboardingSlide extends StatelessWidget {
             description,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.grey[400],
+              color: scheme.onSurfaceVariant,
               fontSize: 16,
               height: 1.5,
             ),
           ),
           const SizedBox(height: 30),
           _buildPinCard(
+            context,
             realPinTitle,
             DEFAULT_REAL_PIN,
             realPinSubtitle,
@@ -306,23 +311,30 @@ class _FinalOnboardingSlide extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           _buildPinCard(
+            context,
             panicPinTitle,
             DEFAULT_PANIC_PIN,
             panicPinSubtitle,
-            Colors.orangeAccent,
+            scheme.warning,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildPinCard(String title, String pin, String subtitle, Color color) {
+  Widget _buildPinCard(
+    BuildContext context,
+    String title,
+    String pin,
+    String subtitle,
+    Color color,
+  ) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[800]!),
+        border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
       ),
       child: Row(
         children: [
@@ -346,7 +358,10 @@ class _FinalOnboardingSlide extends StatelessWidget {
                 ),
                 Text(
                   subtitle,
-                  style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontSize: 12,
+                  ),
                 ),
               ],
             ),

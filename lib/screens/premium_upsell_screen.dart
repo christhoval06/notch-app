@@ -3,6 +3,7 @@ import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/monetization/monetization_products.dart';
 import 'package:notch_app/monetization/premium_feature.dart';
 import 'package:notch_app/services/subscription_service.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 
 class PremiumUpsellScreen extends StatefulWidget {
   final PremiumFeature? feature;
@@ -31,21 +32,22 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
 
   Widget _buildUnlocked(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.verified, color: Colors.greenAccent, size: 52),
+              Icon(Icons.verified, color: scheme.success, size: 52),
               const SizedBox(height: 16),
               Text(
                 l10n.monetizationActiveTitle,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: scheme.onSurface,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -54,7 +56,7 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
               Text(
                 l10n.monetizationActiveDescription,
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.grey),
+                style: TextStyle(color: scheme.onSurfaceVariant),
               ),
               const SizedBox(height: 24),
               ElevatedButton(
@@ -70,10 +72,11 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
 
   Widget _buildPaywall(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final products = _orderedProducts(_subscription.products);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -87,14 +90,14 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            const Icon(Icons.lock_open_rounded, size: 40, color: Colors.amber),
+            Icon(Icons.lock_open_rounded, size: 40, color: scheme.warning),
             const SizedBox(height: 12),
             Text(
               widget.feature == null
                   ? l10n.monetizationUnlockAll
                   : l10n.monetizationUnlockFeature(widget.feature!.title(l10n)),
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: scheme.onSurface,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -103,7 +106,7 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
             Text(
               widget.feature?.description(l10n) ??
                   l10n.monetizationFallbackDescription,
-              style: const TextStyle(color: Colors.grey),
+              style: TextStyle(color: scheme.onSurfaceVariant),
             ),
             const SizedBox(height: 20),
             if (_subscription.lastError != null)
@@ -111,12 +114,12 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.redAccent.withOpacity(0.12),
+                  color: scheme.error.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
                   _subscription.lastError!,
-                  style: const TextStyle(color: Colors.redAccent),
+                  style: TextStyle(color: scheme.error),
                 ),
               ),
             if (_subscription.isLoadingProducts)
@@ -144,16 +147,17 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
   }
 
   Widget _buildUnavailableStore() {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.blueGrey.withOpacity(0.2),
+        color: scheme.surfaceContainerHighest.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Builder(
         builder: (context) => Text(
           AppLocalizations.of(context).monetizationStoreUnavailable,
-          style: const TextStyle(color: Colors.grey),
+          style: TextStyle(color: scheme.onSurfaceVariant),
         ),
       ),
     );
@@ -161,6 +165,7 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
 
   Widget _buildProductCard(SubscriptionPlan product) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final isBusy = _subscription.isPurchaseInProgress;
     final isPrimary = product.id == MonetizationProducts.yearly;
 
@@ -168,10 +173,10 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.04),
+        color: scheme.surface.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isPrimary ? Colors.blueAccent : Colors.white24,
+          color: isPrimary ? scheme.primary : scheme.outlineVariant,
           width: isPrimary ? 1.4 : 1,
         ),
       ),
@@ -183,8 +188,8 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
               Expanded(
                 child: Text(
                   product.title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: scheme.onSurface,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -196,18 +201,21 @@ class _PremiumUpsellScreenState extends State<PremiumUpsellScreen> {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.blueAccent.withOpacity(0.2),
+                    color: scheme.primary.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
                     l10n.monetizationRecommended,
-                    style: const TextStyle(color: Colors.blueAccent, fontSize: 12),
+                    style: TextStyle(color: scheme.primary, fontSize: 12),
                   ),
                 ),
             ],
           ),
           const SizedBox(height: 8),
-          Text(product.description, style: const TextStyle(color: Colors.grey)),
+          Text(
+            product.description,
+            style: TextStyle(color: scheme.onSurfaceVariant),
+          ),
           const SizedBox(height: 14),
           SizedBox(
             width: double.infinity,

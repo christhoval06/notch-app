@@ -125,6 +125,7 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Future<void> _executeKillSwitch() async {
+    final scheme = Theme.of(context).colorScheme;
     // 1. Feedback Físico Intenso (Doble impacto)
     HapticFeedback.heavyImpact();
     await Future.delayed(const Duration(milliseconds: 150));
@@ -173,7 +174,10 @@ class _AuthScreenState extends State<AuthScreen> {
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.warning_amber_rounded, color: Colors.white),
+              Icon(
+                Icons.warning_amber_rounded,
+                color: Theme.of(context).colorScheme.onError,
+              ),
               SizedBox(width: 10),
               Expanded(
                 child: Text(
@@ -182,7 +186,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ],
           ),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: scheme.error,
           duration: Duration(seconds: 5),
           behavior: SnackBarBehavior.floating,
         ),
@@ -222,17 +226,19 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(),
-            Icon(Icons.lock_outline, size: 60, color: Colors.grey),
+            Icon(Icons.lock_outline, size: 60, color: scheme.onSurfaceVariant),
             SizedBox(height: 20),
 
-            PinDots(length: _enteredPin.length, activeColor: Colors.blueAccent),
+            PinDots(length: _enteredPin.length, activeColor: scheme.primary),
 
             Spacer(),
 
@@ -246,10 +252,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   HapticFeedback.mediumImpact();
                   _authenticateBiometric();
                 },
-                icon: Icon(Icons.fingerprint, color: Colors.blueAccent),
+                icon: Icon(Icons.fingerprint, color: scheme.primary),
                 label: Text(
                   l10n.authBiometricButton,
-                  style: TextStyle(color: Colors.blueAccent),
+                  style: TextStyle(color: scheme.primary),
                 ),
               ),
             SizedBox(height: 30),

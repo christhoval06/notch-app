@@ -481,6 +481,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeTab => 'Inicio';
 
   @override
+  String get homePeopleTab => 'Persona';
+
+  @override
   String get homeTrophiesTab => 'Trofeos';
 
   @override
@@ -1182,4 +1185,22 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get settingsCustomerCenterSubtitle =>
       'Gestiona suscripciones y facturacion';
+
+  @override
+  String get homeAbstinenceTitle => 'Tiempo de abstinencia';
+
+  @override
+  String get homeAbstinenceSubtitle => 'Desde tu último encuentro';
+
+  @override
+  String get homeAbstinenceNoDataSubtitle =>
+      'Aún no has registrado encuentros.';
+
+  @override
+  String get homeAbstinenceNoDataValue => 'Sin datos';
+
+  @override
+  String homeAbstinenceDuration(Object days, Object hours, Object minutes) {
+    return '$days días $hours horas $minutes minutos';
+  }
 }

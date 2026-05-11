@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import '../widgets/pin_selection_sheet.dart'; // Importa el modal
 
 class SecuritySettingsScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
 
   Future<void> _saveForm() async {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final values = _formKey.currentState!.value;
 
@@ -50,7 +52,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(l10n.securityUpdated),
-          backgroundColor: Colors.green,
+          backgroundColor: scheme.primary,
         ),
       );
     }
@@ -59,14 +61,16 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     if (_isLoading)
       return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: theme.scaffoldBackgroundColor,
         body: Center(child: CircularProgressIndicator()),
       );
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(l10n.securityTitle),
@@ -80,7 +84,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
             children: [
               Text(
                 l10n.securityConfigureKeys,
-                style: TextStyle(color: Colors.grey[400]),
+                style: TextStyle(color: scheme.onSurfaceVariant),
               ),
               const SizedBox(height: 30),
 
@@ -89,7 +93,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                 name: 'real_pin',
                 title: l10n.securityRealPinTitle,
                 desc: l10n.securityRealPinDesc,
-                color: Colors.blueAccent,
+                color: scheme.primary,
                 icon: Icons.vpn_key,
               ),
 
@@ -100,7 +104,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                 name: 'fake_pin',
                 title: l10n.securityPanicPinTitle,
                 desc: l10n.securityPanicPinDesc,
-                color: Colors.orangeAccent,
+                color: scheme.warning,
                 icon: Icons.masks, // Icono de máscara o similar
               ),
 
@@ -111,7 +115,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                 name: 'kill_pin',
                 title: l10n.securityKillSwitchTitle,
                 desc: l10n.securityKillSwitchDesc,
-                color: Colors.redAccent,
+                color: scheme.error,
                 icon: Icons.delete_forever,
               ),
 
@@ -123,14 +127,14 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                 child: ElevatedButton(
                   onPressed: _saveForm,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
+                    backgroundColor: scheme.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
                   child: Text(
                     l10n.securitySaveConfig,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: scheme.onPrimary, fontSize: 16),
                   ),
                 ),
               ),
@@ -149,6 +153,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
     required Color color,
     required IconData icon,
   }) {
+    final scheme = Theme.of(context).colorScheme;
     return FormBuilderField<String>(
       name: name,
       builder: (FormFieldState<String> field) {
@@ -174,10 +179,10 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.grey[900],
+              color: scheme.surface,
               borderRadius: BorderRadius.circular(15),
               border: Border.all(
-                color: field.hasError ? Colors.red : Colors.grey[800]!,
+                color: field.hasError ? scheme.error : scheme.outlineVariant,
               ),
             ),
             child: Row(
@@ -199,15 +204,18 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: scheme.onSurface,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
                       Text(
                         desc,
-                        style: TextStyle(color: Colors.grey[400], fontSize: 12),
+                        style: TextStyle(
+                          color: scheme.onSurfaceVariant,
+                          fontSize: 12,
+                        ),
                       ),
                     ],
                   ),
@@ -216,7 +224,10 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                 if (isEmpty)
                   Text(
                     AppLocalizations.of(context).securityNotSet,
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(
+                      color: scheme.onSurfaceVariant,
+                      fontSize: 12,
+                    ),
                   )
                 else
                   Row(
@@ -234,9 +245,9 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                     ),
                   ),
                 const SizedBox(width: 10),
-                const Icon(
+                Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.grey,
+                  color: scheme.onSurfaceVariant,
                   size: 14,
                 ),
               ],

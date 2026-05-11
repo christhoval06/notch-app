@@ -7,14 +7,15 @@ class PinDots extends StatelessWidget {
   final Color activeColor;
 
   const PinDots({
-    Key? key,
+    super.key,
     required this.length,
     this.codeLength = 4,
     this.activeColor = Colors.blueAccent,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(codeLength, (index) {
@@ -25,7 +26,7 @@ class PinDots extends StatelessWidget {
           height: 15,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: index < length ? activeColor : Colors.grey[800],
+            color: index < length ? activeColor : scheme.outlineVariant,
             boxShadow: index < length
                 ? [
                     BoxShadow(
@@ -47,10 +48,10 @@ class Numpad extends StatelessWidget {
   final VoidCallback onDeletePress;
 
   const Numpad({
-    Key? key,
+    super.key,
     required this.onDigitPress,
     required this.onDeletePress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,16 +59,16 @@ class Numpad extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Column(
         children: [
-          _buildRow(['1', '2', '3']),
-          _buildRow(['4', '5', '6']),
-          _buildRow(['7', '8', '9']),
-          _buildRow(['', '0', 'del']),
+          _buildRow(context, ['1', '2', '3']),
+          _buildRow(context, ['4', '5', '6']),
+          _buildRow(context, ['7', '8', '9']),
+          _buildRow(context, ['', '0', 'del']),
         ],
       ),
     );
   }
 
-  Widget _buildRow(List<String> digits) {
+  Widget _buildRow(BuildContext context, List<String> digits) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -76,7 +77,10 @@ class Numpad extends StatelessWidget {
           if (d.isEmpty) return const SizedBox(width: 70, height: 70);
           if (d == 'del') {
             return IconButton(
-              icon: const Icon(Icons.backspace_outlined, color: Colors.white),
+              icon: Icon(
+                Icons.backspace_outlined,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
               iconSize: 28,
               onPressed: () {
                 HapticFeedback.selectionClick();
@@ -96,11 +100,14 @@ class Numpad extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.grey[900],
+                color: Theme.of(context).colorScheme.surface,
               ),
               child: Text(
                 d,
-                style: const TextStyle(color: Colors.white, fontSize: 24),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 24,
+                ),
               ),
             ),
           );

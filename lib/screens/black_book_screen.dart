@@ -12,11 +12,12 @@ class BlackBookScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final encounterBox = Hive.box<Encounter>('encounters');
     final partnerBox = Hive.box<Partner>('partners');
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: ValueListenableBuilder(
         valueListenable: encounterBox.listenable(),
         builder: (context, Box<Encounter> box, _) {
@@ -33,7 +34,7 @@ class BlackBookScreen extends StatelessWidget {
             return Center(
               child: Text(
                 l10n.blackBookNoRecords,
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: scheme.onSurfaceVariant),
               ),
             );
           }
@@ -75,14 +76,14 @@ class BlackBookScreen extends StatelessWidget {
                   );
 
               return Card(
-                color: Colors.grey[900],
+                color: scheme.surface,
                 margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 child: ListTile(
                   leading: PartnerAvatar(partner: tempPartner, radius: 22),
                   title: Text(
                     name,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: scheme.onSurface,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -91,11 +92,11 @@ class BlackBookScreen extends StatelessWidget {
                       count.toString(),
                       _formatDate(lastEncounter.date),
                     ),
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: scheme.onSurfaceVariant),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
-                    color: Colors.grey,
+                    color: scheme.onSurfaceVariant,
                     size: 14,
                   ),
                   onTap: () {

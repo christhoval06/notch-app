@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import 'package:notch_app/utils/achievement_localization.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import '../models/health_log.dart';
@@ -16,6 +17,7 @@ class HealthPassportScreen extends StatefulWidget {
 class _HealthPassportScreenState extends State<HealthPassportScreen> {
   void _addNewLog(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final testTypeController = TextEditingController();
     String result = l10n.healthResultNegative; // Valor por defecto
     DateTime selectedDate = DateTime.now();
@@ -23,7 +25,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.grey[900],
+      backgroundColor: scheme.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -44,7 +46,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   Text(
                     l10n.healthNewRecord,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: scheme.onSurface,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -54,15 +56,15 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   // Tipo de Prueba
                   TextField(
                     controller: testTypeController,
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(color: scheme.onSurface),
                     decoration: InputDecoration(
                       labelText: l10n.healthTestTypeLabel,
-                      labelStyle: TextStyle(color: Colors.grey),
+                      labelStyle: TextStyle(color: scheme.onSurfaceVariant),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
+                        borderSide: BorderSide(color: scheme.outline),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueAccent),
+                        borderSide: BorderSide(color: scheme.primary),
                       ),
                     ),
                   ),
@@ -71,7 +73,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   // Selector de Resultado
                   Text(
                     l10n.healthResultLabel,
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: scheme.onSurfaceVariant),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -85,10 +87,10 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                             label: Text(val),
                             selected: result == val,
                             selectedColor: val == l10n.healthResultNegative
-                                ? Colors.green
+                                ? scheme.success
                                 : (val == l10n.healthResultPositive
-                                      ? Colors.redAccent
-                                      : Colors.orange),
+                                      ? scheme.error
+                                      : scheme.warning),
                             onSelected: (selected) {
                               setModalState(() => result = val);
                             },
@@ -105,8 +107,8 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                       icon: const Icon(Icons.save),
                       label: Text(l10n.healthSaveAndSchedule),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        foregroundColor: Colors.white,
+                        backgroundColor: scheme.primary,
+                        foregroundColor: scheme.onPrimary,
                       ),
                       onPressed: () async {
                         if (testTypeController.text.isEmpty) return;
@@ -153,7 +155,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(l10n.healthSavedReminder),
-                            backgroundColor: Colors.green,
+                            backgroundColor: scheme.primary,
                           ),
                         );
                       },
@@ -171,15 +173,19 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
     final localeCode = Localizations.localeOf(context).toString();
     final box = Hive.box<HealthLog>('health_logs');
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: theme.scaffoldBackgroundColor,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _addNewLog(context),
-        backgroundColor: Colors.blueAccent,
-        icon: const Icon(Icons.add),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        icon: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
         label: Text(l10n.healthRegisterTest),
       ),
       body: ValueListenableBuilder(
@@ -197,17 +203,22 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   Icon(
                     Icons.medical_services_outlined,
                     size: 60,
-                    color: Colors.grey[800],
+                    color: Theme.of(context).colorScheme.outlineVariant,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     l10n.healthNoRecords,
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   const SizedBox(height: 5),
                   Text(
                     l10n.healthNoRecordsSubtitle,
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
@@ -219,7 +230,7 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
             itemBuilder: (context, index) {
               final log = logs[index];
               return Card(
-                color: Colors.grey[900],
+                color: Theme.of(context).colorScheme.surface,
                 margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 child: ListTile(
                   leading: CircleAvatar(
@@ -231,14 +242,16 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
                   ),
                   title: Text(
                     log.testType,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   subtitle: Text(
                     DateFormat('d MMMM y', localeCode).format(log.date),
-                    style: const TextStyle(color: Colors.grey),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   trailing: Container(
                     padding: const EdgeInsets.symmetric(
@@ -270,10 +283,10 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
 
   Color _getColor(String result) {
     if (result == AppLocalizations.of(context).healthResultNegative)
-      return Colors.greenAccent;
+      return Theme.of(context).colorScheme.success;
     if (result == AppLocalizations.of(context).healthResultPositive)
-      return Colors.redAccent;
-    return Colors.orangeAccent;
+      return Theme.of(context).colorScheme.error;
+    return Theme.of(context).colorScheme.warning;
   }
 
   IconData _getIcon(String result) {

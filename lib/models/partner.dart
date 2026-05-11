@@ -38,7 +38,7 @@ class Partner extends HiveObject {
   int? rating; // Calificación general (o promedio calculado)
 
   // Contenido del avatar:
-  // - Si es 'initial', esto es un color (ej. "0xFFF44336")
+  // - Si es 'initial', esto es un color serializado como entero ARGB
   // - Si es 'image', esto es la ruta del archivo
   // - Si es 'emoji', esto es el emoji (ej. "😈")
   @HiveField(5, defaultValue: '')

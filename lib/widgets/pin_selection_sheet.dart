@@ -8,8 +8,11 @@ class PinSelectionSheet extends StatefulWidget {
   final String title;
   final Color color;
 
-  const PinSelectionSheet({Key? key, required this.title, required this.color})
-    : super(key: key);
+  const PinSelectionSheet({
+    super.key,
+    required this.title,
+    required this.color,
+  });
 
   @override
   _PinSelectionSheetState createState() => _PinSelectionSheetState();
@@ -41,9 +44,10 @@ class _PinSelectionSheetState extends State<PinSelectionSheet> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       height: 600, // Altura suficiente para el teclado
-      color: Colors.black,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
@@ -57,7 +61,10 @@ class _PinSelectionSheetState extends State<PinSelectionSheet> {
             ),
           ),
           const SizedBox(height: 10),
-          Text(l10n.pinEnter4Digits, style: TextStyle(color: Colors.grey)),
+          Text(
+            l10n.pinEnter4Digits,
+            style: TextStyle(color: scheme.onSurfaceVariant),
+          ),
           const SizedBox(height: 40),
 
           // Usamos nuestro widget de Puntos

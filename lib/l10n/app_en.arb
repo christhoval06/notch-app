@@ -214,6 +214,7 @@
   "homeHealthPassportTitle": "Health Passport",
   "homeStatsTitle": "Stats",
   "homeTab": "Home",
+  "homePeopleTab": "People",
   "homeTrophiesTab": "Trophies",
   "homeHealthTab": "Health",
   "homeStatsTab": "Stats",
@@ -476,5 +477,17 @@
   "premiumFeatureBlackBookDescription": "Unlock detailed profiles, private notes, and customization.",
   "monetizationOpenNativePaywall": "Open RevenueCat Paywall",
   "settingsCustomerCenter": "Customer Center",
-  "settingsCustomerCenterSubtitle": "Manage subscriptions and billing"
+  "settingsCustomerCenterSubtitle": "Manage subscriptions and billing",
+  "homeAbstinenceTitle": "Abstinence Time",
+  "homeAbstinenceSubtitle": "Since your last encounter",
+  "homeAbstinenceNoDataSubtitle": "No encounters logged yet.",
+  "homeAbstinenceNoDataValue": "No data",
+  "homeAbstinenceDuration": "{days} days {hours} hours {minutes} minutes",
+  "@homeAbstinenceDuration": {
+    "placeholders": {
+      "days": {},
+      "hours": {},
+      "minutes": {}
+    }
+  }
 }

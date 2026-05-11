@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
+import 'package:notch_app/widgets/abstinence_counter_card.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../../models/encounter.dart';
@@ -30,6 +32,7 @@ class _CalendarViewState extends State<CalendarView> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final box = Hive.box<Encounter>('encounters');
     final localeCode = Localizations.localeOf(context).toString();
 
@@ -40,6 +43,8 @@ class _CalendarViewState extends State<CalendarView> {
         return Column(
           children: [
             const SizedBox(height: 20),
+            const AbstinenceCounterCard(),
+            const SizedBox(height: 14),
 
             // Padding(
             //   padding: const EdgeInsets.symmetric(
@@ -84,8 +89,8 @@ class _CalendarViewState extends State<CalendarView> {
                 children: [
                   Text(
                     DateFormat('MMMM d, y', localeCode).format(_selectedDay!),
-                    style: const TextStyle(
-                      color: Colors.grey,
+                    style: TextStyle(
+                      color: scheme.onSurfaceVariant,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -99,7 +104,7 @@ class _CalendarViewState extends State<CalendarView> {
                   ? Center(
                       child: Text(
                         AppLocalizations.of(context).calendarNoActivity,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: scheme.onSurfaceVariant),
                       ),
                     )
                   : ListView.builder(
@@ -118,10 +123,11 @@ class _CalendarViewState extends State<CalendarView> {
   }
 
   Widget _buildCalendar(Box<Encounter> box, String localeCode) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: scheme.surface,
         borderRadius: BorderRadius.circular(20),
       ),
       child: TableCalendar(
@@ -133,28 +139,28 @@ class _CalendarViewState extends State<CalendarView> {
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
 
         // Estilos del calendario (Dark Mode)
-        calendarStyle: const CalendarStyle(
-          defaultTextStyle: TextStyle(color: Colors.white),
-          weekendTextStyle: TextStyle(color: Colors.white70),
+        calendarStyle: CalendarStyle(
+          defaultTextStyle: TextStyle(color: scheme.onSurface),
+          weekendTextStyle: TextStyle(color: scheme.onSurfaceVariant),
           todayDecoration: BoxDecoration(
-            color: Colors.blueGrey,
+            color: scheme.secondaryContainer,
             shape: BoxShape.circle,
           ),
           selectedDecoration: BoxDecoration(
-            color: Colors.blueAccent,
+            color: scheme.primary,
             shape: BoxShape.circle,
           ),
           markerDecoration: BoxDecoration(
-            color: Colors.greenAccent,
+            color: scheme.tertiary,
             shape: BoxShape.circle,
           ), // Puntos de actividad
         ),
-        headerStyle: const HeaderStyle(
+        headerStyle: HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
-          leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
-          rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
+          titleTextStyle: TextStyle(color: scheme.onSurface, fontSize: 18),
+          leftChevronIcon: Icon(Icons.chevron_left, color: scheme.onSurface),
+          rightChevronIcon: Icon(Icons.chevron_right, color: scheme.onSurface),
         ),
 
         // Cargar eventos (los puntos)
@@ -182,14 +188,15 @@ class _CalendarViewState extends State<CalendarView> {
 
   Widget _buildEncounterCard(Encounter item) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E1E),
+        color: scheme.surface,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.grey[850]!),
+        border: Border.all(color: scheme.outlineVariant),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,7 +209,7 @@ class _CalendarViewState extends State<CalendarView> {
                 height: 50,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: _getRatingColor(item.rating).withOpacity(0.2),
+                  color: _getRatingColor(item.rating).withValues(alpha: 0.2),
                   border: Border.all(
                     color: _getRatingColor(item.rating),
                     width: 2,
@@ -225,9 +232,9 @@ class _CalendarViewState extends State<CalendarView> {
                   right: 0,
                   bottom: 0,
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.black,
+                      color: scheme.scrim,
                     ),
                     child: Text(
                       item.moodEmoji!,
@@ -249,8 +256,8 @@ class _CalendarViewState extends State<CalendarView> {
                   children: [
                     Text(
                       item.partnerName,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: scheme.onSurface,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -260,10 +267,10 @@ class _CalendarViewState extends State<CalendarView> {
                         showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            backgroundColor: Colors.grey[900],
+                            backgroundColor: scheme.surface,
                             title: Text(
                               l10n.calendarConfirmDeleteTitle,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: scheme.onSurface),
                             ),
                             content: Text(l10n.calendarConfirmDeleteMessage),
                             actions: [
@@ -278,7 +285,7 @@ class _CalendarViewState extends State<CalendarView> {
                                 },
                                 child: Text(
                                   l10n.delete,
-                                  style: TextStyle(color: Colors.redAccent),
+                                  style: TextStyle(color: scheme.error),
                                 ),
                               ),
                             ],
@@ -288,7 +295,7 @@ class _CalendarViewState extends State<CalendarView> {
                       child: Icon(
                         Icons.close,
                         size: 16,
-                        color: Colors.grey[700],
+                        color: scheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -298,11 +305,18 @@ class _CalendarViewState extends State<CalendarView> {
 
                 Row(
                   children: [
-                    Icon(Icons.bolt, size: 14, color: Colors.orange[300]),
+                    Icon(
+                      Icons.bolt,
+                      size: 14,
+                      color: Theme.of(context).colorScheme.warning,
+                    ),
                     const SizedBox(width: 4),
                     Text(
                       "${item.orgasmCount} ${l10n.orgasms}",
-                      style: TextStyle(color: Colors.grey[400], fontSize: 13),
+                      style: TextStyle(
+                        color: scheme.onSurfaceVariant,
+                        fontSize: 13,
+                      ),
                     ),
 
                     const SizedBox(width: 15), // Separación
@@ -311,16 +325,16 @@ class _CalendarViewState extends State<CalendarView> {
                       item.protected ? Icons.security : Icons.gpp_bad_outlined,
                       size: 14,
                       color: item.protected
-                          ? Colors.greenAccent
-                          : Colors.redAccent,
+                          ? scheme.tertiary
+                          : scheme.error,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       item.protected ? l10n.safe : l10n.unsafe,
                       style: TextStyle(
                         color: item.protected
-                            ? Colors.greenAccent
-                            : Colors.redAccent,
+                            ? scheme.tertiary
+                            : scheme.error,
                         fontSize: 12,
                       ),
                     ),
@@ -344,13 +358,13 @@ class _CalendarViewState extends State<CalendarView> {
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.grey[800],
+                          color: scheme.surfaceContainerHighest,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
                           translatedTag,
                           style: TextStyle(
-                            color: Colors.grey[300],
+                            color: scheme.onSurfaceVariant,
                             fontSize: 10,
                           ),
                         ),
@@ -367,9 +381,10 @@ class _CalendarViewState extends State<CalendarView> {
 
   // Función para dar color según el rating (Gamificación visual)
   Color _getRatingColor(int rating) {
-    if (rating >= 9) return Colors.purpleAccent; // Legendario
-    if (rating >= 7) return Colors.greenAccent; // Bueno
-    if (rating >= 5) return Colors.blueAccent; // Normal
-    return Colors.redAccent; // Malo
+    final scheme = Theme.of(context).colorScheme;
+    if (rating >= 9) return scheme.secondary; // Legendario
+    if (rating >= 7) return scheme.tertiary; // Bueno
+    if (rating >= 5) return scheme.primary; // Normal
+    return scheme.error; // Malo
   }
 }

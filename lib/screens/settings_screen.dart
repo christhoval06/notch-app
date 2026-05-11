@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:hive/hive.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/services.dart'; // Para Haptics
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import 'package:notch_app/utils/locale_controller.dart';
 import 'package:notch_app/widgets/feature_guard.dart';
 
@@ -40,30 +41,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _pickLanguage() async {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final selectedCode = await showModalBottomSheet<String>(
       context: context,
-      backgroundColor: Colors.grey[900],
+      backgroundColor: scheme.surface,
       builder: (ctx) => SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: const Text(
+              title: Text(
                 "Español",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: scheme.onSurface),
               ),
               trailing: AppLocaleController.instance.languageCode == 'es'
-                  ? const Icon(Icons.check, color: Colors.blueAccent)
+                  ? Icon(Icons.check, color: scheme.primary)
                   : null,
               onTap: () => Navigator.pop(ctx, 'es'),
             ),
             ListTile(
-              title: const Text(
+              title: Text(
                 "English",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: scheme.onSurface),
               ),
               trailing: AppLocaleController.instance.languageCode == 'en'
-                  ? const Icon(Icons.check, color: Colors.blueAccent)
+                  ? Icon(Icons.check, color: scheme.primary)
                   : null,
               onTap: () => Navigator.pop(ctx, 'en'),
             ),
@@ -82,7 +84,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(l10n.settingsLanguageUpdated),
-        backgroundColor: Colors.green,
+        backgroundColor: scheme.primary,
       ),
     );
   }
@@ -116,19 +118,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // Lógica de Reseteo de Fábrica (Manual)
   Future<void> _factoryReset() async {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     // Diálogo de confirmación
     bool confirm =
         await showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            backgroundColor: Colors.grey[900],
+            backgroundColor: scheme.surface,
             title: Text(
               l10n.settingsFactoryResetTitle,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: scheme.onSurface),
             ),
             content: Text(
               l10n.settingsFactoryResetMessage,
-              style: TextStyle(color: Colors.grey[300]),
+              style: TextStyle(color: scheme.onSurfaceVariant),
             ),
             actions: [
               TextButton(
@@ -140,7 +143,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Text(
                   l10n.deleteAll,
                   style: TextStyle(
-                    color: Colors.redAccent,
+                    color: scheme.error,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -190,8 +193,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(l10n.settingsTitle),
@@ -205,28 +210,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: Colors.grey[900],
+                color: scheme.surface,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blueAccent.withOpacity(0.2),
+                    color: scheme.primary.withOpacity(0.2),
                     blurRadius: 20,
                   ),
                 ],
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.lock_outline,
                 size: 40,
-                color: Colors.blueAccent,
+                color: scheme.primary,
               ),
             ),
           ),
           const SizedBox(height: 15),
-          const Center(
+          Center(
             child: Text(
               "NOTCH",
               style: TextStyle(
-                color: Colors.white,
+                color: scheme.onSurface,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 2,
@@ -236,7 +241,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Center(
             child: Text(
               "v$_appVersion ($_buildNumber)",
-              style: TextStyle(color: Colors.grey[600], fontSize: 12),
+              style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 12),
             ),
           ),
           const SizedBox(height: 10),
@@ -244,7 +249,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Text(
               l10n.settingsTagline,
               style: TextStyle(
-                color: Colors.blueAccent.withOpacity(0.8),
+                color: scheme.primary.withOpacity(0.8),
                 fontSize: 14,
               ),
             ),
@@ -255,7 +260,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildSectionHeader(l10n.settingsGeneral),
           _buildTile(
             icon: Icons.shield_outlined,
-            color: Colors.orangeAccent,
+            color: scheme.warning,
             title: l10n.settingsSecurityAccess,
             subtitle: l10n.settingsSecurityAccessSubtitle,
             onTap: () => Navigator.push(
@@ -265,7 +270,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           _buildTile(
             icon: Icons.cloud_sync_outlined,
-            color: Colors.blueAccent,
+            color: scheme.primary,
             title: l10n.settingsDataBackup,
             subtitle: l10n.settingsDataBackupSubtitle,
             onTap: () => PremiumAccess.guard(
@@ -283,7 +288,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             featureName: FeatureNames.showPremiumSettingsItem,
             child: _buildTile(
               icon: Icons.workspace_premium,
-              color: Colors.amberAccent,
+              color: scheme.warning,
               title: l10n.monetizationPremiumTitle,
               subtitle: l10n.monetizationManagePlansSubtitle,
               onTap: () => Navigator.push(
@@ -319,7 +324,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () {
               showModalBottomSheet(
                 context: context,
-                backgroundColor: Colors.grey[900],
+                backgroundColor: scheme.surface,
                 builder: (ctx) => Container(
                   padding: const EdgeInsets.all(20),
                   height: 300,
@@ -328,7 +333,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Text(
                         "${l10n.settingsAboutDevTitle} 👨‍💻",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: scheme.onSurface,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -337,15 +342,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Text(
                         l10n.settingsAboutDevDescription,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: scheme.onSurfaceVariant),
                       ),
                       // const SizedBox(height: 30),
                       // ElevatedButton.icon(
                       //   icon: const Icon(Icons.coffee),
                       //   label: const Text("Apoya el proyecto"),
-                      //   style: ElevatedButton.styleFrom(
-                      //     backgroundColor: Colors.amber[800],
-                      //   ),
                       //   onPressed: () => _launchContact(
                       //     'https://www.buymeacoffee.com/tuusuario',
                       //   ),
@@ -358,7 +360,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           _buildTile(
             icon: Icons.mail_outline,
-            color: Colors.white,
+            color: scheme.onSurface,
             title: l10n.settingsContactSupport,
             subtitle: l10n.settingsContactSupportSubtitle,
             onTap: () => _launchContact(
@@ -379,7 +381,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildSectionHeader(l10n.settingsDangerZone),
           _buildTile(
             icon: Icons.delete_forever,
-            color: Colors.redAccent,
+            color: scheme.error,
             title: l10n.settingsResetApp,
             subtitle: l10n.settingsResetAppSubtitle,
             onTap: _factoryReset,
@@ -390,7 +392,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ? const Center(child: CircularProgressIndicator())
               : _buildTile(
                   icon: Icons.refresh,
-                  color: Colors.greenAccent,
+                  color: scheme.success,
                   title: l10n.settingsRecalculateAchievements,
                   subtitle: l10n.settingsRecalculateAchievementsSubtitle,
                   onTap: () async {
@@ -403,7 +405,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(l10n.settingsAchievementsUpdated),
-                          backgroundColor: Colors.green,
+                          backgroundColor: scheme.primary,
                         ),
                       );
                     }
@@ -431,7 +433,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(l10n.settingsXpUpdated),
-                          backgroundColor: Colors.green,
+                          backgroundColor: scheme.primary,
                         ),
                       );
                     }
@@ -442,7 +444,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Center(
             child: Text(
               l10n.settingsMadeWithFlutter,
-              style: TextStyle(color: Colors.grey[800], fontSize: 10),
+              style: TextStyle(color: scheme.outline, fontSize: 10),
             ),
           ),
           const SizedBox(height: 20),
@@ -452,12 +454,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildSectionHeader(String title) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Text(
         title,
         style: TextStyle(
-          color: Colors.grey[600],
+          color: scheme.onSurfaceVariant,
           fontSize: 12,
           fontWeight: FontWeight.bold,
           letterSpacing: 1,
@@ -473,6 +476,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     required String subtitle,
     required VoidCallback onTap,
   }) {
+    final scheme = Theme.of(context).colorScheme;
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       leading: Container(
@@ -485,16 +489,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       title: Text(
         title,
-        style: const TextStyle(
-          color: Colors.white,
+        style: TextStyle(
+          color: scheme.onSurface,
           fontWeight: FontWeight.w500,
         ),
       ),
       subtitle: Text(
         subtitle,
-        style: TextStyle(color: Colors.grey[500], fontSize: 12),
+        style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 12),
       ),
-      trailing: const Icon(Icons.chevron_right, color: Colors.grey, size: 18),
+      trailing: Icon(
+        Icons.chevron_right,
+        color: scheme.onSurfaceVariant,
+        size: 18,
+      ),
       onTap: onTap,
     );
   }

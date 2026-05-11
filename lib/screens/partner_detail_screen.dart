@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import 'package:notch_app/widgets/partner_avatar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -36,9 +37,10 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
   Future<void> _showAvatarOptions() async {
     HapticFeedback.mediumImpact();
+    final scheme = Theme.of(context).colorScheme;
     await showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.grey[900],
+      backgroundColor: scheme.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -51,7 +53,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               child: Text(
                 AppLocalizations.of(context).partnerChangeAvatar,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: scheme.onSurface,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -64,7 +66,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               ),
               title: Text(
                 AppLocalizations.of(context).partnerChooseFromGallery,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: scheme.onSurface),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -72,13 +74,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.emoji_emotions,
-                color: Colors.orangeAccent,
+                color: Theme.of(context).colorScheme.warning,
               ),
               title: Text(
                 AppLocalizations.of(context).partnerChooseEmoji,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: scheme.onSurface),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -135,32 +137,35 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
     final selectedEmoji = await showDialog<String>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.grey[850],
-        title: Text(
-          AppLocalizations.of(context).partnerChooseEmojiTitle,
-          style: TextStyle(color: Colors.white),
-        ),
-        content: Wrap(
-          spacing: 15,
-          runSpacing: 15,
-          alignment: WrapAlignment.center,
-          children: emojis
-              .map(
-                (e) => GestureDetector(
-                  onTap: () => Navigator.pop(context, e),
-                  child: Text(e, style: const TextStyle(fontSize: 32)),
-                ),
-              )
-              .toList(),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(AppLocalizations.of(context).cancel),
+      builder: (ctx) {
+        final scheme = Theme.of(ctx).colorScheme;
+        return AlertDialog(
+          backgroundColor: scheme.surfaceContainerHighest,
+          title: Text(
+            AppLocalizations.of(context).partnerChooseEmojiTitle,
+            style: TextStyle(color: scheme.onSurface),
           ),
-        ],
-      ),
+          content: Wrap(
+            spacing: 15,
+            runSpacing: 15,
+            alignment: WrapAlignment.center,
+            children: emojis
+                .map(
+                  (e) => GestureDetector(
+                    onTap: () => Navigator.pop(context, e),
+                    child: Text(e, style: const TextStyle(fontSize: 32)),
+                  ),
+                )
+                .toList(),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(AppLocalizations.of(context).cancel),
+            ),
+          ],
+        );
+      },
     );
 
     if (selectedEmoji != null) {
@@ -184,8 +189,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         // Usamos CustomScrollView para un efecto más profesional
         slivers: [
@@ -193,12 +199,12 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
           SliverAppBar(
             expandedHeight: 250.0,
             pinned: true,
-            backgroundColor: Colors.grey[900],
+            backgroundColor: scheme.surface,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 widget.partner.name,
-                style: const TextStyle(
-                  shadows: [Shadow(color: Colors.black, blurRadius: 10)],
+                style: TextStyle(
+                  shadows: [Shadow(color: scheme.scrim, blurRadius: 10)],
                 ),
               ),
               background: GestureDetector(
@@ -218,7 +224,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                           end: Alignment.bottomCenter,
                           colors: [
                             Colors.transparent,
-                            Colors.black.withOpacity(0.7),
+                            scheme.scrim.withValues(alpha: 0.7),
                           ],
                         ),
                       ),
@@ -231,12 +237,16 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                           Text(
                             AppLocalizations.of(context).partnerEdit,
                             style: TextStyle(
-                              color: Colors.white70,
+                              color: scheme.onSurfaceVariant,
                               fontSize: 12,
                             ),
                           ),
                           SizedBox(width: 4),
-                          Icon(Icons.edit, color: Colors.white70, size: 14),
+                          Icon(
+                            Icons.edit,
+                            color: scheme.onSurfaceVariant,
+                            size: 14,
+                          ),
                         ],
                       ),
                     ),
@@ -261,7 +271,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                         Text(
                           AppLocalizations.of(context).partnerPrivateNotes,
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: scheme.onSurfaceVariant,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -282,17 +292,19 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                     _isEditingNotes
                         ? TextField(
                             controller: _notesController,
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyle(color: scheme.onSurface),
                             maxLines: 5,
                             autofocus: true,
                             decoration: InputDecoration(
                               hintText: AppLocalizations.of(
                                 context,
                               ).partnerNotesHint,
-                              hintStyle: const TextStyle(color: Colors.grey),
+                              hintStyle: TextStyle(
+                                color: scheme.onSurfaceVariant,
+                              ),
                               border: const OutlineInputBorder(),
                               filled: true,
-                              fillColor: Colors.grey[900],
+                              fillColor: scheme.surface,
                             ),
                           )
                         : Text(
@@ -302,8 +314,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                     context,
                                   ).partnerNotesTapToAdd
                                 : widget.partner.notes!,
-                            style: const TextStyle(
-                              color: Colors.white70,
+                            style: TextStyle(
+                              color: scheme.onSurfaceVariant,
                               fontSize: 16,
                               height: 1.5,
                             ),
@@ -313,13 +325,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               ),
 
               // SECCIÓN DE HISTORIAL
-              const Divider(color: Colors.grey),
+              Divider(color: scheme.outlineVariant),
               Padding(
                 padding: EdgeInsets.all(15.0),
                 child: Text(
                   AppLocalizations.of(context).partnerHistoryTitle,
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: scheme.onSurfaceVariant,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -338,6 +350,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
     return ValueListenableBuilder(
       valueListenable: Hive.box<Encounter>('encounters').listenable(),
       builder: (context, Box<Encounter> box, _) {
+        final scheme = Theme.of(context).colorScheme;
         final history = box.values
             .where((e) => e.partnerName == widget.partner.name)
             .toList();
@@ -349,7 +362,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               padding: EdgeInsets.all(40.0),
               child: Text(
                 AppLocalizations.of(context).partnerNoEncounters,
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: scheme.onSurfaceVariant),
               ),
             ),
           );
@@ -371,7 +384,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                     color: _getRatingColor(item.rating),
                     width: 2,
                   ),
-                  color: _getRatingColor(item.rating).withOpacity(0.1),
+                  color: _getRatingColor(item.rating).withValues(alpha: 0.1),
                 ),
                 child: Text(
                   "${item.rating}",
@@ -383,22 +396,22 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               ),
               title: Text(
                 DateFormat('EEEE, d MMMM y').format(item.date),
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: scheme.onSurface),
               ),
               subtitle: Row(
                 children: [
                   if (item.moodEmoji != null) Text("${item.moodEmoji!} "),
-                  Icon(Icons.bolt, size: 14, color: Colors.grey[400]),
+                  Icon(Icons.bolt, size: 14, color: scheme.onSurfaceVariant),
                   Text(
                     " ${item.orgasmCount}",
-                    style: TextStyle(color: Colors.grey[400]),
+                    style: TextStyle(color: scheme.onSurfaceVariant),
                   ),
                 ],
               ),
               trailing: item.protected
-                  ? const Icon(
+                  ? Icon(
                       Icons.security,
-                      color: Colors.greenAccent,
+                      color: Theme.of(context).colorScheme.success,
                       size: 18,
                     )
                   : null,
@@ -410,9 +423,10 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
   }
 
   Color _getRatingColor(int rating) {
-    if (rating >= 9) return Colors.purpleAccent;
-    if (rating >= 7) return Colors.greenAccent;
-    if (rating >= 5) return Colors.blueAccent;
-    return Colors.grey;
+    final scheme = Theme.of(context).colorScheme;
+    if (rating >= 9) return scheme.secondary;
+    if (rating >= 7) return scheme.success;
+    if (rating >= 5) return scheme.primary;
+    return scheme.onSurfaceVariant;
   }
 }

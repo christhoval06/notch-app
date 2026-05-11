@@ -44,6 +44,7 @@ class _StatsScreenState extends State<StatsScreen> {
     Map<String, dynamic> levelData,
     AppLocalizations l10n,
   ) {
+    final scheme = Theme.of(context).colorScheme;
     final rawLevelName = levelData['name'] as String;
     final levelName = localizeLevelName(l10n, rawLevelName);
     final levelDescription = localizeLevelDescription(l10n, rawLevelName);
@@ -52,14 +53,14 @@ class _StatsScreenState extends State<StatsScreen> {
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.amber.shade700, Colors.orange.shade400],
+          colors: [scheme.primary, scheme.secondary],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.amber.withOpacity(0.3),
+            color: scheme.primary.withValues(alpha: 0.3),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -72,7 +73,7 @@ class _StatsScreenState extends State<StatsScreen> {
             l10n.statsHighestRankReached,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+              color: scheme.onPrimary.withValues(alpha: 0.8),
               letterSpacing: 2,
               fontSize: 12,
             ),
@@ -81,25 +82,25 @@ class _StatsScreenState extends State<StatsScreen> {
           Text(
             levelName,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: scheme.onPrimary,
               fontSize: 32,
               fontWeight: FontWeight.bold,
-              shadows: [Shadow(color: Colors.black26, blurRadius: 5)],
+              shadows: [Shadow(color: scheme.scrim, blurRadius: 5)],
             ),
           ),
           const SizedBox(height: 5),
           Text(
             l10n.statsXpTotal(levelData['current_total_xp'].toString()),
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.white, fontSize: 14),
+            style: TextStyle(color: scheme.onPrimary, fontSize: 14),
           ),
           const SizedBox(height: 15),
           Text(
             levelDescription,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white.withOpacity(0.9),
+              color: scheme.onPrimary.withValues(alpha: 0.9),
               fontSize: 13,
               fontStyle: FontStyle.italic,
             ),
@@ -112,6 +113,7 @@ class _StatsScreenState extends State<StatsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     // Obtenemos la caja de datos
     final box = Hive.box<Encounter>('encounters');
     List<Encounter> encounters = box.values.toList();
@@ -132,9 +134,12 @@ class _StatsScreenState extends State<StatsScreen> {
     // Si no hay datos, mostramos mensaje
     if (encounters.isEmpty) {
       return Scaffold(
-        backgroundColor: const Color(0xFF121212),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Center(
-          child: Text(l10n.statsNoData, style: TextStyle(color: Colors.grey)),
+          child: Text(
+            l10n.statsNoData,
+            style: TextStyle(color: scheme.onSurfaceVariant),
+          ),
         ),
       );
     }
@@ -154,7 +159,7 @@ class _StatsScreenState extends State<StatsScreen> {
     final heatmapData = analyzer.getHeatmapData();
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -173,8 +178,8 @@ class _StatsScreenState extends State<StatsScreen> {
                   });
                 },
                 borderRadius: BorderRadius.circular(8),
-                selectedColor: Colors.white,
-                fillColor: Colors.blueAccent.withOpacity(0.3),
+                selectedColor: scheme.onPrimary,
+                fillColor: scheme.primary.withValues(alpha: 0.3),
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
@@ -204,21 +209,21 @@ class _StatsScreenState extends State<StatsScreen> {
                   l10n.statsTotal,
                   "$totalEncounters",
                   Icons.flag,
-                  Colors.blueAccent,
+                  scheme.primary,
                 ),
                 const SizedBox(width: 10),
                 _buildStatCard(
                   l10n.orgasms,
                   "$totalOrgasms",
                   Icons.bolt,
-                  Colors.orangeAccent,
+                  scheme.tertiary,
                 ),
                 const SizedBox(width: 10),
                 _buildStatCard(
                   l10n.statsAvgRating,
                   avgRating.toStringAsFixed(1),
                   Icons.star,
-                  Colors.purpleAccent,
+                  scheme.secondary,
                 ),
               ],
             ),
@@ -227,7 +232,7 @@ class _StatsScreenState extends State<StatsScreen> {
             Text(
               l10n.statsActivityDistribution,
               style: TextStyle(
-                color: Colors.grey[400],
+                color: scheme.onSurfaceVariant,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -244,7 +249,7 @@ class _StatsScreenState extends State<StatsScreen> {
             Text(
               l10n.statsActivityLast6Months,
               style: TextStyle(
-                color: Colors.grey[400],
+                color: scheme.onSurfaceVariant,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -259,7 +264,7 @@ class _StatsScreenState extends State<StatsScreen> {
                   maxY: _getMaxY(monthlyData), // Escala dinámica
                   barTouchData: BarTouchData(
                     touchTooltipData: BarTouchTooltipData(
-                      getTooltipColor: (_) => Colors.blueGrey,
+                      getTooltipColor: (_) => scheme.surfaceContainerHighest,
                     ),
                   ),
                   titlesData: FlTitlesData(
@@ -276,7 +281,7 @@ class _StatsScreenState extends State<StatsScreen> {
                               child: Text(
                                 monthlyData[index]['label'] as String,
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: scheme.onSurfaceVariant,
                                   fontSize: 10,
                                 ),
                               ),
@@ -311,7 +316,7 @@ class _StatsScreenState extends State<StatsScreen> {
             Text(
               l10n.statsAnnualActivityMap,
               style: TextStyle(
-                color: Colors.grey[400],
+                color: scheme.onSurfaceVariant,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -320,7 +325,7 @@ class _StatsScreenState extends State<StatsScreen> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey[900],
+                color: scheme.surface,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: HeatMap(
@@ -328,12 +333,12 @@ class _StatsScreenState extends State<StatsScreen> {
                 // endDate: DateTime.now(), // Por defecto muestra el último año
                 fontSize: 10,
                 // Colores personalizados para el Dark Mode
-                textColor: Colors.white,
+                textColor: scheme.onSurface,
                 colorMode: ColorMode.opacity,
                 showColorTip: false, // Más limpio
                 scrollable: true,
-                colorsets: const {
-                  1: Colors.blueAccent, // Color base para la intensidad
+                colorsets: {
+                  1: scheme.primary, // Color base para la intensidad
                 },
                 onClick: (date) {
                   // Opcional: Mostrar un SnackBar o diálogo con la info de ese día
@@ -358,7 +363,7 @@ class _StatsScreenState extends State<StatsScreen> {
             Text(
               l10n.statsQualityBreakdown,
               style: TextStyle(
-                color: Colors.grey[400],
+                color: scheme.onSurfaceVariant,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -367,25 +372,25 @@ class _StatsScreenState extends State<StatsScreen> {
             _buildQualityRow(
               l10n.statsLegendary,
               _countRatings(encounters, 9, 10),
-              Colors.purpleAccent,
+              scheme.secondary,
               totalEncounters,
             ),
             _buildQualityRow(
               l10n.statsGood,
               _countRatings(encounters, 7, 8),
-              Colors.greenAccent,
+              scheme.tertiary,
               totalEncounters,
             ),
             _buildQualityRow(
               l10n.statsAverage,
               _countRatings(encounters, 5, 6),
-              Colors.blueAccent,
+              scheme.primary,
               totalEncounters,
             ),
             _buildQualityRow(
               l10n.statsBad,
               _countRatings(encounters, 1, 4),
-              Colors.redAccent,
+              scheme.error,
               totalEncounters,
             ),
           ],
@@ -402,13 +407,14 @@ class _StatsScreenState extends State<StatsScreen> {
     IconData icon,
     Color color,
   ) {
+    final scheme = Theme.of(context).colorScheme;
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
-          color: const Color(0xFF1E1E1E),
+          color: scheme.surface,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.grey[900]!),
+          border: Border.all(color: scheme.outlineVariant),
         ),
         child: Column(
           children: [
@@ -416,15 +422,15 @@ class _StatsScreenState extends State<StatsScreen> {
             const SizedBox(height: 10),
             Text(
               value,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: scheme.onSurface,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               title,
-              style: TextStyle(color: Colors.grey[600], fontSize: 12),
+              style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 12),
             ),
           ],
         ),
@@ -433,6 +439,7 @@ class _StatsScreenState extends State<StatsScreen> {
   }
 
   Widget _buildQualityRow(String label, int count, Color color, int total) {
+    final scheme = Theme.of(context).colorScheme;
     double percentage = total == 0 ? 0 : count / total;
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
@@ -442,10 +449,10 @@ class _StatsScreenState extends State<StatsScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label, style: const TextStyle(color: Colors.white70)),
+              Text(label, style: TextStyle(color: scheme.onSurfaceVariant)),
               Text(
                 "$count (${(percentage * 100).toStringAsFixed(0)}%)",
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: scheme.onSurface),
               ),
             ],
           ),
@@ -454,7 +461,7 @@ class _StatsScreenState extends State<StatsScreen> {
             borderRadius: BorderRadius.circular(5),
             child: LinearProgressIndicator(
               value: percentage,
-              backgroundColor: Colors.grey[900],
+              backgroundColor: scheme.surface,
               color: color,
               minHeight: 8,
             ),
@@ -510,13 +517,13 @@ class _StatsScreenState extends State<StatsScreen> {
         barRods: [
           BarChartRodData(
             toY: (data[index]['value'] as int).toDouble(),
-            color: Colors.blueAccent,
+            color: Theme.of(context).colorScheme.primary,
             width: 16,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
             backDrawRodData: BackgroundBarChartRodData(
               show: true,
               toY: _getMaxY(data), // Fondo gris hasta el tope
-              color: Colors.grey[900],
+              color: Theme.of(context).colorScheme.surface,
             ),
           ),
         ],
@@ -529,16 +536,17 @@ class _StatsScreenState extends State<StatsScreen> {
       return Center(
         child: Text(
           AppLocalizations.of(context).statsNoTagData,
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
         ),
       );
 
+    final scheme = Theme.of(context).colorScheme;
     final colors = [
-      Colors.blueAccent,
-      Colors.purpleAccent,
-      Colors.orangeAccent,
-      Colors.greenAccent,
-      Colors.redAccent,
+      scheme.primary,
+      scheme.secondary,
+      scheme.tertiary,
+      scheme.primaryContainer,
+      scheme.error,
     ];
     int colorIndex = 0;
 
@@ -552,11 +560,11 @@ class _StatsScreenState extends State<StatsScreen> {
             value: entry.value,
             title: tagLabelFromLanguageCode(entry.key, currentLang),
             radius: 80,
-            titleStyle: const TextStyle(
+            titleStyle: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
-              shadows: [Shadow(color: Colors.black, blurRadius: 2)],
+              color: scheme.onPrimary,
+              shadows: [Shadow(color: scheme.scrim, blurRadius: 2)],
             ),
           );
         }).toList(),

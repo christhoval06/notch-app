@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/services/achievement_engine.dart';
+import 'package:notch_app/theme/color_scheme_semantics.dart';
 import 'package:notch_app/utils/achievement_localization.dart';
 import 'package:notch_app/utils/gamification_engine.dart';
 import '../services/backup_service.dart';
@@ -21,6 +22,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
     String successMsg,
   ) async {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     setState(() => _isLoading = true);
     try {
       await action();
@@ -37,7 +39,10 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(successMsg), backgroundColor: Colors.green),
+          SnackBar(
+            content: Text(successMsg),
+            backgroundColor: scheme.success,
+          ),
         );
       }
     } catch (e) {
@@ -45,7 +50,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(l10n.dataError(e.toString())),
-            backgroundColor: Colors.red,
+            backgroundColor: scheme.error,
           ),
         );
       }
@@ -57,8 +62,9 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(l10n.dataTitle),
@@ -71,7 +77,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
                 _buildSectionTitle(l10n.dataBackupSection),
                 _buildCard(
                   icon: Icons.cloud_upload,
-                  color: Colors.blueAccent,
+                  color: scheme.primary,
                   title: l10n.dataCreateBackup,
                   subtitle: l10n.dataCreateBackupSubtitle,
                   onTap: () => _handleAction(
@@ -81,7 +87,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
                 ),
                 _buildCard(
                   icon: Icons.restore_page,
-                  color: Colors.orangeAccent,
+                  color: scheme.warning,
                   title: l10n.dataRestoreBackup,
                   subtitle: l10n.dataRestoreBackupSubtitle,
                   onTap: () async {
@@ -90,7 +96,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(l10n.dataRestoreSuccess),
-                          backgroundColor: Colors.green,
+                          backgroundColor: scheme.success,
                         ),
                       );
                       // Opcional: Reiniciar app o navegar al Home
@@ -103,7 +109,7 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
                 _buildSectionTitle(l10n.dataExportSection),
                 _buildCard(
                   icon: Icons.picture_as_pdf,
-                  color: Colors.redAccent,
+                  color: scheme.error,
                   title: l10n.dataGeneratePdf,
                   subtitle: l10n.dataGeneratePdfSubtitle,
                   onTap: () => _handleAction(
@@ -117,11 +123,15 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
   }
 
   Widget _buildSectionTitle(String title) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10, left: 5),
       child: Text(
         title,
-        style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          color: scheme.onSurfaceVariant,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -133,32 +143,33 @@ class _DataManagementScreenState extends State<DataManagementScreen> {
     required String subtitle,
     required VoidCallback onTap,
   }) {
+    final scheme = Theme.of(context).colorScheme;
     return Card(
-      color: Colors.grey[900],
+      color: scheme.surface,
       margin: const EdgeInsets.only(bottom: 15),
       child: ListTile(
         leading: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.2),
+            color: color.withValues(alpha: 0.2),
             shape: BoxShape.circle,
           ),
           child: Icon(icon, color: color),
         ),
         title: Text(
           title,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: scheme.onSurface,
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           subtitle,
-          style: const TextStyle(color: Colors.grey, fontSize: 12),
+          style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 12),
         ),
-        trailing: const Icon(
+        trailing: Icon(
           Icons.arrow_forward_ios,
-          color: Colors.grey,
+          color: scheme.onSurfaceVariant,
           size: 14,
         ),
         onTap: onTap,
