@@ -4,7 +4,6 @@ import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:notch_app/features/feature/premium/models/premium_access.dart';
 import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
 import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
-import 'package:notch_app/features/feature/premium/services/subscription_service.dart';
 import 'package:notch_app/core/utils/gamification_engine.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,6 +13,7 @@ import 'package:flutter/services.dart'; // Para Haptics
 import 'package:notch_app/core/theme/color_scheme_semantics.dart';
 import 'package:notch_app/core/utils/locale_controller.dart';
 import 'package:notch_app/core/widgets/feature_guard.dart';
+import 'package:notch_app/features/feature/health/presentation/pages/health_passport_page.dart';
 
 // IMPORTS DE TUS PANTALLAS
 import 'security_settings_page.dart'; // La pantalla de PINs antigua
@@ -284,6 +284,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
             ),
           ),
+          _buildTile(
+            icon: Icons.local_hospital_outlined,
+            color: scheme.error,
+            title: l10n.homeHealthPassportTitle,
+            subtitle: l10n.premiumFeatureHealthPassportDescription,
+            onTap: () => PremiumAccess.guard(
+              context: context,
+              feature: PremiumFeature.healthPassport,
+              onAllowed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => HealthPassportScreen()),
+                );
+              },
+            ),
+          ),
           FeatureGuard(
             featureName: FeatureNames.showPremiumSettingsItem,
             child: _buildTile(
@@ -298,13 +314,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           _buildTile(
-            icon: Icons.manage_accounts,
-            color: Colors.cyanAccent,
-            title: l10n.settingsCustomerCenter,
-            subtitle: l10n.settingsCustomerCenterSubtitle,
-            onTap: () => SubscriptionService().presentCustomerCenter(),
-          ),
-          _buildTile(
             icon: Icons.language,
             color: Colors.tealAccent,
             title: l10n.settingsLanguage,
@@ -317,6 +326,78 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // 3. SOBRE EL DESARROLLADOR
           _buildSectionHeader(l10n.settingsAbout),
           _buildTile(
+            icon: Icons.info_outline,
+            color: scheme.primary,
+            title: l10n.settingsAboutApp,
+            subtitle: l10n.settingsAboutAppSubtitle,
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: scheme.surface,
+                isScrollControlled: true,
+                builder: (ctx) => SafeArea(
+                  top: false,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+                    constraints: const BoxConstraints(maxHeight: 560),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: 40,
+                              height: 4,
+                              decoration: BoxDecoration(
+                                color: scheme.outlineVariant,
+                                borderRadius: BorderRadius.circular(999),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            l10n.settingsAboutAppTitle,
+                            style: TextStyle(
+                              color: scheme.onSurface,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            l10n.settingsAboutAppDescription,
+                            style: TextStyle(
+                              color: scheme.onSurfaceVariant,
+                              height: 1.45,
+                            ),
+                          ),
+                          const SizedBox(height: 18),
+                          _buildAboutPillar(
+                            icon: Icons.verified_user_outlined,
+                            title: l10n.settingsAboutAppPillarPrivacyTitle,
+                            body: l10n.settingsAboutAppPillarPrivacyBody,
+                          ),
+                          const SizedBox(height: 10),
+                          _buildAboutPillar(
+                            icon: Icons.insights_outlined,
+                            title: l10n.settingsAboutAppPillarPurposeTitle,
+                            body: l10n.settingsAboutAppPillarPurposeBody,
+                          ),
+                          const SizedBox(height: 10),
+                          _buildAboutPillar(
+                            icon: Icons.tune_outlined,
+                            title: l10n.settingsAboutAppPillarControlTitle,
+                            body: l10n.settingsAboutAppPillarControlBody,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          _buildTile(
             icon: Icons.code,
             color: Colors.purpleAccent,
             title: l10n.settingsDeveloper,
@@ -325,34 +406,64 @@ class _SettingsScreenState extends State<SettingsScreen> {
               showModalBottomSheet(
                 context: context,
                 backgroundColor: scheme.surface,
-                builder: (ctx) => Container(
-                  padding: const EdgeInsets.all(20),
-                  height: 300,
-                  child: Column(
-                    children: [
-                      Text(
-                        "${l10n.settingsAboutDevTitle} 👨‍💻",
-                        style: TextStyle(
-                          color: scheme.onSurface,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                isScrollControlled: true,
+                builder: (ctx) => SafeArea(
+                  top: false,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+                    constraints: const BoxConstraints(maxHeight: 560),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: 40,
+                              height: 4,
+                              decoration: BoxDecoration(
+                                color: scheme.outlineVariant,
+                                borderRadius: BorderRadius.circular(999),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            "${l10n.settingsAboutDevTitle} 👨‍💻",
+                            style: TextStyle(
+                              color: scheme.onSurface,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            l10n.settingsAboutDevDescription,
+                            style: TextStyle(
+                              color: scheme.onSurfaceVariant,
+                              height: 1.45,
+                            ),
+                          ),
+                          const SizedBox(height: 18),
+                          _buildAboutPillar(
+                            icon: Icons.badge_outlined,
+                            title: l10n.settingsAboutDevRoleTitle,
+                            body: l10n.settingsAboutDevRoleBody,
+                          ),
+                          const SizedBox(height: 10),
+                          _buildAboutPillar(
+                            icon: Icons.terminal_outlined,
+                            title: l10n.settingsAboutDevStackTitle,
+                            body: l10n.settingsAboutDevStackBody,
+                          ),
+                          const SizedBox(height: 10),
+                          _buildAboutPillar(
+                            icon: Icons.design_services_outlined,
+                            title: l10n.settingsAboutDevFocusTitle,
+                            body: l10n.settingsAboutDevFocusBody,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 20),
-                      Text(
-                        l10n.settingsAboutDevDescription,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: scheme.onSurfaceVariant),
-                      ),
-                      // const SizedBox(height: 30),
-                      // ElevatedButton.icon(
-                      //   icon: const Icon(Icons.coffee),
-                      //   label: const Text("Apoya el proyecto"),
-                      //   onPressed: () => _launchContact(
-                      //     'https://www.buymeacoffee.com/tuusuario',
-                      //   ),
-                      // ),
-                    ],
+                    ),
                   ),
                 ),
               );
@@ -504,6 +615,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
         size: 18,
       ),
       onTap: onTap,
+    );
+  }
+
+  Widget _buildAboutPillar({
+    required IconData icon,
+    required String title,
+    required String body,
+  }) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerHighest.withValues(alpha: 0.35),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: scheme.primary, size: 20),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: scheme.onSurface,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  body,
+                  style: TextStyle(color: scheme.onSurfaceVariant, height: 1.35),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

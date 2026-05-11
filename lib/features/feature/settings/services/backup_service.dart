@@ -7,8 +7,10 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:notch_app/data/models/encounter.dart';
+import 'package:notch_app/data/models/global_progress.dart';
 import 'package:notch_app/data/models/partner.dart';
 import 'package:notch_app/data/models/health_log.dart';
+import 'package:notch_app/data/models/monthly_progress.dart';
 
 class BackupService {
   // 🔑 CLAVE DE ENCRIPTACIÓN (IMPORTANTE)
@@ -130,6 +132,8 @@ class BackupService {
       await Hive.box<Encounter>('encounters').clear();
       await Hive.box<Partner>('partners').clear();
       await Hive.box<HealthLog>('health_logs').clear();
+      await Hive.box<MonthlyProgress>('monthly_progress').clear();
+      await Hive.box<GlobalProgress>('global_progress').clear();
 
       // Rellenar Encuentros
       for (var e in data['encounters']) {

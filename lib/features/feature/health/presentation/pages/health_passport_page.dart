@@ -179,6 +179,10 @@ class _HealthPassportScreenState extends State<HealthPassportScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(l10n.homeHealthPassportTitle),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _addNewLog(context),
         backgroundColor: Theme.of(context).colorScheme.primary,

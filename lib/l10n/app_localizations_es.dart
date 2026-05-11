@@ -143,6 +143,41 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsLanguage => 'Idioma';
 
   @override
+  String get settingsAboutApp => 'Sobre la app';
+
+  @override
+  String get settingsAboutAppSubtitle =>
+      'Para qué existe NOTCH y por qué se creó';
+
+  @override
+  String get settingsAboutAppTitle => 'Sobre NOTCH';
+
+  @override
+  String get settingsAboutAppDescription =>
+      'NOTCH existe para ayudarte a registrar tu actividad íntima de forma privada, segura y consciente. Se creó porque los datos más sensibles no deberían vivir en servidores externos ni estar expuestos a trackers. La app te permite entender patrones, mejorar tu bienestar y mantener el control total de tu información.';
+
+  @override
+  String get settingsAboutAppPillarPrivacyTitle => 'Privacidad primero';
+
+  @override
+  String get settingsAboutAppPillarPrivacyBody =>
+      'Tus datos se quedan contigo, sin servidores ni rastreadores.';
+
+  @override
+  String get settingsAboutAppPillarPurposeTitle => 'Propósito claro';
+
+  @override
+  String get settingsAboutAppPillarPurposeBody =>
+      'Transformar tus registros en insights útiles para tu bienestar.';
+
+  @override
+  String get settingsAboutAppPillarControlTitle => 'Control total';
+
+  @override
+  String get settingsAboutAppPillarControlBody =>
+      'Tú decides qué guardar, exportar o eliminar en cualquier momento.';
+
+  @override
   String get settingsDeveloper => 'Desarrollador';
 
   @override
@@ -153,7 +188,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsAboutDevDescription =>
-      'Hola, soy @christhoval. Creé NOTCH para el registro privado y seguro de la actividad sexual. Porque creo que los datos íntimos deben permanecer privados, esta app no tiene servidores, no tiene trackers y tú eres el único dueño de tu información.';
+      'Hola, soy @christhoval, ingeniero fullstack y Tech Lead Front-End en Panamá. Trabajo con JavaScript y Python, y construyo herramientas CLI, paquetes npm y apps móviles. Me enfoco en producto, UX y privacidad por diseño. Creé NOTCH porque los datos íntimos deben quedarse en tus manos: sin servidores, sin trackers y con control total para ti.';
+
+  @override
+  String get settingsAboutDevRoleTitle => 'Rol actual';
+
+  @override
+  String get settingsAboutDevRoleBody =>
+      'Ingeniero Fullstack y Tech Lead Front-End.';
+
+  @override
+  String get settingsAboutDevStackTitle => 'Stack principal';
+
+  @override
+  String get settingsAboutDevStackBody =>
+      'JavaScript, TypeScript, Python, Flutter, CLI y npm.';
+
+  @override
+  String get settingsAboutDevFocusTitle => 'Enfoque';
+
+  @override
+  String get settingsAboutDevFocusBody =>
+      'Producto, UX y privacidad por diseño.';
 
   @override
   String get settingsContactSupport => 'Contacto / Soporte';
@@ -1012,6 +1068,62 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get trophyCurrentStreak => 'RACHA ACTUAL';
+
+  @override
+  String get trophyActivityRhythm => 'Ritmo de actividad';
+
+  @override
+  String get trophyNightOwl => 'Eres un ave nocturna';
+
+  @override
+  String get trophyDayExplorer => 'Eres más activo durante el día';
+
+  @override
+  String trophyRhythmDetail(Object percent) {
+    return 'El $percent% de tus encuentros ocurren entre las 10 PM y las 2 AM.';
+  }
+
+  @override
+  String trophyRhythmPeakWindowDetail(Object percent, Object range) {
+    return 'El $percent% de tus encuentros ocurren entre $range.';
+  }
+
+  @override
+  String get trophyRhythmVibeNight1 => 'Eres un animal nocturno';
+
+  @override
+  String get trophyRhythmVibeNight2 => 'Modo luna: activado';
+
+  @override
+  String get trophyRhythmVibeNight3 =>
+      'Tu prime time empieza cuando cae el sol';
+
+  @override
+  String get trophyRhythmVibeDay1 => 'Te mueve la energia del dia';
+
+  @override
+  String get trophyRhythmVibeDay2 => 'Campeon de la luz solar';
+
+  @override
+  String get trophyRhythmVibeDay3 => 'MVP del turno diurno';
+
+  @override
+  String get trophyRhythmDominantLabel => 'Predominio';
+
+  @override
+  String get trophyRhythmDominantDay => 'Mas diurno';
+
+  @override
+  String get trophyRhythmDominantNight => 'Mas nocturno';
+
+  @override
+  String get trophyPeakHour => 'Hora pico';
+
+  @override
+  String get trophyWeeklyActivity => 'Actividad semanal';
+
+  @override
+  String get trophyWeeklyActivityNoData => 'Sin datos suficientes';
 
   @override
   String get badgeLocked => 'Bloqueado';

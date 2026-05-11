@@ -27,12 +27,8 @@ class HomeBottomBar extends StatelessWidget {
         label: l10n.homeTrophiesTab,
       ),
       NotchBottomBarItem(
-        icon: Icons.local_hospital_outlined,
-        label: l10n.homeHealthTab,
-      ),
-      NotchBottomBarItem(
-        icon: Icons.bar_chart_outlined,
-        label: l10n.homeStatsTab,
+        icon: Icons.settings_outlined,
+        label: l10n.settingsTitle,
       ),
     ];
 

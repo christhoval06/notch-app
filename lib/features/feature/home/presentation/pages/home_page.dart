@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show ScrollDirection;
 import 'package:notch_app/features/feature/gamification/presentation/pages/trophy_room_page.dart';
 import 'package:notch_app/features/feature/encounters/presentation/pages/add_entry_page.dart';
-import 'package:notch_app/features/feature/health/presentation/pages/health_passport_page.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/insights_page.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/stats_page.dart';
 import 'package:notch_app/features/feature/insights/widgets/calendar_view.dart';
@@ -31,17 +30,14 @@ class _HomePageState extends State<HomePage> {
     CalendarView(),
     BlackBookScreen(),
     TrophyRoomScreen(),
-    HealthPassportScreen(),
-    StatsScreen(),
+    SettingsScreen(),
   ];
 
-  bool _supportsAutoHideChrome(int index) => index == 1 || index == 2 || index == 4;
+  bool _supportsAutoHideChrome(int index) => index == 1 || index == 2;
 
   PremiumFeature? _featureForTab(int index) {
     if (index == 1) return PremiumFeature.blackBook;
     if (index == 2) return PremiumFeature.trophyRoom;
-    if (index == 3) return PremiumFeature.healthPassport;
-    if (index == 4) return PremiumFeature.stats;
     return null;
   }
 
@@ -96,12 +92,12 @@ class _HomePageState extends State<HomePage> {
       'NOTCH',
       '${l10n.homeBlackBookTitle} 📒',
       '${l10n.homeTrophyRoomTitle} 🏆',
-      '${l10n.homeHealthPassportTitle} 🏥',
-      '${l10n.homeStatsTitle} 📊',
+      'Settings ⚙️',
     ];
 
     final shouldAutoHide = _supportsAutoHideChrome(_selectedIndex);
     final chromeVisible = shouldAutoHide ? _isChromeVisible : true;
+    final showHomeTopBar = _selectedIndex != 3;
     final content = shouldAutoHide
         ? NotificationListener<ScrollNotification>(
             onNotification: _onScrollNotification,
@@ -114,30 +110,39 @@ class _HomePageState extends State<HomePage> {
       body: HomeChromeScaffold(
         content: content,
         chromeVisible: chromeVisible,
-        topPadding: MediaQuery.paddingOf(context).top + kToolbarHeight,
+        topPadding: showHomeTopBar
+            ? MediaQuery.paddingOf(context).top + kToolbarHeight
+            : 0,
         bottomPadding: 98,
-        topBar: HomeTopBar(
-          title: titles[_selectedIndex],
-          topInset: MediaQuery.paddingOf(context).top,
-          showPathAction: _selectedIndex == 2,
-          showInsightsAction: _selectedIndex == 4,
-          onSettingsTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => SettingsScreen()),
-          ),
-          onPathTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => PathScreen()),
-          ),
-          onInsightsTap: () async => PremiumAccess.guard(
-            context: context,
-            feature: PremiumFeature.insights,
-            onAllowed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => InsightsScreen()),
-            ),
-          ),
-        ),
+        topBar: showHomeTopBar
+            ? HomeTopBar(
+                title: titles[_selectedIndex],
+                topInset: MediaQuery.paddingOf(context).top,
+                showPathAction: false,
+                showStatsAction: _selectedIndex == 2,
+                showInsightsAction: false,
+                onPathTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => PathScreen()),
+                ),
+                onStatsTap: () async => PremiumAccess.guard(
+                  context: context,
+                  feature: PremiumFeature.stats,
+                  onAllowed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => StatsScreen()),
+                  ),
+                ),
+                onInsightsTap: () async => PremiumAccess.guard(
+                  context: context,
+                  feature: PremiumFeature.insights,
+                  onAllowed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => InsightsScreen()),
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
         bottomBar: HomeBottomBar(
           l10n: l10n,
           currentIndex: _selectedIndex,

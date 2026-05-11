@@ -10,6 +10,8 @@ import 'package:notch_app/features/feature/path/presentation/pages/path_page.dar
 import 'package:notch_app/features/feature/gamification/presentation/pages/share_preview_page.dart';
 import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
 import 'package:notch_app/features/feature/gamification/services/challenge_service.dart';
+import 'package:notch_app/features/feature/gamification/services/season_activity_metrics_service.dart';
+import 'package:notch_app/features/feature/gamification/widgets/season_activity_rhythm_card.dart';
 import 'package:notch_app/core/theme/app_colors.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
 import 'package:notch_app/core/utils/achievement_localization.dart';
@@ -146,6 +148,10 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
             final allTimeStreaks = GamificationEngine.calculateStreaks(
               encounterBox,
             );
+            final activityMetrics = SeasonActivityMetricsService.build(
+              allEncounters: encounterBox.values.toList(),
+              monthId: _selectedMonthId!,
+            );
 
             return Scaffold(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -185,6 +191,9 @@ class _TrophyRoomScreenState extends State<TrophyRoomScreen> {
                           streaksOfSelectedMonth['longest']!,
                       allTimeBestStreak: allTimeStreaks['longest']!,
                     ),
+                    const SizedBox(height: 25),
+
+                    SeasonActivityRhythmCard(metrics: activityMetrics),
                     const SizedBox(height: 25),
 
                     _buildFeaturedChallengeCard(context),
