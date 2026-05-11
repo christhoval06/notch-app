@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:notch_app/l10n/app_localizations.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
-import 'package:notch_app/screens/onboarding_screen.dart';
-import 'package:notch_app/config/feature_flags.dart';
+import 'package:notch_app/core/configs/feature_flags.dart';
+import 'package:notch_app/core/theme/app_theme.dart';
+import 'package:notch_app/data/hive/hive_init.dart';
+import 'package:notch_app/features/feature/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:notch_app/core/widgets/app_lifecycle_observer.dart';
+import 'package:notch_app/core/utils/locale_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:notch_app/theme/app_theme.dart';
-
-import 'package:notch_app/models/global_progress.dart';
-import 'models/encounter.dart';
-import 'models/partner.dart';
-import 'models/monthly_progress.dart';
-import 'models/health_log.dart';
-import 'models/fake_task.dart';
-
-import 'package:notch_app/widgets/app_lifecycle_observer.dart';
-import 'package:notch_app/utils/locale_controller.dart';
-
-import 'services/notification_service.dart';
-import 'services/subscription_service.dart';
-import 'screens/auth_screen.dart';
+import 'package:notch_app/features/feature/health/services/notification_service.dart';
+import 'package:notch_app/features/feature/premium/services/subscription_service.dart';
+import 'package:notch_app/features/feature/auth/presentation/pages/auth_page.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -31,25 +22,8 @@ void main() async {
 
   await NotificationService().init();
 
-  // 2. Inicializar Hive (Base de Datos)
-  await Hive.initFlutter();
-
-  // 3. Registrar el Adaptador (Generado por build_runner)
-  Hive.registerAdapter(GlobalProgressAdapter());
-  Hive.registerAdapter(EncounterAdapter());
-  Hive.registerAdapter(PartnerAdapter());
-  Hive.registerAdapter(AvatarTypeAdapter());
-  Hive.registerAdapter(MonthlyProgressAdapter());
-  Hive.registerAdapter(HealthLogAdapter());
-  Hive.registerAdapter(FakeTaskAdapter());
-
-  // 4. Abrir la caja de datos (Si no existe, la crea)
-  await Hive.openBox<Encounter>('encounters');
-  await Hive.openBox<Partner>('partners');
-  await Hive.openBox<MonthlyProgress>('monthly_progress');
-  await Hive.openBox<HealthLog>('health_logs');
-  await Hive.openBox<FakeTask>('fake_tasks');
-  await Hive.openBox<GlobalProgress>('global_progress');
+  // 2. Inicializar Hive (adapters + boxes centralizados en data/hive)
+  await HiveInit.init();
 
   // 5. Formato de fechas
   await initializeDateFormatting();

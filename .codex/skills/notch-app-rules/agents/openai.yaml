@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notch App Rules"
+  short_description: "Apply Notch app architecture and UI guardrails"
+  default_prompt: "Use $notch-app-rules to enforce project architecture and file constraints in this change."
