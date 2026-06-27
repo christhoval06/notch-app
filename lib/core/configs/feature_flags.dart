@@ -12,10 +12,9 @@ class FeatureFlags {
   FeatureFlags._();
 
   static const List<FeatureItem> items = [
-    // Temporary monetization fallback while IAP is being fixed.
-    FeatureItem(name: FeatureNames.premiumByDefault, enabled: true),
-    FeatureItem(name: FeatureNames.showPremiumSettingsItem, enabled: false),
-    FeatureItem(name: FeatureNames.initializeMonetization, enabled: false),
+    FeatureItem(name: FeatureNames.premiumByDefault, enabled: false),
+    FeatureItem(name: FeatureNames.showPremiumSettingsItem, enabled: true),
+    FeatureItem(name: FeatureNames.initializeMonetization, enabled: true),
   ];
 
   static bool isEnabled(String featureName) {

@@ -4,14 +4,10 @@ import 'package:notch_app/features/feature/premium/presentation/pages/premium_up
 import 'package:notch_app/features/feature/premium/services/subscription_service.dart';
 
 class PremiumAccess {
-  // Temporary switch: keep guard wiring but bypass restrictions.
-  static const bool _allowAllAccess = true;
-
   static bool hasAccess({
     required PremiumFeature feature,
     SubscriptionService? subscriptionService,
   }) {
-    if (_allowAllAccess) return true;
     if (!feature.requiresPremium) return true;
     final service = subscriptionService ?? SubscriptionService();
     return service.isPremium;
