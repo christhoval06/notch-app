@@ -1,87 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
-import 'package:hive/hive.dart';
-import 'package:notch_app/data/models/health_log.dart';
-import 'package:notch_app/data/models/insight.dart';
-import 'package:notch_app/data/models/encounter.dart';
-import 'package:notch_app/core/utils/analyzer.dart';
+import 'package:notch_app/data/repositories/encounter_repository.dart';
+import 'package:notch_app/data/repositories/health_log_repository.dart';
+import 'package:notch_app/features/feature/insights/services/insights_view_model_service.dart';
+import 'package:notch_app/features/feature/insights/widgets/insights_content.dart';
 
 class InsightsScreen extends StatelessWidget {
+  const InsightsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
-    final encounters = Hive.box<Encounter>('encounters').values.toList();
-    final healthLogs = Hive.box<HealthLog>('health_logs').values.toList();
-
-    final analyzer = Analyzer(encounters, healthLogs);
-
-    final insights = analyzer.generateInsights(l10n);
-
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text("${l10n.insightsTitle} 🧠"),
-      ),
-      body: insights.isEmpty
-          ? Center(
-              child: Text(
-                l10n.insightsEmpty,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: scheme.onSurfaceVariant),
-              ),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: insights.length,
-              itemBuilder: (context, index) {
-                return _buildInsightCard(context, insights[index]);
-              },
-            ),
-    );
-  }
-
-  Widget _buildInsightCard(BuildContext context, Insight insight) {
-    final scheme = Theme.of(context).colorScheme;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: scheme.surface,
-        borderRadius: BorderRadius.circular(15),
-        border: Border(left: BorderSide(color: insight.color, width: 5)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(insight.icon, color: insight.color, size: 24),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  insight.title,
-                  style: TextStyle(
-                    color: scheme.onSurface,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+    return AnimatedBuilder(
+      animation: Listenable.merge([
+        EncounterRepository.listenable(),
+        HealthLogRepository.listenable(),
+      ]),
+      builder: (context, _) {
+        final viewModel = InsightsViewModelService.build(
+          encounters: EncounterRepository.getAll(),
+          healthLogs: HealthLogRepository.getAll(),
+          l10n: l10n,
+        );
+        return Scaffold(
+          backgroundColor: scheme.surface,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: Text(l10n.insightsTitle),
           ),
-          const SizedBox(height: 12),
-          Text(
-            insight.description,
-            style: TextStyle(
-              color: scheme.onSurfaceVariant,
-              fontSize: 14,
-              height: 1.4,
+          body: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  scheme.surface,
+                  scheme.surfaceContainerHighest.withValues(alpha: 0.16),
+                  scheme.surface,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
+            child: SafeArea(child: InsightsContent(viewModel: viewModel)),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

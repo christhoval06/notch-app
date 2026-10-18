@@ -18,15 +18,19 @@ class GlobalProgressAdapter extends TypeAdapter<GlobalProgress> {
     };
     return GlobalProgress(
       unlockedOnceAchievements: (fields[0] as List).cast<String>(),
+      claimedHistoricalChallengeRewardIds:
+          (fields[1] as List?)?.cast<String>() ?? const [],
     );
   }
 
   @override
   void write(BinaryWriter writer, GlobalProgress obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.unlockedOnceAchievements);
+      ..write(obj.unlockedOnceAchievements)
+      ..writeByte(1)
+      ..write(obj.claimedHistoricalChallengeRewardIds);
   }
 
   @override

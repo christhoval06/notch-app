@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'pin_pad_button.dart';
 
 class PinDots extends StatelessWidget {
   final int length;
@@ -42,7 +43,6 @@ class PinDots extends StatelessWidget {
   }
 }
 
-// 2. EL TECLADO NUMÉRICO
 class Numpad extends StatelessWidget {
   final Function(String) onDigitPress;
   final VoidCallback onDeletePress;
@@ -73,46 +73,19 @@ class Numpad extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: digits.map((d) {
-          if (d.isEmpty) return const SizedBox(width: 70, height: 70);
-          if (d == 'del') {
-            return IconButton(
-              icon: Icon(
-                Icons.backspace_outlined,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              iconSize: 28,
-              onPressed: () {
-                HapticFeedback.selectionClick();
-                onDeletePress();
-              },
-            );
-          }
-          return InkWell(
-            onTap: () {
-              HapticFeedback.selectionClick();
-              onDigitPress(d);
-            },
-            borderRadius: BorderRadius.circular(40),
-            child: Container(
-              width: 70,
-              height: 70,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.surface,
-              ),
-              child: Text(
-                d,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-          );
-        }).toList(),
+        children: digits.map((digit) => _buildButton(digit)).toList(),
       ),
     );
+  }
+
+  Widget _buildButton(String digit) {
+    if (digit.isEmpty) return const SizedBox(width: 70, height: 70);
+    if (digit == 'del') {
+      return PinPadButton(
+        icon: Icons.backspace_outlined,
+        onPressed: onDeletePress,
+      );
+    }
+    return PinPadButton(label: digit, onPressed: () => onDigitPress(digit));
   }
 }

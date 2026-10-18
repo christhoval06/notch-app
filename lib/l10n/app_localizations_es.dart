@@ -109,6 +109,250 @@ class AppLocalizationsEs extends AppLocalizations {
       'Aún no hay suficientes datos para generar insights.\\n¡Sigue registrando!';
 
   @override
+  String get insightsHeroEyebrow => 'LECTURA EDITORIAL';
+
+  @override
+  String get insightsHeroEmptyTitle =>
+      'Tu capa de inteligencia está lista para aprender.';
+
+  @override
+  String get insightsHeroEmptyBody =>
+      'Empieza a registrar encuentros o chequeos de salud y esta pantalla los convertirá en patrones guiados, alertas y señales premium.';
+
+  @override
+  String get insightsHeroHealthTitle =>
+      'Las señales de salud merecen una mirada más atenta.';
+
+  @override
+  String get insightsHeroHealthBody =>
+      'Tus datos recientes de salud sexual sugieren que este es un buen momento para bajar el ritmo, revisar hábitos de protección y mantener tus registros al día.';
+
+  @override
+  String get insightsHeroProtectionTitle =>
+      'La protección está marcando una base sólida.';
+
+  @override
+  String insightsHeroProtectionBody(Object rate) {
+    return '$rate% de tus encuentros fueron protegidos, lo que le da a este período un perfil más seguro y estable.';
+  }
+
+  @override
+  String get insightsHeroRhythmTitle => 'Tu ritmo actual ya se puede leer.';
+
+  @override
+  String insightsHeroRhythmBody(Object rating) {
+    return 'Tus encuentros recientes promedian $rating, lo que da suficiente señal para extraer patrones y alertas.';
+  }
+
+  @override
+  String get insightsHeroChipStarting => 'Empezando';
+
+  @override
+  String get insightsHeroChipNoSignals => 'Sin señales aún';
+
+  @override
+  String insightsHeroProtectionChip(Object rate) {
+    return '$rate% protegido';
+  }
+
+  @override
+  String insightsHeroQualityChip(Object rating) {
+    return 'Promedio $rating';
+  }
+
+  @override
+  String insightsHeroEncountersChip(Object count) {
+    return '$count encuentros registrados';
+  }
+
+  @override
+  String insightsHeroHealthLogsChip(Object count) {
+    return '$count registros de salud';
+  }
+
+  @override
+  String get insightsBestPatternLabel => 'Mejor patrón';
+
+  @override
+  String insightsBestPatternPartnerHeadline(Object partner) {
+    return '$partner es tu patrón más fuerte hasta ahora.';
+  }
+
+  @override
+  String insightsBestPatternPartnerBody(Object rating) {
+    return 'Esta conexión promedia $rating, convirtiéndose en tu señal de calidad más clara dentro de los datos actuales.';
+  }
+
+  @override
+  String insightsBestPatternRhythmHeadline(Object day) {
+    return '$day te está dando el mejor ritmo.';
+  }
+
+  @override
+  String insightsBestPatternRhythmBody(Object tag) {
+    return 'La etiqueta \"$tag\" aparece con más frecuencia y ayuda a definir el contexto más fuerte de tus registros.';
+  }
+
+  @override
+  String insightsBestPatternPartnerDetail(Object partner) {
+    return 'Dentro de tus registros actuales, esta pareja destaca como el patrón más positivo porque la calidad de la experiencia se mantiene por encima del resto del dataset. No es solo frecuencia: es calidad repetida.';
+  }
+
+  @override
+  String get insightsBestPatternPartnerRecommendation =>
+      'Usa este patrón como referencia: observa el contexto, el ritmo, el momento y la preparación emocional que suelen hacer que estos encuentros funcionen mejor.';
+
+  @override
+  String insightsBestPatternRhythmDetail(Object day) {
+    return 'Tus datos actuales sugieren que este día crea un ritmo más favorable que el resto de la semana. Aunque la muestra siga creciendo, ya se comporta como una ventana más fuerte para mejores resultados.';
+  }
+
+  @override
+  String get insightsBestPatternRhythmRecommendation =>
+      'Si quieres mejorar consistencia, intenta repetir y proteger las condiciones que normalmente rodean este ritmo.';
+
+  @override
+  String get insightsWatchoutLabel => 'Atención';
+
+  @override
+  String get insightsWatchoutHealthHeadline =>
+      'Los registros recientes de salud piden una lectura más cuidadosa.';
+
+  @override
+  String get insightsWatchoutHealthBody =>
+      'Uno de tus últimos registros de salud está positivo o pendiente, así que este período debe leerse con más cautela de lo habitual.';
+
+  @override
+  String get insightsWatchoutHealthDetail =>
+      'Esto no reemplaza guía médica, pero sí significa que tu contexto actual de salud sexual tiene una señal sin resolver. En términos de producto, es una de las razones más fuertes para pasar de una lectura de rendimiento a una lectura de cautela.';
+
+  @override
+  String get insightsWatchoutHealthRecommendation =>
+      'Pausa patrones de riesgo, prioriza seguimiento y registra tu próxima actualización de salud para que esta pantalla refleje un estado más fresco.';
+
+  @override
+  String get insightsWatchoutProtectionHeadline =>
+      'La protección está por debajo de tu base ideal.';
+
+  @override
+  String insightsWatchoutProtectionBody(Object rate) {
+    return 'Solo $rate% de tus encuentros fueron protegidos, lo que aumenta la importancia de la cautela y el seguimiento.';
+  }
+
+  @override
+  String get insightsWatchoutProtectionDetail =>
+      'Tu comportamiento reciente de protección no es catastrófico, pero sí lo bastante débil como para merecer atención. Cuando la protección baja, el resto de la pantalla debe leerse con más cautela, aunque la calidad o el ritmo se vean bien.';
+
+  @override
+  String get insightsWatchoutProtectionRecommendation =>
+      'Refuerza defaults más seguros en esos momentos donde la espontaneidad suele ganarle a la preparación.';
+
+  @override
+  String get insightsWatchoutQualityHeadline =>
+      'La calidad muestra más fricción que fluidez.';
+
+  @override
+  String get insightsWatchoutQualityBody =>
+      'Los promedios son lo bastante bajos como para sugerir que este período necesita más intención, recuperación o cambios de contexto.';
+
+  @override
+  String get insightsWatchoutQualityDetail =>
+      'Los promedios bajos suelen indicar que el problema no es un solo encuentro sino una desalineación repetida de contexto, energía o conexión. Eso es útil porque apunta a un patrón que sí puedes trabajar.';
+
+  @override
+  String get insightsWatchoutQualityRecommendation =>
+      'Intenta cambiar una variable por vez: timing, ritmo, contexto con la pareja o recuperación entre encuentros.';
+
+  @override
+  String get insightsWatchoutGapHeadline =>
+      'La señal es limpia, pero espaciada.';
+
+  @override
+  String insightsWatchoutGapBody(Object days) {
+    return 'Tu último encuentro fue hace $days días, así que los patrones actuales todavía pueden ser tempranos y poco estables.';
+  }
+
+  @override
+  String get insightsWatchoutGapDetail =>
+      'Los huecos largos no son malos por sí mismos, pero reducen la confianza de una lectura a corto plazo. La pantalla todavía puede interpretar tus datos, solo con menos certeza sobre qué es actual y qué es histórico.';
+
+  @override
+  String get insightsWatchoutGapRecommendation =>
+      'Deja que los próximos registros reconstruyan momentum antes de tratar este ciclo como un patrón firme.';
+
+  @override
+  String get insightsHealthSnapshotLabel => 'Resumen de salud';
+
+  @override
+  String get insightsHealthSnapshotEmptyHeadline =>
+      'Aún no hay registros de salud.';
+
+  @override
+  String get insightsHealthSnapshotEmptyBody =>
+      'Agregar pruebas y síntomas hará esta pantalla mucho más útil, sobre todo para el radar de riesgo y la inteligencia a largo plazo.';
+
+  @override
+  String get insightsHealthSnapshotEmptyDetail =>
+      'Ahora mismo la app puede leer ritmo, calidad y protección, pero todavía le falta la capa de salud que vuelve la inteligencia más sólida con el tiempo.';
+
+  @override
+  String get insightsHealthSnapshotEmptyRecommendation =>
+      'Registra tu próxima prueba, resultado o síntoma relevante para que la capa de salud empiece a formar parte de tu lectura editorial.';
+
+  @override
+  String insightsHealthSnapshotHeadline(Object result, Object type) {
+    return 'Última señal registrada: $result en $type.';
+  }
+
+  @override
+  String insightsHealthSnapshotBody(Object months) {
+    return 'Esa última actualización fue hace $months mes(es), lo que ayuda a definir qué tan fresco está tu contexto de salud.';
+  }
+
+  @override
+  String insightsHealthSnapshotDetail(Object type) {
+    return 'Este resumen ayuda a aterrizar el resto de la pantalla en algo más duradero que la variación encuentro por encuentro. Incluso un solo registro de salud mejora la interpretación a largo plazo.';
+  }
+
+  @override
+  String get insightsHealthSnapshotRecommendation =>
+      'Mantén esta capa actualizada con chequeos periódicos para que el resto de tu inteligencia siga siendo contextual y no aislada.';
+
+  @override
+  String get insightsRiskRadarTitle => 'Radar de riesgo';
+
+  @override
+  String get insightsSheetRecommendation => 'Recomendación';
+
+  @override
+  String get insightsRiskProtection => 'Protección';
+
+  @override
+  String get insightsRiskRecovery => 'Seguimiento';
+
+  @override
+  String get insightsRiskVariability => 'Variabilidad';
+
+  @override
+  String get insightsRiskLow => 'Bajo';
+
+  @override
+  String get insightsRiskGuarded => 'Cuidado';
+
+  @override
+  String get insightsRiskHigh => 'Alto';
+
+  @override
+  String get insightsDynamicFeedTitle => 'Más señales';
+
+  @override
+  String get insightsEmptyTitle => 'Tus insights premium aparecerán aquí.';
+
+  @override
+  String get insightsEmptyBody =>
+      'Esta pantalla se vuelve más útil cuando registras algunos encuentros o chequeos de salud. Mientras más consistente sea la data, más precisa será la lectura editorial.';
+
+  @override
   String get settingsTitle => 'Ajustes';
 
   @override
@@ -336,6 +580,14 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get pathTitle => 'Camino de Maestria';
+
+  @override
+  String pathUnlockedAtXp(Object xp) {
+    return 'Desbloqueado a los $xp XP';
+  }
+
+  @override
   String get statsTotal => 'Total';
 
   @override
@@ -351,8 +603,247 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsAnnualActivityMap => 'Mapa de Actividad Anual';
 
   @override
+  String get statsActivityTrendTitle => 'Tendencia de Actividad';
+
+  @override
+  String get statsActivityMapTitle => 'Mapa de Actividad';
+
+  @override
+  String statsActivityMapSummary(Object count) {
+    return '$count días activos en este período.';
+  }
+
+  @override
+  String get statsActivityLegendLess => 'Menos';
+
+  @override
+  String get statsActivityLegendMore => 'Más';
+
+  @override
+  String get statsPremiumHeroEyebrow => 'INTELIGENCIA PREMIUM';
+
+  @override
+  String get statsPremiumHeroQualityTitle => 'La calidad va en modo premium';
+
+  @override
+  String get statsPremiumHeroProtectionTitle =>
+      'La disciplina de protección lidera';
+
+  @override
+  String get statsPremiumHeroPartnerTitle =>
+      'Este período tiene una pareja favorita';
+
+  @override
+  String get statsPremiumHeroConsistencyTitle =>
+      'La consistencia se está volviendo hábito';
+
+  @override
+  String get statsPremiumHeroRhythmTitle =>
+      'Tu ritmo ya tiene una franja dominante';
+
+  @override
+  String statsPremiumHeroQualityBody(Object rating) {
+    return 'Tu promedio es $rating, así que la calidad es hoy tu señal más fuerte en este período.';
+  }
+
+  @override
+  String statsPremiumHeroProtectionBody(Object rate) {
+    return '$rate% de tus encuentros fueron protegidos, convirtiendo la seguridad en tu señal más sólida ahora mismo.';
+  }
+
+  @override
+  String statsPremiumHeroPartnerBody(Object partner, Object share) {
+    return '$partner representa el $share% de tus encuentros y marca el tono de este período.';
+  }
+
+  @override
+  String statsPremiumHeroConsistencyBody(Object days, Object span) {
+    return 'Te mantuviste activo en $days días distintos dentro de una ventana de $span días, convirtiendo repetición en momentum.';
+  }
+
+  @override
+  String statsPremiumHeroRhythmBody(Object bucket, Object share) {
+    return '$bucket lidera con el $share% de tus encuentros, dándole a este período una firma horaria clara.';
+  }
+
+  @override
+  String statsPremiumSignalScore(Object score) {
+    return '$score puntos de señal';
+  }
+
+  @override
+  String get statsPremiumTrendUp => 'Sube vs período anterior';
+
+  @override
+  String get statsPremiumTrendDown => 'Baja vs período anterior';
+
+  @override
+  String get statsPremiumTrendStable => 'Estable vs período anterior';
+
+  @override
+  String get statsPremiumConsistencyTitle => 'Consistencia';
+
+  @override
+  String get statsPremiumQualityTitle => 'Momentum de calidad';
+
+  @override
+  String get statsPremiumPartnerTitle => 'Modo de parejas';
+
+  @override
+  String statsPremiumConsistencyHeadline(Object days, Object span) {
+    return '$days días activos en $span días';
+  }
+
+  @override
+  String statsPremiumQualityHeadline(Object rating) {
+    return 'Promedio de $rating';
+  }
+
+  @override
+  String statsPremiumPartnerHeadline(Object partners, Object share) {
+    return '$partners pareja(s), $share% de concentración';
+  }
+
+  @override
+  String statsPremiumPartnerSupporting(Object partner, Object trend) {
+    return 'Pareja principal: $partner. $trend.';
+  }
+
+  @override
+  String statsPremiumSignalSupporting(Object trend) {
+    return '$trend.';
+  }
+
+  @override
+  String get statsPremiumDeckTitle => 'Lectura premium';
+
+  @override
+  String get statsPremiumStoryQuality => 'Pulso de calidad';
+
+  @override
+  String get statsPremiumStoryProtection => 'Deriva de protección';
+
+  @override
+  String get statsPremiumStoryPartner => 'Foco de pareja';
+
+  @override
+  String get statsPremiumStoryConsistency => 'Pulso de consistencia';
+
+  @override
+  String get statsPremiumStoryRhythm => 'Dominio de ritmo';
+
+  @override
+  String statsPremiumStoryQualityHeadline(Object rating) {
+    return 'La calidad promedia $rating';
+  }
+
+  @override
+  String statsPremiumStoryProtectionHeadline(Object rate) {
+    return 'La protección está en $rate%';
+  }
+
+  @override
+  String statsPremiumStoryPartnerHeadline(Object partner) {
+    return '$partner está definiendo este período';
+  }
+
+  @override
+  String statsPremiumStoryConsistencyHeadline(Object days) {
+    return '$days días activos están marcando tu cadencia';
+  }
+
+  @override
+  String statsPremiumStoryRhythmHeadline(Object bucket) {
+    return '$bucket es tu franja dominante';
+  }
+
+  @override
+  String get statsPremiumStoryQualityBody =>
+      'Las calificaciones altas ya aparecen como uno de los patrones más fuertes de tus datos recientes.';
+
+  @override
+  String get statsPremiumStoryProtectionBody =>
+      'Tu tasa de seguridad ya se ve como una conducta sostenida, no solo como un resultado aislado.';
+
+  @override
+  String statsPremiumStoryPartnerBody(Object share) {
+    return '$share% de tus encuentros se concentran alrededor de la misma pareja.';
+  }
+
+  @override
+  String statsPremiumStoryConsistencyBody(Object span) {
+    return 'Este ritmo cubre $span días y empieza a mostrar intención repetida en vez de registros aislados.';
+  }
+
+  @override
+  String statsPremiumStoryRhythmBody(Object count) {
+    return '$count encuentros ocurrieron dentro de esa ventana horaria.';
+  }
+
+  @override
+  String get statsPremiumUnknownPartner => 'tu pareja principal';
+
+  @override
+  String statsActivitySelectedDay(Object count) {
+    return '$count encuentros seleccionados';
+  }
+
+  @override
+  String statsHeatmapSelection(Object date, Object count) {
+    return '$date • $count encuentros';
+  }
+
+  @override
+  String statsHeatmapSelectionCount(Object count) {
+    return '$count encuentros';
+  }
+
+  @override
+  String statsHeatmapDayInsight(Object count) {
+    return 'Registraste $count encuentros en este dia dentro del periodo seleccionado.';
+  }
+
+  @override
+  String get statsHeatmapTopPartnerLabel => 'Pareja principal';
+
+  @override
+  String get statsHeatmapTagsLabel => 'Etiquetas usadas';
+
+  @override
+  String get statsHeatmapNoTags => 'Sin etiquetas registradas';
+
+  @override
+  String get statsHeatmapProtectionSafe => 'Todo protegido';
+
+  @override
+  String get statsHeatmapProtectionMixed => 'Proteccion mixta';
+
+  @override
+  String get statsHeatmapProtectionNone => 'Sin proteccion';
+
+  @override
   String statsHeatmapSnackBar(Object date, Object count) {
     return '$date: $count encuentros';
+  }
+
+  @override
+  String get statsBusiestStreakTitle => 'Racha más activa';
+
+  @override
+  String get statsWeeklySnapshotTitle => 'Resumen semanal';
+
+  @override
+  String get statsActiveDaysLabel => 'Días activos';
+
+  @override
+  String get statsCurrentWeekLabel => 'Últimos 7 días';
+
+  @override
+  String get statsPreviousWeekLabel => '7 días anteriores';
+
+  @override
+  String statsDaysUnit(Object count) {
+    return '$count días';
   }
 
   @override
@@ -377,6 +868,322 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsNoDescription => 'Sin descripción.';
 
   @override
+  String get statsSegmentAll => 'Todo';
+
+  @override
+  String get statsSegmentPartner => 'Partner';
+
+  @override
+  String get statsSegmentTags => 'Etiquetas';
+
+  @override
+  String get statsSegmentProtection => 'Protección';
+
+  @override
+  String get statsSegmentDayTime => 'Día/Hora';
+
+  @override
+  String get statsFilterAll => 'Todos';
+
+  @override
+  String get statsFilterProtected => 'Con protección';
+
+  @override
+  String get statsFilterUnprotected => 'Sin protección';
+
+  @override
+  String get statsFilterMorning => 'Mañana';
+
+  @override
+  String get statsFilterAfternoon => 'Tarde';
+
+  @override
+  String get statsFilterNight => 'Noche';
+
+  @override
+  String get statsTopPartnersTitle => 'Top Partners';
+
+  @override
+  String get statsTagIntelligenceTitle => 'Inteligencia de Etiquetas';
+
+  @override
+  String get statsTagDetailSubtitle =>
+      'Como se comporta esta etiqueta en el periodo actual';
+
+  @override
+  String get statsTagRelatedPartnersLabel => 'Parejas asociadas';
+
+  @override
+  String get statsTagRecentEncountersLabel =>
+      'Encuentros recientes con esta etiqueta';
+
+  @override
+  String statsTagInsightHighQuality(Object partner) {
+    return 'Esta etiqueta suele rendir mejor con $partner.';
+  }
+
+  @override
+  String statsTagInsightSafe(Object partner) {
+    return 'Esta etiqueta se mantiene muy protegida y se asocia mas con $partner.';
+  }
+
+  @override
+  String statsTagInsightFrequent(Object partner) {
+    return 'Esta etiqueta aparece mas seguido con $partner y marca uso repetido.';
+  }
+
+  @override
+  String get statsProtectionTitle => 'Protección';
+
+  @override
+  String get statsRhythmTitle => 'Día y Hora';
+
+  @override
+  String get statsEncountersLabel => 'Encuentros';
+
+  @override
+  String get statsLastSeenLabel => 'Última vez';
+
+  @override
+  String get statsMostFrequentPartnerLabel => 'Pareja frecuente';
+
+  @override
+  String get statsDominantMoodLabel => 'Mood dominante';
+
+  @override
+  String get statsNoMoodLabel => 'Sin mood registrado';
+
+  @override
+  String get statsPartnerMostActive => 'Más activa';
+
+  @override
+  String get statsPartnerBestChemistry => 'Mejor química';
+
+  @override
+  String get statsPartnerMostRecent => 'Más reciente';
+
+  @override
+  String get statsPartnerDetailMostActive =>
+      'La conexion mas activa de este periodo';
+
+  @override
+  String get statsPartnerDetailBestChemistry =>
+      'La quimica mas fuerte entre tus top partners';
+
+  @override
+  String get statsPartnerDetailMostRecent =>
+      'La mas reciente dentro de este periodo';
+
+  @override
+  String get statsPartnerRecentEncountersLabel => 'Encuentros recientes';
+
+  @override
+  String statsPartnerInsightHighChemistry(Object partner) {
+    return '$partner combina calificaciones altas con una quimica consistente.';
+  }
+
+  @override
+  String statsPartnerInsightSafety(Object partner) {
+    return 'La proteccion se mantuvo alta mientras $partner seguia activa.';
+  }
+
+  @override
+  String statsPartnerInsightMomentum(Object partner) {
+    return '$partner lidera este periodo con un ritmo constante y repetido.';
+  }
+
+  @override
+  String get statsProtectionRateLabel => 'Promedio de protección';
+
+  @override
+  String get statsLastUnprotectedPartnerLabel => 'Última pareja sin protección';
+
+  @override
+  String get statsLastUnprotectedDateLabel => 'Última fecha sin protección';
+
+  @override
+  String get statsProtectionStable =>
+      'La protección se mantuvo estable en este período.';
+
+  @override
+  String get statsProtectionImproving =>
+      'La protección mejoró frente al período anterior.';
+
+  @override
+  String get statsProtectionCaution =>
+      'La protección bajó frente al período anterior.';
+
+  @override
+  String get statsProtectionDetailSubtitle =>
+      'Cómo se comportó la protección en el periodo actual';
+
+  @override
+  String get statsProtectionInsightBody =>
+      'Esta vista resalta tu consistencia de seguridad, el contexto sin protección más repetido y los momentos recientes que vale la pena notar.';
+
+  @override
+  String get statsProtectionTopRiskPartnerLabel =>
+      'Pareja más asociada sin protección';
+
+  @override
+  String get statsProtectionRecentEncountersLabel =>
+      'Encuentros recientes sin protección';
+
+  @override
+  String get statsStrongestWindowLabel => 'Ventana más fuerte';
+
+  @override
+  String get statsStrongestDayLabel => 'Día más fuerte';
+
+  @override
+  String statsRhythmHeadline(Object day, Object bucket) {
+    return '$day en la $bucket es tu ventana más fuerte.';
+  }
+
+  @override
+  String get statsRhythmDetailSubtitle =>
+      'Cómo se comportó tu horario en el periodo actual';
+
+  @override
+  String get statsRhythmWeeklyPulseLabel => 'Pulso semanal';
+
+  @override
+  String get statsRhythmRecentEncountersLabel =>
+      'Encuentros recientes en este ritmo';
+
+  @override
+  String get statsComparisonBaseline => 'Estás construyendo tu línea base.';
+
+  @override
+  String get statsComparisonUp =>
+      'Tu actividad subió frente al período anterior.';
+
+  @override
+  String get statsComparisonDown =>
+      'Tu actividad bajó frente al período anterior.';
+
+  @override
+  String get statsComparisonStable =>
+      'Tu ritmo se mantuvo estable frente al período anterior.';
+
+  @override
+  String get statsStoryBestContextTitle => 'Mejor contexto';
+
+  @override
+  String statsStoryBestContextSupporting(Object rating) {
+    return 'Calificación promedio $rating';
+  }
+
+  @override
+  String statsStoryBestContextDetails(Object context) {
+    return 'Tus mejores calificaciones de este período se concentraron alrededor de $context. Es una gran fórmula para repetir cuando buscas una experiencia más confiable.';
+  }
+
+  @override
+  String get statsStoryMomentumTitle => 'Momentum';
+
+  @override
+  String get statsStoryMomentumUpHeadline => 'La actividad va al alza';
+
+  @override
+  String get statsStoryMomentumDownHeadline => 'La actividad va a la baja';
+
+  @override
+  String statsStoryMomentumSupporting(Object count) {
+    return 'Cambio de $count encuentros vs el período anterior';
+  }
+
+  @override
+  String statsStoryMomentumUpDetails(Object count) {
+    return 'Registraste $count encuentros más que en el período anterior. Normalmente eso apunta a una mejor consistencia en tu ritmo.';
+  }
+
+  @override
+  String statsStoryMomentumDownDetails(Object count) {
+    return 'Registraste $count encuentros menos que en el período anterior. Vale la pena revisar si fue algo puntual o una desaceleración real.';
+  }
+
+  @override
+  String get statsStoryProtectionTrendTitle => 'Tendencia de protección';
+
+  @override
+  String get statsStoryProtectionTrendUpHeadline => 'La protección subió';
+
+  @override
+  String get statsStoryProtectionTrendDownHeadline => 'La protección bajó';
+
+  @override
+  String statsStoryProtectionTrendSupporting(Object current, Object previous) {
+    return '$current% vs $previous%';
+  }
+
+  @override
+  String statsStoryProtectionTrendUpDetails(Object current, Object previous) {
+    return 'El uso de protección subió de $previous% a $current% en este período. Es un cambio importante hacia una mayor consistencia en seguridad.';
+  }
+
+  @override
+  String statsStoryProtectionTrendDownDetails(Object current, Object previous) {
+    return 'El uso de protección bajó de $previous% a $current% en este período. Es una señal que conviene vigilar.';
+  }
+
+  @override
+  String get statsStoryPrimeTimeTitle => 'Prime time';
+
+  @override
+  String statsStoryPrimeTimeSupporting(Object rating) {
+    return 'Calificación promedio $rating';
+  }
+
+  @override
+  String statsStoryPrimeTimeDetails(Object slot) {
+    return 'Tus mejores calificaciones recientes se concentran alrededor de $slot. Parece una de tus ventanas con mayor potencial.';
+  }
+
+  @override
+  String get statsStoryPeakMonthTitle => 'Mes pico';
+
+  @override
+  String statsStoryPeakMonthSupporting(Object rating) {
+    return 'Calificación promedio $rating';
+  }
+
+  @override
+  String statsStoryPeakMonthDetails(Object month) {
+    return '$month destaca como tu mes más fuerte en esta vista. Es una referencia útil del ritmo que podrías intentar repetir.';
+  }
+
+  @override
+  String get statsStoryWeekdayMon => 'Lunes';
+
+  @override
+  String get statsStoryWeekdayTue => 'Martes';
+
+  @override
+  String get statsStoryWeekdayWed => 'Miércoles';
+
+  @override
+  String get statsStoryWeekdayThu => 'Jueves';
+
+  @override
+  String get statsStoryWeekdayFri => 'Viernes';
+
+  @override
+  String get statsStoryWeekdaySat => 'Sábado';
+
+  @override
+  String get statsStoryWeekdaySun => 'Domingo';
+
+  @override
+  String get statsStoryDayTimeMorning => 'mañana';
+
+  @override
+  String get statsStoryDayTimeAfternoon => 'tarde';
+
+  @override
+  String get statsStoryDayTimeNight => 'noche';
+
+  @override
   String get calendarNoActivity => 'Sin actividad este día.';
 
   @override
@@ -396,6 +1203,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get authIncorrectCode => 'Código Incorrecto';
+
+  @override
+  String get liteMonthlyEncounterLimitReached =>
+      'El modo lite permite hasta 5 registros por mes.';
 
   @override
   String get authKillSwitchExecuted =>
@@ -519,6 +1330,90 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String insightDominantStyleDescription(Object tag) {
     return 'Tu etiqueta más frecuente es \'$tag\'. Parece que es una parte importante de tu rutina.';
+  }
+
+  @override
+  String get insightBestTagComboTitle => 'Mejor Combinación de Tags';
+
+  @override
+  String insightBestTagComboDescription(Object tags, Object avg) {
+    return 'Cuando $tags aparecen juntos, tu calificación promedio sube a $avg/10.';
+  }
+
+  @override
+  String get insightMostConsistentPartnerTitle => 'Pareja Más Consistente';
+
+  @override
+  String insightMostConsistentPartnerDescription(Object partner, Object avg) {
+    return '$partner es tu conexión más consistente, con un promedio de $avg/10.';
+  }
+
+  @override
+  String get insightMostUnpredictablePartnerTitle => 'Pareja Más Impredecible';
+
+  @override
+  String insightMostUnpredictablePartnerDescription(
+    Object partner,
+    Object spread,
+  ) {
+    return '$partner muestra los cambios más bruscos recientemente, con una variabilidad de $spread.';
+  }
+
+  @override
+  String get insightBestRecentPartnerTrendTitle =>
+      'Mejor Tendencia Reciente por Pareja';
+
+  @override
+  String insightBestRecentPartnerTrendDescription(Object partner, Object diff) {
+    return '$partner viene en alza, mejorando alrededor de $diff puntos en tus encuentros más recientes.';
+  }
+
+  @override
+  String get insightRecentChemistryTitle => 'Química Reciente';
+
+  @override
+  String insightRecentChemistryDescription(Object partner, Object avg) {
+    return '$partner tiene tu mejor química reciente con un promedio de $avg/10.';
+  }
+
+  @override
+  String get insightProtectionRecentlyDroppedTitle =>
+      'Protección Reciente a la Baja';
+
+  @override
+  String insightProtectionRecentlyDroppedDescription(
+    Object recent,
+    Object previous,
+  ) {
+    return 'Tu uso reciente de protección bajó a $recent% comparado con $previous% en tus registros anteriores.';
+  }
+
+  @override
+  String get insightLongActivityPauseTitle => 'Pausa Larga de Actividad';
+
+  @override
+  String insightLongActivityPauseDescription(Object days) {
+    return 'Han pasado alrededor de $days días desde tu último encuentro registrado. Puede valer la pena revisar cómo te sientes con esa pausa.';
+  }
+
+  @override
+  String get insightHealthCheckOverdueTitle => 'Chequeo de Salud Atrasado';
+
+  @override
+  String insightHealthCheckOverdueDescription(Object months) {
+    return 'Tu último registro en Health Passport fue hace aproximadamente $months meses. Podría ser un buen momento para programar otro chequeo.';
+  }
+
+  @override
+  String get insightStrongestRecentMonthTitle => 'Mes Más Fuerte Reciente';
+
+  @override
+  String insightStrongestRecentMonthDescription(
+    Object month,
+    Object count,
+    Object avg,
+  ) {
+    return '$month destaca con $count encuentros y una calificación promedio de $avg/10.';
   }
 
   @override
@@ -694,6 +1589,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get healthNewRecord => 'Nuevo Registro Médico';
 
   @override
+  String get healthAddRecordSubtitle =>
+      'Mantén tu historial personal de salud al día con registros claros y privados.';
+
+  @override
   String get healthTestTypeLabel => 'Tipo de Prueba (Ej. Panel Completo)';
 
   @override
@@ -719,6 +1618,9 @@ class AppLocalizationsEs extends AppLocalizations {
       'Escribe \'@\' para buscar o un nombre nuevo...';
 
   @override
+  String get addEntryPartnerRequired => 'El nombre es requerido';
+
+  @override
   String get addEntryPartnerSheetTitle => 'Seleccionar pareja';
 
   @override
@@ -728,6 +1630,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sharePreviewTitle => 'Previsualización';
+
+  @override
+  String get sharePreviewSubtitle =>
+      'Tu resumen premium de temporada esta listo para compartir.';
+
+  @override
+  String get sharePreviewAction => 'Compartir tarjeta';
 
   @override
   String get shareCardText =>
@@ -786,11 +1695,52 @@ class AppLocalizationsEs extends AppLocalizations {
   String get trophyHistorical => 'HISTÓRICO';
 
   @override
+  String get trophyAbstinenceRecordsTitle => 'Récords de abstinencia';
+
+  @override
+  String get trophyAbstinenceRecordsSubtitle => 'Tus mejores marcas alcanzadas';
+
+  @override
   String get challengesTitle => 'Retos';
 
   @override
   String get challengesSubtitle =>
       'Completa estos objetivos para demostrar tu maestría y compromiso.';
+
+  @override
+  String get challengeSeasonal => 'Temporada';
+
+  @override
+  String get challengeHistorical => 'Histórico';
+
+  @override
+  String challengeXpReward(Object xp) {
+    return '$xp XP';
+  }
+
+  @override
+  String get challengeCategoryFoundation => 'Base';
+
+  @override
+  String get challengeCategoryAll => 'Todas';
+
+  @override
+  String get challengeCategorySocial => 'Social';
+
+  @override
+  String get challengeCategoryEvents => 'Eventos';
+
+  @override
+  String get challengeCategoryRelationships => 'Relaciones';
+
+  @override
+  String get challengeCategoryMood => 'Mood';
+
+  @override
+  String get challengeCategorySkill => 'Skill';
+
+  @override
+  String get challengeCategoryLegacy => 'Legado';
 
   @override
   String get challengeMorningMasterTitle => 'Maestro Mañanero';
@@ -811,7 +1761,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get challengeQualityWeekDesc =>
-      'Logra un promedio de 8.0+ en los últimos 7 días.';
+      'Registra 8 encuentros en los últimos 7 días con un promedio de 8.0+.';
 
   @override
   String get challengeSafetyChampionTitle => 'Campeón de la Seguridad';
@@ -840,6 +1790,139 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get challengeQualityClubDesc =>
       'Logra 5 encuentros este mes con calificación de 9 o 10.';
+
+  @override
+  String get challengeQualityStreak3Title => 'Racha de Calidad';
+
+  @override
+  String get challengeQualityStreak3Desc =>
+      'Logra 3 encuentros seguidos con calificación de 8 o más en la temporada actual.';
+
+  @override
+  String get challengeQualityStreak5Title => 'Calidad Imparable';
+
+  @override
+  String get challengeQualityStreak5Desc =>
+      'Logra 5 encuentros seguidos con calificación de 8 o más a lo largo de tu historial.';
+
+  @override
+  String get challengeBalancedWeekTitle => 'Semana Balanceada';
+
+  @override
+  String get challengeBalancedWeekDesc =>
+      'Registra encuentros en 3 días distintos dentro de los últimos 7 días.';
+
+  @override
+  String get challengeTagCombo5Title => 'Combo de Etiquetas';
+
+  @override
+  String get challengeTagCombo5Desc =>
+      'Usa 5 etiquetas distintas durante la temporada actual.';
+
+  @override
+  String get challengeSocialCircle3Title => 'Circulo Social';
+
+  @override
+  String get challengeSocialCircle3Desc =>
+      'Registra encuentros con 3 parejas distintas esta temporada.';
+
+  @override
+  String get challengeQualityNetwork3Title => 'Red de Calidad';
+
+  @override
+  String get challengeQualityNetwork3Desc =>
+      'Registra encuentros esta temporada con 3 parejas distintas, cada una con calificacion de 8 o mas.';
+
+  @override
+  String get challengeSafeNetwork3Title => 'Red Segura';
+
+  @override
+  String get challengeSafeNetwork3Desc =>
+      'Registra encuentros protegidos esta temporada con 3 parejas distintas.';
+
+  @override
+  String get challengeWeekendRun2Title => 'Racha de Weekend';
+
+  @override
+  String get challengeWeekendRun2Desc =>
+      'Registra encuentros en 2 fines de semana consecutivos durante esta temporada.';
+
+  @override
+  String get challengeSocialWeekend3Title => 'Fin de Semana Social';
+
+  @override
+  String get challengeSocialWeekend3Desc =>
+      'Registra encuentros de fin de semana con 3 parejas distintas esta temporada.';
+
+  @override
+  String get challengeEventMix3Title => 'Mezcla de Eventos';
+
+  @override
+  String get challengeEventMix3Desc =>
+      'Usa 3 etiquetas de eventos distintas esta temporada.';
+
+  @override
+  String get challengeGetawayDuo2Title => 'Duo de Escapada';
+
+  @override
+  String get challengeGetawayDuo2Desc =>
+      'Registra 2 encuentros esta temporada con etiquetas de escapada.';
+
+  @override
+  String get challengeMoodSpectrum3Title => 'Espectro de Mood';
+
+  @override
+  String get challengeMoodSpectrum3Desc =>
+      'Registra 3 moods distintos en esta temporada.';
+
+  @override
+  String get challengeHighSpirits3Title => 'Moods Intensos';
+
+  @override
+  String get challengeHighSpirits3Desc =>
+      'Registra 3 encuentros esta temporada con mood definido y calificacion de 8 o mas.';
+
+  @override
+  String get challengeSkillMix3Title => 'Mezcla de Practicas';
+
+  @override
+  String get challengeSkillMix3Desc =>
+      'Usa 3 etiquetas de practicas distintas esta temporada.';
+
+  @override
+  String get challengePleasureCrafter3Title => 'Arquitecto del Placer';
+
+  @override
+  String get challengePleasureCrafter3Desc =>
+      'Registra 3 encuentros esta temporada con practicas y calificacion de 8 o mas.';
+
+  @override
+  String get challengeConnectionArc3Title => 'Arco de Conexion';
+
+  @override
+  String get challengeConnectionArc3Desc =>
+      'Usa 3 etiquetas de dinamicas relacionales esta temporada.';
+
+  @override
+  String get challengeDateNight2Title => 'Noche de Cita';
+
+  @override
+  String get challengeDateNight2Desc =>
+      'Registra 2 encuentros esta temporada con etiquetas romanticas.';
+
+  @override
+  String get challengeSinglePartnerSeasonTitle => 'Solo una Pareja';
+
+  @override
+  String get challengeSinglePartnerSeasonDesc =>
+      'Registra 8 encuentros esta temporada con una sola pareja. Si aparece otra, el reto se rompe.';
+
+  @override
+  String get challengeLoyalMonthTitle => 'Mes Leal';
+
+  @override
+  String get challengeLoyalMonthDesc =>
+      'Registra 12 encuentros esta temporada con una sola pareja. Si aparece otra, el reto se rompe.';
 
   @override
   String get challengeGuardianOfSafetyTitle => 'Guardián de la Seguridad';
@@ -889,6 +1972,34 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get challengeLegendaryGuardianDesc =>
       'Mantén una tasa de protección del 95%+ sobre al menos 50 encuentros.';
+
+  @override
+  String get challengeSinglePartner100Title => 'Una Misma Historia';
+
+  @override
+  String get challengeSinglePartner100Desc =>
+      'Acumula 100 encuentros con una sola pareja.';
+
+  @override
+  String get challengeSinglePartner500Title => 'Vínculo Legendario';
+
+  @override
+  String get challengeSinglePartner500Desc =>
+      'Acumula 500 encuentros con una sola pareja.';
+
+  @override
+  String get challengeSteadyBond50Title => 'Lazo Seguro';
+
+  @override
+  String get challengeSteadyBond50Desc =>
+      'Acumula 50 encuentros protegidos con una sola pareja a lo largo de tu historial.';
+
+  @override
+  String get challengeConstellation10Title => 'Constelación';
+
+  @override
+  String get challengeConstellation10Desc =>
+      'Registra encuentros con 10 parejas distintas a lo largo de tu historial.';
 
   @override
   String get challengePolymathTitle => 'El Polímata';
@@ -1050,6 +2161,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get trophyUnlockedBadges => 'INSIGNIAS DESBLOQUEADAS';
 
   @override
+  String get trophyRoomSubtitle =>
+      'Sigue tu rango, tus rachas y tus logros de temporada en un solo espacio premium.';
+
+  @override
   String get trophySeasonLabel => 'Temporada';
 
   @override
@@ -1189,27 +2304,49 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get achievementAbstinenceBronzeDesc =>
-      'Alcanza 7 días de abstinencia.';
+      'Alcanza 7 dias de abstinencia durante el mes actual.';
 
   @override
   String get achievementAbstinenceSilverName => 'Abstinencia Plata';
 
   @override
   String get achievementAbstinenceSilverDesc =>
-      'Alcanza 14 días de abstinencia.';
+      'Alcanza 14 dias de abstinencia durante el mes actual.';
 
   @override
   String get achievementAbstinenceGoldName => 'Abstinencia Oro';
 
   @override
-  String get achievementAbstinenceGoldDesc => 'Alcanza 30 días de abstinencia.';
+  String get achievementAbstinenceGoldDesc =>
+      'Alcanza 30 dias de abstinencia durante el mes actual.';
 
   @override
   String get achievementAbstinenceDiamondName => 'Abstinencia Diamante';
 
   @override
   String get achievementAbstinenceDiamondDesc =>
-      'Alcanza 60 días de abstinencia.';
+      'Alcanza 60 dias historicos de abstinencia.';
+
+  @override
+  String get achievementAbstinenceMaster45Name => 'Abstinencia 45';
+
+  @override
+  String get achievementAbstinenceMaster45Desc =>
+      'Alcanza 45 dias historicos de abstinencia.';
+
+  @override
+  String get achievementAbstinenceMaster90Name => 'Abstinencia 90';
+
+  @override
+  String get achievementAbstinenceMaster90Desc =>
+      'Alcanza 90 dias historicos de abstinencia.';
+
+  @override
+  String get achievementAbstinenceMaster120Name => 'Abstinencia 120';
+
+  @override
+  String get achievementAbstinenceMaster120Desc =>
+      'Alcanza 120 dias historicos de abstinencia.';
 
   @override
   String get achievementMonkModeName => 'Modo Monje';
@@ -1306,6 +2443,38 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get trophyBadgeNotUnlockedHistory =>
       'Aún no has desbloqueado esta medalla.';
+
+  @override
+  String get trophyBadgeOneTimeTitle => 'Logro de una sola vez';
+
+  @override
+  String get trophyBadgeOneTimeUnlocked => 'Ya has desbloqueado esta medalla.';
+
+  @override
+  String get trophyBadgeStatusUnlocked => 'Desbloqueada';
+
+  @override
+  String get trophyBadgeStatusLocked => 'Bloqueada';
+
+  @override
+  String get trophyBadgeModalFootnote =>
+      'Cada medalla refleja tu progreso entre temporadas, hitos y consistencia personal.';
+
+  @override
+  String get trophyBadgeRuleTitleExclusive =>
+      'Regla de temporada: una sola pareja';
+
+  @override
+  String get trophyBadgeRuleBodyExclusive =>
+      'Desbloquea esta medalla al llegar a 8 encuentros en la temporada actual y mantenerlos todos con la misma pareja.';
+
+  @override
+  String get trophyBadgeRuleTitleVariety =>
+      'Regla de temporada: varias parejas';
+
+  @override
+  String get trophyBadgeRuleBodyVariety =>
+      'Desbloquea esta medalla cuando la temporada actual incluya encuentros con 3 parejas distintas.';
 
   @override
   String get trophyShowMore => 'Ver más';

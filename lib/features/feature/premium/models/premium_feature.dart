@@ -10,7 +10,7 @@ enum PremiumFeature {
 }
 
 extension PremiumFeatureCopy on PremiumFeature {
-  bool get requiresPremium => true;
+  bool get requiresPremium => false;
 
   String title(AppLocalizations l10n) {
     switch (this) {

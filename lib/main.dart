@@ -37,11 +37,9 @@ void main() async {
 
   final prefs = await SharedPreferences.getInstance();
   await AppLocaleController.instance.init(prefs);
-  // Buscamos la bandera. Si no existe (es null), es la primera vez (true).
   final bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
   if (isFirstTime) {
-    // Si es la primera vez, guardamos la bandera como 'false' para el futuro
     await prefs.setBool('isFirstTime', false);
   }
 

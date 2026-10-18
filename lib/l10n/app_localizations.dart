@@ -296,6 +296,372 @@ abstract class AppLocalizations {
   /// **'Not enough data to generate insights yet.\\nKeep logging!'**
   String get insightsEmpty;
 
+  /// No description provided for @insightsHeroEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'EDITORIAL READOUT'**
+  String get insightsHeroEyebrow;
+
+  /// No description provided for @insightsHeroEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your intelligence layer is ready to learn.'**
+  String get insightsHeroEmptyTitle;
+
+  /// No description provided for @insightsHeroEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start logging encounters or health checks and this screen will turn them into guided patterns, watchouts, and premium signals.'**
+  String get insightsHeroEmptyBody;
+
+  /// No description provided for @insightsHeroHealthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health signals deserve closer attention.'**
+  String get insightsHeroHealthTitle;
+
+  /// No description provided for @insightsHeroHealthBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent sexual-health data suggests this is a good moment to slow down, review protection habits, and keep your records updated.'**
+  String get insightsHeroHealthBody;
+
+  /// No description provided for @insightsHeroProtectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection is shaping a strong baseline.'**
+  String get insightsHeroProtectionTitle;
+
+  /// No description provided for @insightsHeroProtectionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{rate}% of your encounters were protected, which is giving this period a safer and more stable profile.'**
+  String insightsHeroProtectionBody(Object rate);
+
+  /// No description provided for @insightsHeroRhythmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current rhythm is readable.'**
+  String get insightsHeroRhythmTitle;
+
+  /// No description provided for @insightsHeroRhythmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent encounters are averaging {rating}, giving this period enough signal to extract patterns and watchouts.'**
+  String insightsHeroRhythmBody(Object rating);
+
+  /// No description provided for @insightsHeroChipStarting.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting fresh'**
+  String get insightsHeroChipStarting;
+
+  /// No description provided for @insightsHeroChipNoSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'No signals yet'**
+  String get insightsHeroChipNoSignals;
+
+  /// No description provided for @insightsHeroProtectionChip.
+  ///
+  /// In en, this message translates to:
+  /// **'{rate}% protected'**
+  String insightsHeroProtectionChip(Object rate);
+
+  /// No description provided for @insightsHeroQualityChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg rating {rating}'**
+  String insightsHeroQualityChip(Object rating);
+
+  /// No description provided for @insightsHeroEncountersChip.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} encounters logged'**
+  String insightsHeroEncountersChip(Object count);
+
+  /// No description provided for @insightsHeroHealthLogsChip.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} health logs tracked'**
+  String insightsHeroHealthLogsChip(Object count);
+
+  /// No description provided for @insightsBestPatternLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Best pattern'**
+  String get insightsBestPatternLabel;
+
+  /// No description provided for @insightsBestPatternPartnerHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} is your strongest pattern so far.'**
+  String insightsBestPatternPartnerHeadline(Object partner);
+
+  /// No description provided for @insightsBestPatternPartnerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This connection is averaging {rating}, making it your clearest quality signal in the current data.'**
+  String insightsBestPatternPartnerBody(Object rating);
+
+  /// No description provided for @insightsBestPatternRhythmHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} is giving you the best rhythm.'**
+  String insightsBestPatternRhythmHeadline(Object day);
+
+  /// No description provided for @insightsBestPatternRhythmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The tag \"{tag}\" appears most often and helps define the strongest context in your logs.'**
+  String insightsBestPatternRhythmBody(Object tag);
+
+  /// No description provided for @insightsBestPatternPartnerDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Across your current records, this partner stands out as the clearest positive pattern because the experience quality remains consistently stronger than the rest of the dataset. This is less about frequency alone and more about repeat quality.'**
+  String insightsBestPatternPartnerDetail(Object partner);
+
+  /// No description provided for @insightsBestPatternPartnerRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this pattern as a benchmark: notice the context, pace, timing, and emotional setup that tend to make these encounters work better.'**
+  String get insightsBestPatternPartnerRecommendation;
+
+  /// No description provided for @insightsBestPatternRhythmDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current data suggests that this day creates a more favorable rhythm than the rest of the week. Even if the sample is still growing, it already behaves like a stronger window for better outcomes.'**
+  String insightsBestPatternRhythmDetail(Object day);
+
+  /// No description provided for @insightsBestPatternRhythmRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'If you want to improve consistency, try protecting and repeating the conditions that usually happen around this rhythm.'**
+  String get insightsBestPatternRhythmRecommendation;
+
+  /// No description provided for @insightsWatchoutLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Watchout'**
+  String get insightsWatchoutLabel;
+
+  /// No description provided for @insightsWatchoutHealthHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent health records need a closer read.'**
+  String get insightsWatchoutHealthHeadline;
+
+  /// No description provided for @insightsWatchoutHealthBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One of your latest health logs is positive or pending, so this period should be read with more caution than usual.'**
+  String get insightsWatchoutHealthBody;
+
+  /// No description provided for @insightsWatchoutHealthDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'This does not replace medical guidance, but it does mean your current sexual-health context has an unresolved signal. In product terms, this is one of the strongest reasons to temporarily shift from performance reading to caution reading.'**
+  String get insightsWatchoutHealthDetail;
+
+  /// No description provided for @insightsWatchoutHealthRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause risky patterns, prioritize follow-up, and keep your next health update logged so this screen can reflect a fresher status.'**
+  String get insightsWatchoutHealthRecommendation;
+
+  /// No description provided for @insightsWatchoutProtectionHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection is softer than your ideal baseline.'**
+  String get insightsWatchoutProtectionHeadline;
+
+  /// No description provided for @insightsWatchoutProtectionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {rate}% of your encounters were protected, which raises the importance of caution and follow-up.'**
+  String insightsWatchoutProtectionBody(Object rate);
+
+  /// No description provided for @insightsWatchoutProtectionDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent protection behavior is not yet catastrophic, but it is soft enough to deserve attention. When protection slips, the rest of the screen should be read with more caution, even if quality or rhythm still look strong.'**
+  String get insightsWatchoutProtectionDetail;
+
+  /// No description provided for @insightsWatchoutProtectionRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Reinforce safer defaults in the moments where spontaneity usually overrides preparation.'**
+  String get insightsWatchoutProtectionRecommendation;
+
+  /// No description provided for @insightsWatchoutQualityHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality is showing more friction than flow.'**
+  String get insightsWatchoutQualityHeadline;
+
+  /// No description provided for @insightsWatchoutQualityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Average ratings are low enough to suggest this period may need more intention, recovery, or context changes.'**
+  String get insightsWatchoutQualityBody;
+
+  /// No description provided for @insightsWatchoutQualityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Low averages usually mean the issue is not just one encounter but a repeated mismatch in context, energy, or connection. This is useful because it points to a pattern you can actually work on.'**
+  String get insightsWatchoutQualityDetail;
+
+  /// No description provided for @insightsWatchoutQualityRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Try changing one variable at a time: timing, pace, partner context, or recovery between encounters.'**
+  String get insightsWatchoutQualityRecommendation;
+
+  /// No description provided for @insightsWatchoutGapHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'The signal is clean, but spaced out.'**
+  String get insightsWatchoutGapHeadline;
+
+  /// No description provided for @insightsWatchoutGapBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your latest encounter was {days} days ago, so current patterns may still be early and less stable.'**
+  String insightsWatchoutGapBody(Object days);
+
+  /// No description provided for @insightsWatchoutGapDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Long gaps are not bad by themselves, but they reduce confidence in short-term pattern reading. The screen can still interpret your data, just with less certainty about what is current versus historical.'**
+  String get insightsWatchoutGapDetail;
+
+  /// No description provided for @insightsWatchoutGapRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the next few logs rebuild momentum before treating this cycle as a firm pattern.'**
+  String get insightsWatchoutGapRecommendation;
+
+  /// No description provided for @insightsHealthSnapshotLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Health snapshot'**
+  String get insightsHealthSnapshotLabel;
+
+  /// No description provided for @insightsHealthSnapshotEmptyHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'No health logs yet.'**
+  String get insightsHealthSnapshotEmptyHeadline;
+
+  /// No description provided for @insightsHealthSnapshotEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding tests and symptoms will make this screen sharper, especially for risk radar and long-term health intelligence.'**
+  String get insightsHealthSnapshotEmptyBody;
+
+  /// No description provided for @insightsHealthSnapshotEmptyDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Right now, the app can read rhythm, quality, and protection, but it is still missing the health layer that makes the intelligence more grounded over time.'**
+  String get insightsHealthSnapshotEmptyDetail;
+
+  /// No description provided for @insightsHealthSnapshotEmptyRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Log your next check, result, or relevant symptom so the health layer becomes part of your editorial readout.'**
+  String get insightsHealthSnapshotEmptyRecommendation;
+
+  /// No description provided for @insightsHealthSnapshotHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Last recorded health signal: {result} in {type}.'**
+  String insightsHealthSnapshotHeadline(Object result, Object type);
+
+  /// No description provided for @insightsHealthSnapshotBody.
+  ///
+  /// In en, this message translates to:
+  /// **'That last update was {months} month(s) ago, which helps define how fresh your health context is.'**
+  String insightsHealthSnapshotBody(Object months);
+
+  /// No description provided for @insightsHealthSnapshotDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'This snapshot helps anchor the rest of the screen in something more durable than encounter-by-encounter variation. Even a single health record improves long-term interpretation.'**
+  String insightsHealthSnapshotDetail(Object type);
+
+  /// No description provided for @insightsHealthSnapshotRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this layer fresh with periodic check-ins so the rest of your intelligence stays contextual, not isolated.'**
+  String get insightsHealthSnapshotRecommendation;
+
+  /// No description provided for @insightsRiskRadarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Risk radar'**
+  String get insightsRiskRadarTitle;
+
+  /// No description provided for @insightsSheetRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendation'**
+  String get insightsSheetRecommendation;
+
+  /// No description provided for @insightsRiskProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection'**
+  String get insightsRiskProtection;
+
+  /// No description provided for @insightsRiskRecovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery'**
+  String get insightsRiskRecovery;
+
+  /// No description provided for @insightsRiskVariability.
+  ///
+  /// In en, this message translates to:
+  /// **'Variability'**
+  String get insightsRiskVariability;
+
+  /// No description provided for @insightsRiskLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get insightsRiskLow;
+
+  /// No description provided for @insightsRiskGuarded.
+  ///
+  /// In en, this message translates to:
+  /// **'Guarded'**
+  String get insightsRiskGuarded;
+
+  /// No description provided for @insightsRiskHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get insightsRiskHigh;
+
+  /// No description provided for @insightsDynamicFeedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More signals'**
+  String get insightsDynamicFeedTitle;
+
+  /// No description provided for @insightsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your premium insights will appear here.'**
+  String get insightsEmptyTitle;
+
+  /// No description provided for @insightsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This screen becomes more useful once you log a few encounters or health checks. The more consistent the data, the sharper the editorial reading.'**
+  String get insightsEmptyBody;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
@@ -704,6 +1070,18 @@ abstract class AppLocalizations {
   /// **'{xp} XP total'**
   String statsXpTotal(Object xp);
 
+  /// No description provided for @pathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Path of Mastery'**
+  String get pathTitle;
+
+  /// No description provided for @pathUnlockedAtXp.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked at {xp} XP'**
+  String pathUnlockedAtXp(Object xp);
+
   /// No description provided for @statsTotal.
   ///
   /// In en, this message translates to:
@@ -734,11 +1112,377 @@ abstract class AppLocalizations {
   /// **'Annual Activity Map'**
   String get statsAnnualActivityMap;
 
+  /// No description provided for @statsActivityTrendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Trend'**
+  String get statsActivityTrendTitle;
+
+  /// No description provided for @statsActivityMapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Map'**
+  String get statsActivityMapTitle;
+
+  /// No description provided for @statsActivityMapSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} active days in this period.'**
+  String statsActivityMapSummary(Object count);
+
+  /// No description provided for @statsActivityLegendLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Less'**
+  String get statsActivityLegendLess;
+
+  /// No description provided for @statsActivityLegendMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get statsActivityLegendMore;
+
+  /// No description provided for @statsPremiumHeroEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'PREMIUM INTELLIGENCE'**
+  String get statsPremiumHeroEyebrow;
+
+  /// No description provided for @statsPremiumHeroQualityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality is trending premium'**
+  String get statsPremiumHeroQualityTitle;
+
+  /// No description provided for @statsPremiumHeroProtectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection discipline is leading'**
+  String get statsPremiumHeroProtectionTitle;
+
+  /// No description provided for @statsPremiumHeroPartnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This period has a clear favorite'**
+  String get statsPremiumHeroPartnerTitle;
+
+  /// No description provided for @statsPremiumHeroConsistencyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistency is becoming a habit'**
+  String get statsPremiumHeroConsistencyTitle;
+
+  /// No description provided for @statsPremiumHeroRhythmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rhythm has a prime window'**
+  String get statsPremiumHeroRhythmTitle;
+
+  /// No description provided for @statsPremiumHeroQualityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your average rating is {rating}, making quality your strongest signal in this period.'**
+  String statsPremiumHeroQualityBody(Object rating);
+
+  /// No description provided for @statsPremiumHeroProtectionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{rate}% of your encounters were protected, giving safety the strongest discipline signal right now.'**
+  String statsPremiumHeroProtectionBody(Object rate);
+
+  /// No description provided for @statsPremiumHeroPartnerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} accounts for {share}% of your encounters, shaping the tone of this period.'**
+  String statsPremiumHeroPartnerBody(Object partner, Object share);
+
+  /// No description provided for @statsPremiumHeroConsistencyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You stayed active on {days} different days across a {span} day span, which is turning repetition into momentum.'**
+  String statsPremiumHeroConsistencyBody(Object days, Object span);
+
+  /// No description provided for @statsPremiumHeroRhythmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{bucket} leads with {share}% of your encounters, giving this period a distinct time signature.'**
+  String statsPremiumHeroRhythmBody(Object bucket, Object share);
+
+  /// No description provided for @statsPremiumSignalScore.
+  ///
+  /// In en, this message translates to:
+  /// **'{score} signal score'**
+  String statsPremiumSignalScore(Object score);
+
+  /// No description provided for @statsPremiumTrendUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Up vs previous period'**
+  String get statsPremiumTrendUp;
+
+  /// No description provided for @statsPremiumTrendDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Down vs previous period'**
+  String get statsPremiumTrendDown;
+
+  /// No description provided for @statsPremiumTrendStable.
+  ///
+  /// In en, this message translates to:
+  /// **'Stable vs previous period'**
+  String get statsPremiumTrendStable;
+
+  /// No description provided for @statsPremiumConsistencyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistency'**
+  String get statsPremiumConsistencyTitle;
+
+  /// No description provided for @statsPremiumQualityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality momentum'**
+  String get statsPremiumQualityTitle;
+
+  /// No description provided for @statsPremiumPartnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner mode'**
+  String get statsPremiumPartnerTitle;
+
+  /// No description provided for @statsPremiumConsistencyHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} active days across {span} days'**
+  String statsPremiumConsistencyHeadline(Object days, Object span);
+
+  /// No description provided for @statsPremiumQualityHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Average rating {rating}'**
+  String statsPremiumQualityHeadline(Object rating);
+
+  /// No description provided for @statsPremiumPartnerHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{partners} partner(s), {share}% concentration'**
+  String statsPremiumPartnerHeadline(Object partners, Object share);
+
+  /// No description provided for @statsPremiumPartnerSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Top partner: {partner}. {trend}.'**
+  String statsPremiumPartnerSupporting(Object partner, Object trend);
+
+  /// No description provided for @statsPremiumSignalSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'{trend}.'**
+  String statsPremiumSignalSupporting(Object trend);
+
+  /// No description provided for @statsPremiumDeckTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium readout'**
+  String get statsPremiumDeckTitle;
+
+  /// No description provided for @statsPremiumStoryQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality pulse'**
+  String get statsPremiumStoryQuality;
+
+  /// No description provided for @statsPremiumStoryProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection drift'**
+  String get statsPremiumStoryProtection;
+
+  /// No description provided for @statsPremiumStoryPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner focus'**
+  String get statsPremiumStoryPartner;
+
+  /// No description provided for @statsPremiumStoryConsistency.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistency pulse'**
+  String get statsPremiumStoryConsistency;
+
+  /// No description provided for @statsPremiumStoryRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm dominance'**
+  String get statsPremiumStoryRhythm;
+
+  /// No description provided for @statsPremiumStoryQualityHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality is averaging {rating}'**
+  String statsPremiumStoryQualityHeadline(Object rating);
+
+  /// No description provided for @statsPremiumStoryProtectionHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection sits at {rate}%'**
+  String statsPremiumStoryProtectionHeadline(Object rate);
+
+  /// No description provided for @statsPremiumStoryPartnerHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} is defining this period'**
+  String statsPremiumStoryPartnerHeadline(Object partner);
+
+  /// No description provided for @statsPremiumStoryConsistencyHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} active days are shaping your cadence'**
+  String statsPremiumStoryConsistencyHeadline(Object days);
+
+  /// No description provided for @statsPremiumStoryRhythmHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{bucket} is your dominant lane'**
+  String statsPremiumStoryRhythmHeadline(Object bucket);
+
+  /// No description provided for @statsPremiumStoryQualityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'High ratings are becoming one of the strongest patterns in your recent data.'**
+  String get statsPremiumStoryQualityBody;
+
+  /// No description provided for @statsPremiumStoryProtectionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your safety rate is now visible as a behavior trend, not just a one-off result.'**
+  String get statsPremiumStoryProtectionBody;
+
+  /// No description provided for @statsPremiumStoryPartnerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{share}% of your encounters concentrate around the same partner.'**
+  String statsPremiumStoryPartnerBody(Object share);
+
+  /// No description provided for @statsPremiumStoryConsistencyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This rhythm spans {span} days and starts to show repeat intent instead of isolated logging.'**
+  String statsPremiumStoryConsistencyBody(Object span);
+
+  /// No description provided for @statsPremiumStoryRhythmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} encounters happened inside that time window.'**
+  String statsPremiumStoryRhythmBody(Object count);
+
+  /// No description provided for @statsPremiumUnknownPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'your top partner'**
+  String get statsPremiumUnknownPartner;
+
+  /// No description provided for @statsActivitySelectedDay.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} encounters selected'**
+  String statsActivitySelectedDay(Object count);
+
+  /// No description provided for @statsHeatmapSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} • {count} encounters'**
+  String statsHeatmapSelection(Object date, Object count);
+
+  /// No description provided for @statsHeatmapSelectionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} encounters'**
+  String statsHeatmapSelectionCount(Object count);
+
+  /// No description provided for @statsHeatmapDayInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'You logged {count} encounters on this day in the selected period.'**
+  String statsHeatmapDayInsight(Object count);
+
+  /// No description provided for @statsHeatmapTopPartnerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Top partner'**
+  String get statsHeatmapTopPartnerLabel;
+
+  /// No description provided for @statsHeatmapTagsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags used'**
+  String get statsHeatmapTagsLabel;
+
+  /// No description provided for @statsHeatmapNoTags.
+  ///
+  /// In en, this message translates to:
+  /// **'No tags logged'**
+  String get statsHeatmapNoTags;
+
+  /// No description provided for @statsHeatmapProtectionSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'All protected'**
+  String get statsHeatmapProtectionSafe;
+
+  /// No description provided for @statsHeatmapProtectionMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed protection'**
+  String get statsHeatmapProtectionMixed;
+
+  /// No description provided for @statsHeatmapProtectionNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No protection'**
+  String get statsHeatmapProtectionNone;
+
   /// No description provided for @statsHeatmapSnackBar.
   ///
   /// In en, this message translates to:
   /// **'{date}: {count} encounters'**
   String statsHeatmapSnackBar(Object date, Object count);
+
+  /// No description provided for @statsBusiestStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Busiest streak'**
+  String get statsBusiestStreakTitle;
+
+  /// No description provided for @statsWeeklySnapshotTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly snapshot'**
+  String get statsWeeklySnapshotTitle;
+
+  /// No description provided for @statsActiveDaysLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Active days'**
+  String get statsActiveDaysLabel;
+
+  /// No description provided for @statsCurrentWeekLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 days'**
+  String get statsCurrentWeekLabel;
+
+  /// No description provided for @statsPreviousWeekLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous 7 days'**
+  String get statsPreviousWeekLabel;
+
+  /// No description provided for @statsDaysUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String statsDaysUnit(Object count);
 
   /// No description provided for @statsQualityBreakdown.
   ///
@@ -782,6 +1526,528 @@ abstract class AppLocalizations {
   /// **'No description.'**
   String get statsNoDescription;
 
+  /// No description provided for @statsSegmentAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get statsSegmentAll;
+
+  /// No description provided for @statsSegmentPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner'**
+  String get statsSegmentPartner;
+
+  /// No description provided for @statsSegmentTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get statsSegmentTags;
+
+  /// No description provided for @statsSegmentProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection'**
+  String get statsSegmentProtection;
+
+  /// No description provided for @statsSegmentDayTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Day/Time'**
+  String get statsSegmentDayTime;
+
+  /// No description provided for @statsFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get statsFilterAll;
+
+  /// No description provided for @statsFilterProtected.
+  ///
+  /// In en, this message translates to:
+  /// **'Protected'**
+  String get statsFilterProtected;
+
+  /// No description provided for @statsFilterUnprotected.
+  ///
+  /// In en, this message translates to:
+  /// **'Unprotected'**
+  String get statsFilterUnprotected;
+
+  /// No description provided for @statsFilterMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get statsFilterMorning;
+
+  /// No description provided for @statsFilterAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Afternoon'**
+  String get statsFilterAfternoon;
+
+  /// No description provided for @statsFilterNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Night'**
+  String get statsFilterNight;
+
+  /// No description provided for @statsTopPartnersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Partners'**
+  String get statsTopPartnersTitle;
+
+  /// No description provided for @statsTagIntelligenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag Intelligence'**
+  String get statsTagIntelligenceTitle;
+
+  /// No description provided for @statsTagDetailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How this tag behaves in the current period'**
+  String get statsTagDetailSubtitle;
+
+  /// No description provided for @statsTagRelatedPartnersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Related partners'**
+  String get statsTagRelatedPartnersLabel;
+
+  /// No description provided for @statsTagRecentEncountersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent tagged encounters'**
+  String get statsTagRecentEncountersLabel;
+
+  /// No description provided for @statsTagInsightHighQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'This tag tends to perform best with {partner}.'**
+  String statsTagInsightHighQuality(Object partner);
+
+  /// No description provided for @statsTagInsightSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'This tag stays highly protected and is most associated with {partner}.'**
+  String statsTagInsightSafe(Object partner);
+
+  /// No description provided for @statsTagInsightFrequent.
+  ///
+  /// In en, this message translates to:
+  /// **'This tag appears most often with {partner} and signals repeat use.'**
+  String statsTagInsightFrequent(Object partner);
+
+  /// No description provided for @statsProtectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection'**
+  String get statsProtectionTitle;
+
+  /// No description provided for @statsRhythmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Day & Time'**
+  String get statsRhythmTitle;
+
+  /// No description provided for @statsEncountersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Encounters'**
+  String get statsEncountersLabel;
+
+  /// No description provided for @statsLastSeenLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen'**
+  String get statsLastSeenLabel;
+
+  /// No description provided for @statsMostFrequentPartnerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequent partner'**
+  String get statsMostFrequentPartnerLabel;
+
+  /// No description provided for @statsDominantMoodLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dominant mood'**
+  String get statsDominantMoodLabel;
+
+  /// No description provided for @statsNoMoodLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No mood logged'**
+  String get statsNoMoodLabel;
+
+  /// No description provided for @statsPartnerMostActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Most active'**
+  String get statsPartnerMostActive;
+
+  /// No description provided for @statsPartnerBestChemistry.
+  ///
+  /// In en, this message translates to:
+  /// **'Best chemistry'**
+  String get statsPartnerBestChemistry;
+
+  /// No description provided for @statsPartnerMostRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Most recent'**
+  String get statsPartnerMostRecent;
+
+  /// No description provided for @statsPartnerDetailMostActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Most active connection in this period'**
+  String get statsPartnerDetailMostActive;
+
+  /// No description provided for @statsPartnerDetailBestChemistry.
+  ///
+  /// In en, this message translates to:
+  /// **'Highest chemistry among your top partners'**
+  String get statsPartnerDetailBestChemistry;
+
+  /// No description provided for @statsPartnerDetailMostRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Most recently seen in this period'**
+  String get statsPartnerDetailMostRecent;
+
+  /// No description provided for @statsPartnerRecentEncountersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent encounters'**
+  String get statsPartnerRecentEncountersLabel;
+
+  /// No description provided for @statsPartnerInsightHighChemistry.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} combines strong ratings with consistent chemistry.'**
+  String statsPartnerInsightHighChemistry(Object partner);
+
+  /// No description provided for @statsPartnerInsightSafety.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection stayed high while {partner} remained active.'**
+  String statsPartnerInsightSafety(Object partner);
+
+  /// No description provided for @statsPartnerInsightMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} leads this period with steady momentum and repeat activity.'**
+  String statsPartnerInsightMomentum(Object partner);
+
+  /// No description provided for @statsProtectionRateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection rate'**
+  String get statsProtectionRateLabel;
+
+  /// No description provided for @statsLastUnprotectedPartnerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last unprotected partner'**
+  String get statsLastUnprotectedPartnerLabel;
+
+  /// No description provided for @statsLastUnprotectedDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last unprotected date'**
+  String get statsLastUnprotectedDateLabel;
+
+  /// No description provided for @statsProtectionStable.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection stayed steady in this period.'**
+  String get statsProtectionStable;
+
+  /// No description provided for @statsProtectionImproving.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection improved versus the previous period.'**
+  String get statsProtectionImproving;
+
+  /// No description provided for @statsProtectionCaution.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection dipped versus the previous period.'**
+  String get statsProtectionCaution;
+
+  /// No description provided for @statsProtectionDetailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How protection behaved in the current period'**
+  String get statsProtectionDetailSubtitle;
+
+  /// No description provided for @statsProtectionInsightBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This view highlights your safety consistency, the most repeated unprotected context, and the latest moments worth noticing.'**
+  String get statsProtectionInsightBody;
+
+  /// No description provided for @statsProtectionTopRiskPartnerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Top unprotected partner'**
+  String get statsProtectionTopRiskPartnerLabel;
+
+  /// No description provided for @statsProtectionRecentEncountersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent unprotected encounters'**
+  String get statsProtectionRecentEncountersLabel;
+
+  /// No description provided for @statsStrongestWindowLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Strongest window'**
+  String get statsStrongestWindowLabel;
+
+  /// No description provided for @statsStrongestDayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Strongest day'**
+  String get statsStrongestDayLabel;
+
+  /// No description provided for @statsRhythmHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {bucket} is your strongest window.'**
+  String statsRhythmHeadline(Object day, Object bucket);
+
+  /// No description provided for @statsRhythmDetailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How your timing behaved in the current period'**
+  String get statsRhythmDetailSubtitle;
+
+  /// No description provided for @statsRhythmWeeklyPulseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly pulse'**
+  String get statsRhythmWeeklyPulseLabel;
+
+  /// No description provided for @statsRhythmRecentEncountersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent encounters in this rhythm'**
+  String get statsRhythmRecentEncountersLabel;
+
+  /// No description provided for @statsComparisonBaseline.
+  ///
+  /// In en, this message translates to:
+  /// **'You are building your baseline.'**
+  String get statsComparisonBaseline;
+
+  /// No description provided for @statsComparisonUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Your activity rose versus the previous period.'**
+  String get statsComparisonUp;
+
+  /// No description provided for @statsComparisonDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Your activity cooled versus the previous period.'**
+  String get statsComparisonDown;
+
+  /// No description provided for @statsComparisonStable.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rhythm stayed stable versus the previous period.'**
+  String get statsComparisonStable;
+
+  /// No description provided for @statsStoryBestContextTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best context'**
+  String get statsStoryBestContextTitle;
+
+  /// No description provided for @statsStoryBestContextSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Average rating {rating}'**
+  String statsStoryBestContextSupporting(Object rating);
+
+  /// No description provided for @statsStoryBestContextDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Your strongest ratings this period clustered around {context}. It is a great setup to repeat when you want a higher-confidence experience.'**
+  String statsStoryBestContextDetails(Object context);
+
+  /// No description provided for @statsStoryMomentumTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Momentum'**
+  String get statsStoryMomentumTitle;
+
+  /// No description provided for @statsStoryMomentumUpHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity is up'**
+  String get statsStoryMomentumUpHeadline;
+
+  /// No description provided for @statsStoryMomentumDownHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity is down'**
+  String get statsStoryMomentumDownHeadline;
+
+  /// No description provided for @statsStoryMomentumSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} encounter change vs previous period'**
+  String statsStoryMomentumSupporting(Object count);
+
+  /// No description provided for @statsStoryMomentumUpDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'You logged {count} more encounters than the previous period. That usually points to stronger consistency in your rhythm.'**
+  String statsStoryMomentumUpDetails(Object count);
+
+  /// No description provided for @statsStoryMomentumDownDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'You logged {count} fewer encounters than the previous period. It may be worth checking whether this was just timing or a real slowdown.'**
+  String statsStoryMomentumDownDetails(Object count);
+
+  /// No description provided for @statsStoryProtectionTrendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection trend'**
+  String get statsStoryProtectionTrendTitle;
+
+  /// No description provided for @statsStoryProtectionTrendUpHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection is up'**
+  String get statsStoryProtectionTrendUpHeadline;
+
+  /// No description provided for @statsStoryProtectionTrendDownHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection is down'**
+  String get statsStoryProtectionTrendDownHeadline;
+
+  /// No description provided for @statsStoryProtectionTrendSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'{current}% vs {previous}%'**
+  String statsStoryProtectionTrendSupporting(Object current, Object previous);
+
+  /// No description provided for @statsStoryProtectionTrendUpDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection use climbed from {previous}% to {current}% in this period. That is a meaningful shift toward safer consistency.'**
+  String statsStoryProtectionTrendUpDetails(Object current, Object previous);
+
+  /// No description provided for @statsStoryProtectionTrendDownDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection use dropped from {previous}% to {current}% in this period. This is a good signal to keep an eye on.'**
+  String statsStoryProtectionTrendDownDetails(Object current, Object previous);
+
+  /// No description provided for @statsStoryPrimeTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prime time'**
+  String get statsStoryPrimeTimeTitle;
+
+  /// No description provided for @statsStoryPrimeTimeSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Average rating {rating}'**
+  String statsStoryPrimeTimeSupporting(Object rating);
+
+  /// No description provided for @statsStoryPrimeTimeDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Your best recent ratings cluster around {slot}. That looks like one of your highest-upside windows.'**
+  String statsStoryPrimeTimeDetails(Object slot);
+
+  /// No description provided for @statsStoryPeakMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak month'**
+  String get statsStoryPeakMonthTitle;
+
+  /// No description provided for @statsStoryPeakMonthSupporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Average rating {rating}'**
+  String statsStoryPeakMonthSupporting(Object rating);
+
+  /// No description provided for @statsStoryPeakMonthDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'{month} stands out as your strongest month in this view. It is a useful benchmark for the kind of rhythm you may want to recreate.'**
+  String statsStoryPeakMonthDetails(Object month);
+
+  /// No description provided for @statsStoryWeekdayMon.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get statsStoryWeekdayMon;
+
+  /// No description provided for @statsStoryWeekdayTue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get statsStoryWeekdayTue;
+
+  /// No description provided for @statsStoryWeekdayWed.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get statsStoryWeekdayWed;
+
+  /// No description provided for @statsStoryWeekdayThu.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get statsStoryWeekdayThu;
+
+  /// No description provided for @statsStoryWeekdayFri.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get statsStoryWeekdayFri;
+
+  /// No description provided for @statsStoryWeekdaySat.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get statsStoryWeekdaySat;
+
+  /// No description provided for @statsStoryWeekdaySun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get statsStoryWeekdaySun;
+
+  /// No description provided for @statsStoryDayTimeMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'morning'**
+  String get statsStoryDayTimeMorning;
+
+  /// No description provided for @statsStoryDayTimeAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'afternoon'**
+  String get statsStoryDayTimeAfternoon;
+
+  /// No description provided for @statsStoryDayTimeNight.
+  ///
+  /// In en, this message translates to:
+  /// **'night'**
+  String get statsStoryDayTimeNight;
+
   /// No description provided for @calendarNoActivity.
   ///
   /// In en, this message translates to:
@@ -817,6 +2083,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Incorrect code'**
   String get authIncorrectCode;
+
+  /// No description provided for @liteMonthlyEncounterLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Lite mode allows up to 5 records per month.'**
+  String get liteMonthlyEncounterLimitReached;
 
   /// No description provided for @authKillSwitchExecuted.
   ///
@@ -1020,6 +2292,124 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your most frequent tag is \'{tag}\'. It seems to be an important part of your routine.'**
   String insightDominantStyleDescription(Object tag);
+
+  /// No description provided for @insightBestTagComboTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Tag Combo'**
+  String get insightBestTagComboTitle;
+
+  /// No description provided for @insightBestTagComboDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'When {tags} show up together, your average rating climbs to {avg}/10.'**
+  String insightBestTagComboDescription(Object tags, Object avg);
+
+  /// No description provided for @insightMostConsistentPartnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Consistent Partner'**
+  String get insightMostConsistentPartnerTitle;
+
+  /// No description provided for @insightMostConsistentPartnerDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} is your most consistent connection, averaging {avg}/10.'**
+  String insightMostConsistentPartnerDescription(Object partner, Object avg);
+
+  /// No description provided for @insightMostUnpredictablePartnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Unpredictable Partner'**
+  String get insightMostUnpredictablePartnerTitle;
+
+  /// No description provided for @insightMostUnpredictablePartnerDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} shows the widest swings lately, with a variability score of {spread}.'**
+  String insightMostUnpredictablePartnerDescription(
+    Object partner,
+    Object spread,
+  );
+
+  /// No description provided for @insightBestRecentPartnerTrendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Recent Partner Trend'**
+  String get insightBestRecentPartnerTrendTitle;
+
+  /// No description provided for @insightBestRecentPartnerTrendDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} is trending up, improving by about {diff} points in your latest encounters.'**
+  String insightBestRecentPartnerTrendDescription(Object partner, Object diff);
+
+  /// No description provided for @insightRecentChemistryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Chemistry'**
+  String get insightRecentChemistryTitle;
+
+  /// No description provided for @insightRecentChemistryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{partner} has your strongest recent chemistry with an average of {avg}/10.'**
+  String insightRecentChemistryDescription(Object partner, Object avg);
+
+  /// No description provided for @insightProtectionRecentlyDroppedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection Recently Dropped'**
+  String get insightProtectionRecentlyDroppedTitle;
+
+  /// No description provided for @insightProtectionRecentlyDroppedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent protection use is down to {recent}% compared with {previous}% in your earlier records.'**
+  String insightProtectionRecentlyDroppedDescription(
+    Object recent,
+    Object previous,
+  );
+
+  /// No description provided for @insightLongActivityPauseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Long Activity Pause'**
+  String get insightLongActivityPauseTitle;
+
+  /// No description provided for @insightLongActivityPauseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s been about {days} days since your last logged encounter. That pause might be worth checking in on.'**
+  String insightLongActivityPauseDescription(Object days);
+
+  /// No description provided for @insightHealthCheckOverdueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Check Overdue'**
+  String get insightHealthCheckOverdueTitle;
+
+  /// No description provided for @insightHealthCheckOverdueDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your last Health Passport log was about {months} months ago. It may be a good time to schedule another check.'**
+  String insightHealthCheckOverdueDescription(Object months);
+
+  /// No description provided for @insightStrongestRecentMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Strongest Recent Month'**
+  String get insightStrongestRecentMonthTitle;
+
+  /// No description provided for @insightStrongestRecentMonthDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{month} stands out with {count} encounters and an average rating of {avg}/10.'**
+  String insightStrongestRecentMonthDescription(
+    Object month,
+    Object count,
+    Object avg,
+  );
 
   /// No description provided for @homeBlackBookTitle.
   ///
@@ -1339,6 +2729,12 @@ abstract class AppLocalizations {
   /// **'New Health Record'**
   String get healthNewRecord;
 
+  /// No description provided for @healthAddRecordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your personal health record current with clear, private checkup entries.'**
+  String get healthAddRecordSubtitle;
+
   /// No description provided for @healthTestTypeLabel.
   ///
   /// In en, this message translates to:
@@ -1387,6 +2783,12 @@ abstract class AppLocalizations {
   /// **'Type \'@\' to search or a new name...'**
   String get addEntryPartnerHint;
 
+  /// No description provided for @addEntryPartnerRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner name is required'**
+  String get addEntryPartnerRequired;
+
   /// No description provided for @addEntryPartnerSheetTitle.
   ///
   /// In en, this message translates to:
@@ -1404,6 +2806,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Preview'**
   String get sharePreviewTitle;
+
+  /// No description provided for @sharePreviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your premium season snapshot is ready to share.'**
+  String get sharePreviewSubtitle;
+
+  /// No description provided for @sharePreviewAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share card'**
+  String get sharePreviewAction;
 
   /// No description provided for @shareCardText.
   ///
@@ -1513,6 +2927,18 @@ abstract class AppLocalizations {
   /// **'HISTORICAL'**
   String get trophyHistorical;
 
+  /// No description provided for @trophyAbstinenceRecordsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence Records'**
+  String get trophyAbstinenceRecordsTitle;
+
+  /// No description provided for @trophyAbstinenceRecordsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your best streaks achieved'**
+  String get trophyAbstinenceRecordsSubtitle;
+
   /// No description provided for @challengesTitle.
   ///
   /// In en, this message translates to:
@@ -1524,6 +2950,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Complete these goals to prove your mastery and commitment.'**
   String get challengesSubtitle;
+
+  /// No description provided for @challengeSeasonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasonal'**
+  String get challengeSeasonal;
+
+  /// No description provided for @challengeHistorical.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical'**
+  String get challengeHistorical;
+
+  /// No description provided for @challengeXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP'**
+  String challengeXpReward(Object xp);
+
+  /// No description provided for @challengeCategoryFoundation.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation'**
+  String get challengeCategoryFoundation;
+
+  /// No description provided for @challengeCategoryAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get challengeCategoryAll;
+
+  /// No description provided for @challengeCategorySocial.
+  ///
+  /// In en, this message translates to:
+  /// **'Social'**
+  String get challengeCategorySocial;
+
+  /// No description provided for @challengeCategoryEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get challengeCategoryEvents;
+
+  /// No description provided for @challengeCategoryRelationships.
+  ///
+  /// In en, this message translates to:
+  /// **'Relationships'**
+  String get challengeCategoryRelationships;
+
+  /// No description provided for @challengeCategoryMood.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood'**
+  String get challengeCategoryMood;
+
+  /// No description provided for @challengeCategorySkill.
+  ///
+  /// In en, this message translates to:
+  /// **'Skill'**
+  String get challengeCategorySkill;
+
+  /// No description provided for @challengeCategoryLegacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Legacy'**
+  String get challengeCategoryLegacy;
 
   /// No description provided for @challengeMorningMasterTitle.
   ///
@@ -1558,7 +3050,7 @@ abstract class AppLocalizations {
   /// No description provided for @challengeQualityWeekDesc.
   ///
   /// In en, this message translates to:
-  /// **'Reach an average of 8.0+ in the last 7 days.'**
+  /// **'Log 8 encounters in the last 7 days with an average rating of 8.0+.'**
   String get challengeQualityWeekDesc;
 
   /// No description provided for @challengeSafetyChampionTitle.
@@ -1608,6 +3100,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log 5 encounters this month with rating 9 or 10.'**
   String get challengeQualityClubDesc;
+
+  /// No description provided for @challengeQualityStreak3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality Streak'**
+  String get challengeQualityStreak3Title;
+
+  /// No description provided for @challengeQualityStreak3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete 3 consecutive encounters rated 8 or higher in the current season.'**
+  String get challengeQualityStreak3Desc;
+
+  /// No description provided for @challengeQualityStreak5Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Unstoppable Quality'**
+  String get challengeQualityStreak5Title;
+
+  /// No description provided for @challengeQualityStreak5Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete 5 consecutive encounters rated 8 or higher across your full history.'**
+  String get challengeQualityStreak5Desc;
+
+  /// No description provided for @challengeBalancedWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Balanced Week'**
+  String get challengeBalancedWeekTitle;
+
+  /// No description provided for @challengeBalancedWeekDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log encounters on 3 distinct days within the last 7 days.'**
+  String get challengeBalancedWeekDesc;
+
+  /// No description provided for @challengeTagCombo5Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag Combo'**
+  String get challengeTagCombo5Title;
+
+  /// No description provided for @challengeTagCombo5Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 5 distinct tags during the current season.'**
+  String get challengeTagCombo5Desc;
+
+  /// No description provided for @challengeSocialCircle3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Circle'**
+  String get challengeSocialCircle3Title;
+
+  /// No description provided for @challengeSocialCircle3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log encounters with 3 distinct partners this season.'**
+  String get challengeSocialCircle3Desc;
+
+  /// No description provided for @challengeQualityNetwork3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality Network'**
+  String get challengeQualityNetwork3Title;
+
+  /// No description provided for @challengeQualityNetwork3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log encounters this season with 3 distinct partners, each rated 8 or higher.'**
+  String get challengeQualityNetwork3Desc;
+
+  /// No description provided for @challengeSafeNetwork3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe Network'**
+  String get challengeSafeNetwork3Title;
+
+  /// No description provided for @challengeSafeNetwork3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log protected encounters this season with 3 distinct partners.'**
+  String get challengeSafeNetwork3Desc;
+
+  /// No description provided for @challengeWeekendRun2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekend Run'**
+  String get challengeWeekendRun2Title;
+
+  /// No description provided for @challengeWeekendRun2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log encounters on 2 consecutive weekends during this season.'**
+  String get challengeWeekendRun2Desc;
+
+  /// No description provided for @challengeSocialWeekend3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Weekend'**
+  String get challengeSocialWeekend3Title;
+
+  /// No description provided for @challengeSocialWeekend3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log weekend encounters with 3 distinct partners this season.'**
+  String get challengeSocialWeekend3Desc;
+
+  /// No description provided for @challengeEventMix3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Mix'**
+  String get challengeEventMix3Title;
+
+  /// No description provided for @challengeEventMix3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 3 distinct event tags this season.'**
+  String get challengeEventMix3Desc;
+
+  /// No description provided for @challengeGetawayDuo2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Getaway Duo'**
+  String get challengeGetawayDuo2Title;
+
+  /// No description provided for @challengeGetawayDuo2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 2 encounters this season with getaway tags.'**
+  String get challengeGetawayDuo2Desc;
+
+  /// No description provided for @challengeMoodSpectrum3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood Spectrum'**
+  String get challengeMoodSpectrum3Title;
+
+  /// No description provided for @challengeMoodSpectrum3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 3 distinct moods during this season.'**
+  String get challengeMoodSpectrum3Desc;
+
+  /// No description provided for @challengeHighSpirits3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'High Spirits'**
+  String get challengeHighSpirits3Title;
+
+  /// No description provided for @challengeHighSpirits3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 3 encounters this season with a mood selected and rating 8 or higher.'**
+  String get challengeHighSpirits3Desc;
+
+  /// No description provided for @challengeSkillMix3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Skill Mix'**
+  String get challengeSkillMix3Title;
+
+  /// No description provided for @challengeSkillMix3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 3 distinct practice tags this season.'**
+  String get challengeSkillMix3Desc;
+
+  /// No description provided for @challengePleasureCrafter3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Pleasure Crafter'**
+  String get challengePleasureCrafter3Title;
+
+  /// No description provided for @challengePleasureCrafter3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 3 encounters this season with practice tags and rating 8 or higher.'**
+  String get challengePleasureCrafter3Desc;
+
+  /// No description provided for @challengeConnectionArc3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Arc'**
+  String get challengeConnectionArc3Title;
+
+  /// No description provided for @challengeConnectionArc3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 3 relationship-dynamic tags this season.'**
+  String get challengeConnectionArc3Desc;
+
+  /// No description provided for @challengeDateNight2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Date Night'**
+  String get challengeDateNight2Title;
+
+  /// No description provided for @challengeDateNight2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 2 encounters this season with romantic tags.'**
+  String get challengeDateNight2Desc;
+
+  /// No description provided for @challengeSinglePartnerSeasonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One Partner Only'**
+  String get challengeSinglePartnerSeasonTitle;
+
+  /// No description provided for @challengeSinglePartnerSeasonDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 8 encounters this season with only one partner. A second partner breaks the challenge.'**
+  String get challengeSinglePartnerSeasonDesc;
+
+  /// No description provided for @challengeLoyalMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loyal Month'**
+  String get challengeLoyalMonthTitle;
+
+  /// No description provided for @challengeLoyalMonthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 12 encounters this season with only one partner. A second partner breaks the challenge.'**
+  String get challengeLoyalMonthDesc;
 
   /// No description provided for @challengeGuardianOfSafetyTitle.
   ///
@@ -1692,6 +3412,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Maintain a 95%+ protection rate across at least 50 encounters.'**
   String get challengeLegendaryGuardianDesc;
+
+  /// No description provided for @challengeSinglePartner100Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Same Story'**
+  String get challengeSinglePartner100Title;
+
+  /// No description provided for @challengeSinglePartner100Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Accumulate 100 encounters with a single partner.'**
+  String get challengeSinglePartner100Desc;
+
+  /// No description provided for @challengeSinglePartner500Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Legendary Bond'**
+  String get challengeSinglePartner500Title;
+
+  /// No description provided for @challengeSinglePartner500Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Accumulate 500 encounters with a single partner.'**
+  String get challengeSinglePartner500Desc;
+
+  /// No description provided for @challengeSteadyBond50Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe Bond'**
+  String get challengeSteadyBond50Title;
+
+  /// No description provided for @challengeSteadyBond50Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Accumulate 50 protected encounters with a single partner across your full history.'**
+  String get challengeSteadyBond50Desc;
+
+  /// No description provided for @challengeConstellation10Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Constellation'**
+  String get challengeConstellation10Title;
+
+  /// No description provided for @challengeConstellation10Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log encounters with 10 distinct partners across your full history.'**
+  String get challengeConstellation10Desc;
 
   /// No description provided for @challengePolymathTitle.
   ///
@@ -1969,6 +3737,12 @@ abstract class AppLocalizations {
   /// **'UNLOCKED BADGES'**
   String get trophyUnlockedBadges;
 
+  /// No description provided for @trophyRoomSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your rank, streaks, and seasonal achievements in one premium space.'**
+  String get trophyRoomSubtitle;
+
   /// No description provided for @trophySeasonLabel.
   ///
   /// In en, this message translates to:
@@ -2224,7 +3998,7 @@ abstract class AppLocalizations {
   /// No description provided for @achievementAbstinenceBronzeDesc.
   ///
   /// In en, this message translates to:
-  /// **'Reach 7 days of abstinence.'**
+  /// **'Reach 7 abstinence days during the current month.'**
   String get achievementAbstinenceBronzeDesc;
 
   /// No description provided for @achievementAbstinenceSilverName.
@@ -2236,7 +4010,7 @@ abstract class AppLocalizations {
   /// No description provided for @achievementAbstinenceSilverDesc.
   ///
   /// In en, this message translates to:
-  /// **'Reach 14 days of abstinence.'**
+  /// **'Reach 14 abstinence days during the current month.'**
   String get achievementAbstinenceSilverDesc;
 
   /// No description provided for @achievementAbstinenceGoldName.
@@ -2248,7 +4022,7 @@ abstract class AppLocalizations {
   /// No description provided for @achievementAbstinenceGoldDesc.
   ///
   /// In en, this message translates to:
-  /// **'Reach 30 days of abstinence.'**
+  /// **'Reach 30 abstinence days during the current month.'**
   String get achievementAbstinenceGoldDesc;
 
   /// No description provided for @achievementAbstinenceDiamondName.
@@ -2260,8 +4034,44 @@ abstract class AppLocalizations {
   /// No description provided for @achievementAbstinenceDiamondDesc.
   ///
   /// In en, this message translates to:
-  /// **'Reach 60 days of abstinence.'**
+  /// **'Reach 60 historical abstinence days.'**
   String get achievementAbstinenceDiamondDesc;
+
+  /// No description provided for @achievementAbstinenceMaster45Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence 45'**
+  String get achievementAbstinenceMaster45Name;
+
+  /// No description provided for @achievementAbstinenceMaster45Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 45 historical abstinence days.'**
+  String get achievementAbstinenceMaster45Desc;
+
+  /// No description provided for @achievementAbstinenceMaster90Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence 90'**
+  String get achievementAbstinenceMaster90Name;
+
+  /// No description provided for @achievementAbstinenceMaster90Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 90 historical abstinence days.'**
+  String get achievementAbstinenceMaster90Desc;
+
+  /// No description provided for @achievementAbstinenceMaster120Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence 120'**
+  String get achievementAbstinenceMaster120Name;
+
+  /// No description provided for @achievementAbstinenceMaster120Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach 120 historical abstinence days.'**
+  String get achievementAbstinenceMaster120Desc;
 
   /// No description provided for @achievementMonkModeName.
   ///
@@ -2424,6 +4234,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You have not unlocked this badge yet.'**
   String get trophyBadgeNotUnlockedHistory;
+
+  /// No description provided for @trophyBadgeOneTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One-time achievement'**
+  String get trophyBadgeOneTimeTitle;
+
+  /// No description provided for @trophyBadgeOneTimeUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'You have already unlocked this badge.'**
+  String get trophyBadgeOneTimeUnlocked;
+
+  /// No description provided for @trophyBadgeStatusUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked'**
+  String get trophyBadgeStatusUnlocked;
+
+  /// No description provided for @trophyBadgeStatusLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get trophyBadgeStatusLocked;
+
+  /// No description provided for @trophyBadgeModalFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'Every badge reflects your progress across seasons, milestones, and personal consistency.'**
+  String get trophyBadgeModalFootnote;
+
+  /// No description provided for @trophyBadgeRuleTitleExclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'Season rule: one partner'**
+  String get trophyBadgeRuleTitleExclusive;
+
+  /// No description provided for @trophyBadgeRuleBodyExclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock this badge by reaching 8 encounters in the current season and keeping every one of them with the same partner.'**
+  String get trophyBadgeRuleBodyExclusive;
+
+  /// No description provided for @trophyBadgeRuleTitleVariety.
+  ///
+  /// In en, this message translates to:
+  /// **'Season rule: multiple partners'**
+  String get trophyBadgeRuleTitleVariety;
+
+  /// No description provided for @trophyBadgeRuleBodyVariety.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock this badge when the current season includes encounters with 3 different partners.'**
+  String get trophyBadgeRuleBodyVariety;
 
   /// No description provided for @trophyShowMore.
   ///

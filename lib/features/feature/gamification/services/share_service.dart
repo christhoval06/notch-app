@@ -13,6 +13,9 @@ class ShareService {
     required GlobalKey widgetKey,
     String text = "¡Mira mi progreso en la app NOTCH! 🏆",
   }) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final localizations = AppLocalizations.of(context);
+
     try {
       // 1. Encontrar el widget a través de su Key
       RenderRepaintBoundary boundary =
@@ -36,12 +39,14 @@ class ShareService {
       await file.writeAsBytes(pngBytes);
 
       // 5. Compartir usando share_plus
-      await Share.shareXFiles([XFile(file.path)], text: text);
-    } catch (e) {
-      print("Error al compartir: $e");
-      ScaffoldMessenger.of(context).showSnackBar(
+      await SharePlus.instance.share(
+        ShareParams(files: [XFile(file.path)], text: text),
+      );
+    } catch (error) {
+      debugPrint('ShareService.captureAndShareWidget failed: $error');
+      messenger.showSnackBar(
         SnackBar(
-          content: Text(AppLocalizations.of(context).shareErrorGeneratingImage),
+          content: Text(localizations.shareErrorGeneratingImage),
         ),
       );
     }
