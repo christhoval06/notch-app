@@ -13,6 +13,14 @@ class GlobalProgressRepository {
     return _box.getAt(0);
   }
 
+  static Future<GlobalProgress> getOrCreate() async {
+    final existing = firstOrNull();
+    if (existing != null) return existing;
+    final progress = GlobalProgress();
+    await putAtZero(progress);
+    return _box.getAt(0)!;
+  }
+
   static Future<void> putAtZero(GlobalProgress progress) =>
       _box.put(0, progress);
 

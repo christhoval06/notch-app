@@ -6,5 +6,11 @@ class GlobalProgress extends HiveObject {
   @HiveField(0)
   List<String> unlockedOnceAchievements;
 
-  GlobalProgress({this.unlockedOnceAchievements = const []});
+  @HiveField(1)
+  List<String> claimedHistoricalChallengeRewardIds;
+
+  GlobalProgress({
+    this.unlockedOnceAchievements = const [],
+    this.claimedHistoricalChallengeRewardIds = const [],
+  });
 }

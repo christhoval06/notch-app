@@ -21,11 +21,15 @@ class MonthlyProgress extends HiveObject {
   @HiveField(4, defaultValue: 0)
   int? longestStreakOfMonth;
 
+  @HiveField(5)
+  List<String> claimedChallengeRewardIds;
+
   MonthlyProgress({
     required this.monthId,
     this.xp = 0,
     this.unlockedBadges = const [],
     this.finalRank,
     this.longestStreakOfMonth,
+    this.claimedChallengeRewardIds = const [],
   });
 }

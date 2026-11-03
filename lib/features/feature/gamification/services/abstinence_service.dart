@@ -34,4 +34,54 @@ class AbstinenceService {
     final currentGap = currentAbstinenceDays(encounters, now: now);
     return currentGap > longest ? currentGap : longest;
   }
+
+  static int longestAbstinenceDaysInRange(
+    List<Encounter> encounters, {
+    required DateTime start,
+    required DateTime end,
+    DateTime? now,
+  }) {
+    final rangeStart = _dateOnly(start);
+    final rangeEnd = _dateOnly(end);
+    final today = _dateOnly(now ?? DateTime.now());
+    final effectiveEnd = today.isBefore(rangeEnd) ? today : rangeEnd;
+
+    if (!effectiveEnd.isAfter(rangeStart)) return 0;
+
+    final datesInRange =
+        encounters
+            .map((encounter) => _dateOnly(encounter.date))
+            .where(
+              (date) => !date.isBefore(rangeStart) && date.isBefore(rangeEnd),
+            )
+            .toSet()
+            .toList()
+          ..sort();
+
+    if (datesInRange.isEmpty) return 0;
+
+    var longest = 0;
+    var previous = datesInRange.first;
+
+    for (final date in datesInRange.skip(1)) {
+      final gap = date.difference(previous).inDays;
+      if (gap > longest) longest = gap;
+      previous = date;
+    }
+
+    final trailingGap = effectiveEnd.difference(previous).inDays;
+    return trailingGap > longest ? trailingGap : longest;
+  }
+
+  static int currentMonthAbstinenceDays({
+    required List<Encounter> monthlyEncounters,
+    required DateTime now,
+  }) {
+    if (monthlyEncounters.isNotEmpty) return 0;
+    return now.day;
+  }
+
+  static DateTime _dateOnly(DateTime value) {
+    return DateTime(value.year, value.month, value.day);
+  }
 }

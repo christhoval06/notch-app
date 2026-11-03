@@ -33,8 +33,156 @@
   "tagShower": "Ducha / Baño",
   "insightsTitle": "Inteligencia de Datos",
   "insightsEmpty": "Aún no hay suficientes datos para generar insights.\\n¡Sigue registrando!",
+  "insightsHeroEyebrow": "LECTURA EDITORIAL",
+  "insightsHeroEmptyTitle": "Tu capa de inteligencia está lista para aprender.",
+  "insightsHeroEmptyBody": "Empieza a registrar encuentros o chequeos de salud y esta pantalla los convertirá en patrones guiados, alertas y señales premium.",
+  "insightsHeroHealthTitle": "Las señales de salud merecen una mirada más atenta.",
+  "insightsHeroHealthBody": "Tus datos recientes de salud sexual sugieren que este es un buen momento para bajar el ritmo, revisar hábitos de protección y mantener tus registros al día.",
+  "insightsHeroProtectionTitle": "La protección está marcando una base sólida.",
+  "insightsHeroProtectionBody": "{rate}% de tus encuentros fueron protegidos, lo que le da a este período un perfil más seguro y estable.",
+  "@insightsHeroProtectionBody": {
+    "placeholders": {
+      "rate": {}
+    }
+  },
+  "insightsHeroRhythmTitle": "Tu ritmo actual ya se puede leer.",
+  "insightsHeroRhythmBody": "Tus encuentros recientes promedian {rating}, lo que da suficiente señal para extraer patrones y alertas.",
+  "@insightsHeroRhythmBody": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "insightsHeroChipStarting": "Empezando",
+  "insightsHeroChipNoSignals": "Sin señales aún",
+  "insightsHeroProtectionChip": "{rate}% protegido",
+  "@insightsHeroProtectionChip": {
+    "placeholders": {
+      "rate": {}
+    }
+  },
+  "insightsHeroQualityChip": "Promedio {rating}",
+  "@insightsHeroQualityChip": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "insightsHeroEncountersChip": "{count} encuentros registrados",
+  "@insightsHeroEncountersChip": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "insightsHeroHealthLogsChip": "{count} registros de salud",
+  "@insightsHeroHealthLogsChip": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "insightsBestPatternLabel": "Mejor patrón",
+  "insightsBestPatternPartnerHeadline": "{partner} es tu patrón más fuerte hasta ahora.",
+  "@insightsBestPatternPartnerHeadline": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "insightsBestPatternPartnerBody": "Esta conexión promedia {rating}, convirtiéndose en tu señal de calidad más clara dentro de los datos actuales.",
+  "@insightsBestPatternPartnerBody": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "insightsBestPatternRhythmHeadline": "{day} te está dando el mejor ritmo.",
+  "@insightsBestPatternRhythmHeadline": {
+    "placeholders": {
+      "day": {}
+    }
+  },
+  "insightsBestPatternRhythmBody": "La etiqueta \"{tag}\" aparece con más frecuencia y ayuda a definir el contexto más fuerte de tus registros.",
+  "@insightsBestPatternRhythmBody": {
+    "placeholders": {
+      "tag": {}
+    }
+  },
+  "insightsBestPatternPartnerDetail": "Dentro de tus registros actuales, esta pareja destaca como el patrón más positivo porque la calidad de la experiencia se mantiene por encima del resto del dataset. No es solo frecuencia: es calidad repetida.",
+  "@insightsBestPatternPartnerDetail": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "insightsBestPatternPartnerRecommendation": "Usa este patrón como referencia: observa el contexto, el ritmo, el momento y la preparación emocional que suelen hacer que estos encuentros funcionen mejor.",
+  "insightsBestPatternRhythmDetail": "Tus datos actuales sugieren que este día crea un ritmo más favorable que el resto de la semana. Aunque la muestra siga creciendo, ya se comporta como una ventana más fuerte para mejores resultados.",
+  "@insightsBestPatternRhythmDetail": {
+    "placeholders": {
+      "day": {}
+    }
+  },
+  "insightsBestPatternRhythmRecommendation": "Si quieres mejorar consistencia, intenta repetir y proteger las condiciones que normalmente rodean este ritmo.",
+  "insightsWatchoutLabel": "Atención",
+  "insightsWatchoutHealthHeadline": "Los registros recientes de salud piden una lectura más cuidadosa.",
+  "insightsWatchoutHealthBody": "Uno de tus últimos registros de salud está positivo o pendiente, así que este período debe leerse con más cautela de lo habitual.",
+  "insightsWatchoutHealthDetail": "Esto no reemplaza guía médica, pero sí significa que tu contexto actual de salud sexual tiene una señal sin resolver. En términos de producto, es una de las razones más fuertes para pasar de una lectura de rendimiento a una lectura de cautela.",
+  "insightsWatchoutHealthRecommendation": "Pausa patrones de riesgo, prioriza seguimiento y registra tu próxima actualización de salud para que esta pantalla refleje un estado más fresco.",
+  "insightsWatchoutProtectionHeadline": "La protección está por debajo de tu base ideal.",
+  "insightsWatchoutProtectionBody": "Solo {rate}% de tus encuentros fueron protegidos, lo que aumenta la importancia de la cautela y el seguimiento.",
+  "@insightsWatchoutProtectionBody": {
+    "placeholders": {
+      "rate": {}
+    }
+  },
+  "insightsWatchoutProtectionDetail": "Tu comportamiento reciente de protección no es catastrófico, pero sí lo bastante débil como para merecer atención. Cuando la protección baja, el resto de la pantalla debe leerse con más cautela, aunque la calidad o el ritmo se vean bien.",
+  "insightsWatchoutProtectionRecommendation": "Refuerza defaults más seguros en esos momentos donde la espontaneidad suele ganarle a la preparación.",
+  "insightsWatchoutQualityHeadline": "La calidad muestra más fricción que fluidez.",
+  "insightsWatchoutQualityBody": "Los promedios son lo bastante bajos como para sugerir que este período necesita más intención, recuperación o cambios de contexto.",
+  "insightsWatchoutQualityDetail": "Los promedios bajos suelen indicar que el problema no es un solo encuentro sino una desalineación repetida de contexto, energía o conexión. Eso es útil porque apunta a un patrón que sí puedes trabajar.",
+  "insightsWatchoutQualityRecommendation": "Intenta cambiar una variable por vez: timing, ritmo, contexto con la pareja o recuperación entre encuentros.",
+  "insightsWatchoutGapHeadline": "La señal es limpia, pero espaciada.",
+  "insightsWatchoutGapBody": "Tu último encuentro fue hace {days} días, así que los patrones actuales todavía pueden ser tempranos y poco estables.",
+  "@insightsWatchoutGapBody": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "insightsWatchoutGapDetail": "Los huecos largos no son malos por sí mismos, pero reducen la confianza de una lectura a corto plazo. La pantalla todavía puede interpretar tus datos, solo con menos certeza sobre qué es actual y qué es histórico.",
+  "insightsWatchoutGapRecommendation": "Deja que los próximos registros reconstruyan momentum antes de tratar este ciclo como un patrón firme.",
+  "insightsHealthSnapshotLabel": "Resumen de salud",
+  "insightsHealthSnapshotEmptyHeadline": "Aún no hay registros de salud.",
+  "insightsHealthSnapshotEmptyBody": "Agregar pruebas y síntomas hará esta pantalla mucho más útil, sobre todo para el radar de riesgo y la inteligencia a largo plazo.",
+  "insightsHealthSnapshotEmptyDetail": "Ahora mismo la app puede leer ritmo, calidad y protección, pero todavía le falta la capa de salud que vuelve la inteligencia más sólida con el tiempo.",
+  "insightsHealthSnapshotEmptyRecommendation": "Registra tu próxima prueba, resultado o síntoma relevante para que la capa de salud empiece a formar parte de tu lectura editorial.",
+  "insightsHealthSnapshotHeadline": "Última señal registrada: {result} en {type}.",
+  "@insightsHealthSnapshotHeadline": {
+    "placeholders": {
+      "result": {},
+      "type": {}
+    }
+  },
+  "insightsHealthSnapshotBody": "Esa última actualización fue hace {months} mes(es), lo que ayuda a definir qué tan fresco está tu contexto de salud.",
+  "@insightsHealthSnapshotBody": {
+    "placeholders": {
+      "months": {}
+    }
+  },
+  "insightsHealthSnapshotDetail": "Este resumen ayuda a aterrizar el resto de la pantalla en algo más duradero que la variación encuentro por encuentro. Incluso un solo registro de salud mejora la interpretación a largo plazo.",
+  "@insightsHealthSnapshotDetail": {
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "insightsHealthSnapshotRecommendation": "Mantén esta capa actualizada con chequeos periódicos para que el resto de tu inteligencia siga siendo contextual y no aislada.",
+  "insightsRiskRadarTitle": "Radar de riesgo",
+  "insightsSheetRecommendation": "Recomendación",
+  "insightsRiskProtection": "Protección",
+  "insightsRiskRecovery": "Seguimiento",
+  "insightsRiskVariability": "Variabilidad",
+  "insightsRiskLow": "Bajo",
+  "insightsRiskGuarded": "Cuidado",
+  "insightsRiskHigh": "Alto",
+  "insightsDynamicFeedTitle": "Más señales",
+  "insightsEmptyTitle": "Tus insights premium aparecerán aquí.",
+  "insightsEmptyBody": "Esta pantalla se vuelve más útil cuando registras algunos encuentros o chequeos de salud. Mientras más consistente sea la data, más precisa será la lectura editorial.",
   "settingsTitle": "Ajustes",
   "settingsTagline": "Registro íntimo privado",
+  "settingsHealthPassportSubtitle": "Registra chequeos de salud y programa recordatorios automáticos.",
   "settingsGeneral": "GENERAL",
   "settingsAbout": "ACERCA DE",
   "settingsDangerZone": "ZONA DE PELIGRO",
@@ -111,12 +259,212 @@
       "xp": {}
     }
   },
+  "pathTitle": "Camino de Maestria",
+  "pathUnlockedAtXp": "Desbloqueado a los {xp} XP",
+  "@pathUnlockedAtXp": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
   "statsTotal": "Total",
   "statsAvgRating": "Promedio",
   "statsActivityDistribution": "Distribución de Actividad",
   "statsActivityLast6Months": "Actividad (Últimos 6 Meses)",
   "statsAnnualActivityMap": "Mapa de Actividad Anual",
+  "statsActivityTrendTitle": "Tendencia de Actividad",
+  "statsActivityMapTitle": "Mapa de Actividad",
+  "statsActivityMapSummary": "{count} días activos en este período.",
+  "@statsActivityMapSummary": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsActivityLegendLess": "Menos",
+  "statsActivityLegendMore": "Más",
+  "statsPremiumHeroEyebrow": "INTELIGENCIA PREMIUM",
+  "statsPremiumHeroQualityTitle": "La calidad va en modo premium",
+  "statsPremiumHeroProtectionTitle": "La disciplina de protección lidera",
+  "statsPremiumHeroPartnerTitle": "Este período tiene una pareja favorita",
+  "statsPremiumHeroConsistencyTitle": "La consistencia se está volviendo hábito",
+  "statsPremiumHeroRhythmTitle": "Tu ritmo ya tiene una franja dominante",
+  "statsPremiumHeroQualityBody": "Tu promedio es {rating}, así que la calidad es hoy tu señal más fuerte en este período.",
+  "@statsPremiumHeroQualityBody": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "statsPremiumHeroProtectionBody": "{rate}% de tus encuentros fueron protegidos, convirtiendo la seguridad en tu señal más sólida ahora mismo.",
+  "@statsPremiumHeroProtectionBody": {
+    "placeholders": {
+      "rate": {}
+    }
+  },
+  "statsPremiumHeroPartnerBody": "{partner} representa el {share}% de tus encuentros y marca el tono de este período.",
+  "@statsPremiumHeroPartnerBody": {
+    "placeholders": {
+      "partner": {},
+      "share": {}
+    }
+  },
+  "statsPremiumHeroConsistencyBody": "Te mantuviste activo en {days} días distintos dentro de una ventana de {span} días, convirtiendo repetición en momentum.",
+  "@statsPremiumHeroConsistencyBody": {
+    "placeholders": {
+      "days": {},
+      "span": {}
+    }
+  },
+  "statsPremiumHeroRhythmBody": "{bucket} lidera con el {share}% de tus encuentros, dándole a este período una firma horaria clara.",
+  "@statsPremiumHeroRhythmBody": {
+    "placeholders": {
+      "bucket": {},
+      "share": {}
+    }
+  },
+  "statsPremiumSignalScore": "{score} puntos de señal",
+  "@statsPremiumSignalScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "statsPremiumTrendUp": "Sube vs período anterior",
+  "statsPremiumTrendDown": "Baja vs período anterior",
+  "statsPremiumTrendStable": "Estable vs período anterior",
+  "statsPremiumConsistencyTitle": "Consistencia",
+  "statsPremiumQualityTitle": "Momentum de calidad",
+  "statsPremiumPartnerTitle": "Modo de parejas",
+  "statsPremiumConsistencyHeadline": "{days} días activos en {span} días",
+  "@statsPremiumConsistencyHeadline": {
+    "placeholders": {
+      "days": {},
+      "span": {}
+    }
+  },
+  "statsPremiumQualityHeadline": "Promedio de {rating}",
+  "@statsPremiumQualityHeadline": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "statsPremiumPartnerHeadline": "{partners} pareja(s), {share}% de concentración",
+  "@statsPremiumPartnerHeadline": {
+    "placeholders": {
+      "partners": {},
+      "share": {}
+    }
+  },
+  "statsPremiumPartnerSupporting": "Pareja principal: {partner}. {trend}.",
+  "@statsPremiumPartnerSupporting": {
+    "placeholders": {
+      "partner": {},
+      "trend": {}
+    }
+  },
+  "statsPremiumSignalSupporting": "{trend}.",
+  "@statsPremiumSignalSupporting": {
+    "placeholders": {
+      "trend": {}
+    }
+  },
+  "statsPremiumDeckTitle": "Lectura premium",
+  "statsPremiumStoryQuality": "Pulso de calidad",
+  "statsPremiumStoryProtection": "Deriva de protección",
+  "statsPremiumStoryPartner": "Foco de pareja",
+  "statsPremiumStoryConsistency": "Pulso de consistencia",
+  "statsPremiumStoryRhythm": "Dominio de ritmo",
+  "statsPremiumStoryQualityHeadline": "La calidad promedia {rating}",
+  "@statsPremiumStoryQualityHeadline": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "statsPremiumStoryProtectionHeadline": "La protección está en {rate}%",
+  "@statsPremiumStoryProtectionHeadline": {
+    "placeholders": {
+      "rate": {}
+    }
+  },
+  "statsPremiumStoryPartnerHeadline": "{partner} está definiendo este período",
+  "@statsPremiumStoryPartnerHeadline": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsPremiumStoryConsistencyHeadline": "{days} días activos están marcando tu cadencia",
+  "@statsPremiumStoryConsistencyHeadline": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "statsPremiumStoryRhythmHeadline": "{bucket} es tu franja dominante",
+  "@statsPremiumStoryRhythmHeadline": {
+    "placeholders": {
+      "bucket": {}
+    }
+  },
+  "statsPremiumStoryQualityBody": "Las calificaciones altas ya aparecen como uno de los patrones más fuertes de tus datos recientes.",
+  "statsPremiumStoryProtectionBody": "Tu tasa de seguridad ya se ve como una conducta sostenida, no solo como un resultado aislado.",
+  "statsPremiumStoryPartnerBody": "{share}% de tus encuentros se concentran alrededor de la misma pareja.",
+  "@statsPremiumStoryPartnerBody": {
+    "placeholders": {
+      "share": {}
+    }
+  },
+  "statsPremiumStoryConsistencyBody": "Este ritmo cubre {span} días y empieza a mostrar intención repetida en vez de registros aislados.",
+  "@statsPremiumStoryConsistencyBody": {
+    "placeholders": {
+      "span": {}
+    }
+  },
+  "statsPremiumStoryRhythmBody": "{count} encuentros ocurrieron dentro de esa ventana horaria.",
+  "@statsPremiumStoryRhythmBody": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsPremiumUnknownPartner": "tu pareja principal",
+  "statsActivitySelectedDay": "{count} encuentros seleccionados",
+  "@statsActivitySelectedDay": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsHeatmapSelection": "{date} • {count} encuentros",
+  "@statsHeatmapSelection": {
+    "placeholders": {
+      "date": {},
+      "count": {}
+    }
+  },
+  "statsHeatmapSelectionCount": "{count} encuentros",
+  "@statsHeatmapSelectionCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsHeatmapDayInsight": "Registraste {count} encuentros en este dia dentro del periodo seleccionado.",
+  "@statsHeatmapDayInsight": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsHeatmapTopPartnerLabel": "Pareja principal",
+  "statsHeatmapTagsLabel": "Etiquetas usadas",
+  "statsHeatmapNoTags": "Sin etiquetas registradas",
+  "statsHeatmapProtectionSafe": "Todo protegido",
+  "statsHeatmapProtectionMixed": "Proteccion mixta",
+  "statsHeatmapProtectionNone": "Sin proteccion",
   "statsHeatmapSnackBar": "{date}: {count} encuentros",
+  "statsBusiestStreakTitle": "Racha más activa",
+  "statsWeeklySnapshotTitle": "Resumen semanal",
+  "statsActiveDaysLabel": "Días activos",
+  "statsCurrentWeekLabel": "Últimos 7 días",
+  "statsPreviousWeekLabel": "7 días anteriores",
+  "statsDaysUnit": "{count} días",
+  "@statsDaysUnit": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "@statsHeatmapSnackBar": {
     "placeholders": {
       "date": {},
@@ -130,6 +478,192 @@
   "statsBad": "Malo (1-4)",
   "statsNoTagData": "Sin datos de etiquetas",
   "statsNoDescription": "Sin descripción.",
+  "statsSegmentAll": "Todo",
+  "statsSegmentPartner": "Partner",
+  "statsSegmentTags": "Etiquetas",
+  "statsSegmentProtection": "Protección",
+  "statsSegmentDayTime": "Día/Hora",
+  "statsFilterAll": "Todos",
+  "statsFilterProtected": "Con protección",
+  "statsFilterUnprotected": "Sin protección",
+  "statsFilterMorning": "Mañana",
+  "statsFilterAfternoon": "Tarde",
+  "statsFilterNight": "Noche",
+  "statsTopPartnersTitle": "Top Partners",
+  "statsTagIntelligenceTitle": "Inteligencia de Etiquetas",
+  "statsTagDetailSubtitle": "Como se comporta esta etiqueta en el periodo actual",
+  "statsTagRelatedPartnersLabel": "Parejas asociadas",
+  "statsTagRecentEncountersLabel": "Encuentros recientes con esta etiqueta",
+  "statsTagInsightHighQuality": "Esta etiqueta suele rendir mejor con {partner}.",
+  "@statsTagInsightHighQuality": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsTagInsightSafe": "Esta etiqueta se mantiene muy protegida y se asocia mas con {partner}.",
+  "@statsTagInsightSafe": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsTagInsightFrequent": "Esta etiqueta aparece mas seguido con {partner} y marca uso repetido.",
+  "@statsTagInsightFrequent": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsProtectionTitle": "Protección",
+  "statsRhythmTitle": "Día y Hora",
+  "statsEncountersLabel": "Encuentros",
+  "statsLastSeenLabel": "Última vez",
+  "statsMostFrequentPartnerLabel": "Pareja frecuente",
+  "statsDominantMoodLabel": "Mood dominante",
+  "statsNoMoodLabel": "Sin mood registrado",
+  "statsPartnerMostActive": "Más activa",
+  "statsPartnerBestChemistry": "Mejor química",
+  "statsPartnerMostRecent": "Más reciente",
+  "statsPartnerDetailMostActive": "La conexion mas activa de este periodo",
+  "statsPartnerDetailBestChemistry": "La quimica mas fuerte entre tus top partners",
+  "statsPartnerDetailMostRecent": "La mas reciente dentro de este periodo",
+  "statsPartnerRecentEncountersLabel": "Encuentros recientes",
+  "statsPartnerInsightHighChemistry": "{partner} combina calificaciones altas con una quimica consistente.",
+  "@statsPartnerInsightHighChemistry": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsPartnerInsightSafety": "La proteccion se mantuvo alta mientras {partner} seguia activa.",
+  "@statsPartnerInsightSafety": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsPartnerInsightMomentum": "{partner} lidera este periodo con un ritmo constante y repetido.",
+  "@statsPartnerInsightMomentum": {
+    "placeholders": {
+      "partner": {}
+    }
+  },
+  "statsProtectionRateLabel": "Promedio de protección",
+  "statsLastUnprotectedPartnerLabel": "Última pareja sin protección",
+  "statsLastUnprotectedDateLabel": "Última fecha sin protección",
+  "statsProtectionStable": "La protección se mantuvo estable en este período.",
+  "statsProtectionImproving": "La protección mejoró frente al período anterior.",
+  "statsProtectionCaution": "La protección bajó frente al período anterior.",
+  "statsProtectionDetailSubtitle": "Cómo se comportó la protección en el periodo actual",
+  "statsProtectionInsightBody": "Esta vista resalta tu consistencia de seguridad, el contexto sin protección más repetido y los momentos recientes que vale la pena notar.",
+  "statsProtectionTopRiskPartnerLabel": "Pareja más asociada sin protección",
+  "statsProtectionRecentEncountersLabel": "Encuentros recientes sin protección",
+  "statsStrongestWindowLabel": "Ventana más fuerte",
+  "statsStrongestDayLabel": "Día más fuerte",
+  "statsRhythmHeadline": "{day} en la {bucket} es tu ventana más fuerte.",
+  "@statsRhythmHeadline": {
+    "placeholders": {
+      "day": {},
+      "bucket": {}
+    }
+  },
+  "statsRhythmDetailSubtitle": "Cómo se comportó tu horario en el periodo actual",
+  "statsRhythmWeeklyPulseLabel": "Pulso semanal",
+  "statsRhythmRecentEncountersLabel": "Encuentros recientes en este ritmo",
+  "statsComparisonBaseline": "Estás construyendo tu línea base.",
+  "statsComparisonUp": "Tu actividad subió frente al período anterior.",
+  "statsComparisonDown": "Tu actividad bajó frente al período anterior.",
+  "statsComparisonStable": "Tu ritmo se mantuvo estable frente al período anterior.",
+  "statsStoryBestContextTitle": "Mejor contexto",
+  "statsStoryBestContextSupporting": "Calificación promedio {rating}",
+  "@statsStoryBestContextSupporting": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "statsStoryBestContextDetails": "Tus mejores calificaciones de este período se concentraron alrededor de {context}. Es una gran fórmula para repetir cuando buscas una experiencia más confiable.",
+  "@statsStoryBestContextDetails": {
+    "placeholders": {
+      "context": {}
+    }
+  },
+  "statsStoryMomentumTitle": "Momentum",
+  "statsStoryMomentumUpHeadline": "La actividad va al alza",
+  "statsStoryMomentumDownHeadline": "La actividad va a la baja",
+  "statsStoryMomentumSupporting": "Cambio de {count} encuentros vs el período anterior",
+  "@statsStoryMomentumSupporting": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsStoryMomentumUpDetails": "Registraste {count} encuentros más que en el período anterior. Normalmente eso apunta a una mejor consistencia en tu ritmo.",
+  "@statsStoryMomentumUpDetails": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsStoryMomentumDownDetails": "Registraste {count} encuentros menos que en el período anterior. Vale la pena revisar si fue algo puntual o una desaceleración real.",
+  "@statsStoryMomentumDownDetails": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "statsStoryProtectionTrendTitle": "Tendencia de protección",
+  "statsStoryProtectionTrendUpHeadline": "La protección subió",
+  "statsStoryProtectionTrendDownHeadline": "La protección bajó",
+  "statsStoryProtectionTrendSupporting": "{current}% vs {previous}%",
+  "@statsStoryProtectionTrendSupporting": {
+    "placeholders": {
+      "current": {},
+      "previous": {}
+    }
+  },
+  "statsStoryProtectionTrendUpDetails": "El uso de protección subió de {previous}% a {current}% en este período. Es un cambio importante hacia una mayor consistencia en seguridad.",
+  "@statsStoryProtectionTrendUpDetails": {
+    "placeholders": {
+      "current": {},
+      "previous": {}
+    }
+  },
+  "statsStoryProtectionTrendDownDetails": "El uso de protección bajó de {previous}% a {current}% en este período. Es una señal que conviene vigilar.",
+  "@statsStoryProtectionTrendDownDetails": {
+    "placeholders": {
+      "current": {},
+      "previous": {}
+    }
+  },
+  "statsStoryPrimeTimeTitle": "Prime time",
+  "statsStoryPrimeTimeSupporting": "Calificación promedio {rating}",
+  "@statsStoryPrimeTimeSupporting": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "statsStoryPrimeTimeDetails": "Tus mejores calificaciones recientes se concentran alrededor de {slot}. Parece una de tus ventanas con mayor potencial.",
+  "@statsStoryPrimeTimeDetails": {
+    "placeholders": {
+      "slot": {}
+    }
+  },
+  "statsStoryPeakMonthTitle": "Mes pico",
+  "statsStoryPeakMonthSupporting": "Calificación promedio {rating}",
+  "@statsStoryPeakMonthSupporting": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "statsStoryPeakMonthDetails": "{month} destaca como tu mes más fuerte en esta vista. Es una referencia útil del ritmo que podrías intentar repetir.",
+  "@statsStoryPeakMonthDetails": {
+    "placeholders": {
+      "month": {}
+    }
+  },
+  "statsStoryWeekdayMon": "Lunes",
+  "statsStoryWeekdayTue": "Martes",
+  "statsStoryWeekdayWed": "Miércoles",
+  "statsStoryWeekdayThu": "Jueves",
+  "statsStoryWeekdayFri": "Viernes",
+  "statsStoryWeekdaySat": "Sábado",
+  "statsStoryWeekdaySun": "Domingo",
+  "statsStoryDayTimeMorning": "mañana",
+  "statsStoryDayTimeAfternoon": "tarde",
+  "statsStoryDayTimeNight": "noche",
   "calendarNoActivity": "Sin actividad este día.",
   "calendarConfirmDeleteTitle": "Confirmar Borrado",
   "calendarConfirmDeleteMessage": "Esta acción también ajustará tu XP y progreso. ¿Estás seguro?",
@@ -141,6 +675,7 @@
     }
   },
   "authIncorrectCode": "Código Incorrecto",
+  "liteMonthlyEncounterLimitReached": "El modo lite permite hasta 5 registros por mes.",
   "authKillSwitchExecuted": "⚠️ PROTOCOLO EXECUTADO. DATOS ELIMINADOS.",
   "authBiometricButton": "Biometría / FaceID",
   "insightAverageSatisfactionTitle": "Satisfacción Promedio",
@@ -225,6 +760,77 @@
       "tag": {}
     }
   },
+  "insightBestTagComboTitle": "Mejor Combinación de Tags",
+  "insightBestTagComboDescription": "Cuando {tags} aparecen juntos, tu calificación promedio sube a {avg}/10.",
+  "@insightBestTagComboDescription": {
+    "placeholders": {
+      "tags": {},
+      "avg": {}
+    }
+  },
+  "insightMostConsistentPartnerTitle": "Pareja Más Consistente",
+  "insightMostConsistentPartnerDescription": "{partner} es tu conexión más consistente, con un promedio de {avg}/10.",
+  "@insightMostConsistentPartnerDescription": {
+    "placeholders": {
+      "partner": {},
+      "avg": {}
+    }
+  },
+  "insightMostUnpredictablePartnerTitle": "Pareja Más Impredecible",
+  "insightMostUnpredictablePartnerDescription": "{partner} muestra los cambios más bruscos recientemente, con una variabilidad de {spread}.",
+  "@insightMostUnpredictablePartnerDescription": {
+    "placeholders": {
+      "partner": {},
+      "spread": {}
+    }
+  },
+  "insightBestRecentPartnerTrendTitle": "Mejor Tendencia Reciente por Pareja",
+  "insightBestRecentPartnerTrendDescription": "{partner} viene en alza, mejorando alrededor de {diff} puntos en tus encuentros más recientes.",
+  "@insightBestRecentPartnerTrendDescription": {
+    "placeholders": {
+      "partner": {},
+      "diff": {}
+    }
+  },
+  "insightRecentChemistryTitle": "Química Reciente",
+  "insightRecentChemistryDescription": "{partner} tiene tu mejor química reciente con un promedio de {avg}/10.",
+  "@insightRecentChemistryDescription": {
+    "placeholders": {
+      "partner": {},
+      "avg": {}
+    }
+  },
+  "insightProtectionRecentlyDroppedTitle": "Protección Reciente a la Baja",
+  "insightProtectionRecentlyDroppedDescription": "Tu uso reciente de protección bajó a {recent}% comparado con {previous}% en tus registros anteriores.",
+  "@insightProtectionRecentlyDroppedDescription": {
+    "placeholders": {
+      "recent": {},
+      "previous": {}
+    }
+  },
+  "insightLongActivityPauseTitle": "Pausa Larga de Actividad",
+  "insightLongActivityPauseDescription": "Han pasado alrededor de {days} días desde tu último encuentro registrado. Puede valer la pena revisar cómo te sientes con esa pausa.",
+  "@insightLongActivityPauseDescription": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "insightHealthCheckOverdueTitle": "Chequeo de Salud Atrasado",
+  "insightHealthCheckOverdueDescription": "Tu último registro en Health Passport fue hace aproximadamente {months} meses. Podría ser un buen momento para programar otro chequeo.",
+  "@insightHealthCheckOverdueDescription": {
+    "placeholders": {
+      "months": {}
+    }
+  },
+  "insightStrongestRecentMonthTitle": "Mes Más Fuerte Reciente",
+  "insightStrongestRecentMonthDescription": "{month} destaca con {count} encuentros y una calificación promedio de {avg}/10.",
+  "@insightStrongestRecentMonthDescription": {
+    "placeholders": {
+      "month": {},
+      "count": {},
+      "avg": {}
+    }
+  },
   "homeBlackBookTitle": "Black Book",
   "homeTrophyRoomTitle": "Trophy Room",
   "homeHealthPassportTitle": "Health Passport",
@@ -304,6 +910,7 @@
   "healthResultPositive": "Positivo",
   "healthResultPending": "Pendiente",
   "healthNewRecord": "Nuevo Registro Médico",
+  "healthAddRecordSubtitle": "Mantén tu historial personal de salud al día con registros claros y privados.",
   "healthTestTypeLabel": "Tipo de Prueba (Ej. Panel Completo)",
   "healthResultLabel": "Resultado:",
   "healthSaveAndSchedule": "Guardar & Programar",
@@ -312,6 +919,7 @@
   "healthNoRecords": "Sin registros médicos",
   "healthNoRecordsSubtitle": "La salud es sexy. ¡Hazte un chequeo!",
   "addEntryPartnerHint": "Escribe '@' para buscar o un nombre nuevo...",
+  "addEntryPartnerRequired": "El nombre es requerido",
   "addEntryPartnerSheetTitle": "Seleccionar pareja",
   "addEntryPartnerCreateOption": "Crear \"@{name}\"",
   "@addEntryPartnerCreateOption": {
@@ -320,6 +928,8 @@
     }
   },
   "sharePreviewTitle": "Previsualización",
+  "sharePreviewSubtitle": "Tu resumen premium de temporada esta listo para compartir.",
+  "sharePreviewAction": "Compartir tarjeta",
   "shareCardText": "¡Nuevo rango desbloqueado en NOTCH! 🏆 #NOTCHapp",
   "shareCurrentSeason": "TEMPORADA ACTUAL",
   "shareSeasonXp": "XP de Temporada",
@@ -338,14 +948,32 @@
   "partnerNoEncounters": "Sin encuentros registrados.",
   "trophyMonthRecord": "RÉCORD MES",
   "trophyHistorical": "HISTÓRICO",
+  "trophyAbstinenceRecordsTitle": "Récords de abstinencia",
+  "trophyAbstinenceRecordsSubtitle": "Tus mejores marcas alcanzadas",
   "challengesTitle": "Retos",
   "challengesSubtitle": "Completa estos objetivos para demostrar tu maestría y compromiso.",
+  "challengeSeasonal": "Temporada",
+  "challengeHistorical": "Histórico",
+  "challengeXpReward": "{xp} XP",
+  "challengeCategoryFoundation": "Base",
+  "challengeCategoryAll": "Todas",
+  "challengeCategorySocial": "Social",
+  "challengeCategoryEvents": "Eventos",
+  "challengeCategoryRelationships": "Relaciones",
+  "challengeCategoryMood": "Mood",
+  "challengeCategorySkill": "Skill",
+  "challengeCategoryLegacy": "Legado",
+  "@challengeXpReward": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
   "challengeMorningMasterTitle": "Maestro Mañanero",
   "challengeMorningMasterDesc": "Registra 5 encuentros con la etiqueta 'Mañanero'.",
   "challengeWeeklyExplorerTitle": "Explorador Semanal",
   "challengeWeeklyExplorerDesc": "Usa 3 etiquetas diferentes en los últimos 7 días.",
   "challengeQualityWeekTitle": "Semana de Calidad",
-  "challengeQualityWeekDesc": "Logra un promedio de 8.0+ en los últimos 7 días.",
+  "challengeQualityWeekDesc": "Registra 8 encuentros en los últimos 7 días con un promedio de 8.0+.",
   "challengeSafetyChampionTitle": "Campeón de la Seguridad",
   "challengeSafetyChampionDesc": "Logra 100% de protección en tus últimos 5 encuentros.",
   "challengePreludeMasterTitle": "Maestro del Preludio",
@@ -354,6 +982,44 @@
   "challengeSteelConsistencyDesc": "Registra al menos 8 encuentros en la temporada actual.",
   "challengeQualityClubTitle": "El Club del 9+",
   "challengeQualityClubDesc": "Logra 5 encuentros este mes con calificación de 9 o 10.",
+  "challengeQualityStreak3Title": "Racha de Calidad",
+  "challengeQualityStreak3Desc": "Logra 3 encuentros seguidos con calificación de 8 o más en la temporada actual.",
+  "challengeQualityStreak5Title": "Calidad Imparable",
+  "challengeQualityStreak5Desc": "Logra 5 encuentros seguidos con calificación de 8 o más a lo largo de tu historial.",
+  "challengeBalancedWeekTitle": "Semana Balanceada",
+  "challengeBalancedWeekDesc": "Registra encuentros en 3 días distintos dentro de los últimos 7 días.",
+  "challengeTagCombo5Title": "Combo de Etiquetas",
+  "challengeTagCombo5Desc": "Usa 5 etiquetas distintas durante la temporada actual.",
+  "challengeSocialCircle3Title": "Circulo Social",
+  "challengeSocialCircle3Desc": "Registra encuentros con 3 parejas distintas esta temporada.",
+  "challengeQualityNetwork3Title": "Red de Calidad",
+  "challengeQualityNetwork3Desc": "Registra encuentros esta temporada con 3 parejas distintas, cada una con calificacion de 8 o mas.",
+  "challengeSafeNetwork3Title": "Red Segura",
+  "challengeSafeNetwork3Desc": "Registra encuentros protegidos esta temporada con 3 parejas distintas.",
+  "challengeWeekendRun2Title": "Racha de Weekend",
+  "challengeWeekendRun2Desc": "Registra encuentros en 2 fines de semana consecutivos durante esta temporada.",
+  "challengeSocialWeekend3Title": "Fin de Semana Social",
+  "challengeSocialWeekend3Desc": "Registra encuentros de fin de semana con 3 parejas distintas esta temporada.",
+  "challengeEventMix3Title": "Mezcla de Eventos",
+  "challengeEventMix3Desc": "Usa 3 etiquetas de eventos distintas esta temporada.",
+  "challengeGetawayDuo2Title": "Duo de Escapada",
+  "challengeGetawayDuo2Desc": "Registra 2 encuentros esta temporada con etiquetas de escapada.",
+  "challengeMoodSpectrum3Title": "Espectro de Mood",
+  "challengeMoodSpectrum3Desc": "Registra 3 moods distintos en esta temporada.",
+  "challengeHighSpirits3Title": "Moods Intensos",
+  "challengeHighSpirits3Desc": "Registra 3 encuentros esta temporada con mood definido y calificacion de 8 o mas.",
+  "challengeSkillMix3Title": "Mezcla de Practicas",
+  "challengeSkillMix3Desc": "Usa 3 etiquetas de practicas distintas esta temporada.",
+  "challengePleasureCrafter3Title": "Arquitecto del Placer",
+  "challengePleasureCrafter3Desc": "Registra 3 encuentros esta temporada con practicas y calificacion de 8 o mas.",
+  "challengeConnectionArc3Title": "Arco de Conexion",
+  "challengeConnectionArc3Desc": "Usa 3 etiquetas de dinamicas relacionales esta temporada.",
+  "challengeDateNight2Title": "Noche de Cita",
+  "challengeDateNight2Desc": "Registra 2 encuentros esta temporada con etiquetas romanticas.",
+  "challengeSinglePartnerSeasonTitle": "Solo una Pareja",
+  "challengeSinglePartnerSeasonDesc": "Registra 8 encuentros esta temporada con una sola pareja. Si aparece otra, el reto se rompe.",
+  "challengeLoyalMonthTitle": "Mes Leal",
+  "challengeLoyalMonthDesc": "Registra 12 encuentros esta temporada con una sola pareja. Si aparece otra, el reto se rompe.",
   "challengeGuardianOfSafetyTitle": "Guardián de la Seguridad",
   "challengeGuardianOfSafetyDesc": "Logra una racha de 15 encuentros seguidos usando protección.",
   "challengePerfectWeekendTitle": "Fin de Semana Perfecto",
@@ -368,6 +1034,14 @@
   "challengeCenturionDesc": "Registra tus primeros 100 encuentros en total.",
   "challengeLegendaryGuardianTitle": "Guardián Legendario",
   "challengeLegendaryGuardianDesc": "Mantén una tasa de protección del 95%+ sobre al menos 50 encuentros.",
+  "challengeSinglePartner100Title": "Una Misma Historia",
+  "challengeSinglePartner100Desc": "Acumula 100 encuentros con una sola pareja.",
+  "challengeSinglePartner500Title": "Vínculo Legendario",
+  "challengeSinglePartner500Desc": "Acumula 500 encuentros con una sola pareja.",
+  "challengeSteadyBond50Title": "Lazo Seguro",
+  "challengeSteadyBond50Desc": "Acumula 50 encuentros protegidos con una sola pareja a lo largo de tu historial.",
+  "challengeConstellation10Title": "Constelación",
+  "challengeConstellation10Desc": "Registra encuentros con 10 parejas distintas a lo largo de tu historial.",
   "challengePolymathTitle": "El Polímata",
   "challengePolymathDesc": "Usa cada una de las etiquetas disponibles al menos una vez.",
   "challengeAbstinence21Title": "Abstinencia 21 Días",
@@ -414,6 +1088,7 @@
   "trophyExploreGoals": "Explora nuevos objetivos",
   "trophyExploreGoalsSubtitle": "Toca para ver todos los retos disponibles y seguir mejorando.",
   "trophyUnlockedBadges": "INSIGNIAS DESBLOQUEADAS",
+  "trophyRoomSubtitle": "Sigue tu rango, tus rachas y tus logros de temporada en un solo espacio premium.",
   "trophySeasonLabel": "Temporada",
   "trophyCurrentShort": "Actual",
   "trophyCurrentLevel": "NIVEL ACTUAL",
@@ -472,13 +1147,19 @@
   "achievementFireStreakName": "Racha de Fuego",
   "achievementFireStreakDesc": "Mantén una racha de 7 días seguidos.",
   "achievementAbstinenceBronzeName": "Abstinencia Bronce",
-  "achievementAbstinenceBronzeDesc": "Alcanza 7 días de abstinencia.",
+  "achievementAbstinenceBronzeDesc": "Alcanza 7 dias de abstinencia durante el mes actual.",
   "achievementAbstinenceSilverName": "Abstinencia Plata",
-  "achievementAbstinenceSilverDesc": "Alcanza 14 días de abstinencia.",
+  "achievementAbstinenceSilverDesc": "Alcanza 14 dias de abstinencia durante el mes actual.",
   "achievementAbstinenceGoldName": "Abstinencia Oro",
-  "achievementAbstinenceGoldDesc": "Alcanza 30 días de abstinencia.",
+  "achievementAbstinenceGoldDesc": "Alcanza 30 dias de abstinencia durante el mes actual.",
   "achievementAbstinenceDiamondName": "Abstinencia Diamante",
-  "achievementAbstinenceDiamondDesc": "Alcanza 60 días de abstinencia.",
+  "achievementAbstinenceDiamondDesc": "Alcanza 60 dias historicos de abstinencia.",
+  "achievementAbstinenceMaster45Name": "Abstinencia 45",
+  "achievementAbstinenceMaster45Desc": "Alcanza 45 dias historicos de abstinencia.",
+  "achievementAbstinenceMaster90Name": "Abstinencia 90",
+  "achievementAbstinenceMaster90Desc": "Alcanza 90 dias historicos de abstinencia.",
+  "achievementAbstinenceMaster120Name": "Abstinencia 120",
+  "achievementAbstinenceMaster120Desc": "Alcanza 120 dias historicos de abstinencia.",
   "achievementMonkModeName": "Modo Monje",
   "achievementMonkModeDesc": "Mantén 100% de abstinencia durante el mes actual.",
   "achievementTopCriticName": "Crítico Exigente",
@@ -526,37 +1207,17 @@
     }
   },
   "trophyBadgeNotUnlockedHistory": "Aún no has desbloqueado esta medalla.",
+  "trophyBadgeOneTimeTitle": "Logro de una sola vez",
+  "trophyBadgeOneTimeUnlocked": "Ya has desbloqueado esta medalla.",
+  "trophyBadgeStatusUnlocked": "Desbloqueada",
+  "trophyBadgeStatusLocked": "Bloqueada",
+  "trophyBadgeModalFootnote": "Cada medalla refleja tu progreso entre temporadas, hitos y consistencia personal.",
+  "trophyBadgeRuleTitleExclusive": "Regla de temporada: una sola pareja",
+  "trophyBadgeRuleBodyExclusive": "Desbloquea esta medalla al llegar a 8 encuentros en la temporada actual y mantenerlos todos con la misma pareja.",
+  "trophyBadgeRuleTitleVariety": "Regla de temporada: varias parejas",
+  "trophyBadgeRuleBodyVariety": "Desbloquea esta medalla cuando la temporada actual incluya encuentros con 3 parejas distintas.",
   "trophyShowMore": "Ver más",
   "trophyShowLess": "Ver menos",
-  "monetizationPremiumTitle": "NOTCH Premium",
-  "monetizationManagePlansSubtitle": "Gestiona planes y restaura compras",
-  "monetizationActiveTitle": "NOTCH Premium activo",
-  "monetizationActiveDescription": "Ya tienes acceso completo a las funciones premium.",
-  "monetizationContinue": "Continuar",
-  "monetizationUnlockAll": "Desbloquea todas las funciones avanzadas.",
-  "monetizationUnlockFeature": "Desbloquea: {feature}",
-  "@monetizationUnlockFeature": {
-    "placeholders": {
-      "feature": {}
-    }
-  },
-  "monetizationFallbackDescription": "Privacidad avanzada, backups cifrados, insights completos y mas.",
-  "monetizationRestorePurchases": "Restaurar compras",
-  "monetizationStoreUnavailable": "No se pudieron cargar los productos. Verifica que los IDs existan en App Store Connect / Play Console.",
-  "monetizationRecommended": "Recomendado",
-  "monetizationContinueWithPrice": "Continuar - {price}",
-  "@monetizationContinueWithPrice": {
-    "placeholders": {
-      "price": {}
-    }
-  },
-  "premiumFeatureInsightsDescription": "Descubre correlaciones y tendencias completas de tu historial.",
-  "premiumFeatureDataBackupDescription": "Exporta, restaura y protege tu historial al cambiar de dispositivo.",
-  "premiumFeatureHealthPassportDescription": "Registra chequeos de salud y programa recordatorios automaticos.",
-  "premiumFeatureBlackBookDescription": "Desbloquea perfiles detallados, notas privadas y personalizacion.",
-  "monetizationOpenNativePaywall": "Abrir Paywall de RevenueCat",
-  "settingsCustomerCenter": "Customer Center",
-  "settingsCustomerCenterSubtitle": "Gestiona suscripciones y facturacion",
   "homeAbstinenceTitle": "Tiempo de abstinencia",
   "homeAbstinenceSubtitle": "Desde tu último encuentro",
   "homeAbstinenceNoDataSubtitle": "Aún no has registrado encuentros.",
@@ -568,5 +1229,112 @@
       "hours": {},
       "minutes": {}
     }
-  }
+  },
+  "landingBrand": "NOTCH",
+  "landingFeatures": "Funciones",
+  "landingPrivacy": "Arquitectura de privacidad",
+  "landingHealth": "Pasaporte de salud",
+  "landingPricing": "Precio",
+  "landingFaq": "Preguntas",
+  "landingGet": "Obtener NOTCH · $1.99",
+  "landingBadge": "SIN SERVIDORES · TODO EN TU DISPOSITIVO · SIN SUSCRIPCIONES",
+  "landingHeroTitle": "Privacidad absoluta.\nSin compromisos.",
+  "landingHeroBody": "El registro discreto de intimidad y bienestar personal. Comprende tus patrones, celebra tu progreso y mantén tu vida íntima solo para ti.",
+  "landingDownload": "Descargar para iOS",
+  "landingExplore": "Explorar funciones",
+  "landingAndroid": "Android · Próximamente",
+  "landingOffline": "Funciona sin conexión",
+  "landingEncrypted": "Copias cifradas",
+  "landingNoTrackers": "Sin rastreadores externos",
+  "landingNoAccounts": "Sin cuentas",
+  "landingNoSubscriptions": "Sin suscripciones",
+  "landingFoundationsLabel": "BASES SIN COMPROMISOS",
+  "landingFoundationsTitle": "Diseñado para la máxima discreción.",
+  "landingFoundationsBody": "Tu información más personal merece un espacio que tú controles. Privado por diseño, desde el primer toque.",
+  "landingSecurityTitle": "Privacidad y PIN señuelo",
+  "landingSecurityBody": "Protege tu diario con biometría y un PIN personal. Un PIN señuelo independiente abre una interfaz cotidiana discreta cuando lo necesitas.",
+  "landingSecurityLink": "Discreción por diseño",
+  "landingInsightsTitle": "Intimidad e información",
+  "landingInsightsBody": "Registra satisfacción, estados de ánimo, parejas y hábitos. Descubre patrones con información visual calculada en tu dispositivo.",
+  "landingInsightsLink": "Tus patrones, más claros",
+  "landingHealthTitle": "Salud sexual y cuidado",
+  "landingHealthBody": "Reúne controles de salud, registros de protección y recordatorios. Cuida tu bienestar de forma más consciente.",
+  "landingHealthLink": "Cuidarte empieza por conocerte",
+  "landingModuleOne": "MÓDULO 01",
+  "landingLoggerTitle": "Un registro intuitivo de encuentros",
+  "landingLoggerBody": "Guarda los momentos que importan, sin complicaciones. Añade un estado de ánimo, etiqueta tu experiencia y registra lo que sea relevante para ti.",
+  "landingLoggerPointOne": "Etiquetas, estados de ánimo y notas personales",
+  "landingLoggerPointTwo": "Una cronología clara y vista de calendario",
+  "landingModuleTwo": "MÓDULO 02",
+  "landingStatsTitle": "Información y mapas de actividad",
+  "landingStatsBody": "Transforma tus registros privados en información útil. Visualiza tu ritmo, explora tendencias y comprende tus hábitos con el tiempo. Todo se calcula localmente.",
+  "landingStatsPointOne": "Mapas de actividad y tendencias personales",
+  "landingStatsPointTwo": "Información calculada 100% en tu dispositivo",
+  "landingModuleThree": "MÓDULO 03",
+  "landingBookTitle": "Tu agenda privada y pasaporte de salud",
+  "landingBookBody": "Mantén detalles de parejas, preferencias e historial de salud en un lugar discreto. Organiza tus registros y configura recordatorios a tu manera.",
+  "landingBookPointOne": "Registros y preferencias de tus parejas",
+  "landingBookPointTwo": "Controles de salud y recordatorios locales",
+  "landingModuleFour": "MÓDULO 04",
+  "landingTrophyTitle": "Sala de trofeos y experiencia",
+  "landingTrophyBody": "Celebra el autoconocimiento, la constancia y tus logros personales. Explora retos por temporada, colecciona insignias y sigue tu propio camino.",
+  "landingTrophyPointOne": "Retos por temporada e insignias coleccionables",
+  "landingTrophyPointTwo": "Progreso personal, sin clasificaciones públicas",
+  "landingArchitectureLabel": "ARQUITECTURA SIN TELEMETRÍA",
+  "landingArchitectureTitle": "Tu vida. Tu dispositivo. Tus datos.",
+  "landingArchitectureBody": "La privacidad es una base, no una mejora de pago. Así trata NOTCH tu información más sensible.",
+  "landingArchitectureVector": "Diseñado para tu privacidad",
+  "landingArchitectureNotch": "NOTCH",
+  "landingArchitectureOther": "Una app conectada típica",
+  "landingStorage": "Almacenamiento",
+  "landingStorageLocal": "Local en tu dispositivo",
+  "landingStorageRemote": "Servidores remotos y cuentas en la nube",
+  "landingAccount": "Cuenta e identificación",
+  "landingAccountLocal": "Sin cuenta ni correo obligatorio",
+  "landingAccountRemote": "Registro y perfiles de identidad",
+  "landingTracking": "Rastreo de terceros",
+  "landingTrackingLocal": "Sin SDK de publicidad ni análisis",
+  "landingTrackingRemote": "Puede incluir análisis y publicidad",
+  "landingBusiness": "Modelo de negocio",
+  "landingBusinessLocal": "US$1.99 · Un solo pago",
+  "landingBusinessRemote": "A menudo, una suscripción",
+  "landingPricingLabel": "UN PRECIO CLARO Y HONESTO",
+  "landingPricingTitle": "Paga una vez. Consérvalo siempre.",
+  "landingPricingBody": "Una compra. Todas las funciones. Sin pagos recurrentes ni venta de tu información personal.",
+  "landingLicense": "VERSIÓN COMPLETA · SIN SUSCRIPCIONES",
+  "landingPrice": "US$1.99",
+  "landingPriceUnit": "USD · Un solo pago",
+  "landingPriceNote": "Versión completa para iOS. Android próximamente. El precio puede variar según la región.",
+  "landingIncludedLogs": "Encuentros y notas ilimitados",
+  "landingIncludedSecurity": "Biometría y PIN señuelo",
+  "landingIncludedHealth": "Pasaporte de salud y recordatorios",
+  "landingIncludedStats": "Mapas de actividad e información personal",
+  "landingIncludedBook": "Registros privados de parejas",
+  "landingIncludedBackup": "Copia cifrada y restauración",
+  "landingFaqLabel": "PREGUNTAS FRECUENTES",
+  "landingFaqTitle": "Todo lo que necesitas saber.",
+  "landingFaqOne": "¿Cómo funciona el PIN señuelo?",
+  "landingAnswerOne": "Configura un PIN señuelo independiente en Seguridad y acceso. Al introducirlo, se abre una interfaz discreta de tareas en lugar de tu diario privado. Tu PIN principal te da acceso a tus registros.",
+  "landingFaqTwo": "¿Qué ocurre si elimino la app?",
+  "landingAnswerTwo": "Tus registros se guardan localmente, por lo que eliminar la app puede borrarlos. Exporta una copia cifrada antes de eliminar la app o cambiar de teléfono y guarda el archivo y la contraseña en un lugar seguro.",
+  "landingFaqThree": "¿Alguien puede ver mis datos o estadísticas?",
+  "landingAnswerThree": "NOTCH calcula la información en tu dispositivo y no envía tu diario a un servidor de NOTCH. Tú controlas los archivos que decides exportar o compartir. Protege tu dispositivo y la contraseña de tus copias.",
+  "landingFaqFour": "¿Cómo funciona el borrado de emergencia?",
+  "landingAnswerFour": "Configura un PIN de borrado de emergencia opcional en Seguridad y acceso. Al introducir ese PIN en la pantalla de bloqueo se eliminan tus registros locales. Revisa la configuración y conserva una copia cifrada si deseas mantener tu historial.",
+  "landingFaqFive": "¿Puedo pasar mis registros a otro teléfono?",
+  "landingAnswerFive": "Sí. Exporta una copia protegida por contraseña desde Datos y copias de seguridad, transfiérela de forma segura y restáurala en NOTCH en tu nuevo dispositivo con la misma contraseña.",
+  "landingCtaTitle": "Recupera hoy la privacidad de tu vida íntima.",
+  "landingCtaBody": "Más autoconocimiento. Más tranquilidad. Tu camino de bienestar personal, en tus manos.",
+  "landingFooterBody": "Registro privado de intimidad y bienestar. Diseñado para la discreción, el autoconocimiento y el control de tus registros íntimos.",
+  "landingFooterLinks": "Explora NOTCH",
+  "landingSupport": "Ayuda",
+  "landingContact": "Contactar con soporte",
+  "landingCopyright": "© 2026 NOTCH. Privado por diseño.",
+  "landingStoreUnavailable": "Disponibilidad en App Store",
+  "landingStoreMessage": "El enlace de NOTCH a la tienda aún no está disponible. Vuelve pronto o contacta con soporte para conocer los detalles del lanzamiento.",
+  "landingLinkError": "No se pudo abrir este enlace. Inténtalo de nuevo.",
+  "landingClose": "Cerrar",
+  "landingMenu": "Abrir navegación",
+  "landingScreenshot": "Captura de pantalla de NOTCH",
+  "landingLanguageSwitch": "English"
 }

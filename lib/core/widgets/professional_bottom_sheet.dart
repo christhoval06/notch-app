@@ -53,7 +53,12 @@ class ProfessionalBottomSheet extends StatelessWidget {
                 ),
               ],
               const SizedBox(height: 12),
-              child,
+              Flexible(
+                fit: FlexFit.loose,
+                child: SingleChildScrollView(
+                  child: child,
+                ),
+              ),
             ],
           ),
         ),

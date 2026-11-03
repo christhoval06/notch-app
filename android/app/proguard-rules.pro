@@ -37,8 +37,11 @@
 -keep class java.security.** { *; }
 -keep class javax.crypto.** { *; }
 
-# Google Play Core (Lo añadimos para solucionar el error de "Missing class")
--keep class com.google.android.play.core.** { *; }
+# Flutter embedding still references legacy Play Core task types for deferred
+# components, but this app does not use deferred components at runtime.
+-dontwarn com.google.android.play.core.tasks.OnFailureListener
+-dontwarn com.google.android.play.core.tasks.OnSuccessListener
+-dontwarn com.google.android.play.core.tasks.Task
 
 # Kotlin Coroutines (Muchas librerías modernas la usan por debajo)
 -keep class kotlinx.coroutines.** { *; }
