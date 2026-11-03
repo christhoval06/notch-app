@@ -8,8 +8,6 @@ import 'package:notch_app/features/feature/home/widgets/home_top_bar.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/insights_page.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/stats_page.dart';
 import 'package:notch_app/features/feature/path/presentation/pages/path_page.dart';
-import 'package:notch_app/features/feature/premium/models/premium_access.dart';
-import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 
 class HomeView extends StatefulWidget {
@@ -37,7 +35,9 @@ class _HomeViewState extends State<HomeView> {
             ? MediaQuery.paddingOf(context).top + kToolbarHeight
             : 0,
         bottomPadding: 98,
-        topBar: showHomeTopBar ? _topBarFor(context, l10n) : const SizedBox.shrink(),
+        topBar: showHomeTopBar
+            ? _topBarFor(context, l10n)
+            : const SizedBox.shrink(),
         bottomBar: HomeBottomBar(
           l10n: l10n,
           currentIndex: _selectedIndex,
@@ -69,21 +69,13 @@ class _HomeViewState extends State<HomeView> {
         context,
         MaterialPageRoute(builder: (_) => const PathScreen()),
       ),
-      onStatsTap: () async => PremiumAccess.guard(
-        context: context,
-        feature: PremiumFeature.stats,
-        onAllowed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const StatsScreen()),
-        ),
+      onStatsTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const StatsScreen()),
       ),
-      onInsightsTap: () async => PremiumAccess.guard(
-        context: context,
-        feature: PremiumFeature.insights,
-        onAllowed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => InsightsScreen()),
-        ),
+      onInsightsTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => InsightsScreen()),
       ),
     );
   }
@@ -103,20 +95,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Future<void> _onItemTapped(int index) async {
-    final feature = HomeTabConfig.featureFor(index);
-    if (feature == null) {
-      _selectTab(index);
-      return;
-    }
-    await PremiumAccess.guard(
-      context: context,
-      feature: feature,
-      onAllowed: () => _selectTab(index),
-    );
-  }
-
-  void _selectTab(int index) {
+  void _onItemTapped(int index) {
     if (!mounted) return;
     setState(() {
       _selectedIndex = index;

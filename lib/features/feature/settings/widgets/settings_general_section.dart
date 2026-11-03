@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notch_app/core/configs/feature_flags.dart';
 import 'package:notch_app/core/theme/color_scheme_semantics.dart';
 import 'package:notch_app/core/utils/locale_controller.dart';
-import 'package:notch_app/core/widgets/feature_guard.dart';
 import 'package:notch_app/features/feature/health/presentation/pages/health_passport_page.dart';
-import 'package:notch_app/features/feature/premium/models/premium_access.dart';
-import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
-import 'package:notch_app/features/feature/premium/presentation/pages/premium_upsell_page.dart';
 import 'package:notch_app/features/feature/settings/presentation/pages/data_management_page.dart';
 import 'package:notch_app/features/feature/settings/presentation/pages/security_settings_page.dart';
 import 'package:notch_app/features/feature/settings/widgets/settings_section_header.dart';
@@ -38,32 +33,14 @@ class SettingsGeneralSection extends StatelessWidget {
           color: scheme.primary,
           title: l10n.settingsDataBackup,
           subtitle: l10n.settingsDataBackupSubtitle,
-          onTap: () => PremiumAccess.guard(
-            context: context,
-            feature: PremiumFeature.dataBackup,
-            onAllowed: () => _open(context, const DataManagementScreen()),
-          ),
+          onTap: () => _open(context, const DataManagementScreen()),
         ),
         SettingsTile(
           icon: Icons.local_hospital_outlined,
           color: scheme.error,
           title: l10n.homeHealthPassportTitle,
-          subtitle: l10n.premiumFeatureHealthPassportDescription,
-          onTap: () => PremiumAccess.guard(
-            context: context,
-            feature: PremiumFeature.healthPassport,
-            onAllowed: () => _open(context, const HealthPassportScreen()),
-          ),
-        ),
-        FeatureGuard(
-          featureName: FeatureNames.showPremiumSettingsItem,
-          child: SettingsTile(
-            icon: Icons.workspace_premium,
-            color: scheme.warning,
-            title: l10n.monetizationPremiumTitle,
-            subtitle: l10n.monetizationManagePlansSubtitle,
-            onTap: () => _open(context, const PremiumUpsellScreen()),
-          ),
+          subtitle: l10n.settingsHealthPassportSubtitle,
+          onTap: () => _open(context, const HealthPassportScreen()),
         ),
         SettingsTile(
           icon: Icons.language,

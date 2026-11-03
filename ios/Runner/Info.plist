@@ -46,5 +46,9 @@
 	<string>NOTCH usa Face ID para autenticarte y proteger el acceso a tu información privada.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>NOTCH needs access to your camera so you can take and upload photos.</string>
 </dict>
 </plist>

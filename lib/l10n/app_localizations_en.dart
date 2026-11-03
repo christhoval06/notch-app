@@ -358,6 +358,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTagline => 'Private Intimacy Tracker';
 
   @override
+  String get settingsHealthPassportSubtitle =>
+      'Log health checks and schedule automatic reminders.';
+
+  @override
   String get settingsGeneral => 'GENERAL';
 
   @override
@@ -2464,76 +2468,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trophyShowLess => 'Show less';
 
   @override
-  String get monetizationPremiumTitle => 'NOTCH Premium';
-
-  @override
-  String get monetizationManagePlansSubtitle =>
-      'Manage plans and restore purchases';
-
-  @override
-  String get monetizationActiveTitle => 'NOTCH Premium active';
-
-  @override
-  String get monetizationActiveDescription =>
-      'You already have full access to premium features.';
-
-  @override
-  String get monetizationContinue => 'Continue';
-
-  @override
-  String get monetizationUnlockAll => 'Unlock all advanced features.';
-
-  @override
-  String monetizationUnlockFeature(Object feature) {
-    return 'Unlock: $feature';
-  }
-
-  @override
-  String get monetizationFallbackDescription =>
-      'Advanced privacy, encrypted backups, complete insights, and more.';
-
-  @override
-  String get monetizationRestorePurchases => 'Restore purchases';
-
-  @override
-  String get monetizationStoreUnavailable =>
-      'Products could not be loaded. Verify the IDs in App Store Connect / Play Console.';
-
-  @override
-  String get monetizationRecommended => 'Recommended';
-
-  @override
-  String monetizationContinueWithPrice(Object price) {
-    return 'Continue - $price';
-  }
-
-  @override
-  String get premiumFeatureInsightsDescription =>
-      'Discover full correlations and trends from your history.';
-
-  @override
-  String get premiumFeatureDataBackupDescription =>
-      'Export, restore, and protect your history when changing devices.';
-
-  @override
-  String get premiumFeatureHealthPassportDescription =>
-      'Log health checks and schedule automatic reminders.';
-
-  @override
-  String get premiumFeatureBlackBookDescription =>
-      'Unlock detailed profiles, private notes, and customization.';
-
-  @override
-  String get monetizationOpenNativePaywall => 'Open RevenueCat Paywall';
-
-  @override
-  String get settingsCustomerCenter => 'Customer Center';
-
-  @override
-  String get settingsCustomerCenterSubtitle =>
-      'Manage subscriptions and billing';
-
-  @override
   String get homeAbstinenceTitle => 'Abstinence Time';
 
   @override
@@ -2549,4 +2483,348 @@ class AppLocalizationsEn extends AppLocalizations {
   String homeAbstinenceDuration(Object days, Object hours, Object minutes) {
     return '$days days $hours hours $minutes minutes';
   }
+
+  @override
+  String get landingBrand => 'NOTCH';
+
+  @override
+  String get landingFeatures => 'Features';
+
+  @override
+  String get landingPrivacy => 'Privacy Architecture';
+
+  @override
+  String get landingHealth => 'Health Passport';
+
+  @override
+  String get landingPricing => 'Pricing';
+
+  @override
+  String get landingFaq => 'FAQ';
+
+  @override
+  String get landingGet => 'Get NOTCH · \$1.99';
+
+  @override
+  String get landingBadge => 'ZERO SERVERS · 100% ON-DEVICE · NO SUBSCRIPTIONS';
+
+  @override
+  String get landingHeroTitle => 'Absolute Privacy.\nZero Compromises.';
+
+  @override
+  String get landingHeroBody =>
+      'The discreet intimacy and personal wellness tracker. Understand your patterns, celebrate your progress, and keep your intimate life entirely yours.';
+
+  @override
+  String get landingDownload => 'Download for iOS';
+
+  @override
+  String get landingExplore => 'Explore features';
+
+  @override
+  String get landingAndroid => 'Android · Coming soon';
+
+  @override
+  String get landingOffline => 'Works offline';
+
+  @override
+  String get landingEncrypted => 'Encrypted backups';
+
+  @override
+  String get landingNoTrackers => 'Zero third-party trackers';
+
+  @override
+  String get landingNoAccounts => 'No accounts';
+
+  @override
+  String get landingNoSubscriptions => 'No subscriptions';
+
+  @override
+  String get landingFoundationsLabel => 'UNCOMPROMISING FOUNDATIONS';
+
+  @override
+  String get landingFoundationsTitle => 'Engineered for absolute discretion.';
+
+  @override
+  String get landingFoundationsBody =>
+      'Your most personal information deserves a space that puts you in control. Private by design, from the first tap.';
+
+  @override
+  String get landingSecurityTitle => 'Privacy & Decoy PIN';
+
+  @override
+  String get landingSecurityBody =>
+      'Protect your journal with biometrics and a personal PIN. A separate Decoy PIN opens a discreet everyday interface when you need it.';
+
+  @override
+  String get landingSecurityLink => 'Discreet by design';
+
+  @override
+  String get landingInsightsTitle => 'Intimacy & Insights';
+
+  @override
+  String get landingInsightsBody =>
+      'Track satisfaction, moods, partners, and habits. Discover meaningful patterns with visual insights calculated on your device.';
+
+  @override
+  String get landingInsightsLink => 'Your patterns, made clear';
+
+  @override
+  String get landingHealthTitle => 'Sexual Health & Safety';
+
+  @override
+  String get landingHealthBody =>
+      'Keep health checks, protection records, and reminders together. Build a more intentional relationship with your wellbeing.';
+
+  @override
+  String get landingHealthLink => 'Care starts with awareness';
+
+  @override
+  String get landingModuleOne => 'MODULE 01';
+
+  @override
+  String get landingLoggerTitle => 'The Intuitive Encounter Logger';
+
+  @override
+  String get landingLoggerBody =>
+      'Capture the moments that matter, without the friction. Add a mood, tag your experience, and record what feels relevant to you.';
+
+  @override
+  String get landingLoggerPointOne => 'Dynamic tags, moods & personal notes';
+
+  @override
+  String get landingLoggerPointTwo => 'A clear timeline & calendar view';
+
+  @override
+  String get landingModuleTwo => 'MODULE 02';
+
+  @override
+  String get landingStatsTitle => 'Data Intelligence & Activity Heatmaps';
+
+  @override
+  String get landingStatsBody =>
+      'Turn your private logs into meaningful insight. Visualize your rhythm, explore trends, and understand your habits over time. All calculated locally.';
+
+  @override
+  String get landingStatsPointOne => 'Activity heatmaps & personal trends';
+
+  @override
+  String get landingStatsPointTwo => '100% on-device insights';
+
+  @override
+  String get landingModuleThree => 'MODULE 03';
+
+  @override
+  String get landingBookTitle => 'Your Private Black Book & Health Passport';
+
+  @override
+  String get landingBookBody =>
+      'Keep partner details, preferences, and your personal health history in one discreet place. Organize your records and set reminders on your own terms.';
+
+  @override
+  String get landingBookPointOne => 'Personal partner records & preferences';
+
+  @override
+  String get landingBookPointTwo => 'Health check logs & local reminders';
+
+  @override
+  String get landingModuleFour => 'MODULE 04';
+
+  @override
+  String get landingTrophyTitle => 'The Trophy Room & Mastery XP';
+
+  @override
+  String get landingTrophyBody =>
+      'Celebrate self-discovery, consistency, and personal milestones. Explore seasonal challenges, collect badges, and follow your own path of progress.';
+
+  @override
+  String get landingTrophyPointOne =>
+      'Seasonal challenges & collectible badges';
+
+  @override
+  String get landingTrophyPointTwo =>
+      'Personal progress, without a leaderboard';
+
+  @override
+  String get landingArchitectureLabel => 'ZERO TELEMETRY ARCHITECTURE';
+
+  @override
+  String get landingArchitectureTitle => 'Your life. Your device. Your data.';
+
+  @override
+  String get landingArchitectureBody =>
+      'Privacy is a foundation, not an upgrade. Here is how NOTCH approaches your most sensitive information.';
+
+  @override
+  String get landingArchitectureVector => 'Built around your privacy';
+
+  @override
+  String get landingArchitectureNotch => 'NOTCH';
+
+  @override
+  String get landingArchitectureOther => 'A typical connected app';
+
+  @override
+  String get landingStorage => 'Data storage';
+
+  @override
+  String get landingStorageLocal => 'Local on your device';
+
+  @override
+  String get landingStorageRemote => 'Remote servers & cloud accounts';
+
+  @override
+  String get landingAccount => 'Account & identification';
+
+  @override
+  String get landingAccountLocal => 'No account or email required';
+
+  @override
+  String get landingAccountRemote => 'Sign-up & identity profiles';
+
+  @override
+  String get landingTracking => 'Third-party tracking';
+
+  @override
+  String get landingTrackingLocal => 'No advertising or analytics SDKs';
+
+  @override
+  String get landingTrackingRemote => 'May include analytics & advertising';
+
+  @override
+  String get landingBusiness => 'Business model';
+
+  @override
+  String get landingBusinessLocal => '\$1.99 · One-time purchase';
+
+  @override
+  String get landingBusinessRemote => 'Often a recurring subscription';
+
+  @override
+  String get landingPricingLabel => 'CLEAN, HONEST PRICING';
+
+  @override
+  String get landingPricingTitle => 'Pay Once. Keep It for Life.';
+
+  @override
+  String get landingPricingBody =>
+      'One purchase. All features. No recurring payments, and no selling your personal information.';
+
+  @override
+  String get landingLicense => 'FULL VERSION · NO SUBSCRIPTIONS';
+
+  @override
+  String get landingPrice => '\$1.99';
+
+  @override
+  String get landingPriceUnit => 'USD · One-time payment';
+
+  @override
+  String get landingPriceNote =>
+      'Full version for iOS. Android coming soon. Store pricing may vary by region.';
+
+  @override
+  String get landingIncludedLogs => 'Unlimited encounters & notes';
+
+  @override
+  String get landingIncludedSecurity => 'Biometrics & Decoy PIN';
+
+  @override
+  String get landingIncludedHealth => 'Health Passport & reminders';
+
+  @override
+  String get landingIncludedStats => 'Heatmaps & personal insights';
+
+  @override
+  String get landingIncludedBook => 'Private partner records';
+
+  @override
+  String get landingIncludedBackup => 'Encrypted backup & restore';
+
+  @override
+  String get landingFaqLabel => 'FREQUENTLY ASKED QUESTIONS';
+
+  @override
+  String get landingFaqTitle => 'Everything you need to know.';
+
+  @override
+  String get landingFaqOne => 'How does the Decoy PIN work?';
+
+  @override
+  String get landingAnswerOne =>
+      'Configure a separate Decoy PIN in Security & Access. Entering it opens a discreet task interface instead of your private journal. Your primary PIN gives you access to your records.';
+
+  @override
+  String get landingFaqTwo => 'What happens if I delete the app?';
+
+  @override
+  String get landingAnswerTwo =>
+      'Your records are stored locally, so deleting the app can remove them. Export an encrypted backup before deleting the app or changing phones, and keep the backup and password somewhere safe.';
+
+  @override
+  String get landingFaqThree => 'Can anyone see my data or analytics?';
+
+  @override
+  String get landingAnswerThree =>
+      'NOTCH calculates your insights on your device and does not send your journal to a NOTCH server. You control any files you choose to export or share. Protect your device and your backup password.';
+
+  @override
+  String get landingFaqFour => 'How does the Kill Switch work?';
+
+  @override
+  String get landingAnswerFour =>
+      'Configure an optional Kill Switch PIN in Security & Access. Entering that dedicated PIN at the lock screen erases your local records. Review the settings carefully and keep an encrypted backup if you want to retain your history.';
+
+  @override
+  String get landingFaqFive => 'Can I move my logs to a new phone?';
+
+  @override
+  String get landingAnswerFive =>
+      'Yes. Export a password-protected backup from Data & Backup, transfer it securely, then restore it in NOTCH on your new device using the same password.';
+
+  @override
+  String get landingCtaTitle => 'Reclaim Your Intimate Privacy Today.';
+
+  @override
+  String get landingCtaBody =>
+      'A little more self-awareness. A lot more peace of mind. Your personal wellness journey, safely in your hands.';
+
+  @override
+  String get landingFooterBody =>
+      'Private Intimacy & Wellness Tracker. Designed for discretion, personal insight, and control over your intimate records.';
+
+  @override
+  String get landingFooterLinks => 'Explore NOTCH';
+
+  @override
+  String get landingSupport => 'Support';
+
+  @override
+  String get landingContact => 'Contact support';
+
+  @override
+  String get landingCopyright => '© 2026 NOTCH. Private by design.';
+
+  @override
+  String get landingStoreUnavailable => 'App Store availability';
+
+  @override
+  String get landingStoreMessage =>
+      'The NOTCH store link is not available yet. Please check back soon or contact support for launch details.';
+
+  @override
+  String get landingLinkError =>
+      'This link could not be opened. Please try again.';
+
+  @override
+  String get landingClose => 'Close';
+
+  @override
+  String get landingMenu => 'Open navigation';
+
+  @override
+  String get landingScreenshot => 'NOTCH app screenshot';
+
+  @override
+  String get landingLanguageSwitch => 'Español';
 }

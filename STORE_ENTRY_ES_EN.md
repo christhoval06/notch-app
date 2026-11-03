@@ -1,6 +1,6 @@
 # NOTCH - Store Entry (ES/EN)
 
-Last updated: 2026-02-12
+Last updated: 2026-11-03
 
 This file is formatted for direct use in:
 - Apple App Store Connect (iOS)
@@ -13,7 +13,7 @@ This file is formatted for direct use in:
 ### ES metadata
 - App Name (max 30): `NOTCH`
 - Subtitle (max 30): `Tracker intimo privado`
-- Promotional Text (max 170): `Freemium con privacidad local: registro ilimitado gratis y funciones Premium como Insights, Backup cifrado y Health Passport.`
+- Promotional Text (max 170): `Un solo pago de USD 1.99: registro ilimitado, insights completos, backup cifrado y Health Passport. Privacidad local, sin suscripciones.`
 - Description (max 4000):
 
 ```text
@@ -30,20 +30,16 @@ Privacidad primero:
 - La app esta disenada para no enviar tus registros personales a servidores externos.
 - Acceso protegido con PIN y biometria.
 
-Modelo freemium:
-- Core (gratis): registro ilimitado, seguridad basica, calendario y estadisticas base.
-- Premium (compras dentro de la app): insights completos, backup/restauracion, Health Passport y Black Book avanzado.
-
-Compras dentro de la app:
-- Suscripcion mensual
-- Suscripcion anual
-- Compra unica (lifetime)
+Modelo de pago unico:
+- Precio de descarga: USD 1.99.
+- Todas las funciones incluidas: registro ilimitado, seguridad, calendario, estadisticas, insights completos, backup/restauracion, Health Passport y Black Book.
+- Sin suscripciones ni compras dentro de la app.
 
 Aviso: NOTCH es una herramienta de registro personal y no sustituye orientacion medica profesional.
 ```
 
 - Keywords (max 100 chars, comma-separated):
-`privacidad,tracker intimo,salud sexual,biometria,pin,calendario,estadisticas,backup,freemium`
+`privacidad,tracker intimo,salud sexual,biometria,pin,calendario,estadisticas,backup,diario`
 - Support URL: `https://notchapp.com`
 - Marketing URL (optional): `https://notchapp.com`
 - Privacy Policy URL: `https://notchapp.com/privacy` (o URL publica equivalente a `PRIVACY_POLICY.md`)
@@ -51,7 +47,7 @@ Aviso: NOTCH es una herramienta de registro personal y no sustituye orientacion 
 ### EN metadata
 - App Name (max 30): `NOTCH`
 - Subtitle (max 30): `Private intimacy tracker`
-- Promotional Text (max 170): `Freemium, local-first privacy: free unlimited logging plus Premium features like Insights, encrypted backup, and Health Passport.`
+- Promotional Text (max 170): `One USD 1.99 payment: unlimited logging, full insights, encrypted backup, and Health Passport. Local-first privacy, no subscriptions.`
 - Description (max 4000):
 
 ```text
@@ -68,20 +64,16 @@ Privacy first:
 - The app is designed to avoid sending personal logs to external servers.
 - Access protection with PIN and biometrics.
 
-Freemium model:
-- Core (free): unlimited logging, basic security, calendar, and basic stats.
-- Premium (in-app purchases): full insights, backup/restore, Health Passport, and advanced Black Book.
-
-In-app purchases:
-- Monthly subscription
-- Yearly subscription
-- One-time purchase (lifetime)
+One-time paid download:
+- Download price: USD 1.99.
+- All features included: unlimited logging, security, calendar, stats, full insights, backup/restore, Health Passport, and Black Book.
+- No subscriptions or in-app purchases.
 
 Disclaimer: NOTCH is a personal logging tool and does not replace professional medical advice.
 ```
 
 - Keywords (max 100 chars, comma-separated):
-`privacy,intimacy tracker,sexual health,biometrics,pin lock,calendar,stats,backup,freemium`
+`privacy,intimacy tracker,sexual health,biometrics,pin lock,calendar,stats,backup,private`
 - Support URL: `https://notchapp.com`
 - Marketing URL (optional): `https://notchapp.com`
 - Privacy Policy URL: `https://notchapp.com/privacy` (or public URL equivalent to `PRIVACY_POLICY.md`)
@@ -92,7 +84,7 @@ Disclaimer: NOTCH is a personal logging tool and does not replace professional m
 
 ### ES metadata
 - App name (max 30): `NOTCH`
-- Short description (max 80): `Registro intimo privado con datos locales y plan freemium con funciones Premium.`
+- Short description (max 80): `Registro intimo privado con datos locales. Pago unico, acceso completo.`
 - Full description (max 4000):
 
 ```text
@@ -105,21 +97,17 @@ Privacidad local-first:
 - Sin dependencia de servidores externos para tus registros personales.
 - Seguridad con PIN y biometria.
 
-Modelo freemium:
-- Core (gratis): registro ilimitado, seguridad basica, calendario y estadisticas base.
-- Premium (compras dentro de la app): insights completos, backup/restauracion, Health Passport y Black Book avanzado.
-
-Compras dentro de la app:
-- Suscripcion mensual
-- Suscripcion anual
-- Compra unica (lifetime)
+Modelo de pago unico:
+- Precio de descarga: USD 1.99.
+- Todas las funciones incluidas: registro ilimitado, seguridad, calendario, estadisticas, insights completos, backup/restauracion, Health Passport y Black Book.
+- Sin suscripciones ni compras dentro de la app.
 
 NOTCH no reemplaza orientacion medica profesional.
 ```
 
 ### EN metadata
 - App name (max 30): `NOTCH`
-- Short description (max 80): `Private intimacy tracker with local data and a freemium Premium upgrade.`
+- Short description (max 80): `Private intimacy tracker with local data. One payment, full access.`
 - Full description (max 4000):
 
 ```text
@@ -132,30 +120,26 @@ Local-first privacy:
 - No external server dependency for personal logs.
 - Security with PIN and biometrics.
 
-Freemium model:
-- Core (free): unlimited logging, basic security, calendar, and basic stats.
-- Premium (in-app purchases): full insights, backup/restore, Health Passport, and advanced Black Book.
-
-In-app purchases:
-- Monthly subscription
-- Yearly subscription
-- One-time purchase (lifetime)
+One-time paid download:
+- Download price: USD 1.99.
+- All features included: unlimited logging, security, calendar, stats, full insights, backup/restore, Health Passport, and Black Book.
+- No subscriptions or in-app purchases.
 
 NOTCH does not replace professional medical advice.
 ```
 
 ---
 
-## 3) In-App Purchases Catalog (Suggested)
+## 3) Paid Download Configuration
 
-Use these IDs consistently in stores and code:
-- `notch_premium_monthly`
-- `notch_premium_yearly`
-- `notch_premium_lifetime`
+Target base price: **USD 1.99**, paid once before downloading NOTCH.
+All features are included. There are no in-app products or subscription plans.
 
-Suggested display names:
-- ES: `NOTCH Premium Mensual`, `NOTCH Premium Anual`, `NOTCH Premium Lifetime`
-- EN: `NOTCH Premium Monthly`, `NOTCH Premium Yearly`, `NOTCH Premium Lifetime`
+Release checklist (store configuration is separate from app code):
+- Configure the download price in App Store Connect and Google Play Console.
+- Review local prices before publishing.
+- Remove the old subscription and lifetime products from sale if configured.
+- If existing subscriptions are active, handle their transition in the store consoles.
 
 ---
 

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:notch_app/features/feature/insights/presentation/pages/insights_page.dart';
-import 'package:notch_app/features/feature/premium/models/premium_access.dart';
-import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 
 class StatsScreenHeader extends StatelessWidget {
   const StatsScreenHeader({super.key});
 
   Future<void> _openInsights(BuildContext context) async {
-    await PremiumAccess.guard(
-      context: context,
-      feature: PremiumFeature.insights,
-      onAllowed: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => InsightsScreen()),
-      ),
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => InsightsScreen()),
     );
   }
 

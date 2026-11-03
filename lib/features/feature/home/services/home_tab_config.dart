@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notch_app/features/feature/gamification/presentation/pages/trophy_room_page.dart';
 import 'package:notch_app/features/feature/insights/widgets/calendar_view.dart';
 import 'package:notch_app/features/feature/journal/presentation/pages/black_book_page.dart';
-import 'package:notch_app/features/feature/premium/models/premium_feature.dart';
 import 'package:notch_app/features/feature/settings/presentation/pages/settings_page.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 
@@ -17,12 +16,6 @@ class HomeTabConfig {
   static bool supportsAutoHideChrome(int index) => index == 1 || index == 2;
 
   static bool showHomeTopBar(int index) => index != 3;
-
-  static PremiumFeature? featureFor(int index) {
-    if (index == 1) return PremiumFeature.blackBook;
-    if (index == 2) return PremiumFeature.trophyRoom;
-    return null;
-  }
 
   static String titleFor(int index, AppLocalizations l10n) {
     switch (index) {

@@ -674,6 +674,12 @@ abstract class AppLocalizations {
   /// **'Private Intimacy Tracker'**
   String get settingsTagline;
 
+  /// No description provided for @settingsHealthPassportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log health checks and schedule automatic reminders.'**
+  String get settingsHealthPassportSubtitle;
+
   /// No description provided for @settingsGeneral.
   ///
   /// In en, this message translates to:
@@ -4301,120 +4307,6 @@ abstract class AppLocalizations {
   /// **'Show less'**
   String get trophyShowLess;
 
-  /// No description provided for @monetizationPremiumTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'NOTCH Premium'**
-  String get monetizationPremiumTitle;
-
-  /// No description provided for @monetizationManagePlansSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage plans and restore purchases'**
-  String get monetizationManagePlansSubtitle;
-
-  /// No description provided for @monetizationActiveTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'NOTCH Premium active'**
-  String get monetizationActiveTitle;
-
-  /// No description provided for @monetizationActiveDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'You already have full access to premium features.'**
-  String get monetizationActiveDescription;
-
-  /// No description provided for @monetizationContinue.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue'**
-  String get monetizationContinue;
-
-  /// No description provided for @monetizationUnlockAll.
-  ///
-  /// In en, this message translates to:
-  /// **'Unlock all advanced features.'**
-  String get monetizationUnlockAll;
-
-  /// No description provided for @monetizationUnlockFeature.
-  ///
-  /// In en, this message translates to:
-  /// **'Unlock: {feature}'**
-  String monetizationUnlockFeature(Object feature);
-
-  /// No description provided for @monetizationFallbackDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced privacy, encrypted backups, complete insights, and more.'**
-  String get monetizationFallbackDescription;
-
-  /// No description provided for @monetizationRestorePurchases.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore purchases'**
-  String get monetizationRestorePurchases;
-
-  /// No description provided for @monetizationStoreUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Products could not be loaded. Verify the IDs in App Store Connect / Play Console.'**
-  String get monetizationStoreUnavailable;
-
-  /// No description provided for @monetizationRecommended.
-  ///
-  /// In en, this message translates to:
-  /// **'Recommended'**
-  String get monetizationRecommended;
-
-  /// No description provided for @monetizationContinueWithPrice.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue - {price}'**
-  String monetizationContinueWithPrice(Object price);
-
-  /// No description provided for @premiumFeatureInsightsDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Discover full correlations and trends from your history.'**
-  String get premiumFeatureInsightsDescription;
-
-  /// No description provided for @premiumFeatureDataBackupDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Export, restore, and protect your history when changing devices.'**
-  String get premiumFeatureDataBackupDescription;
-
-  /// No description provided for @premiumFeatureHealthPassportDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Log health checks and schedule automatic reminders.'**
-  String get premiumFeatureHealthPassportDescription;
-
-  /// No description provided for @premiumFeatureBlackBookDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Unlock detailed profiles, private notes, and customization.'**
-  String get premiumFeatureBlackBookDescription;
-
-  /// No description provided for @monetizationOpenNativePaywall.
-  ///
-  /// In en, this message translates to:
-  /// **'Open RevenueCat Paywall'**
-  String get monetizationOpenNativePaywall;
-
-  /// No description provided for @settingsCustomerCenter.
-  ///
-  /// In en, this message translates to:
-  /// **'Customer Center'**
-  String get settingsCustomerCenter;
-
-  /// No description provided for @settingsCustomerCenterSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage subscriptions and billing'**
-  String get settingsCustomerCenterSubtitle;
-
   /// No description provided for @homeAbstinenceTitle.
   ///
   /// In en, this message translates to:
@@ -4444,6 +4336,648 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{days} days {hours} hours {minutes} minutes'**
   String homeAbstinenceDuration(Object days, Object hours, Object minutes);
+
+  /// No description provided for @landingBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH'**
+  String get landingBrand;
+
+  /// No description provided for @landingFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Features'**
+  String get landingFeatures;
+
+  /// No description provided for @landingPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Architecture'**
+  String get landingPrivacy;
+
+  /// No description provided for @landingHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Passport'**
+  String get landingHealth;
+
+  /// No description provided for @landingPricing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing'**
+  String get landingPricing;
+
+  /// No description provided for @landingFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'FAQ'**
+  String get landingFaq;
+
+  /// No description provided for @landingGet.
+  ///
+  /// In en, this message translates to:
+  /// **'Get NOTCH · \$1.99'**
+  String get landingGet;
+
+  /// No description provided for @landingBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'ZERO SERVERS · 100% ON-DEVICE · NO SUBSCRIPTIONS'**
+  String get landingBadge;
+
+  /// No description provided for @landingHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Absolute Privacy.\nZero Compromises.'**
+  String get landingHeroTitle;
+
+  /// No description provided for @landingHeroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The discreet intimacy and personal wellness tracker. Understand your patterns, celebrate your progress, and keep your intimate life entirely yours.'**
+  String get landingHeroBody;
+
+  /// No description provided for @landingDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Download for iOS'**
+  String get landingDownload;
+
+  /// No description provided for @landingExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore features'**
+  String get landingExplore;
+
+  /// No description provided for @landingAndroid.
+  ///
+  /// In en, this message translates to:
+  /// **'Android · Coming soon'**
+  String get landingAndroid;
+
+  /// No description provided for @landingOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Works offline'**
+  String get landingOffline;
+
+  /// No description provided for @landingEncrypted.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted backups'**
+  String get landingEncrypted;
+
+  /// No description provided for @landingNoTrackers.
+  ///
+  /// In en, this message translates to:
+  /// **'Zero third-party trackers'**
+  String get landingNoTrackers;
+
+  /// No description provided for @landingNoAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'No accounts'**
+  String get landingNoAccounts;
+
+  /// No description provided for @landingNoSubscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'No subscriptions'**
+  String get landingNoSubscriptions;
+
+  /// No description provided for @landingFoundationsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'UNCOMPROMISING FOUNDATIONS'**
+  String get landingFoundationsLabel;
+
+  /// No description provided for @landingFoundationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Engineered for absolute discretion.'**
+  String get landingFoundationsTitle;
+
+  /// No description provided for @landingFoundationsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your most personal information deserves a space that puts you in control. Private by design, from the first tap.'**
+  String get landingFoundationsBody;
+
+  /// No description provided for @landingSecurityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Decoy PIN'**
+  String get landingSecurityTitle;
+
+  /// No description provided for @landingSecurityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your journal with biometrics and a personal PIN. A separate Decoy PIN opens a discreet everyday interface when you need it.'**
+  String get landingSecurityBody;
+
+  /// No description provided for @landingSecurityLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Discreet by design'**
+  String get landingSecurityLink;
+
+  /// No description provided for @landingInsightsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Intimacy & Insights'**
+  String get landingInsightsTitle;
+
+  /// No description provided for @landingInsightsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Track satisfaction, moods, partners, and habits. Discover meaningful patterns with visual insights calculated on your device.'**
+  String get landingInsightsBody;
+
+  /// No description provided for @landingInsightsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Your patterns, made clear'**
+  String get landingInsightsLink;
+
+  /// No description provided for @landingHealthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sexual Health & Safety'**
+  String get landingHealthTitle;
+
+  /// No description provided for @landingHealthBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep health checks, protection records, and reminders together. Build a more intentional relationship with your wellbeing.'**
+  String get landingHealthBody;
+
+  /// No description provided for @landingHealthLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Care starts with awareness'**
+  String get landingHealthLink;
+
+  /// No description provided for @landingModuleOne.
+  ///
+  /// In en, this message translates to:
+  /// **'MODULE 01'**
+  String get landingModuleOne;
+
+  /// No description provided for @landingLoggerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Intuitive Encounter Logger'**
+  String get landingLoggerTitle;
+
+  /// No description provided for @landingLoggerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Capture the moments that matter, without the friction. Add a mood, tag your experience, and record what feels relevant to you.'**
+  String get landingLoggerBody;
+
+  /// No description provided for @landingLoggerPointOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic tags, moods & personal notes'**
+  String get landingLoggerPointOne;
+
+  /// No description provided for @landingLoggerPointTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'A clear timeline & calendar view'**
+  String get landingLoggerPointTwo;
+
+  /// No description provided for @landingModuleTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'MODULE 02'**
+  String get landingModuleTwo;
+
+  /// No description provided for @landingStatsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Intelligence & Activity Heatmaps'**
+  String get landingStatsTitle;
+
+  /// No description provided for @landingStatsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn your private logs into meaningful insight. Visualize your rhythm, explore trends, and understand your habits over time. All calculated locally.'**
+  String get landingStatsBody;
+
+  /// No description provided for @landingStatsPointOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity heatmaps & personal trends'**
+  String get landingStatsPointOne;
+
+  /// No description provided for @landingStatsPointTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'100% on-device insights'**
+  String get landingStatsPointTwo;
+
+  /// No description provided for @landingModuleThree.
+  ///
+  /// In en, this message translates to:
+  /// **'MODULE 03'**
+  String get landingModuleThree;
+
+  /// No description provided for @landingBookTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Private Black Book & Health Passport'**
+  String get landingBookTitle;
+
+  /// No description provided for @landingBookBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep partner details, preferences, and your personal health history in one discreet place. Organize your records and set reminders on your own terms.'**
+  String get landingBookBody;
+
+  /// No description provided for @landingBookPointOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal partner records & preferences'**
+  String get landingBookPointOne;
+
+  /// No description provided for @landingBookPointTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Health check logs & local reminders'**
+  String get landingBookPointTwo;
+
+  /// No description provided for @landingModuleFour.
+  ///
+  /// In en, this message translates to:
+  /// **'MODULE 04'**
+  String get landingModuleFour;
+
+  /// No description provided for @landingTrophyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Trophy Room & Mastery XP'**
+  String get landingTrophyTitle;
+
+  /// No description provided for @landingTrophyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Celebrate self-discovery, consistency, and personal milestones. Explore seasonal challenges, collect badges, and follow your own path of progress.'**
+  String get landingTrophyBody;
+
+  /// No description provided for @landingTrophyPointOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasonal challenges & collectible badges'**
+  String get landingTrophyPointOne;
+
+  /// No description provided for @landingTrophyPointTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal progress, without a leaderboard'**
+  String get landingTrophyPointTwo;
+
+  /// No description provided for @landingArchitectureLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'ZERO TELEMETRY ARCHITECTURE'**
+  String get landingArchitectureLabel;
+
+  /// No description provided for @landingArchitectureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your life. Your device. Your data.'**
+  String get landingArchitectureTitle;
+
+  /// No description provided for @landingArchitectureBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy is a foundation, not an upgrade. Here is how NOTCH approaches your most sensitive information.'**
+  String get landingArchitectureBody;
+
+  /// No description provided for @landingArchitectureVector.
+  ///
+  /// In en, this message translates to:
+  /// **'Built around your privacy'**
+  String get landingArchitectureVector;
+
+  /// No description provided for @landingArchitectureNotch.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH'**
+  String get landingArchitectureNotch;
+
+  /// No description provided for @landingArchitectureOther.
+  ///
+  /// In en, this message translates to:
+  /// **'A typical connected app'**
+  String get landingArchitectureOther;
+
+  /// No description provided for @landingStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Data storage'**
+  String get landingStorage;
+
+  /// No description provided for @landingStorageLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Local on your device'**
+  String get landingStorageLocal;
+
+  /// No description provided for @landingStorageRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote servers & cloud accounts'**
+  String get landingStorageRemote;
+
+  /// No description provided for @landingAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account & identification'**
+  String get landingAccount;
+
+  /// No description provided for @landingAccountLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'No account or email required'**
+  String get landingAccountLocal;
+
+  /// No description provided for @landingAccountRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-up & identity profiles'**
+  String get landingAccountRemote;
+
+  /// No description provided for @landingTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Third-party tracking'**
+  String get landingTracking;
+
+  /// No description provided for @landingTrackingLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'No advertising or analytics SDKs'**
+  String get landingTrackingLocal;
+
+  /// No description provided for @landingTrackingRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'May include analytics & advertising'**
+  String get landingTrackingRemote;
+
+  /// No description provided for @landingBusiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Business model'**
+  String get landingBusiness;
+
+  /// No description provided for @landingBusinessLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'\$1.99 · One-time purchase'**
+  String get landingBusinessLocal;
+
+  /// No description provided for @landingBusinessRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'Often a recurring subscription'**
+  String get landingBusinessRemote;
+
+  /// No description provided for @landingPricingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CLEAN, HONEST PRICING'**
+  String get landingPricingLabel;
+
+  /// No description provided for @landingPricingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay Once. Keep It for Life.'**
+  String get landingPricingTitle;
+
+  /// No description provided for @landingPricingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One purchase. All features. No recurring payments, and no selling your personal information.'**
+  String get landingPricingBody;
+
+  /// No description provided for @landingLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'FULL VERSION · NO SUBSCRIPTIONS'**
+  String get landingLicense;
+
+  /// No description provided for @landingPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'\$1.99'**
+  String get landingPrice;
+
+  /// No description provided for @landingPriceUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'USD · One-time payment'**
+  String get landingPriceUnit;
+
+  /// No description provided for @landingPriceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Full version for iOS. Android coming soon. Store pricing may vary by region.'**
+  String get landingPriceNote;
+
+  /// No description provided for @landingIncludedLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited encounters & notes'**
+  String get landingIncludedLogs;
+
+  /// No description provided for @landingIncludedSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Biometrics & Decoy PIN'**
+  String get landingIncludedSecurity;
+
+  /// No description provided for @landingIncludedHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Passport & reminders'**
+  String get landingIncludedHealth;
+
+  /// No description provided for @landingIncludedStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Heatmaps & personal insights'**
+  String get landingIncludedStats;
+
+  /// No description provided for @landingIncludedBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Private partner records'**
+  String get landingIncludedBook;
+
+  /// No description provided for @landingIncludedBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted backup & restore'**
+  String get landingIncludedBackup;
+
+  /// No description provided for @landingFaqLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'FREQUENTLY ASKED QUESTIONS'**
+  String get landingFaqLabel;
+
+  /// No description provided for @landingFaqTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything you need to know.'**
+  String get landingFaqTitle;
+
+  /// No description provided for @landingFaqOne.
+  ///
+  /// In en, this message translates to:
+  /// **'How does the Decoy PIN work?'**
+  String get landingFaqOne;
+
+  /// No description provided for @landingAnswerOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure a separate Decoy PIN in Security & Access. Entering it opens a discreet task interface instead of your private journal. Your primary PIN gives you access to your records.'**
+  String get landingAnswerOne;
+
+  /// No description provided for @landingFaqTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'What happens if I delete the app?'**
+  String get landingFaqTwo;
+
+  /// No description provided for @landingAnswerTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Your records are stored locally, so deleting the app can remove them. Export an encrypted backup before deleting the app or changing phones, and keep the backup and password somewhere safe.'**
+  String get landingAnswerTwo;
+
+  /// No description provided for @landingFaqThree.
+  ///
+  /// In en, this message translates to:
+  /// **'Can anyone see my data or analytics?'**
+  String get landingFaqThree;
+
+  /// No description provided for @landingAnswerThree.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH calculates your insights on your device and does not send your journal to a NOTCH server. You control any files you choose to export or share. Protect your device and your backup password.'**
+  String get landingAnswerThree;
+
+  /// No description provided for @landingFaqFour.
+  ///
+  /// In en, this message translates to:
+  /// **'How does the Kill Switch work?'**
+  String get landingFaqFour;
+
+  /// No description provided for @landingAnswerFour.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure an optional Kill Switch PIN in Security & Access. Entering that dedicated PIN at the lock screen erases your local records. Review the settings carefully and keep an encrypted backup if you want to retain your history.'**
+  String get landingAnswerFour;
+
+  /// No description provided for @landingFaqFive.
+  ///
+  /// In en, this message translates to:
+  /// **'Can I move my logs to a new phone?'**
+  String get landingFaqFive;
+
+  /// No description provided for @landingAnswerFive.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes. Export a password-protected backup from Data & Backup, transfer it securely, then restore it in NOTCH on your new device using the same password.'**
+  String get landingAnswerFive;
+
+  /// No description provided for @landingCtaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reclaim Your Intimate Privacy Today.'**
+  String get landingCtaTitle;
+
+  /// No description provided for @landingCtaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A little more self-awareness. A lot more peace of mind. Your personal wellness journey, safely in your hands.'**
+  String get landingCtaBody;
+
+  /// No description provided for @landingFooterBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Private Intimacy & Wellness Tracker. Designed for discretion, personal insight, and control over your intimate records.'**
+  String get landingFooterBody;
+
+  /// No description provided for @landingFooterLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore NOTCH'**
+  String get landingFooterLinks;
+
+  /// No description provided for @landingSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get landingSupport;
+
+  /// No description provided for @landingContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact support'**
+  String get landingContact;
+
+  /// No description provided for @landingCopyright.
+  ///
+  /// In en, this message translates to:
+  /// **'© 2026 NOTCH. Private by design.'**
+  String get landingCopyright;
+
+  /// No description provided for @landingStoreUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'App Store availability'**
+  String get landingStoreUnavailable;
+
+  /// No description provided for @landingStoreMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The NOTCH store link is not available yet. Please check back soon or contact support for launch details.'**
+  String get landingStoreMessage;
+
+  /// No description provided for @landingLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'This link could not be opened. Please try again.'**
+  String get landingLinkError;
+
+  /// No description provided for @landingClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get landingClose;
+
+  /// No description provided for @landingMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Open navigation'**
+  String get landingMenu;
+
+  /// No description provided for @landingScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTCH app screenshot'**
+  String get landingScreenshot;
+
+  /// No description provided for @landingLanguageSwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Español'**
+  String get landingLanguageSwitch;
 }
 
 class _AppLocalizationsDelegate
