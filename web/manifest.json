@@ -6,7 +6,14 @@
   "background_color": "#0d0e11",
   "theme_color": "#0d0e11",
   "description": "Private intimacy and wellness. On-device insights, encrypted backups, no subscriptions.",
-  "prefer_related_applications": false,
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/us/app/notch/id6759076734",
+      "id": "6759076734"
+    }
+  ],
   "icons": [
     {
       "src": "icons/Icon-192.png",
