@@ -7,6 +7,9 @@ struct WatchSnapshot: Codable {
     let revision: Int
     let state: String
     var allowsPrivateContent: Bool { state == "active" }
+    var partnerNames: [String]?
+    var moodOptions: [String]?
+    var tagOptions: [WatchTagOption]?
     var generatedAtMs: Int64?
     var locale: String?
     var monthId: String?
@@ -19,4 +22,10 @@ struct WatchSnapshot: Codable {
     var entryCount: Int?
     var averageRating: Double?
     var protectionRate: Double?
+}
+
+struct WatchTagOption: Codable, Identifiable {
+    let key: String
+    let label: String
+    var id: String { key }
 }

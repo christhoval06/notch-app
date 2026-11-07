@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'package:notch_app/core/services/encounter_write_coordinator.dart';
 import 'package:notch_app/data/models/encounter.dart';
@@ -46,7 +47,9 @@ class WatchImportService {
                 existing.date != command.capturedAt ||
                 existing.rating != command.rating ||
                 existing.orgasmCount != command.orgasmCount ||
-                existing.protected != command.protected)) {
+                existing.protected != command.protected ||
+                existing.moodEmoji != command.moodEmoji ||
+                !listEquals([...existing.tags]..sort(), command.tags))) {
           return receipt('rejected', 'conflicting_id');
         }
         await WatchImportRepository.put(command.id, {
@@ -63,6 +66,8 @@ class WatchImportService {
               rating: command.rating,
               orgasmCount: command.orgasmCount,
               protected: command.protected,
+              moodEmoji: command.moodEmoji,
+              tags: command.tags,
             );
         final saved = await EncounterSaveService.saveWithinWrite(
           encounter,

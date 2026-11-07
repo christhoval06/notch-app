@@ -19,6 +19,12 @@ changed["rating"] = 9
 let conflict = try JSONDecoder().decode(WatchCommand.self, from: WatchProtocol.data(changed)).validated()
 let conflictReceipt = try restored.receive(conflict)
 assert(conflictReceipt?.reason == "conflicting_id", "Completed IDs must validate payloads")
+
+var changedDetails = command.dictionary
+changedDetails["moodEmoji"] = "🔥"
+let newDetails = try JSONDecoder().decode(WatchCommand.self, from: WatchProtocol.data(changedDetails)).validated()
+check(try restored.receive(newDetails)?.reason == "conflicting_id")
+
 let previous = restored.generation
 try restored.rotate()
 assert(restored.generation != previous)

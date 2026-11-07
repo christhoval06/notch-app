@@ -32,3 +32,10 @@
 "watchLimitRejected" = "The monthly entry limit has been reached.";
 "watchTimeRejected" = "The entry time is ahead of your iPhone. Check the watch clock.";
 "watchResetUnavailable" = "The reset could not finish. Please try again.";
+"watchMood" = "Mood";
+"watchTags" = "Tags";
+"watchNone" = "None";
+"watchChoosePartner" = "Choose…";
+"watchExistingPartners" = "Existing partners";
+"watchNoPartners" = "Sync Notch on iPhone for partner suggestions, or enter a name above.";
+"watchOptionsNeedSync" = "Open Notch on iPhone to sync your entry options.";

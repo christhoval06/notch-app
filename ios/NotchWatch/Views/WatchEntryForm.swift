@@ -8,10 +8,23 @@ struct WatchEntryForm: View {
     var body: some View {
         WatchAccessGate {
         Form {
-            TextField("watchPartner", text: $draft.partner)
-                .onChange(of: draft.partner) { _, value in
-                    if value.utf16.count > 80 { draft.partner = String(value.prefix(80)) }
+            NavigationLink {
+                WatchPartnerPicker(partner: $draft.partner, names: store.snapshot?.partnerNames ?? [])
+            } label: {
+                LabeledContent("watchPartner", value: draft.partner.isEmpty
+                    ? String(localized: "watchChoosePartner") : draft.partner)
+            }
+            Picker("watchMood", selection: $draft.moodEmoji) {
+                Text("watchNone").tag(Optional<String>.none)
+                ForEach(store.snapshot?.moodOptions ?? WatchProtocol.moods, id: \.self) {
+                    Text(verbatim: $0).tag(Optional($0))
                 }
+            }
+            NavigationLink {
+                WatchTagsPicker(selected: $draft.tags, options: store.snapshot?.tagOptions ?? [])
+            } label: {
+                LabeledContent("watchTags", value: draft.tags.count.formatted())
+            }
             Picker("watchRating", selection: $draft.rating) {
                 ForEach(1...10, id: \.self) { Text($0, format: .number).tag($0) }
             }

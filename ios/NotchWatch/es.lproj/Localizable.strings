@@ -32,3 +32,10 @@
 "watchLimitRejected" = "Se ha alcanzado el límite mensual de registros.";
 "watchTimeRejected" = "La hora del registro es posterior a la del iPhone. Revisa el reloj.";
 "watchResetUnavailable" = "No se pudo completar el restablecimiento. Inténtalo de nuevo.";
+"watchMood" = "Ánimo";
+"watchTags" = "Etiquetas";
+"watchNone" = "Ninguno";
+"watchChoosePartner" = "Elegir…";
+"watchExistingPartners" = "Parejas existentes";
+"watchNoPartners" = "Sincroniza Notch en tu iPhone para ver parejas o escribe un nombre arriba.";
+"watchOptionsNeedSync" = "Abre Notch en tu iPhone para sincronizar las opciones.";

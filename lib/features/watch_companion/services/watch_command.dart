@@ -1,3 +1,4 @@
+import 'package:notch_app/core/constants/encounter_options.dart';
 import 'package:notch_app/core/constants/watch_protocol.dart';
 
 class WatchCommand {
@@ -9,11 +10,15 @@ class WatchCommand {
     this.rating,
     this.orgasmCount,
     this.protected,
+    this.moodEmoji,
+    this.tags,
   );
   final String generation, id, partnerLabel;
   final DateTime capturedAt;
   final int rating, orgasmCount;
   final bool protected;
+  final String? moodEmoji;
+  final List<String> tags;
 
   factory WatchCommand.fromMap(Map<String, Object?> map) {
     final generation = map['generation'];
@@ -48,6 +53,18 @@ class WatchCommand {
         normalized.length > WatchProtocol.maxPartnerLength) {
       throw const FormatException('invalid_partner');
     }
+    final mood = map['moodEmoji'];
+    final rawTags = map['tags'];
+    if ((mood != null && (mood is! String || !moodEmojis.contains(mood))) ||
+        (rawTags != null &&
+            (rawTags is! List ||
+                rawTags.any(
+                  (tag) => tag is! String || !tagKeys.contains(tag),
+                ) ||
+                rawTags.toSet().length != rawTags.length))) {
+      throw const FormatException('invalid_details');
+    }
+    final tags = List<String>.from(rawTags as List? ?? const [])..sort();
     return WatchCommand._(
       generation,
       id.toLowerCase(),
@@ -56,6 +73,8 @@ class WatchCommand {
       rating,
       count,
       protection,
+      mood as String?,
+      List.unmodifiable(tags),
     );
   }
 
@@ -74,5 +93,7 @@ class WatchCommand {
     'rating': rating,
     'orgasmCount': orgasmCount,
     'protected': protected,
+    if (moodEmoji != null) 'moodEmoji': moodEmoji,
+    if (tags.isNotEmpty) 'tags': tags,
   };
 }

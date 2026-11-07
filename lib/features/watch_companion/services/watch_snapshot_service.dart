@@ -1,3 +1,4 @@
+import 'package:notch_app/features/watch_companion/services/watch_entry_options_service.dart';
 import 'package:notch_app/core/constants/watch_protocol.dart';
 import 'package:notch_app/core/utils/gamification_level_service.dart';
 import 'package:notch_app/core/utils/level_localization.dart';
@@ -15,6 +16,7 @@ abstract final class WatchSnapshotService {
     required AppLocalizations l10n,
     required String generation,
     required int revision,
+    List<String>? partnerNames,
   }) {
     final monthId = '${now.year}-${now.month.toString().padLeft(2, '0')}';
     final current = encounters
@@ -37,6 +39,10 @@ abstract final class WatchSnapshotService {
       'schemaVersion': WatchProtocol.version,
       'kind': 'snapshot',
       'state': 'active',
+      ...WatchEntryOptionsService.build(
+        partnerNames ?? WatchEntryOptionsService.partnerNames(encounters, []),
+        l10n,
+      ),
       'generation': generation,
       'revision': revision,
       'generatedAtMs': now.millisecondsSinceEpoch,

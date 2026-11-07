@@ -15,3 +15,8 @@ draft.rating = 10
 let boundary = try draft.command(generation: "g", now: eventTime)
 assert(boundary.rating == 10 && boundary.orgasmCount == 99)
 print("Passed watch form validation, required protection, pairing and event-time checks")
+
+draft.moodEmoji = "🥰"
+draft.tags = ["tag_hotel", "tag_date"]
+let details = try draft.command(generation: "g", now: eventTime)
+assert(details.moodEmoji == "🥰" && details.tags == ["tag_date", "tag_hotel"])

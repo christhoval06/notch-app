@@ -54,14 +54,16 @@ These details are implementation proposals, rather than additional user requests
 
 ### Add entry
 
-- Partner label: required text input, supporting watchOS text entry/dictation;
-  do not sync the phone's partner/address-book list in this first version.
+- Partner label: required text input, supporting watchOS text entry/dictation,
+  plus cached existing names as requested in the follow-up. Export names only,
+  up to 50 within an 8 KB JSON budget, prioritizing recently used names.
 - Rating: 1–10; orgasm count: 0–99; protection: explicit yes/no selection.
 - The recorded date/time is captured when Save is tapped on the watch. Do not
   silently replace it with the later phone-import time.
 - Normalize/validate partner text as on the phone: trim, strip the leading @,
   reject empty text; cap the watch field at 80 characters.
-- Leave notes, tags, mood, photos, editing, and deleting to the phone initially.
+- Optional mood and tags reuse the phone form's choices, as requested in the
+  follow-up. Leave notes, photos, editing and deleting to the phone.
 - Save first persists an immutable queued command on the watch with a UUID.
   Show **Pending sync**, not **Saved**, until an iPhone receipt arrives.
 - Block duplicate taps while persisting. A retry retains the same UUID and
@@ -83,11 +85,12 @@ Runner native host and Dart. Do not add a third-party sync dependency.
   generated-at time, phone locale, season/month ID, and numeric metrics accompany
   each snapshot. Reject unsupported schemas and older revisions in the same
   generation. A generation change replaces the previous snapshot.
-- The phone exports aggregate values and localized level text, not raw encounter
-  records, photos, notes, health data, or the partner directory.
+- The phone exports aggregate values, localized level text, mood/tag choices and
+  bounded partner-name suggestions. It does not export raw encounter records,
+  photos, notes, health data or complete partner records/contact information.
 - The phone aggregates from one cached feature snapshot of repository data per
   data revision. Widgets do not scan boxes. Rebuild when encounter/monthly
-  progress sources change and when entering a new calendar month after unlock.
+  progress/partner sources change and when entering a new calendar month after unlock.
 - Phone locale changes refresh level text on the next sync. Native watch labels
   use English/Spanish strings selected by the watch system locale.
 
@@ -99,7 +102,8 @@ Runner native host and Dart. Do not add a third-party sync dependency.
 - Activate WCSession on each device; handle activation errors, phone session
   deactivation/reactivation, reinstallation, and unavailable/unpaired watches.
 - Watch commands contain schema version, reset generation, UUID, capture time,
-  partner label, rating, orgasm count, and protection choice.
+  partner label, rating, orgasm count, protection choice, and optional mood/tags.
+  Missing optional fields retain the original schema-1 fingerprint shape.
 - Native iOS accepts incoming commands into a durable local inbox, even if Dart
   is not running. It does not call Flutter plugins from a background callback or
   bypass app authentication. Bound and validate envelope sizes before storing.

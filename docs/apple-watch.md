@@ -2,8 +2,10 @@
 
 The watch app supports watchOS 10 and later. It shows a cached abstinence timer,
 the current monthly level, monthly entry count, average rating, and protection
-rate. Entries can be queued offline with partner, rating, orgasm count, and an
-explicit protection choice. Native labels support English and Spanish.
+rate. Entries can be queued offline with a selected or typed partner, rating,
+optional mood and tags, orgasm count, and an explicit protection choice.
+Native labels support English and Spanish. The iPhone abstinence card now uses
+the same green hourglass heading and large, compact duration as the Watch.
 
 ## Run locally
 
@@ -53,19 +55,27 @@ and deterministic month reconciliation recover interrupted saves without
 duplicating encounters or XP. Closed seasons receive base XP and reconcile
 already claimed rewards; time-dependent historical challenges are not fabricated.
 Watch files use atomic writes; phone inbox files use protected local storage.
-No partner directory or encounter history is exported to the Watch.
+Snapshots include up to 50 partner-name suggestions within an 8 KB budget,
+prioritizing recent encounters and then saved partners. Manual name entry is
+available. Notes, contact details, avatars and encounter history are not
+exported. Suggestions refresh after partner changes and real phone unlock.
+Mood/tag choices match the phone form, including localized tag labels. These
+optional command fields preserve compatibility with older pending entries.
 
 ## Verification on November 7, 2026
 
-- All 15 Dart companion tests pass, including four persisted-write/reopen
+- All 22 Dart companion tests pass, including four persisted-write/reopen
   recovery boundaries, access/reset, timestamps, duplicate import, snapshots,
-  and progression regressions. Targeted analysis reports no issues.
+  progression regressions, mood/tag recovery, backward compatibility and
+  bounded partner suggestions. The two existing abstinence service tests pass.
+  Full analysis retains 23 baseline findings outside the changed code.
 - Five Foundation harnesses pass: protocol, phone inbox, Watch queue, entry
   draft validation, and native bridge recovery after temporary file failure.
-- Watch simulator Debug and unsigned Watch device Release builds pass.
-  Runner simulator Debug and unsigned iPhone Release builds pass, with both
-  Watch and App Clip embedded. All three report version 1.0.0, build 8.
-  The final release was rebuilt successfully using a fresh DerivedData directory
+- Updated Watch and Runner simulator Debug builds pass, with both Watch and
+  App Clip embedded. The initial companion also passed unsigned Watch and
+  iPhone Release builds; this follow-up has not been signed or archived.
+  All three report version 1.0.0, build 8.
+  The initial release was rebuilt successfully using a fresh DerivedData directory
   after a stale SDK-module cache error; generated simulator intermediates were
   cleared to recover disk space. No source workaround was required.
 - Bundle inspection confirms Watch minimum 10.0, Runner 15.0, App Clip 17.0,
@@ -75,8 +85,12 @@ No partner directory or encounter history is exported to the Watch.
   level, monthly stats, scrolling, and entry form. The first-sync view also
   renders in English and Spanish. The Watch stepper initially wrapped its
   label vertically; replacing it with a compact picker fixes the 40 mm form.
-  Fictional data was removed after inspection.
-- Full Flutter suite: 129 pass, five existing baseline failures remain:
+  The follow-up form and mood choices render on an isolated 40 mm Watch.
+  Actual partner/tag selection and paired save still need interactive device
+  verification. The phone card renders without overflow in English/Spanish at
+  normal and 1.6× text scale. Fictional data and its isolated simulator were
+  removed after inspection; existing simulator storage was preserved.
+- Full Flutter suite: 136 pass, five existing baseline failures remain:
   `AnalyzerContextInsights adds an insight for the strongest recent month`,
   `AnalyzerPartnerInsights adds an insight for the strongest recent chemistry`,
   `LiteModeService.canAddEncounter blocks saving when current month already has five records`,
@@ -104,6 +118,5 @@ sizes. These device/TestFlight checks remain outstanding; unsigned compilation
 does not verify provisioning, background scheduling, or App Store acceptance.
 
 Deferred polish: accepted entries disappear from the pending list without a
-separate success toast. Emoji-heavy partner text may reach the protocol's
-80 UTF-16-unit limit before 80 visible characters; validation rejects it rather
-than truncating a composed character.
+separate success toast. Partner text is capped at 80 UTF-16 units, preserving
+composed characters when shortening manual input.
