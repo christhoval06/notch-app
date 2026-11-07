@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:encrypt/encrypt.dart' as enc;
-import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:notch_app/features/settings/services/backup_payload_service.dart';
@@ -39,10 +39,9 @@ class BackupService {
 
   Future<bool> restoreBackup() async {
     try {
-      final result = await FilePicker.platform.pickFiles();
-      if (result == null) return false;
+      final file = await openFile();
+      if (file == null) return false;
 
-      final file = File(result.files.single.path!);
       final parts = (await file.readAsString()).split(':');
       if (parts.length != 2) throw const FormatException('Formato inválido');
 
