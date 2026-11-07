@@ -1606,6 +1606,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get healthRegisterTest => 'Log Test';
 
   @override
+  String get healthTestHistoryTitle => 'Test history';
+
+  @override
   String get healthNoRecords => 'No health records';
 
   @override
@@ -2468,7 +2471,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trophyShowLess => 'Show less';
 
   @override
-  String get homeAbstinenceTitle => 'Abstinence Time';
+  String get homeAbstinenceTitle => 'Abstinence';
 
   @override
   String get homeAbstinenceSubtitle => 'Since your last encounter';
@@ -2481,7 +2484,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String homeAbstinenceDuration(Object days, Object hours, Object minutes) {
-    return '$days days $hours hours $minutes minutes';
+    return '${days}d ${hours}h ${minutes}m';
   }
 
   @override
@@ -2827,4 +2830,227 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get landingLanguageSwitch => 'Español';
+
+  @override
+  String get appClipSampleBadge => 'SAMPLE DATA';
+
+  @override
+  String get appClipTitle => 'A little insight. Just for you.';
+
+  @override
+  String get appClipDescription =>
+      'Explore Notch with fictional entries. Tap a date to see how your private journal could look.';
+
+  @override
+  String get appClipCalendar => 'Your calendar';
+
+  @override
+  String get appClipSampleEntry => 'Fictional entry';
+
+  @override
+  String get appClipRating => 'Rating';
+
+  @override
+  String get appClipProtection => 'Protection used';
+
+  @override
+  String get appClipProtectionUsed => 'Yes';
+
+  @override
+  String get appClipProtectionNotUsed => 'No';
+
+  @override
+  String get appClipEmptyDay => 'No sample entry on this day';
+
+  @override
+  String get appClipInsights => 'Sample insights';
+
+  @override
+  String get appClipEntries => 'Entries this month';
+
+  @override
+  String get appClipAverageRating => 'Average rating';
+
+  @override
+  String get appClipPrivacy =>
+      'This preview uses only fictional data. Nothing you do here is saved.';
+
+  @override
+  String get appClipGetApp => 'Get Notch';
+
+  @override
+  String get appClipInstallUnavailable =>
+      'Couldn\'t open the App Store. Please try again.';
+
+  @override
+  String get watchAbstinence => 'Abstinence';
+
+  @override
+  String watchDuration(int days, int hours, int minutes) {
+    return '${days}d ${hours}h ${minutes}m';
+  }
+
+  @override
+  String get watchNoHistory => 'No activity recorded yet';
+
+  @override
+  String get watchCurrentLevel => 'Current level';
+
+  @override
+  String get watchXP => 'XP';
+
+  @override
+  String get watchStats => 'Monthly stats';
+
+  @override
+  String get watchEntries => 'Entries';
+
+  @override
+  String get watchAverage => 'Avg. rating';
+
+  @override
+  String get watchProtection => 'Protection';
+
+  @override
+  String get watchLastSync => 'Last sync';
+
+  @override
+  String get watchOpenPhone => 'Open and unlock Notch on your iPhone to sync.';
+
+  @override
+  String get watchAddEntry => 'Add entry';
+
+  @override
+  String get watchQueueTitle => 'Entry queue';
+
+  @override
+  String get watchRefresh => 'Sync now';
+
+  @override
+  String get watchNotice => 'Notch';
+
+  @override
+  String get watchOK => 'OK';
+
+  @override
+  String get watchSyncUnavailable =>
+      'Sync is unavailable. Your pending entries are kept. Try again after opening Notch on iPhone.';
+
+  @override
+  String get watchStorageUnavailable =>
+      'Could not save locally. Your entry has not been queued. Please try again.';
+
+  @override
+  String get watchQueueFull =>
+      'The queue is full. Sync your pending entries before adding more.';
+
+  @override
+  String get watchInvalidEntry =>
+      'Check the partner name, rating, protection and orgasm count.';
+
+  @override
+  String get watchPartner => 'Partner';
+
+  @override
+  String get watchRating => 'Rating';
+
+  @override
+  String get watchOrgasms => 'Orgasms';
+
+  @override
+  String get watchChooseProtection => 'Choose…';
+
+  @override
+  String get watchYes => 'Yes';
+
+  @override
+  String get watchNo => 'No';
+
+  @override
+  String get watchPendingExplanation =>
+      'This entry stays pending until Notch on your unlocked iPhone confirms saving it.';
+
+  @override
+  String get watchSave => 'Queue entry';
+
+  @override
+  String get watchPending => 'Pending sync';
+
+  @override
+  String get watchDiscard => 'Discard';
+
+  @override
+  String get watchResetRejected =>
+      'Notch was reset. Discard this entry and sync again.';
+
+  @override
+  String get watchLimitRejected => 'The monthly entry limit has been reached.';
+
+  @override
+  String get watchTimeRejected =>
+      'The entry time is ahead of your iPhone. Check the watch clock.';
+
+  @override
+  String get watchResetUnavailable =>
+      'The reset could not finish. Please try again.';
+
+  @override
+  String get watchMood => 'Mood';
+
+  @override
+  String get watchTags => 'Tags';
+
+  @override
+  String get watchNone => 'None';
+
+  @override
+  String get watchChoosePartner => 'Choose…';
+
+  @override
+  String get watchExistingPartners => 'Existing partners';
+
+  @override
+  String get watchNoPartners =>
+      'Sync Notch on iPhone for partner suggestions, or enter a name above.';
+
+  @override
+  String get watchOptionsNeedSync =>
+      'Open Notch on iPhone to sync your entry options.';
+
+  @override
+  String get watchSettingsTitle => 'Apple Watch';
+
+  @override
+  String get watchSettingsSubtitle => 'Choose and arrange your Watch cards';
+
+  @override
+  String get watchCardsDescription =>
+      'Swipe or turn the Digital Crown to move between cards.';
+
+  @override
+  String get watchCardsSyncHint =>
+      'Changes appear after syncing with your unlocked iPhone.';
+
+  @override
+  String get watchCardsReorder => 'Drag enabled cards to change their order.';
+
+  @override
+  String get watchCardLevel => 'XP & level';
+
+  @override
+  String get watchCardOrgasms => 'Monthly orgasms';
+
+  @override
+  String get watchCardsEmpty =>
+      'No cards enabled. Entry and sync actions remain available.';
+
+  @override
+  String get watchCardsSaveError => 'Could not save Watch settings. Try again.';
+
+  @override
+  String get watchActions => 'Actions';
+
+  @override
+  String get watchChooseCards =>
+      'Choose cards in Notch Settings → Apple Watch on your iPhone.';
 }

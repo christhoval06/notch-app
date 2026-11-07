@@ -2771,6 +2771,12 @@ abstract class AppLocalizations {
   /// **'Log Test'**
   String get healthRegisterTest;
 
+  /// No description provided for @healthTestHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Test history'**
+  String get healthTestHistoryTitle;
+
   /// No description provided for @healthNoRecords.
   ///
   /// In en, this message translates to:
@@ -4310,7 +4316,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeAbstinenceTitle.
   ///
   /// In en, this message translates to:
-  /// **'Abstinence Time'**
+  /// **'Abstinence'**
   String get homeAbstinenceTitle;
 
   /// No description provided for @homeAbstinenceSubtitle.
@@ -4334,7 +4340,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeAbstinenceDuration.
   ///
   /// In en, this message translates to:
-  /// **'{days} days {hours} hours {minutes} minutes'**
+  /// **'{days}d {hours}h {minutes}m'**
   String homeAbstinenceDuration(Object days, Object hours, Object minutes);
 
   /// No description provided for @landingBrand.
@@ -4978,6 +4984,414 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Español'**
   String get landingLanguageSwitch;
+
+  /// No description provided for @appClipSampleBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'SAMPLE DATA'**
+  String get appClipSampleBadge;
+
+  /// No description provided for @appClipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A little insight. Just for you.'**
+  String get appClipTitle;
+
+  /// No description provided for @appClipDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Notch with fictional entries. Tap a date to see how your private journal could look.'**
+  String get appClipDescription;
+
+  /// No description provided for @appClipCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Your calendar'**
+  String get appClipCalendar;
+
+  /// No description provided for @appClipSampleEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Fictional entry'**
+  String get appClipSampleEntry;
+
+  /// No description provided for @appClipRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get appClipRating;
+
+  /// No description provided for @appClipProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection used'**
+  String get appClipProtection;
+
+  /// No description provided for @appClipProtectionUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get appClipProtectionUsed;
+
+  /// No description provided for @appClipProtectionNotUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get appClipProtectionNotUsed;
+
+  /// No description provided for @appClipEmptyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'No sample entry on this day'**
+  String get appClipEmptyDay;
+
+  /// No description provided for @appClipInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample insights'**
+  String get appClipInsights;
+
+  /// No description provided for @appClipEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'Entries this month'**
+  String get appClipEntries;
+
+  /// No description provided for @appClipAverageRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Average rating'**
+  String get appClipAverageRating;
+
+  /// No description provided for @appClipPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'This preview uses only fictional data. Nothing you do here is saved.'**
+  String get appClipPrivacy;
+
+  /// No description provided for @appClipGetApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Notch'**
+  String get appClipGetApp;
+
+  /// No description provided for @appClipInstallUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the App Store. Please try again.'**
+  String get appClipInstallUnavailable;
+
+  /// No description provided for @watchAbstinence.
+  ///
+  /// In en, this message translates to:
+  /// **'Abstinence'**
+  String get watchAbstinence;
+
+  /// No description provided for @watchDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}d {hours}h {minutes}m'**
+  String watchDuration(int days, int hours, int minutes);
+
+  /// No description provided for @watchNoHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'No activity recorded yet'**
+  String get watchNoHistory;
+
+  /// No description provided for @watchCurrentLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current level'**
+  String get watchCurrentLevel;
+
+  /// No description provided for @watchXP.
+  ///
+  /// In en, this message translates to:
+  /// **'XP'**
+  String get watchXP;
+
+  /// No description provided for @watchStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly stats'**
+  String get watchStats;
+
+  /// No description provided for @watchEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'Entries'**
+  String get watchEntries;
+
+  /// No description provided for @watchAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. rating'**
+  String get watchAverage;
+
+  /// No description provided for @watchProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection'**
+  String get watchProtection;
+
+  /// No description provided for @watchLastSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Last sync'**
+  String get watchLastSync;
+
+  /// No description provided for @watchOpenPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Open and unlock Notch on your iPhone to sync.'**
+  String get watchOpenPhone;
+
+  /// No description provided for @watchAddEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Add entry'**
+  String get watchAddEntry;
+
+  /// No description provided for @watchQueueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry queue'**
+  String get watchQueueTitle;
+
+  /// No description provided for @watchRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync now'**
+  String get watchRefresh;
+
+  /// No description provided for @watchNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Notch'**
+  String get watchNotice;
+
+  /// No description provided for @watchOK.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get watchOK;
+
+  /// No description provided for @watchSyncUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync is unavailable. Your pending entries are kept. Try again after opening Notch on iPhone.'**
+  String get watchSyncUnavailable;
+
+  /// No description provided for @watchStorageUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save locally. Your entry has not been queued. Please try again.'**
+  String get watchStorageUnavailable;
+
+  /// No description provided for @watchQueueFull.
+  ///
+  /// In en, this message translates to:
+  /// **'The queue is full. Sync your pending entries before adding more.'**
+  String get watchQueueFull;
+
+  /// No description provided for @watchInvalidEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the partner name, rating, protection and orgasm count.'**
+  String get watchInvalidEntry;
+
+  /// No description provided for @watchPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner'**
+  String get watchPartner;
+
+  /// No description provided for @watchRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get watchRating;
+
+  /// No description provided for @watchOrgasms.
+  ///
+  /// In en, this message translates to:
+  /// **'Orgasms'**
+  String get watchOrgasms;
+
+  /// No description provided for @watchChooseProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose…'**
+  String get watchChooseProtection;
+
+  /// No description provided for @watchYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get watchYes;
+
+  /// No description provided for @watchNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get watchNo;
+
+  /// No description provided for @watchPendingExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'This entry stays pending until Notch on your unlocked iPhone confirms saving it.'**
+  String get watchPendingExplanation;
+
+  /// No description provided for @watchSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue entry'**
+  String get watchSave;
+
+  /// No description provided for @watchPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending sync'**
+  String get watchPending;
+
+  /// No description provided for @watchDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get watchDiscard;
+
+  /// No description provided for @watchResetRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Notch was reset. Discard this entry and sync again.'**
+  String get watchResetRejected;
+
+  /// No description provided for @watchLimitRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The monthly entry limit has been reached.'**
+  String get watchLimitRejected;
+
+  /// No description provided for @watchTimeRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The entry time is ahead of your iPhone. Check the watch clock.'**
+  String get watchTimeRejected;
+
+  /// No description provided for @watchResetUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The reset could not finish. Please try again.'**
+  String get watchResetUnavailable;
+
+  /// No description provided for @watchMood.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood'**
+  String get watchMood;
+
+  /// No description provided for @watchTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get watchTags;
+
+  /// No description provided for @watchNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get watchNone;
+
+  /// No description provided for @watchChoosePartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose…'**
+  String get watchChoosePartner;
+
+  /// No description provided for @watchExistingPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Existing partners'**
+  String get watchExistingPartners;
+
+  /// No description provided for @watchNoPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync Notch on iPhone for partner suggestions, or enter a name above.'**
+  String get watchNoPartners;
+
+  /// No description provided for @watchOptionsNeedSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Notch on iPhone to sync your entry options.'**
+  String get watchOptionsNeedSync;
+
+  /// No description provided for @watchSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple Watch'**
+  String get watchSettingsTitle;
+
+  /// No description provided for @watchSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose and arrange your Watch cards'**
+  String get watchSettingsSubtitle;
+
+  /// No description provided for @watchCardsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe or turn the Digital Crown to move between cards.'**
+  String get watchCardsDescription;
+
+  /// No description provided for @watchCardsSyncHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes appear after syncing with your unlocked iPhone.'**
+  String get watchCardsSyncHint;
+
+  /// No description provided for @watchCardsReorder.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag enabled cards to change their order.'**
+  String get watchCardsReorder;
+
+  /// No description provided for @watchCardLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'XP & level'**
+  String get watchCardLevel;
+
+  /// No description provided for @watchCardOrgasms.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly orgasms'**
+  String get watchCardOrgasms;
+
+  /// No description provided for @watchCardsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards enabled. Entry and sync actions remain available.'**
+  String get watchCardsEmpty;
+
+  /// No description provided for @watchCardsSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save Watch settings. Try again.'**
+  String get watchCardsSaveError;
+
+  /// No description provided for @watchActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get watchActions;
+
+  /// No description provided for @watchChooseCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose cards in Notch Settings → Apple Watch on your iPhone.'**
+  String get watchChooseCards;
 }
 
 class _AppLocalizationsDelegate

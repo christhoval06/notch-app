@@ -6,7 +6,7 @@
 
 **Architecture:** Keep all persistence and submission behavior intact, and move new presentation-specific derivations into small health feature services. Build the redesign from small widgets so the screen, hero, history, and sheet can evolve independently while staying under the repository file-size limit.
 
-**Tech Stack:** Flutter, Dart, Material 3 `ColorScheme`, project l10n ARB files, existing `HealthLogRepository`, `HealthLogsViewService`, and feature widgets/services under `lib/features/feature/health`
+**Tech Stack:** Flutter, Dart, Material 3 `ColorScheme`, project l10n ARB files, existing `HealthLogRepository`, `HealthLogsViewService`, and feature widgets/services under `lib/features/health`
 
 ---
 
@@ -14,34 +14,34 @@
 
 ### Create
 
-- `lib/features/feature/health/services/health_passport_summary_service.dart`
+- `lib/features/health/services/health_passport_summary_service.dart`
   - derives latest log, time-since-last-check copy inputs, and follow-up status from existing logs
-- `lib/features/feature/health/widgets/health_passport_hero_card.dart`
+- `lib/features/health/widgets/health_passport_hero_card.dart`
   - premium editorial hero with status summary and add-record CTA
-- `lib/features/feature/health/widgets/health_passport_summary_row.dart`
+- `lib/features/health/widgets/health_passport_summary_row.dart`
   - compact stat chips below the hero
-- `lib/features/feature/health/widgets/health_passport_section_header.dart`
+- `lib/features/health/widgets/health_passport_section_header.dart`
   - reusable section label for history
-- `lib/features/feature/health/widgets/health_passport_result_chip.dart`
+- `lib/features/health/widgets/health_passport_result_chip.dart`
   - premium result chip used across hero/history/sheet
-- `lib/features/feature/health/widgets/health_log_record_card.dart`
+- `lib/features/health/widgets/health_log_record_card.dart`
   - upgraded history card replacing current simple list tile
-- `test/features/feature/health/services/health_passport_summary_service_test.dart`
+- `test/features/health/services/health_passport_summary_service_test.dart`
   - tests for latest-log, empty-state, and follow-up summary derivation
 
 ### Modify
 
-- `lib/features/feature/health/widgets/health_passport_view.dart`
+- `lib/features/health/widgets/health_passport_view.dart`
   - replace raw scaffold/list layout with hero + summary + history composition
-- `lib/features/feature/health/widgets/health_logs_list.dart`
+- `lib/features/health/widgets/health_logs_list.dart`
   - switch to premium history list composition and empty-state integration
-- `lib/features/feature/health/widgets/health_logs_empty_state.dart`
+- `lib/features/health/widgets/health_logs_empty_state.dart`
   - premium empty state aligned with the new visual system
-- `lib/features/feature/health/widgets/health_logs_tile.dart`
+- `lib/features/health/widgets/health_logs_tile.dart`
   - either simplify into wrapper compatibility or replace usage with the new record card
-- `lib/features/feature/health/widgets/health_add_log_sheet.dart`
+- `lib/features/health/widgets/health_add_log_sheet.dart`
   - premium bottom sheet styling and spacing polish
-- `lib/features/feature/health/widgets/health_result_choice_row.dart`
+- `lib/features/health/widgets/health_result_choice_row.dart`
   - ensure result selector matches the new premium segmented treatment
 - `lib/l10n/app_en.arb`
 - `lib/l10n/app_es.arb`
@@ -49,21 +49,21 @@
 
 ### Verify
 
-- `flutter test test/features/feature/health/services/health_passport_summary_service_test.dart`
-- `flutter analyze lib/features/feature/health/widgets lib/features/feature/health/services`
+- `flutter test test/features/health/services/health_passport_summary_service_test.dart`
+- `flutter analyze lib/features/health/widgets lib/features/health/services`
 
 ## Task 1: Add Summary Derivation Service
 
 **Files:**
-- Create: `lib/features/feature/health/services/health_passport_summary_service.dart`
-- Test: `test/features/feature/health/services/health_passport_summary_service_test.dart`
+- Create: `lib/features/health/services/health_passport_summary_service.dart`
+- Test: `test/features/health/services/health_passport_summary_service_test.dart`
 
 - [ ] **Step 1: Write the failing tests**
 
 ```dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:notch_app/data/models/health_log.dart';
-import 'package:notch_app/features/feature/health/services/health_passport_summary_service.dart';
+import 'package:notch_app/features/health/services/health_passport_summary_service.dart';
 
 void main() {
   test('returns empty summary when there are no health logs', () {
@@ -118,7 +118,7 @@ void main() {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `flutter test test/features/feature/health/services/health_passport_summary_service_test.dart`
+Run: `flutter test test/features/health/services/health_passport_summary_service_test.dart`
 
 Expected: FAIL with missing `HealthPassportSummaryService` or summary model symbols.
 
@@ -173,7 +173,7 @@ class HealthPassportSummaryService {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `flutter test test/features/feature/health/services/health_passport_summary_service_test.dart`
+Run: `flutter test test/features/health/services/health_passport_summary_service_test.dart`
 
 Expected: PASS with 3 tests passed.
 
@@ -181,19 +181,19 @@ Expected: PASS with 3 tests passed.
 
 ```bash
 git add \
-  lib/features/feature/health/services/health_passport_summary_service.dart \
-  test/features/feature/health/services/health_passport_summary_service_test.dart
+  lib/features/health/services/health_passport_summary_service.dart \
+  test/features/health/services/health_passport_summary_service_test.dart
 git commit -m "feat: add health passport summary service"
 ```
 
 ## Task 2: Build Premium Health Passport Primitives
 
 **Files:**
-- Create: `lib/features/feature/health/widgets/health_passport_hero_card.dart`
-- Create: `lib/features/feature/health/widgets/health_passport_summary_row.dart`
-- Create: `lib/features/feature/health/widgets/health_passport_section_header.dart`
-- Create: `lib/features/feature/health/widgets/health_passport_result_chip.dart`
-- Modify: `lib/features/feature/health/services/health_log_result_style_service.dart`
+- Create: `lib/features/health/widgets/health_passport_hero_card.dart`
+- Create: `lib/features/health/widgets/health_passport_summary_row.dart`
+- Create: `lib/features/health/widgets/health_passport_section_header.dart`
+- Create: `lib/features/health/widgets/health_passport_result_chip.dart`
+- Modify: `lib/features/health/services/health_log_result_style_service.dart`
 
 - [ ] **Step 1: Write the failing widget/service expectations**
 
@@ -223,7 +223,7 @@ testWidgets('hero card shows CTA and latest summary content', (tester) async {
 
 - [ ] **Step 2: Run targeted test shell to verify it fails**
 
-Run: `flutter test test/features/feature/health/services/health_passport_summary_service_test.dart`
+Run: `flutter test test/features/health/services/health_passport_summary_service_test.dart`
 
 Expected: existing tests still pass, but new widget test file or symbols are still missing if added next.
 
@@ -312,7 +312,7 @@ class HealthPassportSectionHeader extends StatelessWidget {
 
 - [ ] **Step 4: Run analyze on the created primitives**
 
-Run: `flutter analyze lib/features/feature/health/widgets lib/features/feature/health/services`
+Run: `flutter analyze lib/features/health/widgets lib/features/health/services`
 
 Expected: PASS with no analyzer issues in the new widget files.
 
@@ -320,23 +320,23 @@ Expected: PASS with no analyzer issues in the new widget files.
 
 ```bash
 git add \
-  lib/features/feature/health/widgets/health_passport_hero_card.dart \
-  lib/features/feature/health/widgets/health_passport_summary_row.dart \
-  lib/features/feature/health/widgets/health_passport_section_header.dart \
-  lib/features/feature/health/widgets/health_passport_result_chip.dart \
-  lib/features/feature/health/services/health_log_result_style_service.dart
+  lib/features/health/widgets/health_passport_hero_card.dart \
+  lib/features/health/widgets/health_passport_summary_row.dart \
+  lib/features/health/widgets/health_passport_section_header.dart \
+  lib/features/health/widgets/health_passport_result_chip.dart \
+  lib/features/health/services/health_log_result_style_service.dart
 git commit -m "feat: add health passport premium UI primitives"
 ```
 
 ## Task 3: Recompose the Main Health Passport Screen
 
 **Files:**
-- Modify: `lib/features/feature/health/widgets/health_passport_view.dart`
-- Modify: `lib/features/feature/health/widgets/health_logs_list.dart`
-- Use: `lib/features/feature/health/services/health_passport_summary_service.dart`
-- Use: `lib/features/feature/health/widgets/health_passport_hero_card.dart`
-- Use: `lib/features/feature/health/widgets/health_passport_summary_row.dart`
-- Use: `lib/features/feature/health/widgets/health_passport_section_header.dart`
+- Modify: `lib/features/health/widgets/health_passport_view.dart`
+- Modify: `lib/features/health/widgets/health_logs_list.dart`
+- Use: `lib/features/health/services/health_passport_summary_service.dart`
+- Use: `lib/features/health/widgets/health_passport_hero_card.dart`
+- Use: `lib/features/health/widgets/health_passport_summary_row.dart`
+- Use: `lib/features/health/widgets/health_passport_section_header.dart`
 
 - [ ] **Step 1: Add a failing widget test for populated view composition**
 
@@ -350,7 +350,7 @@ testWidgets('health passport view shows hero and history section', (tester) asyn
 
 - [ ] **Step 2: Run analyze/test to confirm the composition still does not exist**
 
-Run: `flutter analyze lib/features/feature/health/widgets/health_passport_view.dart`
+Run: `flutter analyze lib/features/health/widgets/health_passport_view.dart`
 
 Expected: current file passes analyze, but target UI structure is not yet implemented.
 
@@ -392,7 +392,7 @@ return ValueListenableBuilder(
 
 - [ ] **Step 4: Run analyze on recomposed files**
 
-Run: `flutter analyze lib/features/feature/health/widgets/health_passport_view.dart lib/features/feature/health/widgets/health_logs_list.dart`
+Run: `flutter analyze lib/features/health/widgets/health_passport_view.dart lib/features/health/widgets/health_logs_list.dart`
 
 Expected: PASS with no issues.
 
@@ -400,18 +400,18 @@ Expected: PASS with no issues.
 
 ```bash
 git add \
-  lib/features/feature/health/widgets/health_passport_view.dart \
-  lib/features/feature/health/widgets/health_logs_list.dart
+  lib/features/health/widgets/health_passport_view.dart \
+  lib/features/health/widgets/health_logs_list.dart
 git commit -m "feat: redesign health passport screen layout"
 ```
 
 ## Task 4: Upgrade History Cards and Empty State
 
 **Files:**
-- Create: `lib/features/feature/health/widgets/health_log_record_card.dart`
-- Modify: `lib/features/feature/health/widgets/health_logs_empty_state.dart`
-- Modify: `lib/features/feature/health/widgets/health_logs_tile.dart`
-- Modify: `lib/features/feature/health/widgets/health_logs_list.dart`
+- Create: `lib/features/health/widgets/health_log_record_card.dart`
+- Modify: `lib/features/health/widgets/health_logs_empty_state.dart`
+- Modify: `lib/features/health/widgets/health_logs_tile.dart`
+- Modify: `lib/features/health/widgets/health_logs_list.dart`
 
 - [ ] **Step 1: Write the failing history-card test**
 
@@ -436,7 +436,7 @@ testWidgets('record card renders test type, date, and result chip', (tester) asy
 
 - [ ] **Step 2: Run test or analyze to verify the widget is missing**
 
-Run: `flutter analyze lib/features/feature/health/widgets`
+Run: `flutter analyze lib/features/health/widgets`
 
 Expected: PASS before implementation, but `HealthLogRecordCard` is not yet present.
 
@@ -483,7 +483,7 @@ class HealthLogRecordCard extends StatelessWidget {
 
 - [ ] **Step 4: Run analyze on the history widgets**
 
-Run: `flutter analyze lib/features/feature/health/widgets/health_log_record_card.dart lib/features/feature/health/widgets/health_logs_empty_state.dart lib/features/feature/health/widgets/health_logs_list.dart`
+Run: `flutter analyze lib/features/health/widgets/health_log_record_card.dart lib/features/health/widgets/health_logs_empty_state.dart lib/features/health/widgets/health_logs_list.dart`
 
 Expected: PASS with no issues.
 
@@ -491,18 +491,18 @@ Expected: PASS with no issues.
 
 ```bash
 git add \
-  lib/features/feature/health/widgets/health_log_record_card.dart \
-  lib/features/feature/health/widgets/health_logs_empty_state.dart \
-  lib/features/feature/health/widgets/health_logs_tile.dart \
-  lib/features/feature/health/widgets/health_logs_list.dart
+  lib/features/health/widgets/health_log_record_card.dart \
+  lib/features/health/widgets/health_logs_empty_state.dart \
+  lib/features/health/widgets/health_logs_tile.dart \
+  lib/features/health/widgets/health_logs_list.dart
 git commit -m "feat: upgrade health passport history cards"
 ```
 
 ## Task 5: Redesign the Add Log Bottom Sheet
 
 **Files:**
-- Modify: `lib/features/feature/health/widgets/health_add_log_sheet.dart`
-- Modify: `lib/features/feature/health/widgets/health_result_choice_row.dart`
+- Modify: `lib/features/health/widgets/health_add_log_sheet.dart`
+- Modify: `lib/features/health/widgets/health_result_choice_row.dart`
 - Modify: `lib/l10n/app_en.arb`
 - Modify: `lib/l10n/app_es.arb`
 
@@ -520,7 +520,7 @@ testWidgets('add log sheet shows premium header and save CTA', (tester) async {
 
 - [ ] **Step 2: Run analyze before changing the sheet**
 
-Run: `flutter analyze lib/features/feature/health/widgets/health_add_log_sheet.dart lib/features/feature/health/widgets/health_result_choice_row.dart`
+Run: `flutter analyze lib/features/health/widgets/health_add_log_sheet.dart lib/features/health/widgets/health_result_choice_row.dart`
 
 Expected: PASS before redesign.
 
@@ -558,7 +558,7 @@ Run: `flutter gen-l10n`
 
 Expected: generated localization files updated successfully.
 
-Run: `flutter analyze lib/features/feature/health/widgets lib/features/feature/health/services`
+Run: `flutter analyze lib/features/health/widgets lib/features/health/services`
 
 Expected: PASS with no issues.
 
@@ -566,8 +566,8 @@ Expected: PASS with no issues.
 
 ```bash
 git add \
-  lib/features/feature/health/widgets/health_add_log_sheet.dart \
-  lib/features/feature/health/widgets/health_result_choice_row.dart \
+  lib/features/health/widgets/health_add_log_sheet.dart \
+  lib/features/health/widgets/health_result_choice_row.dart \
   lib/l10n/app_en.arb \
   lib/l10n/app_es.arb \
   lib/l10n/app_localizations.dart \
@@ -584,13 +584,13 @@ git commit -m "feat: redesign health passport add log sheet"
 
 - [ ] **Step 1: Run targeted health tests**
 
-Run: `flutter test test/features/feature/health/services/health_passport_summary_service_test.dart`
+Run: `flutter test test/features/health/services/health_passport_summary_service_test.dart`
 
 Expected: PASS.
 
 - [ ] **Step 2: Run feature analyze**
 
-Run: `flutter analyze lib/features/feature/health/widgets lib/features/feature/health/services`
+Run: `flutter analyze lib/features/health/widgets lib/features/health/services`
 
 Expected: PASS with no issues.
 
@@ -610,14 +610,14 @@ Manual expectations:
 
 - [ ] **Step 4: Fix any discovered small-screen issues and re-run analyze**
 
-Run: `flutter analyze lib/features/feature/health/widgets lib/features/feature/health/services`
+Run: `flutter analyze lib/features/health/widgets lib/features/health/services`
 
 Expected: PASS after any responsive adjustments.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/health/widgets lib/features/feature/health/services
+git add lib/features/health/widgets lib/features/health/services
 git commit -m "fix: polish health passport responsive layout"
 ```
 

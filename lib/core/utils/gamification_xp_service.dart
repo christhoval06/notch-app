@@ -6,8 +6,8 @@ import 'package:notch_app/core/utils/gamification_progress_service.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/models/global_progress.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
-import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
-import 'package:notch_app/features/feature/gamification/services/challenge_reward_service.dart';
+import 'package:notch_app/features/gamification/services/achievement_engine.dart';
+import 'package:notch_app/features/gamification/services/challenge_reward_service.dart';
 
 class GamificationXpService {
   const GamificationXpService._();

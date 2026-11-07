@@ -11,7 +11,16 @@ class MonthlyProgressRepository {
 
   static List<MonthlyProgress> getAll() => _box.values.toList();
 
-  static ValueListenable<Box<MonthlyProgress>> listenable() => _box.listenable();
+  static ValueListenable<Box<MonthlyProgress>> listenable() =>
+      _box.listenable();
+
+  static Future<void> persistForMonth(MonthlyProgress progress) async {
+    final old = _box.values
+        .where((p) => p.monthId == progress.monthId)
+        .firstOrNull;
+    await _box.put(old?.key ?? progress.monthId, progress);
+    await _box.flush();
+  }
 
   static Future<void> put(MonthlyProgress progress) =>
       _box.put(progress.monthId, progress);

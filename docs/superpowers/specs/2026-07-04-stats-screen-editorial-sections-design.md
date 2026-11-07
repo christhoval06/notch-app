@@ -132,7 +132,7 @@ The UI should render from those summaries rather than deriving logic inline.
 
 ## Architecture
 
-Implement inside `features/feature/insights` using small services and widgets.
+Implement inside `features/insights` using small services and widgets.
 
 ### Service Layer
 

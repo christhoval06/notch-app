@@ -243,7 +243,7 @@ These are allowed to act as hero candidates even if they are not fixed cards in 
 
 ## Architecture
 
-All implementation remains inside `lib/features/feature/insights`.
+All implementation remains inside `lib/features/insights`.
 
 ### New Service Files
 

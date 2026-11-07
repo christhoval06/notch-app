@@ -1,11 +1,10 @@
+import 'package:notch_app/core/constants/app_store_config.dart';
+
 abstract final class LandingConfig {
   static const brand = 'NOTCH';
   static const icon = 'assets/icon.png';
   static const screenshotAspectRatio = 1206 / 2622;
-  static const appStoreUrl = String.fromEnvironment(
-    'NOTCH_APP_STORE_URL',
-    defaultValue: 'https://apps.apple.com/us/app/notch/id6759076734',
-  );
+  static const appStoreUrl = AppStoreConfig.url;
   static const supportUrl = 'mailto:support@notchapp.com';
   static const homeScreen = 'assets/screens/s5.png';
   static const loggerScreen = 'assets/screens/s6.png';

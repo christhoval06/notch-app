@@ -1,0 +1,42 @@
+import Foundation
+
+struct WatchCommand: Codable, Identifiable, Equatable {
+    let schemaVersion: Int
+    let kind: String
+    let generation: String
+    let id: String
+    let capturedAtMs: Int64
+    let partnerLabel: String
+    let rating: Int
+    let orgasmCount: Int
+    let protected: Bool
+    var moodEmoji: String? = nil
+    var tags: [String]? = nil
+
+    func validated() throws -> WatchCommand {
+        var label = partnerLabel.trimmingCharacters(in: .whitespacesAndNewlines)
+        if label.hasPrefix("@") || label.hasPrefix("＠") { label.removeFirst() }
+        label = label.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard schemaVersion == WatchProtocol.version, kind == "entry",
+              !generation.isEmpty, generation.count <= 64, UUID(uuidString: id) != nil,
+              capturedAtMs >= 0, capturedAtMs <= 8_640_000_000_000_000,
+              !label.isEmpty, label.utf16.count <= 80,
+              (1...10).contains(rating), (0...99).contains(orgasmCount) else { throw WatchError.invalid }
+        if let moodEmoji, !WatchProtocol.moods.contains(moodEmoji) { throw WatchError.invalid }
+        let selectedTags = tags ?? []
+        guard selectedTags.allSatisfy({ WatchProtocol.tags.contains($0) }),
+              Set(selectedTags).count == selectedTags.count else { throw WatchError.invalid }
+        return WatchCommand(schemaVersion: schemaVersion, kind: kind, generation: generation,
+            id: id.lowercased(), capturedAtMs: capturedAtMs, partnerLabel: label,
+            rating: rating, orgasmCount: orgasmCount, protected: protected,
+            moodEmoji: moodEmoji, tags: selectedTags.isEmpty ? nil : selectedTags.sorted())
+    }
+    var dictionary: [String: Any] {
+        var value: [String: Any] = ["schemaVersion": schemaVersion, "kind": kind, "generation": generation,
+         "id": id, "capturedAtMs": capturedAtMs, "partnerLabel": partnerLabel,
+         "rating": rating, "orgasmCount": orgasmCount, "protected": protected]
+        if let moodEmoji { value["moodEmoji"] = moodEmoji }
+        if let tags, !tags.isEmpty { value["tags"] = tags }
+        return value
+    }
+}

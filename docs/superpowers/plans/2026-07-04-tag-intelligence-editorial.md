@@ -13,8 +13,8 @@
 ### Task 1: Expand tag summaries to top 5
 
 **Files:**
-- Modify: `lib/features/feature/insights/services/stats_tag_summary_service.dart`
-- Modify: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Modify: `lib/features/insights/services/stats_tag_summary_service.dart`
+- Modify: `test/features/insights/services/stats_view_model_service_test.dart`
 
 - [ ] **Step 1: Update the failing assertion**
 
@@ -24,7 +24,7 @@ expect(model.tagInsights.length, lessThanOrEqualTo(5));
 
 - [ ] **Step 2: Run test to verify current behavior**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: current test still passes, but the service still truncates at 3.
 
 - [ ] **Step 3: Change the service limit**
@@ -35,14 +35,14 @@ Expected: current test still passes, but the service still truncates at 3.
 
 - [ ] **Step 4: Run test**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
 ### Task 2: Redesign Tag Intelligence cards
 
 **Files:**
-- Create: `lib/features/feature/insights/widgets/stats_tag_card.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_tag_intelligence_section.dart`
+- Create: `lib/features/insights/widgets/stats_tag_card.dart`
+- Modify: `lib/features/insights/widgets/stats_tag_intelligence_section.dart`
 
 - [ ] **Step 1: Extract a dedicated premium card**
 
@@ -77,22 +77,22 @@ class StatsTagCard extends StatelessWidget {
 
 - [ ] **Step 4: Run verification**
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/widgets/stats_tag_intelligence_section.dart lib/features/feature/insights/widgets/stats_tag_card.dart`
+Run: `flutter analyze --no-pub lib/features/insights/widgets/stats_tag_intelligence_section.dart lib/features/insights/widgets/stats_tag_card.dart`
 Expected: `No issues found!`
 
 ### Task 3: Final verification
 
 **Files:**
-- Test: `test/features/feature/insights/services/stats_filter_service_test.dart`
-- Test: `test/features/feature/insights/services/stats_story_service_test.dart`
-- Test: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Test: `test/features/insights/services/stats_filter_service_test.dart`
+- Test: `test/features/insights/services/stats_story_service_test.dart`
+- Test: `test/features/insights/services/stats_view_model_service_test.dart`
 
 - [ ] **Step 1: Run focused tests**
 
-Run: `flutter test test/features/feature/insights/services/stats_filter_service_test.dart test/features/feature/insights/services/stats_story_service_test.dart test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_filter_service_test.dart test/features/insights/services/stats_story_service_test.dart test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 2: Run focused analyze**
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/services/stats_tag_summary_service.dart lib/features/feature/insights/widgets/stats_tag_intelligence_section.dart lib/features/feature/insights/widgets/stats_tag_card.dart test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter analyze --no-pub lib/features/insights/services/stats_tag_summary_service.dart lib/features/insights/widgets/stats_tag_intelligence_section.dart lib/features/insights/widgets/stats_tag_card.dart test/features/insights/services/stats_view_model_service_test.dart`
 Expected: `No issues found!`

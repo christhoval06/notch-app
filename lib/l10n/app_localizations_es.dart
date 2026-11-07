@@ -1612,6 +1612,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get healthRegisterTest => 'Registrar Prueba';
 
   @override
+  String get healthTestHistoryTitle => 'Historial de pruebas';
+
+  @override
   String get healthNoRecords => 'Sin registros médicos';
 
   @override
@@ -2487,7 +2490,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get trophyShowLess => 'Ver menos';
 
   @override
-  String get homeAbstinenceTitle => 'Tiempo de abstinencia';
+  String get homeAbstinenceTitle => 'Abstinencia';
 
   @override
   String get homeAbstinenceSubtitle => 'Desde tu último encuentro';
@@ -2501,7 +2504,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String homeAbstinenceDuration(Object days, Object hours, Object minutes) {
-    return '$days días $hours horas $minutes minutos';
+    return '${days}d ${hours}h ${minutes}min';
   }
 
   @override
@@ -2854,4 +2857,231 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get landingLanguageSwitch => 'English';
+
+  @override
+  String get appClipSampleBadge => 'DATOS DE EJEMPLO';
+
+  @override
+  String get appClipTitle => 'Conócete un poco más.';
+
+  @override
+  String get appClipDescription =>
+      'Explora Notch con registros ficticios. Toca una fecha para descubrir cómo podría verse tu diario privado.';
+
+  @override
+  String get appClipCalendar => 'Tu calendario';
+
+  @override
+  String get appClipSampleEntry => 'Registro ficticio';
+
+  @override
+  String get appClipRating => 'Calificación';
+
+  @override
+  String get appClipProtection => 'Uso de protección';
+
+  @override
+  String get appClipProtectionUsed => 'Sí';
+
+  @override
+  String get appClipProtectionNotUsed => 'No';
+
+  @override
+  String get appClipEmptyDay => 'No hay registros de ejemplo para este día';
+
+  @override
+  String get appClipInsights => 'Estadísticas de ejemplo';
+
+  @override
+  String get appClipEntries => 'Registros del mes';
+
+  @override
+  String get appClipAverageRating => 'Calificación promedio';
+
+  @override
+  String get appClipPrivacy =>
+      'Esta vista previa solo usa datos ficticios. Nada de lo que hagas aquí se guarda.';
+
+  @override
+  String get appClipGetApp => 'Obtener Notch';
+
+  @override
+  String get appClipInstallUnavailable =>
+      'No se pudo abrir App Store. Inténtalo de nuevo.';
+
+  @override
+  String get watchAbstinence => 'Abstinencia';
+
+  @override
+  String watchDuration(int days, int hours, int minutes) {
+    return '${days}d ${hours}h ${minutes}m';
+  }
+
+  @override
+  String get watchNoHistory => 'Aún no hay actividad registrada';
+
+  @override
+  String get watchCurrentLevel => 'Nivel actual';
+
+  @override
+  String get watchXP => 'XP';
+
+  @override
+  String get watchStats => 'Estadísticas del mes';
+
+  @override
+  String get watchEntries => 'Registros';
+
+  @override
+  String get watchAverage => 'Calificación media';
+
+  @override
+  String get watchProtection => 'Protección';
+
+  @override
+  String get watchLastSync => 'Última sincronización';
+
+  @override
+  String get watchOpenPhone =>
+      'Abre y desbloquea Notch en tu iPhone para sincronizar.';
+
+  @override
+  String get watchAddEntry => 'Añadir registro';
+
+  @override
+  String get watchQueueTitle => 'Cola de registros';
+
+  @override
+  String get watchRefresh => 'Sincronizar';
+
+  @override
+  String get watchNotice => 'Notch';
+
+  @override
+  String get watchOK => 'Aceptar';
+
+  @override
+  String get watchSyncUnavailable =>
+      'No se puede sincronizar. Tus registros pendientes se conservan. Abre Notch en el iPhone e inténtalo de nuevo.';
+
+  @override
+  String get watchStorageUnavailable =>
+      'No se pudo guardar en el reloj. Tu registro no se ha puesto en cola. Inténtalo de nuevo.';
+
+  @override
+  String get watchQueueFull =>
+      'La cola está llena. Sincroniza tus registros pendientes antes de añadir más.';
+
+  @override
+  String get watchInvalidEntry =>
+      'Revisa el nombre, la calificación, la protección y el número de orgasmos.';
+
+  @override
+  String get watchPartner => 'Pareja';
+
+  @override
+  String get watchRating => 'Calificación';
+
+  @override
+  String get watchOrgasms => 'Orgasmos';
+
+  @override
+  String get watchChooseProtection => 'Selecciona…';
+
+  @override
+  String get watchYes => 'Sí';
+
+  @override
+  String get watchNo => 'No';
+
+  @override
+  String get watchPendingExplanation =>
+      'Este registro quedará pendiente hasta que Notch en tu iPhone desbloqueado confirme que se ha guardado.';
+
+  @override
+  String get watchSave => 'Poner en cola';
+
+  @override
+  String get watchPending => 'Pendiente de sincronizar';
+
+  @override
+  String get watchDiscard => 'Descartar';
+
+  @override
+  String get watchResetRejected =>
+      'Notch se ha restablecido. Descarta este registro y vuelve a sincronizar.';
+
+  @override
+  String get watchLimitRejected =>
+      'Se ha alcanzado el límite mensual de registros.';
+
+  @override
+  String get watchTimeRejected =>
+      'La hora del registro es posterior a la del iPhone. Revisa el reloj.';
+
+  @override
+  String get watchResetUnavailable =>
+      'No se pudo completar el restablecimiento. Inténtalo de nuevo.';
+
+  @override
+  String get watchMood => 'Ánimo';
+
+  @override
+  String get watchTags => 'Etiquetas';
+
+  @override
+  String get watchNone => 'Ninguno';
+
+  @override
+  String get watchChoosePartner => 'Elegir…';
+
+  @override
+  String get watchExistingPartners => 'Parejas existentes';
+
+  @override
+  String get watchNoPartners =>
+      'Sincroniza Notch en tu iPhone para ver parejas o escribe un nombre arriba.';
+
+  @override
+  String get watchOptionsNeedSync =>
+      'Abre Notch en tu iPhone para sincronizar las opciones.';
+
+  @override
+  String get watchSettingsTitle => 'Apple Watch';
+
+  @override
+  String get watchSettingsSubtitle => 'Elige y ordena las tarjetas de tu Watch';
+
+  @override
+  String get watchCardsDescription =>
+      'Desliza o gira la Digital Crown para cambiar de tarjeta.';
+
+  @override
+  String get watchCardsSyncHint =>
+      'Los cambios aparecen al sincronizar con tu iPhone desbloqueado.';
+
+  @override
+  String get watchCardsReorder =>
+      'Arrastra las tarjetas activadas para cambiar su orden.';
+
+  @override
+  String get watchCardLevel => 'XP y nivel';
+
+  @override
+  String get watchCardOrgasms => 'Orgasmos del mes';
+
+  @override
+  String get watchCardsEmpty =>
+      'No hay tarjetas activadas. Puedes seguir añadiendo registros y sincronizando.';
+
+  @override
+  String get watchCardsSaveError =>
+      'No se pudieron guardar los ajustes del Watch. Inténtalo de nuevo.';
+
+  @override
+  String get watchActions => 'Acciones';
+
+  @override
+  String get watchChooseCards =>
+      'Elige tarjetas en Ajustes → Apple Watch de Notch en tu iPhone.';
 }

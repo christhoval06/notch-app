@@ -13,41 +13,41 @@
 ## File Map
 
 **Create**
-- `lib/features/feature/insights/services/stats_filter_service.dart`
-- `lib/features/feature/insights/services/stats_story_service.dart`
-- `lib/features/feature/insights/services/stats_comparison_service.dart`
-- `lib/features/feature/insights/widgets/stats_hero_panel.dart`
-- `lib/features/feature/insights/widgets/stats_segment_bar.dart`
-- `lib/features/feature/insights/widgets/stats_story_cards.dart`
-- `lib/features/feature/insights/widgets/stats_comparison_summary.dart`
-- `test/features/feature/insights/services/stats_filter_service_test.dart`
-- `test/features/feature/insights/services/stats_story_service_test.dart`
-- `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- `lib/features/insights/services/stats_filter_service.dart`
+- `lib/features/insights/services/stats_story_service.dart`
+- `lib/features/insights/services/stats_comparison_service.dart`
+- `lib/features/insights/widgets/stats_hero_panel.dart`
+- `lib/features/insights/widgets/stats_segment_bar.dart`
+- `lib/features/insights/widgets/stats_story_cards.dart`
+- `lib/features/insights/widgets/stats_comparison_summary.dart`
+- `test/features/insights/services/stats_filter_service_test.dart`
+- `test/features/insights/services/stats_story_service_test.dart`
+- `test/features/insights/services/stats_view_model_service_test.dart`
 
 **Modify**
-- `lib/features/feature/insights/services/stats_view_model_service.dart`
-- `lib/features/feature/insights/widgets/stats_view.dart`
-- `lib/features/feature/insights/widgets/stats_content.dart`
+- `lib/features/insights/services/stats_view_model_service.dart`
+- `lib/features/insights/widgets/stats_view.dart`
+- `lib/features/insights/widgets/stats_content.dart`
 - `lib/l10n/app_en.arb`
 - `lib/l10n/app_es.arb`
 
 **Verify**
-- `flutter test test/features/feature/insights/services/stats_filter_service_test.dart test/features/feature/insights/services/stats_story_service_test.dart test/features/feature/insights/services/stats_view_model_service_test.dart`
+- `flutter test test/features/insights/services/stats_filter_service_test.dart test/features/insights/services/stats_story_service_test.dart test/features/insights/services/stats_view_model_service_test.dart`
 - `flutter analyze --no-pub ...`
 
 ### Task 1: Add Stats Filter and Comparison Base
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_filter_service.dart`
-- Test: `test/features/feature/insights/services/stats_filter_service_test.dart`
+- Create: `lib/features/insights/services/stats_filter_service.dart`
+- Test: `test/features/insights/services/stats_filter_service_test.dart`
 
 - [ ] **Step 1: Write the failing test**
 
 ```dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:notch_app/data/models/encounter.dart';
-import 'package:notch_app/features/feature/insights/services/stats_filter_service.dart';
-import 'package:notch_app/features/feature/insights/services/stats_view_model_service.dart';
+import 'package:notch_app/features/insights/services/stats_filter_service.dart';
+import 'package:notch_app/features/insights/services/stats_view_model_service.dart';
 
 void main() {
   test('builds current and previous windows for month and six months', () {
@@ -82,7 +82,7 @@ void main() {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `flutter test test/features/feature/insights/services/stats_filter_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_filter_service_test.dart`
 Expected: FAIL because `StatsFilterService` and segment types do not exist yet.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -123,28 +123,28 @@ class StatsFilterService {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `flutter test test/features/feature/insights/services/stats_filter_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_filter_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/insights/services/stats_filter_service.dart test/features/feature/insights/services/stats_filter_service_test.dart
+git add lib/features/insights/services/stats_filter_service.dart test/features/insights/services/stats_filter_service_test.dart
 git commit -m "feat: add stats filtering base"
 ```
 
 ### Task 2: Add Story Card Computation
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_story_service.dart`
-- Test: `test/features/feature/insights/services/stats_story_service_test.dart`
+- Create: `lib/features/insights/services/stats_story_service.dart`
+- Test: `test/features/insights/services/stats_story_service_test.dart`
 
 - [ ] **Step 1: Write the failing test**
 
 ```dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:notch_app/data/models/encounter.dart';
-import 'package:notch_app/features/feature/insights/services/stats_story_service.dart';
+import 'package:notch_app/features/insights/services/stats_story_service.dart';
 
 void main() {
   test('builds best context and momentum story cards when sample is enough', () {
@@ -168,7 +168,7 @@ void main() {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `flutter test test/features/feature/insights/services/stats_story_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_story_service_test.dart`
 Expected: FAIL because story service and story model do not exist.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -206,27 +206,27 @@ class StatsStoryService {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `flutter test test/features/feature/insights/services/stats_story_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_story_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/insights/services/stats_story_service.dart test/features/feature/insights/services/stats_story_service_test.dart
+git add lib/features/insights/services/stats_story_service.dart test/features/insights/services/stats_story_service_test.dart
 git commit -m "feat: add stats story computation"
 ```
 
 ### Task 3: Evolve Stats View Model
 
 **Files:**
-- Modify: `lib/features/feature/insights/services/stats_view_model_service.dart`
-- Test: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Modify: `lib/features/insights/services/stats_view_model_service.dart`
+- Test: `test/features/insights/services/stats_view_model_service_test.dart`
 
 - [ ] **Step 1: Write the failing test**
 
 ```dart
 import 'package:flutter_test/flutter_test.dart';
-import 'package:notch_app/features/feature/insights/services/stats_view_model_service.dart';
+import 'package:notch_app/features/insights/services/stats_view_model_service.dart';
 
 void main() {
   test('build returns hero metrics, comparison summary, stories, and charts', () {
@@ -245,7 +245,7 @@ void main() {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: FAIL because the view model does not expose the new properties.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -276,23 +276,23 @@ class StatsViewModel {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/insights/services/stats_view_model_service.dart test/features/feature/insights/services/stats_view_model_service_test.dart
+git add lib/features/insights/services/stats_view_model_service.dart test/features/insights/services/stats_view_model_service_test.dart
 git commit -m "feat: enrich stats view model"
 ```
 
 ### Task 4: Add Hero, Summary, and Segment Widgets
 
 **Files:**
-- Create: `lib/features/feature/insights/widgets/stats_hero_panel.dart`
-- Create: `lib/features/feature/insights/widgets/stats_comparison_summary.dart`
-- Create: `lib/features/feature/insights/widgets/stats_segment_bar.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
+- Create: `lib/features/insights/widgets/stats_hero_panel.dart`
+- Create: `lib/features/insights/widgets/stats_comparison_summary.dart`
+- Create: `lib/features/insights/widgets/stats_segment_bar.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
 
 - [ ] **Step 1: Write the failing widget expectations**
 
@@ -305,7 +305,7 @@ expect(find.byType(StatsSegmentBar), findsOneWidget);
 
 - [ ] **Step 2: Run focused widget test or analyze to verify missing symbols**
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/widgets/stats_content.dart`
+Run: `flutter analyze --no-pub lib/features/insights/widgets/stats_content.dart`
 Expected: FAIL because the new widgets are not created yet.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -329,21 +329,21 @@ StatsSegmentBar(
 
 - [ ] **Step 4: Run analyze to verify the new widgets compile**
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/widgets/stats_content.dart lib/features/feature/insights/widgets/stats_hero_panel.dart lib/features/feature/insights/widgets/stats_comparison_summary.dart lib/features/feature/insights/widgets/stats_segment_bar.dart`
+Run: `flutter analyze --no-pub lib/features/insights/widgets/stats_content.dart lib/features/insights/widgets/stats_hero_panel.dart lib/features/insights/widgets/stats_comparison_summary.dart lib/features/insights/widgets/stats_segment_bar.dart`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/insights/widgets/stats_content.dart lib/features/feature/insights/widgets/stats_hero_panel.dart lib/features/feature/insights/widgets/stats_comparison_summary.dart lib/features/feature/insights/widgets/stats_segment_bar.dart
+git add lib/features/insights/widgets/stats_content.dart lib/features/insights/widgets/stats_hero_panel.dart lib/features/insights/widgets/stats_comparison_summary.dart lib/features/insights/widgets/stats_segment_bar.dart
 git commit -m "feat: add premium stats top section"
 ```
 
 ### Task 5: Add Story Cards and Reorder Deep Stats
 
 **Files:**
-- Create: `lib/features/feature/insights/widgets/stats_story_cards.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
+- Create: `lib/features/insights/widgets/stats_story_cards.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
 
 - [ ] **Step 1: Write the failing expectation**
 
@@ -353,7 +353,7 @@ expect(find.byType(StatsStoryCards), findsOneWidget);
 
 - [ ] **Step 2: Run analyze to verify it fails**
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/widgets/stats_content.dart`
+Run: `flutter analyze --no-pub lib/features/insights/widgets/stats_content.dart`
 Expected: FAIL because `StatsStoryCards` does not exist.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -382,23 +382,23 @@ StatsStoryCards(cards: viewModel.storyCards)
 
 - [ ] **Step 4: Run analyze to verify it passes**
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/widgets/stats_content.dart lib/features/feature/insights/widgets/stats_story_cards.dart`
+Run: `flutter analyze --no-pub lib/features/insights/widgets/stats_content.dart lib/features/insights/widgets/stats_story_cards.dart`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/insights/widgets/stats_content.dart lib/features/feature/insights/widgets/stats_story_cards.dart
+git add lib/features/insights/widgets/stats_content.dart lib/features/insights/widgets/stats_story_cards.dart
 git commit -m "feat: add stats story cards"
 ```
 
 ### Task 6: Wire Segment State and Lightweight Drilldown
 
 **Files:**
-- Modify: `lib/features/feature/insights/widgets/stats_view.dart`
-- Modify: `lib/features/feature/insights/services/stats_view_model_service.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_monthly_activity_chart.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_heatmap_card.dart`
+- Modify: `lib/features/insights/widgets/stats_view.dart`
+- Modify: `lib/features/insights/services/stats_view_model_service.dart`
+- Modify: `lib/features/insights/widgets/stats_monthly_activity_chart.dart`
+- Modify: `lib/features/insights/widgets/stats_heatmap_card.dart`
 
 - [ ] **Step 1: Write the failing expectations**
 
@@ -413,7 +413,7 @@ expect(viewModel.activeSegment, StatsSegment.tags);
 
 - [ ] **Step 2: Run focused tests or analyze to verify it fails**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: FAIL because segment state is not wired through.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -437,16 +437,16 @@ Allow chart tap callbacks to show short contextual snackbars or bottom sheets.
 
 - [ ] **Step 4: Run focused tests and analyze**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/widgets/stats_view.dart lib/features/feature/insights/widgets/stats_monthly_activity_chart.dart lib/features/feature/insights/widgets/stats_heatmap_card.dart`
+Run: `flutter analyze --no-pub lib/features/insights/widgets/stats_view.dart lib/features/insights/widgets/stats_monthly_activity_chart.dart lib/features/insights/widgets/stats_heatmap_card.dart`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/features/feature/insights/widgets/stats_view.dart lib/features/feature/insights/services/stats_view_model_service.dart lib/features/feature/insights/widgets/stats_monthly_activity_chart.dart lib/features/feature/insights/widgets/stats_heatmap_card.dart
+git add lib/features/insights/widgets/stats_view.dart lib/features/insights/services/stats_view_model_service.dart lib/features/insights/widgets/stats_monthly_activity_chart.dart lib/features/insights/widgets/stats_heatmap_card.dart
 git commit -m "feat: wire stats segment state and drilldown"
 ```
 
@@ -493,9 +493,9 @@ Run:
 
 ```bash
 flutter test \
-  test/features/feature/insights/services/stats_filter_service_test.dart \
-  test/features/feature/insights/services/stats_story_service_test.dart \
-  test/features/feature/insights/services/stats_view_model_service_test.dart \
+  test/features/insights/services/stats_filter_service_test.dart \
+  test/features/insights/services/stats_story_service_test.dart \
+  test/features/insights/services/stats_view_model_service_test.dart \
   test/core/utils/achievement_copy_service_test.dart
 ```
 
@@ -507,15 +507,15 @@ Run:
 
 ```bash
 flutter analyze --no-pub \
-  lib/features/feature/insights/services/stats_filter_service.dart \
-  lib/features/feature/insights/services/stats_story_service.dart \
-  lib/features/feature/insights/services/stats_view_model_service.dart \
-  lib/features/feature/insights/widgets/stats_view.dart \
-  lib/features/feature/insights/widgets/stats_content.dart \
-  lib/features/feature/insights/widgets/stats_hero_panel.dart \
-  lib/features/feature/insights/widgets/stats_comparison_summary.dart \
-  lib/features/feature/insights/widgets/stats_segment_bar.dart \
-  lib/features/feature/insights/widgets/stats_story_cards.dart
+  lib/features/insights/services/stats_filter_service.dart \
+  lib/features/insights/services/stats_story_service.dart \
+  lib/features/insights/services/stats_view_model_service.dart \
+  lib/features/insights/widgets/stats_view.dart \
+  lib/features/insights/widgets/stats_content.dart \
+  lib/features/insights/widgets/stats_hero_panel.dart \
+  lib/features/insights/widgets/stats_comparison_summary.dart \
+  lib/features/insights/widgets/stats_segment_bar.dart \
+  lib/features/insights/widgets/stats_story_cards.dart
 ```
 
 Expected: `No issues found!`

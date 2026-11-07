@@ -94,7 +94,7 @@ Add widget tests for:
 - tapping `Rhythm` opens its detail sheet
 
 Run:
-- `flutter analyze --no-pub lib/features/feature/insights test/features/feature/insights`
+- `flutter analyze --no-pub lib/features/insights test/features/insights`
 - targeted `flutter test` for the new services and widgets
 
 ## Implementation Notes

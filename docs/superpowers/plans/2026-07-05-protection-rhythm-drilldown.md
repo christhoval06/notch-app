@@ -13,9 +13,9 @@
 ### Task 1: Protection detail data model and service
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_protection_detail_models.dart`
-- Create: `lib/features/feature/insights/services/stats_protection_detail_service.dart`
-- Test: `test/features/feature/insights/services/stats_protection_detail_service_test.dart`
+- Create: `lib/features/insights/services/stats_protection_detail_models.dart`
+- Create: `lib/features/insights/services/stats_protection_detail_service.dart`
+- Test: `test/features/insights/services/stats_protection_detail_service_test.dart`
 
 - [ ] Add a failing service test for protection aggregation.
 - [ ] Implement `StatsProtectionDetailSummary` in a dedicated model file to avoid growing `stats_editorial_models.dart`.
@@ -25,13 +25,13 @@
 ### Task 2: Protection interactive sheet
 
 **Files:**
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_protection_section.dart`
-- Create: `lib/features/feature/insights/widgets/stats_protection_detail_sheet.dart`
-- Create: `lib/features/feature/insights/widgets/stats_protection_detail_metrics.dart`
-- Create: `lib/features/feature/insights/widgets/stats_protection_recent_encounters.dart`
-- Create: `lib/features/feature/insights/widgets/stats_protection_partner_insight.dart`
-- Test: `test/features/feature/insights/widgets/stats_protection_section_test.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
+- Modify: `lib/features/insights/widgets/stats_protection_section.dart`
+- Create: `lib/features/insights/widgets/stats_protection_detail_sheet.dart`
+- Create: `lib/features/insights/widgets/stats_protection_detail_metrics.dart`
+- Create: `lib/features/insights/widgets/stats_protection_recent_encounters.dart`
+- Create: `lib/features/insights/widgets/stats_protection_partner_insight.dart`
+- Test: `test/features/insights/widgets/stats_protection_section_test.dart`
 
 - [ ] Add a failing widget test that taps the protection card and expects the detail sheet content.
 - [ ] Pass `viewModel.encounters` into `StatsProtectionSection`.
@@ -42,9 +42,9 @@
 ### Task 3: Rhythm detail data model and service
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_rhythm_detail_models.dart`
-- Create: `lib/features/feature/insights/services/stats_rhythm_detail_service.dart`
-- Test: `test/features/feature/insights/services/stats_rhythm_detail_service_test.dart`
+- Create: `lib/features/insights/services/stats_rhythm_detail_models.dart`
+- Create: `lib/features/insights/services/stats_rhythm_detail_service.dart`
+- Test: `test/features/insights/services/stats_rhythm_detail_service_test.dart`
 
 - [ ] Add a failing service test for rhythm aggregation.
 - [ ] Implement `StatsRhythmDetailSummary` with bucket counts, weekday counts, and recent encounters.
@@ -54,13 +54,13 @@
 ### Task 4: Rhythm interactive sheet
 
 **Files:**
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_rhythm_section.dart`
-- Create: `lib/features/feature/insights/widgets/stats_rhythm_detail_sheet.dart`
-- Create: `lib/features/feature/insights/widgets/stats_rhythm_detail_metrics.dart`
-- Create: `lib/features/feature/insights/widgets/stats_rhythm_recent_encounters.dart`
-- Create: `lib/features/feature/insights/widgets/stats_rhythm_weekday_breakdown.dart`
-- Test: `test/features/feature/insights/widgets/stats_rhythm_section_test.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
+- Modify: `lib/features/insights/widgets/stats_rhythm_section.dart`
+- Create: `lib/features/insights/widgets/stats_rhythm_detail_sheet.dart`
+- Create: `lib/features/insights/widgets/stats_rhythm_detail_metrics.dart`
+- Create: `lib/features/insights/widgets/stats_rhythm_recent_encounters.dart`
+- Create: `lib/features/insights/widgets/stats_rhythm_weekday_breakdown.dart`
+- Test: `test/features/insights/widgets/stats_rhythm_section_test.dart`
 
 - [ ] Add a failing widget test that taps the rhythm card and expects the detail sheet content.
 - [ ] Pass `viewModel.encounters` into `StatsRhythmSection`.
@@ -78,4 +78,4 @@
 - [ ] Add all new strings required by both sheets in English and Spanish.
 - [ ] Regenerate localizations.
 - [ ] Run targeted insight tests for protection and rhythm.
-- [ ] Run `flutter analyze --no-pub lib/features/feature/insights test/features/feature/insights`.
+- [ ] Run `flutter analyze --no-pub lib/features/insights test/features/insights`.

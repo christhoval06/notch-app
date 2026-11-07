@@ -1,7 +1,8 @@
+import 'package:notch_app/core/session/app_access_session.dart';
 import 'package:flutter/material.dart';
 
 import 'package:notch_app/main.dart';
-import 'package:notch_app/features/feature/auth/presentation/pages/auth_page.dart';
+import 'package:notch_app/features/auth/presentation/pages/auth_page.dart';
 
 class AppLifecycleObserver extends StatefulWidget {
   final Widget child;
@@ -34,6 +35,7 @@ class _AppLifecycleObserverState extends State<AppLifecycleObserver>
     print("======== [GLOBAL] App Lifecycle State Changed: $state ========");
 
     if (state == AppLifecycleState.paused) {
+      AppAccessSession.instance.lock();
       // --- AÑADE ESTE OTRO PRINT ---
       print("======== [GLOBAL] App Paused. Locking now... ========");
 

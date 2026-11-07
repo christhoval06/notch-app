@@ -1,3 +1,6 @@
+import 'package:notch_app/features/watch_companion/state/watch_layout_controller.dart';
+import 'package:notch_app/core/router/app_router.dart';
+import 'package:notch_app/features/watch_companion/state/watch_companion_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:notch_app/core/app/landing_app.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +10,13 @@ import 'package:notch_app/l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:notch_app/core/theme/app_theme.dart';
 import 'package:notch_app/data/hive/hive_init.dart';
-import 'package:notch_app/features/feature/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:notch_app/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:notch_app/core/widgets/app_lifecycle_observer.dart';
 import 'package:notch_app/core/utils/locale_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:notch_app/features/feature/health/services/notification_service.dart';
-import 'package:notch_app/features/feature/auth/presentation/pages/auth_page.dart';
-import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
+import 'package:notch_app/features/health/services/notification_service.dart';
+import 'package:notch_app/features/auth/presentation/pages/auth_page.dart';
+import 'package:notch_app/features/gamification/services/achievement_engine.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -48,6 +51,8 @@ void main() async {
     await prefs.setBool('isFirstTime', false);
   }
 
+  WatchLayoutController.initialize(prefs);
+  await WatchCompanionController.instance.start();
   runApp(NotchApp(isFirstTime: isFirstTime));
 }
 
@@ -63,6 +68,7 @@ class NotchApp extends StatelessWidget {
       builder: (context, locale, _) => MaterialApp(
         navigatorKey: navigatorKey,
         title: 'NOTCH',
+        routes: AppRouter.mobile,
         debugShowCheckedModeBanner: false,
         locale: locale,
         supportedLocales: AppLocalizations.supportedLocales,

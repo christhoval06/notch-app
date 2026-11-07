@@ -13,15 +13,15 @@
 ### Task 1: Add failing tests for monthly vs historical abstinence semantics
 
 **Files:**
-- Create: `test/features/feature/gamification/services/achievement_abstinence_rules_test.dart`
-- Modify: `test/features/feature/gamification/services/achievement_rule_service_test.dart`
+- Create: `test/features/gamification/services/achievement_abstinence_rules_test.dart`
+- Modify: `test/features/gamification/services/achievement_rule_service_test.dart`
 
 - [ ] **Step 1: Write the failing tests**
 
 ```dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:notch_app/data/models/encounter.dart';
-import 'package:notch_app/features/feature/gamification/services/achievement_abstinence_rules.dart';
+import 'package:notch_app/features/gamification/services/achievement_abstinence_rules.dart';
 
 void main() {
   group('AchievementAbstinenceRules', () {
@@ -84,29 +84,29 @@ Encounter _encounter(String id, DateTime date) {
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services/achievement_abstinence_rules_test.dart test/features/feature/gamification/services/achievement_rule_service_test.dart`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services/achievement_abstinence_rules_test.dart test/features/gamification/services/achievement_rule_service_test.dart`
 
 Expected: FAIL with missing `achievement_abstinence_rules.dart` and/or wrong current abstinence behavior for monthly badges.
 
 - [ ] **Step 3: Commit the red state tests if your workflow requires it**
 
 ```bash
-git add test/features/feature/gamification/services/achievement_abstinence_rules_test.dart test/features/feature/gamification/services/achievement_rule_service_test.dart
+git add test/features/gamification/services/achievement_abstinence_rules_test.dart test/features/gamification/services/achievement_rule_service_test.dart
 git commit -m "test: cover monthly and historical abstinence semantics"
 ```
 
 ### Task 2: Implement focused abstinence achievement rules
 
 **Files:**
-- Create: `lib/features/feature/gamification/services/achievement_abstinence_rules.dart`
-- Modify: `lib/features/feature/gamification/services/abstinence_service.dart`
-- Test: `test/features/feature/gamification/services/achievement_abstinence_rules_test.dart`
+- Create: `lib/features/gamification/services/achievement_abstinence_rules.dart`
+- Modify: `lib/features/gamification/services/abstinence_service.dart`
+- Test: `test/features/gamification/services/achievement_abstinence_rules_test.dart`
 
 - [ ] **Step 1: Write the minimal rules service**
 
 ```dart
 import 'package:notch_app/data/models/encounter.dart';
-import 'package:notch_app/features/feature/gamification/services/abstinence_service.dart';
+import 'package:notch_app/features/gamification/services/abstinence_service.dart';
 
 class AchievementAbstinenceRules {
   const AchievementAbstinenceRules._();
@@ -158,22 +158,22 @@ static int currentMonthAbstinenceDays({
 
 - [ ] **Step 3: Run tests to verify they pass**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services/achievement_abstinence_rules_test.dart test/features/feature/gamification/services/achievement_rule_service_test.dart`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services/achievement_abstinence_rules_test.dart test/features/gamification/services/achievement_rule_service_test.dart`
 
 Expected: PASS
 
 - [ ] **Step 4: Commit the rules implementation**
 
 ```bash
-git add lib/features/feature/gamification/services/achievement_abstinence_rules.dart lib/features/feature/gamification/services/abstinence_service.dart test/features/feature/gamification/services/achievement_abstinence_rules_test.dart test/features/feature/gamification/services/achievement_rule_service_test.dart
+git add lib/features/gamification/services/achievement_abstinence_rules.dart lib/features/gamification/services/abstinence_service.dart test/features/gamification/services/achievement_abstinence_rules_test.dart test/features/gamification/services/achievement_rule_service_test.dart
 git commit -m "feat: separate monthly and historical abstinence rules"
 ```
 
 ### Task 3: Rewire app-started achievements to monthly and historical catalogs
 
 **Files:**
-- Modify: `lib/features/feature/gamification/services/app_lifecycle_achievements.dart`
-- Test: `test/features/feature/gamification/services/achievement_catalog_test.dart`
+- Modify: `lib/features/gamification/services/app_lifecycle_achievements.dart`
+- Test: `test/features/gamification/services/achievement_catalog_test.dart`
 
 - [ ] **Step 1: Replace the current abstinence app-started definitions**
 
@@ -238,14 +238,14 @@ expect(ids.contains('abstinence_master_120'), isTrue);
 
 - [ ] **Step 5: Run tests to verify the catalog stays valid**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services/achievement_catalog_test.dart`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services/achievement_catalog_test.dart`
 
 Expected: PASS
 
 - [ ] **Step 6: Commit the achievement catalog update**
 
 ```bash
-git add lib/features/feature/gamification/services/app_lifecycle_achievements.dart test/features/feature/gamification/services/achievement_catalog_test.dart
+git add lib/features/gamification/services/app_lifecycle_achievements.dart test/features/gamification/services/achievement_catalog_test.dart
 git commit -m "feat: split monthly and historical abstinence achievements"
 ```
 
@@ -255,7 +255,7 @@ git commit -m "feat: split monthly and historical abstinence achievements"
 - Modify: `lib/l10n/app_en.arb`
 - Modify: `lib/l10n/app_es.arb`
 - Modify: `lib/core/utils/achievement_localization.dart`
-- Modify: `lib/features/feature/gamification/services/achievement_ui.dart`
+- Modify: `lib/features/gamification/services/achievement_ui.dart`
 
 - [ ] **Step 1: Update existing abstinence copy to monthly wording**
 
@@ -307,44 +307,44 @@ Expected: generated localization files update successfully
 - [ ] **Step 6: Commit localization and UI mapping updates**
 
 ```bash
-git add lib/l10n/app_en.arb lib/l10n/app_es.arb lib/l10n/app_localizations.dart lib/l10n/app_localizations_en.dart lib/l10n/app_localizations_es.dart lib/core/utils/achievement_localization.dart lib/features/feature/gamification/services/achievement_ui.dart
+git add lib/l10n/app_en.arb lib/l10n/app_es.arb lib/l10n/app_localizations.dart lib/l10n/app_localizations_en.dart lib/l10n/app_localizations_es.dart lib/core/utils/achievement_localization.dart lib/features/gamification/services/achievement_ui.dart
 git commit -m "feat: localize monthly and historical abstinence badges"
 ```
 
 ### Task 5: Run focused regression verification
 
 **Files:**
-- Verify: `test/features/feature/gamification/services/achievement_abstinence_rules_test.dart`
-- Verify: `test/features/feature/gamification/services/achievement_rule_service_test.dart`
-- Verify: `test/features/feature/gamification/services/achievement_catalog_test.dart`
+- Verify: `test/features/gamification/services/achievement_abstinence_rules_test.dart`
+- Verify: `test/features/gamification/services/achievement_rule_service_test.dart`
+- Verify: `test/features/gamification/services/achievement_catalog_test.dart`
 
 - [ ] **Step 1: Run abstinence rule tests**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services/achievement_abstinence_rules_test.dart`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services/achievement_abstinence_rules_test.dart`
 
 Expected: PASS
 
 - [ ] **Step 2: Run monk mode rule tests**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services/achievement_rule_service_test.dart`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services/achievement_rule_service_test.dart`
 
 Expected: PASS
 
 - [ ] **Step 3: Run achievement catalog test**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services/achievement_catalog_test.dart`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services/achievement_catalog_test.dart`
 
 Expected: PASS
 
 - [ ] **Step 4: Run the combined focused suite**
 
-Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/feature/gamification/services`
+Run: `/Users/alfamedic/.flutter/flutter/bin/flutter test test/features/gamification/services`
 
 Expected: PASS with no abstinence/achievement regressions
 
 - [ ] **Step 5: Commit the verified final state**
 
 ```bash
-git add lib/features/feature/gamification/services lib/core/utils/achievement_localization.dart lib/l10n test/features/feature/gamification/services
+git add lib/features/gamification/services lib/core/utils/achievement_localization.dart lib/l10n test/features/gamification/services
 git commit -m "feat: add monthly and historical abstinence achievements"
 ```

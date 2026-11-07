@@ -1,0 +1,9 @@
+#include "../Flutter/Generated.xcconfig"
+
+// Keep this target's Flutter artifacts separate from Runner's entry point.
+FLUTTER_TARGET = lib/main_app_clip.dart
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(TARGET_TEMP_DIR)/FlutterProducts"
+OTHER_LDFLAGS = $(inherited) -framework Flutter
+CLANG_ENABLE_MODULES = YES
+MARKETING_VERSION = $(FLUTTER_BUILD_NAME)
+CURRENT_PROJECT_VERSION = $(FLUTTER_BUILD_NUMBER)

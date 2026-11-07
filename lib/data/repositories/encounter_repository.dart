@@ -8,11 +8,16 @@ class EncounterRepository {
 
   static Box<Encounter> get _box => Hive.box<Encounter>(HiveBoxes.encounters);
 
+  static Encounter? getById(String id) => _box.get(id);
+
   static List<Encounter> getAll() => _box.values.toList();
 
   static ValueListenable<Box<Encounter>> listenable() => _box.listenable();
 
-  static Future<void> put(Encounter encounter) => _box.put(encounter.id, encounter);
+  static Future<void> put(Encounter encounter) async {
+    await _box.put(encounter.id, encounter);
+    await _box.flush();
+  }
 
   static Future<void> delete(String id) => _box.delete(id);
 
