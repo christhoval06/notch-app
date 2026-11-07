@@ -4,7 +4,7 @@ import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/repositories/encounter_repository.dart';
 import 'package:notch_app/features/feature/encounters/services/lite_mode_service.dart';
 import 'package:notch_app/features/feature/gamification/services/achievement_engine.dart';
-import 'package:notch_app/core/utils/gamification_engine.dart';
+import 'package:notch_app/features/feature/encounters/services/encounter_save_service.dart';
 import 'package:uuid/uuid.dart';
 
 enum AddEntrySubmissionStatus { saved, invalidPartner, limitReached }
@@ -62,11 +62,15 @@ class AddEntrySubmissionService {
       protected: values['protected'] as bool? ?? true,
     );
 
-    await EncounterRepository.put(encounter);
-    final achievements = await GamificationEngine.processEncounter(encounter);
+    final saved = await EncounterSaveService.save(encounter);
+    if (!saved.saved) {
+      return const AddEntrySubmissionResult(
+        status: AddEntrySubmissionStatus.limitReached,
+      );
+    }
     return AddEntrySubmissionResult(
       status: AddEntrySubmissionStatus.saved,
-      achievements: achievements,
+      achievements: saved.achievements,
     );
   }
 

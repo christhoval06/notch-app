@@ -1,6 +1,7 @@
 class HiveBoxes {
   const HiveBoxes._();
 
+  static const String watchImports = 'watch_imports';
   static const String encounters = 'encounters';
   static const String partners = 'partners';
   static const String monthlyProgress = 'monthly_progress';

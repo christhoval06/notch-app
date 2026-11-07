@@ -21,6 +21,7 @@ class HiveInit {
     Hive.registerAdapter(HealthLogAdapter());
     Hive.registerAdapter(FakeTaskAdapter());
 
+    await Hive.openBox(HiveBoxes.watchImports);
     await Hive.openBox<Encounter>(HiveBoxes.encounters);
     await Hive.openBox<Partner>(HiveBoxes.partners);
     await Hive.openBox<MonthlyProgress>(HiveBoxes.monthlyProgress);

@@ -21,8 +21,10 @@ class GlobalProgressRepository {
     return _box.getAt(0)!;
   }
 
-  static Future<void> putAtZero(GlobalProgress progress) =>
-      _box.put(0, progress);
+  static Future<void> putAtZero(GlobalProgress progress) async {
+    await _box.put(0, progress);
+    await _box.flush();
+  }
 
   static Future<void> clear() => _box.clear();
 }
