@@ -33,8 +33,9 @@ abstract final class EncounterRewardReconciliationService {
       }
       if (challenge.getProgressPercent(all) < 1) continue;
       claims.add(challenge.id);
-      if (challenge.family == ChallengeFamily.historical)
+      if (challenge.family == ChallengeFamily.historical) {
         globalClaims.add(challenge.id);
+      }
     }
     progress.claimedChallengeRewardIds = claims.toList();
     global.claimedHistoricalChallengeRewardIds = globalClaims.toList();

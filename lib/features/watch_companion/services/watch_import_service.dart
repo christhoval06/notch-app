@@ -26,14 +26,16 @@ class WatchImportService {
           status: status,
           reason: reason,
         );
-        if (command.generation != generation())
+        if (command.generation != generation()) {
           return receipt('rejected', 'reset');
+        }
         final error = command.validate(now());
         if (error != null) return receipt('rejected', error);
         final fingerprint = jsonEncode(command.toMap());
         final journal = WatchImportRepository.get(command.id);
-        if (journal != null && journal['fingerprint'] != fingerprint)
+        if (journal != null && journal['fingerprint'] != fingerprint) {
           return receipt('rejected', 'conflicting_id');
+        }
         if (journal?['receipt'] case final Map previous) {
           return WatchReceipt.fromMap(Map<String, Object?>.from(previous));
         }

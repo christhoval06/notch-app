@@ -1,9 +1,10 @@
+import 'package:notch_app/core/session/app_access_session.dart';
+import 'package:notch_app/features/feature/auth/presentation/auth_kill_switch_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:notch_app/features/feature/auth/services/auth_biometric_service.dart';
-import 'package:notch_app/features/feature/auth/services/auth_kill_switch_service.dart';
 import 'package:notch_app/features/feature/auth/services/auth_pin_service.dart';
 import 'package:notch_app/features/feature/auth/widgets/auth_content.dart';
 import 'package:notch_app/features/feature/home/presentation/pages/fake_home_page.dart';
@@ -66,13 +67,14 @@ class _AuthViewState extends State<AuthView> {
       case AuthPinOutcome.invalid:
         HapticFeedback.vibrate();
         setState(() => _enteredPin = '');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.authIncorrectCode)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.authIncorrectCode)));
     }
   }
 
   void _navigateToRealApp() {
+    AppAccessSession.instance.unlockReal();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => HomePage()),
@@ -80,6 +82,7 @@ class _AuthViewState extends State<AuthView> {
   }
 
   void _navigateToFakeApp() {
+    AppAccessSession.instance.enterDecoy();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => FakeHomeScreen()),
@@ -87,28 +90,14 @@ class _AuthViewState extends State<AuthView> {
   }
 
   Future<void> _executeKillSwitch() async {
-    final l10n = AppLocalizations.of(context);
-    final scheme = Theme.of(context).colorScheme;
     HapticFeedback.heavyImpact();
     await Future.delayed(const Duration(milliseconds: 150));
+    if (!mounted) return;
     HapticFeedback.heavyImpact();
-    await AuthKillSwitchService.execute(_storage);
+    if (!await performAuthKillSwitch(context, _storage)) return;
     if (!mounted) return;
     setState(() => _enteredPin = '');
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.warning_amber_rounded, color: scheme.onError),
-            const SizedBox(width: 10),
-            Expanded(child: Text(l10n.authKillSwitchExecuted)),
-          ],
-        ),
-        backgroundColor: scheme.error,
-        duration: const Duration(seconds: 5),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    showAuthKillSwitchFeedback(context);
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => HomePage()),
       (route) => false,

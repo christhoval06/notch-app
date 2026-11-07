@@ -1,3 +1,4 @@
+import 'package:notch_app/features/watch_companion/state/watch_companion_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:notch_app/core/app/landing_app.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,7 @@ void main() async {
     await prefs.setBool('isFirstTime', false);
   }
 
+  await WatchCompanionController.instance.start();
   runApp(NotchApp(isFirstTime: isFirstTime));
 }
 

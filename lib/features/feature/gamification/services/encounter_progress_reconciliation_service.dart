@@ -1,5 +1,5 @@
+import 'package:notch_app/core/utils/gamification_level_service.dart';
 import 'package:notch_app/core/utils/gamification_xp_service.dart';
-import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/models/global_progress.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
 import 'package:notch_app/data/repositories/encounter_repository.dart';
@@ -34,7 +34,9 @@ abstract final class EncounterProgressReconciliationService {
         0,
         (sum, e) => sum + GamificationXpService.xpForEncounter(e),
       ),
-      unlockedBadges: [...?old?.unlockedBadges],
+      unlockedBadges: [
+        ...?old?.unlockedBadges,
+      ].where((badge) => badge != 'monk_mode').toList(),
       claimedChallengeRewardIds: [...?old?.claimedChallengeRewardIds],
       finalRank: old?.finalRank,
       longestStreakOfMonth: old?.longestStreakOfMonth,
@@ -63,10 +65,13 @@ abstract final class EncounterProgressReconciliationService {
           ),
           monthlyProgress: progress,
           globalProgress: global,
-          data: AchievementRecalculationService.buildEncounterStepData(
-            sortedEncounters: all,
-            currentIndex: i,
-          ),
+          data: {
+            ...AchievementRecalculationService.buildEncounterStepData(
+              sortedEncounters: all,
+              currentIndex: i,
+            ),
+            'level': GamificationLevelService.getCurrentLevel(progress.xp),
+          },
         ),
       );
     }

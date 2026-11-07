@@ -1,7 +1,7 @@
 # Notch Apple Watch companion
 
 Date: November 7, 2026
-Status: Proposed; awaiting user approval after a builder review.
+Status: Approved by the user; implemented with verification limits in `docs/apple-watch.md`.
 
 ## Intent and agreed scope
 

@@ -6,6 +6,7 @@ struct WatchSnapshot: Codable {
     let generation: String
     let revision: Int
     let state: String
+    var allowsPrivateContent: Bool { state == "active" }
     var generatedAtMs: Int64?
     var locale: String?
     var monthId: String?

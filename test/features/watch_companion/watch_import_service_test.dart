@@ -27,11 +27,15 @@ void main() {
   setUp(() async {
     directory = await Directory.systemTemp.createTemp('watch-import-');
     Hive.init(directory.path);
-    if (!Hive.isAdapterRegistered(0)) Hive.registerAdapter(EncounterAdapter());
-    if (!Hive.isAdapterRegistered(4))
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(EncounterAdapter());
+    }
+    if (!Hive.isAdapterRegistered(4)) {
       Hive.registerAdapter(MonthlyProgressAdapter());
-    if (!Hive.isAdapterRegistered(7))
+    }
+    if (!Hive.isAdapterRegistered(7)) {
       Hive.registerAdapter(GlobalProgressAdapter());
+    }
     await Hive.openBox<Encounter>(HiveBoxes.encounters);
     await Hive.openBox<MonthlyProgress>(HiveBoxes.monthlyProgress);
     await Hive.openBox<GlobalProgress>(HiveBoxes.globalProgress);
