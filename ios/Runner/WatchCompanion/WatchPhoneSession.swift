@@ -22,7 +22,11 @@ final class WatchPhoneSession: NSObject, WCSessionDelegate {
     func send(_ receipt: WatchReceipt) throws {
         let data = try JSONEncoder().encode(receipt)
         let value = try JSONSerialization.jsonObject(with: data) as! [String: Any]
-        if session.activationState == .activated { session.transferUserInfo(value) }
+        guard session.activationState == .activated else { return }
+        #if !targetEnvironment(simulator)
+        session.transferUserInfo(value)
+        #endif
+        if session.isReachable { session.sendMessage(value, replyHandler: nil, errorHandler: nil) }
     }
     func rotate() throws {
         for transfer in session.outstandingUserInfoTransfers { transfer.cancel() }
@@ -46,11 +50,26 @@ final class WatchPhoneSession: NSObject, WCSessionDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             do {
-                let data = try WatchProtocol.data(userInfo)
-                let command = try JSONDecoder().decode(WatchCommand.self, from: data).validated()
-                if let receipt = try self.inbox.receive(command) { try self.send(receipt) }
-                else { self.onInbox?() }
+                if let receipt = try self.receiveEntry(userInfo) { try self.send(receipt) }
             } catch { NSLog("Watch inbox deferred an invalid or unavailable transfer") }
+        }
+    }
+    private func receiveEntry(_ value: [String: Any]) throws -> WatchReceipt? {
+        let data = try WatchProtocol.data(value)
+        let command = try JSONDecoder().decode(WatchCommand.self, from: data).validated()
+        let receipt = try inbox.receive(command)
+        if receipt == nil { onInbox?() }
+        return receipt
+    }
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { replyHandler(["kind": "retry"]); return }
+            do {
+                if let receipt = try self.receiveEntry(message) {
+                    let data = try JSONEncoder().encode(receipt)
+                    replyHandler(try JSONSerialization.jsonObject(with: data) as! [String: Any])
+                } else { replyHandler(["kind": "inbox_ack"]) }
+            } catch { replyHandler(["kind": "retry"]) }
         }
     }
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {

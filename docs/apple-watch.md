@@ -34,8 +34,15 @@ flutter build ios --release --no-codesign
 
 The phone computes the dashboard using existing repositories and progression
 services. Latest snapshots use Watch Connectivity application context. Commands
-and receipts use durable user-info transfers. Delivery is asynchronous; being
-reachable does not mean an entry has been saved.
+and receipts use live messages when reachable, with durable user-info transfers
+on physical devices for background delivery. The Watch keeps its own persistent
+queue until the phone confirms saving. A live inbox acknowledgement does not
+mark an entry saved; a lost final receipt is recovered on retry.
+
+Apple Simulator does not support `transferUserInfo`, so simulator entry and
+receipt delivery uses the live message path with both apps running. See
+[Apple's transferUserInfo documentation](https://developer.apple.com/documentation/watchconnectivity/wcsession/transferuserinfo(_:)).
+Keep the real iPhone session unlocked for import and tap **Sync now** on Watch.
 
 The Watch persists a command before showing it as pending, retains its UUID
 across retries, and permits at most 100 pending commands. Acceptance removes the
@@ -71,6 +78,12 @@ optional command fields preserve compatibility with older pending entries.
   Full analysis retains 23 baseline findings outside the changed code.
 - Five Foundation harnesses pass: protocol, phone inbox, Watch queue, entry
   draft validation, and native bridge recovery after temporary file failure.
+- The live-connectivity regression harness runs the production phone/Watch
+  session classes and durable stores with a transport that intentionally never
+  delivers background user-info. It verifies live entry delivery, pending until
+  final acceptance, live receipts, offline retention, reconnect with outstanding
+  background transfers, failed immediate sends, and recovery of lost receipts.
+  Run it with `bash test/native/watch_connectivity/run.sh`.
 - Updated Watch and Runner simulator Debug builds pass, with both Watch and
   App Clip embedded. The initial companion also passed unsigned Watch and
   iPhone Release builds; this follow-up has not been signed or archived.
@@ -86,8 +99,8 @@ optional command fields preserve compatibility with older pending entries.
   renders in English and Spanish. The Watch stepper initially wrapped its
   label vertically; replacing it with a compact picker fixes the 40 mm form.
   The follow-up form and mood choices render on an isolated 40 mm Watch.
-  Actual partner/tag selection and paired save still need interactive device
-  verification. The phone card renders without overflow in English/Spanish at
+  Partner/tag selection still needs interactive device verification. The phone
+  card renders without overflow in English/Spanish at
   normal and 1.6× text scale. Fictional data and its isolated simulator were
   removed after inspection; existing simulator storage was preserved.
 - Full Flutter suite: 136 pass, five existing baseline failures remain:
@@ -101,7 +114,12 @@ optional command fields preserve compatibility with older pending entries.
 The test simulator pair is `4BCD93AB-F24E-4184-93E2-25CBE65B949E`:
 iPhone `58BB5917-0D5E-4201-9D0E-34FAF8A5EB4D` and Watch
 `85FA34F3-3DCB-48C9-8175-EF75A70C97B6`. Existing phone authentication/data
-was preserved. A complete authenticated paired UI save was not performed.
+was preserved. After the Simulator delivery fix, the user's original queued
+entry reached the native phone inbox, remained pending while locked, then
+received a durable accepted receipt after the user unlocked Notch. The same
+tracked entry ID appears in the Watch acceptance metadata and its queue is
+empty. No phone credentials were read or bypassed. Physical-device delivery
+and signing remain outstanding.
 
 ## Before release
 
