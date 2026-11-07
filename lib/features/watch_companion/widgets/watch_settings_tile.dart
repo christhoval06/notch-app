@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:notch_app/core/constants/app_routes.dart';
-import 'package:notch_app/features/feature/settings/widgets/settings_tile.dart';
+import 'package:notch_app/features/settings/widgets/settings_tile.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 
 class WatchSettingsTile extends StatelessWidget {

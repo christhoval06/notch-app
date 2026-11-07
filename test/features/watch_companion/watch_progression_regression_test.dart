@@ -4,7 +4,7 @@ import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
 import 'package:notch_app/data/repositories/encounter_repository.dart';
 import 'package:notch_app/data/repositories/monthly_progress_repository.dart';
-import 'package:notch_app/features/feature/encounters/services/encounter_save_service.dart';
+import 'package:notch_app/features/encounters/services/encounter_save_service.dart';
 import 'watch_test_storage.dart';
 
 void main() {

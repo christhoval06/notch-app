@@ -4,7 +4,7 @@ import 'package:notch_app/core/services/encounter_write_coordinator.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/repositories/encounter_repository.dart';
 import 'package:notch_app/data/repositories/watch_import_repository.dart';
-import 'package:notch_app/features/feature/encounters/services/encounter_save_service.dart';
+import 'package:notch_app/features/encounters/services/encounter_save_service.dart';
 import 'package:notch_app/features/watch_companion/services/watch_command.dart';
 import 'package:notch_app/features/watch_companion/services/watch_receipt.dart';
 

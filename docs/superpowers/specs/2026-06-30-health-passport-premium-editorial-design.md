@@ -115,11 +115,11 @@ Each result should map consistently across:
 
 ### Existing Files to Refactor
 
-- `lib/features/feature/health/widgets/health_passport_view.dart`
-- `lib/features/feature/health/widgets/health_logs_list.dart`
-- `lib/features/feature/health/widgets/health_logs_tile.dart`
-- `lib/features/feature/health/widgets/health_logs_empty_state.dart`
-- `lib/features/feature/health/widgets/health_add_log_sheet.dart`
+- `lib/features/health/widgets/health_passport_view.dart`
+- `lib/features/health/widgets/health_logs_list.dart`
+- `lib/features/health/widgets/health_logs_tile.dart`
+- `lib/features/health/widgets/health_logs_empty_state.dart`
+- `lib/features/health/widgets/health_add_log_sheet.dart`
 
 ### New Widgets Recommended
 

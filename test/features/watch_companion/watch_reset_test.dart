@@ -10,7 +10,7 @@ import 'package:notch_app/data/models/monthly_progress.dart';
 import 'package:notch_app/data/models/global_progress.dart';
 import 'package:notch_app/data/models/health_log.dart';
 import 'package:notch_app/data/models/partner.dart';
-import 'package:notch_app/features/feature/auth/services/auth_kill_switch_service.dart';
+import 'package:notch_app/features/auth/services/auth_kill_switch_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

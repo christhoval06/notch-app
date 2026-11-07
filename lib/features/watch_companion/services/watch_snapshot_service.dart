@@ -5,7 +5,7 @@ import 'package:notch_app/core/utils/gamification_level_service.dart';
 import 'package:notch_app/core/utils/level_localization.dart';
 import 'package:notch_app/data/models/encounter.dart';
 import 'package:notch_app/data/models/monthly_progress.dart';
-import 'package:notch_app/features/feature/home/services/home_abstinence_view_model_service.dart';
+import 'package:notch_app/features/home/services/home_abstinence_view_model_service.dart';
 import 'package:notch_app/features/watch_companion/services/watch_snapshot.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
 

@@ -52,7 +52,7 @@ The flags stay static for now and are consumed directly by features.
 
 ## RevenueCat Behavior
 
-`lib/features/feature/premium/services/subscription_service.dart` should short-circuit when `FeatureFlags.revenueCatEnabled` is `false`.
+`lib/features/premium/services/subscription_service.dart` should short-circuit when `FeatureFlags.revenueCatEnabled` is `false`.
 
 Expected behavior:
 
@@ -92,7 +92,7 @@ All other Trophy Room content remains unchanged.
 Implementation guidance:
 
 - Add simple conditional rendering around the existing section builders.
-- If `trophy_room_page.dart` risks growing further beyond project limits, extract the gated sections into dedicated widgets under `lib/features/feature/gamification/widgets/`.
+- If `trophy_room_page.dart` risks growing further beyond project limits, extract the gated sections into dedicated widgets under `lib/features/gamification/widgets/`.
 
 ## Localization
 

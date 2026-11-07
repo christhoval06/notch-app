@@ -14,8 +14,8 @@
 
 **Files:**
 - Create: `lib/core/constants/feature_flags.dart`
-- Create: `lib/features/feature/encounters/services/lite_mode_service.dart`
-- Create: `test/features/feature/encounters/services/lite_mode_service_test.dart`
+- Create: `lib/features/encounters/services/lite_mode_service.dart`
+- Create: `test/features/encounters/services/lite_mode_service_test.dart`
 
 - [ ] **Step 1: Write the failing test**
 - [ ] **Step 2: Run test to verify it fails**
@@ -25,7 +25,7 @@
 ### Task 2: Encounter save guard
 
 **Files:**
-- Modify: `lib/features/feature/encounters/presentation/pages/add_entry_page.dart`
+- Modify: `lib/features/encounters/presentation/pages/add_entry_page.dart`
 - Modify: `lib/l10n/app_en.arb`
 - Modify: `lib/l10n/app_es.arb`
 
@@ -36,7 +36,7 @@
 ### Task 3: RevenueCat gating
 
 **Files:**
-- Modify: `lib/features/feature/premium/services/subscription_service.dart`
+- Modify: `lib/features/premium/services/subscription_service.dart`
 
 - [ ] **Step 1: Add early guards for disabled RevenueCat paths**
 - [ ] **Step 2: Verify the service remains safe when flags disable SDK usage**
@@ -44,8 +44,8 @@
 ### Task 4: Trophy Room lite visibility
 
 **Files:**
-- Modify: `lib/features/feature/gamification/presentation/pages/trophy_room_page.dart`
-- Create if needed: `lib/features/feature/gamification/widgets/*`
+- Modify: `lib/features/gamification/presentation/pages/trophy_room_page.dart`
+- Create if needed: `lib/features/gamification/widgets/*`
 
 - [ ] **Step 1: Isolate gated sections if needed to respect file-size rules**
 - [ ] **Step 2: Hide current streak, activity pace, and challenges in lite mode**

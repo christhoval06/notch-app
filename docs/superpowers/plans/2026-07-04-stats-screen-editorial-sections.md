@@ -13,11 +13,11 @@
 ### Task 1: Replace segmented state with editorial screen state
 
 **Files:**
-- Modify: `lib/features/feature/insights/widgets/stats_view.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
-- Modify: `lib/features/feature/insights/services/stats_models.dart`
-- Modify: `lib/features/feature/insights/services/stats_view_model_service.dart`
-- Test: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Modify: `lib/features/insights/widgets/stats_view.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
+- Modify: `lib/features/insights/services/stats_models.dart`
+- Modify: `lib/features/insights/services/stats_view_model_service.dart`
+- Test: `test/features/insights/services/stats_view_model_service_test.dart`
 
 - [ ] **Step 1: Write the failing test**
 
@@ -39,7 +39,7 @@ test('buildFromData returns editorial section summaries', () {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: FAIL because the editorial section fields do not exist yet.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -78,32 +78,32 @@ body: StatsContent(
 
 - [ ] **Step 5: Run tests to verify they pass**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add lib/features/feature/insights/widgets/stats_view.dart \
-  lib/features/feature/insights/widgets/stats_content.dart \
-  lib/features/feature/insights/services/stats_models.dart \
-  lib/features/feature/insights/services/stats_view_model_service.dart \
-  test/features/feature/insights/services/stats_view_model_service_test.dart
+git add lib/features/insights/widgets/stats_view.dart \
+  lib/features/insights/widgets/stats_content.dart \
+  lib/features/insights/services/stats_models.dart \
+  lib/features/insights/services/stats_view_model_service.dart \
+  test/features/insights/services/stats_view_model_service_test.dart
 git commit -m "refactor: remove stats segmentation state"
 ```
 
 ### Task 2: Add partner and tag editorial summaries
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_partner_summary_service.dart`
-- Create: `lib/features/feature/insights/services/stats_tag_summary_service.dart`
-- Create: `lib/features/feature/insights/widgets/stats_top_partners_section.dart`
-- Create: `lib/features/feature/insights/widgets/stats_tag_intelligence_section.dart`
-- Modify: `lib/features/feature/insights/services/stats_models.dart`
-- Modify: `lib/features/feature/insights/services/stats_view_model_service.dart`
+- Create: `lib/features/insights/services/stats_partner_summary_service.dart`
+- Create: `lib/features/insights/services/stats_tag_summary_service.dart`
+- Create: `lib/features/insights/widgets/stats_top_partners_section.dart`
+- Create: `lib/features/insights/widgets/stats_tag_intelligence_section.dart`
+- Modify: `lib/features/insights/services/stats_models.dart`
+- Modify: `lib/features/insights/services/stats_view_model_service.dart`
 - Modify: `lib/l10n/app_en.arb`
 - Modify: `lib/l10n/app_es.arb`
-- Test: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Test: `test/features/insights/services/stats_view_model_service_test.dart`
 
 - [ ] **Step 1: Write the failing test**
 
@@ -116,7 +116,7 @@ expect(model.tagInsights.first.topPartnerName, isNotEmpty);
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: FAIL because partner/tag summaries are not computed.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -160,36 +160,36 @@ children: [
 Run: `flutter gen-l10n`
 Expected: localization files regenerate without errors
 
-Run: `flutter test test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 7: Commit**
 
 ```bash
-git add lib/features/feature/insights/services/stats_partner_summary_service.dart \
-  lib/features/feature/insights/services/stats_tag_summary_service.dart \
-  lib/features/feature/insights/widgets/stats_top_partners_section.dart \
-  lib/features/feature/insights/widgets/stats_tag_intelligence_section.dart \
-  lib/features/feature/insights/services/stats_models.dart \
-  lib/features/feature/insights/services/stats_view_model_service.dart \
+git add lib/features/insights/services/stats_partner_summary_service.dart \
+  lib/features/insights/services/stats_tag_summary_service.dart \
+  lib/features/insights/widgets/stats_top_partners_section.dart \
+  lib/features/insights/widgets/stats_tag_intelligence_section.dart \
+  lib/features/insights/services/stats_models.dart \
+  lib/features/insights/services/stats_view_model_service.dart \
   lib/l10n/app_en.arb lib/l10n/app_es.arb \
-  test/features/feature/insights/services/stats_view_model_service_test.dart
+  test/features/insights/services/stats_view_model_service_test.dart
 git commit -m "feat: add partner and tag editorial stats sections"
 ```
 
 ### Task 3: Add protection and rhythm summaries
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_protection_summary_service.dart`
-- Create: `lib/features/feature/insights/services/stats_rhythm_summary_service.dart`
-- Create: `lib/features/feature/insights/widgets/stats_protection_section.dart`
-- Create: `lib/features/feature/insights/widgets/stats_rhythm_section.dart`
-- Modify: `lib/features/feature/insights/services/stats_models.dart`
-- Modify: `lib/features/feature/insights/services/stats_view_model_service.dart`
+- Create: `lib/features/insights/services/stats_protection_summary_service.dart`
+- Create: `lib/features/insights/services/stats_rhythm_summary_service.dart`
+- Create: `lib/features/insights/widgets/stats_protection_section.dart`
+- Create: `lib/features/insights/widgets/stats_rhythm_section.dart`
+- Modify: `lib/features/insights/services/stats_models.dart`
+- Modify: `lib/features/insights/services/stats_view_model_service.dart`
 - Modify: `lib/l10n/app_en.arb`
 - Modify: `lib/l10n/app_es.arb`
-- Test: `test/features/feature/insights/services/stats_filter_service_test.dart`
-- Test: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Test: `test/features/insights/services/stats_filter_service_test.dart`
+- Test: `test/features/insights/services/stats_view_model_service_test.dart`
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -202,7 +202,7 @@ expect(model.rhythmSummary.topWeekday, isNotEmpty);
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `flutter test test/features/feature/insights/services/stats_filter_service_test.dart test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_filter_service_test.dart test/features/insights/services/stats_view_model_service_test.dart`
 Expected: FAIL because protection/rhythm summaries are missing.
 
 - [ ] **Step 3: Write minimal implementation**
@@ -254,32 +254,32 @@ children: [
 Run: `flutter gen-l10n`
 Expected: success
 
-Run: `flutter test test/features/feature/insights/services/stats_filter_service_test.dart test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_filter_service_test.dart test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
 - [ ] **Step 7: Commit**
 
 ```bash
-git add lib/features/feature/insights/services/stats_protection_summary_service.dart \
-  lib/features/feature/insights/services/stats_rhythm_summary_service.dart \
-  lib/features/feature/insights/widgets/stats_protection_section.dart \
-  lib/features/feature/insights/widgets/stats_rhythm_section.dart \
-  lib/features/feature/insights/services/stats_models.dart \
-  lib/features/feature/insights/services/stats_view_model_service.dart \
+git add lib/features/insights/services/stats_protection_summary_service.dart \
+  lib/features/insights/services/stats_rhythm_summary_service.dart \
+  lib/features/insights/widgets/stats_protection_section.dart \
+  lib/features/insights/widgets/stats_rhythm_section.dart \
+  lib/features/insights/services/stats_models.dart \
+  lib/features/insights/services/stats_view_model_service.dart \
   lib/l10n/app_en.arb lib/l10n/app_es.arb \
-  test/features/feature/insights/services/stats_filter_service_test.dart \
-  test/features/feature/insights/services/stats_view_model_service_test.dart
+  test/features/insights/services/stats_filter_service_test.dart \
+  test/features/insights/services/stats_view_model_service_test.dart
 git commit -m "feat: add protection and rhythm editorial sections"
 ```
 
 ### Task 4: Compose the final editorial layout and verify
 
 **Files:**
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_story_cards.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_hero_panel.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_comparison_summary.dart`
-- Test: `test/features/feature/insights/services/stats_story_service_test.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
+- Modify: `lib/features/insights/widgets/stats_story_cards.dart`
+- Modify: `lib/features/insights/widgets/stats_hero_panel.dart`
+- Modify: `lib/features/insights/widgets/stats_comparison_summary.dart`
+- Test: `test/features/insights/services/stats_story_service_test.dart`
 
 - [ ] **Step 1: Integrate the final section order**
 
@@ -306,19 +306,19 @@ children: [
 
 - [ ] **Step 3: Run focused verification**
 
-Run: `flutter test test/features/feature/insights/services/stats_filter_service_test.dart test/features/feature/insights/services/stats_story_service_test.dart test/features/feature/insights/services/stats_view_model_service_test.dart`
+Run: `flutter test test/features/insights/services/stats_filter_service_test.dart test/features/insights/services/stats_story_service_test.dart test/features/insights/services/stats_view_model_service_test.dart`
 Expected: PASS
 
-Run: `flutter analyze --no-pub lib/features/feature/insights/services lib/features/feature/insights/widgets test/features/feature/insights/services`
+Run: `flutter analyze --no-pub lib/features/insights/services lib/features/insights/widgets test/features/insights/services`
 Expected: `No issues found!`
 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add lib/features/feature/insights/widgets/stats_content.dart \
-  lib/features/feature/insights/widgets/stats_story_cards.dart \
-  lib/features/feature/insights/widgets/stats_hero_panel.dart \
-  lib/features/feature/insights/widgets/stats_comparison_summary.dart \
-  test/features/feature/insights/services/stats_story_service_test.dart
+git add lib/features/insights/widgets/stats_content.dart \
+  lib/features/insights/widgets/stats_story_cards.dart \
+  lib/features/insights/widgets/stats_hero_panel.dart \
+  lib/features/insights/widgets/stats_comparison_summary.dart \
+  test/features/insights/services/stats_story_service_test.dart
 git commit -m "feat: deliver editorial stats screen layout"
 ```

@@ -3,22 +3,60 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		007311763033EE53A205B50B /* WatchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733993AA564A419003B960FB /* WatchProtocol.swift */; };
+		0253273A66F775CFB01FE2CD /* WatchReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B972F3028FC6C05C933DF6A5 /* WatchReceipt.swift */; };
+		0DC679A2B62C5DA569FE2F32 /* WatchQueueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EE02D6D8297CFB68644BB9 /* WatchQueueStore.swift */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		21607508B4A6F13179EEAAA8 /* WatchPendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BF79884D3376A16F4E253 /* WatchPendingList.swift */; };
+		247023D73B26C6A9F326F434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55B0BD1D80434360D6EA085 /* AppDelegate.swift */; };
+		2D5DD800B273C63969455F29 /* WatchSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E1BBAEA9AC6AD3098A3283 /* WatchSnapshot.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
+		350FA5BE63C6BB9126541EF6 /* WatchBridgeRetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E3B821AA9C9982B30C3C5 /* WatchBridgeRetry.swift */; };
+		3651F96E486E8A1FED27A6B9 /* WatchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6A916FA7D181E580FD160 /* WatchTheme.swift */; };
+		3664BB0ECE68715E1BF54BF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6C7F29DA502F121236559D /* Foundation.framework */; };
+		36672198FD7170EDA7E26079 /* WatchAccessGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F0E7E61A32986C4B09F85E /* WatchAccessGate.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		3F9871A72FDCE76B00732908 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9871A62FDCE76B00732908 /* StoreKit.framework */; };
+		3D274B370FBC5B4ADA658785 /* WatchTagsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7CD550ECACBFD9A4C8A781 /* WatchTagsPicker.swift */; };
+		4464D3F0DED1541428917A7E /* WatchDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A823C6F570C95FC8BF0279 /* WatchDashboardView.swift */; };
+		4547A4109E2F50CED10C74ED /* NotchWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAA9B424B84640BFFCC435 /* NotchWatchApp.swift */; };
+		49F302F52C364FC964DD323E /* WatchStatsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A3DDC5C89892B3F6EDD177 /* WatchStatsCard.swift */; };
+		4A6A701505C7DF22147BCE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C0B7F89614A1FA211292AFF /* Assets.xcassets */; };
+		6011D96FB6615DBC0F592A04 /* WatchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8496FFEAACC2B5298860D5A /* WatchCommand.swift */; };
+		60BEC416F99C35A2A8DF6C1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C399072804BAEEB26475B8DA /* Assets.xcassets */; };
 		6EE18492BA90F303E8B093BD /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3A8A4A7224B93FBFF76875 /* Pods_RunnerTests.framework */; };
+		7159D8C74A8D01B9878440D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 257742130DFBC0A640B999C8 /* Localizable.strings */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
+		75165EEDA3DFB5F33A186487 /* WatchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733993AA564A419003B960FB /* WatchProtocol.swift */; };
 		78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */; };
+		85491FC3C436203F2227D39C /* WatchCompanionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A323F1E25915A9A1305D5572 /* WatchCompanionStore.swift */; };
+		8BC1FAB1DCB43D7ACFD42D6D /* WatchPhoneInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3DEFB0158A412F245E25B /* WatchPhoneInbox.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		9A420EFE389EAF53B48BF69D /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041023D23FA809A943D4F054 /* Pods_Runner.framework */; };
+		9A568ABCDF6C395B879937CE /* WatchPhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B5F81DE82F8A38D81D0EA2 /* WatchPhoneSession.swift */; };
+		9CDE7AC252029703CC3C1F0C /* WatchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8496FFEAACC2B5298860D5A /* WatchCommand.swift */; };
 		A1B2C3D4E5F60718293A4B5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5F /* InfoPlist.strings */; };
+		B6FAE3CB04D51B0B555C49C7 /* WatchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EF8420C577D2163FDC76EF /* WatchSession.swift */; };
+		BBE9C56BDACDBEAF87881C0A /* NotchClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 72B3FAF9D922B2EC052AAF19 /* NotchClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BDF8989A28330835C5FB0A57 /* WatchPlatformBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C168207D05C383DA010F5F42 /* WatchPlatformBridge.swift */; };
+		C6EDC1275A0A88CF7A6C91C1 /* WatchActionsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF5AF6639724E4D0206BB10 /* WatchActionsPage.swift */; };
+		C7D7F6B272FF2CFA75C9A5FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABA4BE19315127560698C6F /* Foundation.framework */; };
+		D234F769DD9F4301C9C9BEFA /* WatchAbstinenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6F8769D562556B5D54E5 /* WatchAbstinenceCard.swift */; };
+		D55DE5B798C3042764C504A5 /* WatchEntryDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6961A041AC1CD66204E45AAD /* WatchEntryDraft.swift */; };
+		D9850FE3DF81507CF0726C5D /* WatchDashboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BB920522C2F838D1F7D62D /* WatchDashboardLayout.swift */; };
+		E57493E542C2AB81F5D62F5C /* WatchEntryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB165412C9801332255A997A /* WatchEntryForm.swift */; };
+		ED0CF2131263C74397657ED6 /* WatchReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B972F3028FC6C05C933DF6A5 /* WatchReceipt.swift */; };
+		EDF6D76294EFC3D6E16F8554 /* WatchSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E1BBAEA9AC6AD3098A3283 /* WatchSnapshot.swift */; };
+		F4C47B0CFA9AD05D9BBECC41 /* NotchWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CBE820F4F56F67EF781825A8 /* NotchWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F9F1E937CB7FF78C5163472D /* WatchMonthlyTotalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338A8CD7FFE58587E4A85915 /* WatchMonthlyTotalCard.swift */; };
+		FAEEBE553F701DEAFB83A450 /* WatchPartnerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F6CE1AAA8CCA568B5A48F0 /* WatchPartnerPicker.swift */; };
+		FB5AF6D2480C21DCF93E2968 /* WatchLevelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771B3BEEC0C6FA6184BDFB18 /* WatchLevelCard.swift */; };
+		FCD902DC789EB3A51A9F271A /* WatchDashboardCardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4446DBEAA21E4FDB27DEE2E /* WatchDashboardCardPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,9 +67,45 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
+		A6C0934A1ABD5A873285EDEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F06C68FAC532DAADD658E640;
+			remoteInfo = NotchClip;
+		};
+		CF65632215BD54BFE3DA24D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15323D57E8A0E54C63CFEC44;
+			remoteInfo = NotchWatch;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1B9D428BCC82708E5088A6C6 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				F4C47B0CFA9AD05D9BBECC41 /* NotchWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81C14418033B456F62FCDE32 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				BBE9C56BDACDBEAF87881C0A /* NotchClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,19 +119,38 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		011E6F8769D562556B5D54E5 /* WatchAbstinenceCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchAbstinenceCard.swift; path = Views/WatchAbstinenceCard.swift; sourceTree = "<group>"; };
+		02EF8420C577D2163FDC76EF /* WatchSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchSession.swift; path = Services/WatchSession.swift; sourceTree = "<group>"; };
 		041023D23FA809A943D4F054 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F6CE1AAA8CCA568B5A48F0 /* WatchPartnerPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchPartnerPicker.swift; path = Views/WatchPartnerPicker.swift; sourceTree = "<group>"; };
+		0C6C7F29DA502F121236559D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		1C3A8A4A7224B93FBFF76875 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		214AF6B00103479A8F899E01 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		338A8CD7FFE58587E4A85915 /* WatchMonthlyTotalCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchMonthlyTotalCard.swift; path = Views/WatchMonthlyTotalCard.swift; sourceTree = "<group>"; };
+		36A3DDC5C89892B3F6EDD177 /* WatchStatsCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchStatsCard.swift; path = Views/WatchStatsCard.swift; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		3F9871A62FDCE76B00732908 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		436E3B821AA9C9982B30C3C5 /* WatchBridgeRetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchBridgeRetry.swift; sourceTree = "<group>"; };
+		4BA45756554FC0B0617E36B5 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F0DCCD707E0E587D294DD85 /* Runner.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		58F5B1FF0B3C0F64897FD6F2 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
+		59E1BBAEA9AC6AD3098A3283 /* WatchSnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchSnapshot.swift; sourceTree = "<group>"; };
+		5AF5AF6639724E4D0206BB10 /* WatchActionsPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchActionsPage.swift; path = Views/WatchActionsPage.swift; sourceTree = "<group>"; };
+		6961A041AC1CD66204E45AAD /* WatchEntryDraft.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchEntryDraft.swift; path = Services/WatchEntryDraft.swift; sourceTree = "<group>"; };
+		72B3FAF9D922B2EC052AAF19 /* NotchClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		733993AA564A419003B960FB /* WatchProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchProtocol.swift; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		771B3BEEC0C6FA6184BDFB18 /* WatchLevelCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchLevelCard.swift; path = Views/WatchLevelCard.swift; sourceTree = "<group>"; };
 		78E0A7A72DC9AD7400C4905E /* FlutterGeneratedPluginSwiftPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlutterGeneratedPluginSwiftPackage; path = Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage; sourceTree = "<group>"; };
+		791BF79884D3376A16F4E253 /* WatchPendingList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchPendingList.swift; path = Views/WatchPendingList.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		7CDAA9B424B84640BFFCC435 /* NotchWatchApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchWatchApp.swift; sourceTree = "<group>"; };
+		88F0E7E61A32986C4B09F85E /* WatchAccessGate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchAccessGate.swift; path = Views/WatchAccessGate.swift; sourceTree = "<group>"; };
+		8DD3DEFB0158A412F245E25B /* WatchPhoneInbox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchPhoneInbox.swift; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,23 +158,52 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C003330D90FF615783FEE17 /* NotchClip.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = NotchClip.entitlements; sourceTree = "<group>"; };
+		9C0B7F89614A1FA211292AFF /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B5E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A323F1E25915A9A1305D5572 /* WatchCompanionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchCompanionStore.swift; path = State/WatchCompanionStore.swift; sourceTree = "<group>"; };
+		A55B0BD1D80434360D6EA085 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B0E33ADFA16F77CD4F5E99BC /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B43E00FC4AAC6E89215CC76D /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5DA5DEFD2CB0D8388B3C0BB /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		B8496FFEAACC2B5298860D5A /* WatchCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchCommand.swift; sourceTree = "<group>"; };
+		B972F3028FC6C05C933DF6A5 /* WatchReceipt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchReceipt.swift; sourceTree = "<group>"; };
+		BABA4BE19315127560698C6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		BF662D76DCCA2BF20E5C87E4 /* NotchClip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NotchClip.xcconfig; sourceTree = "<group>"; };
+		C168207D05C383DA010F5F42 /* WatchPlatformBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchPlatformBridge.swift; sourceTree = "<group>"; };
+		C399072804BAEEB26475B8DA /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C9EE02D6D8297CFB68644BB9 /* WatchQueueStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchQueueStore.swift; path = State/WatchQueueStore.swift; sourceTree = "<group>"; };
+		CB165412C9801332255A997A /* WatchEntryForm.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchEntryForm.swift; path = Views/WatchEntryForm.swift; sourceTree = "<group>"; };
+		CBE820F4F56F67EF781825A8 /* NotchWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0D291186F5525885B305BA2 /* NotchWatch.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NotchWatch.xcconfig; sourceTree = "<group>"; };
+		D5BB920522C2F838D1F7D62D /* WatchDashboardLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchDashboardLayout.swift; path = State/WatchDashboardLayout.swift; sourceTree = "<group>"; };
 		DFF6285CFDC634F589995F25 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		E041C4A1263BC0036E18D4A5 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E1B5F81DE82F8A38D81D0EA2 /* WatchPhoneSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchPhoneSession.swift; sourceTree = "<group>"; };
+		E4446DBEAA21E4FDB27DEE2E /* WatchDashboardCardPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchDashboardCardPage.swift; path = Views/WatchDashboardCardPage.swift; sourceTree = "<group>"; };
+		ED7CD550ECACBFD9A4C8A781 /* WatchTagsPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchTagsPicker.swift; path = Views/WatchTagsPicker.swift; sourceTree = "<group>"; };
+		F17AA906733C0E2E316AF6D6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6A823C6F570C95FC8BF0279 /* WatchDashboardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchDashboardView.swift; path = Views/WatchDashboardView.swift; sourceTree = "<group>"; };
 		FB5E5D84F4502D24688E3C66 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		FEE6A916FA7D181E580FD160 /* WatchTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchTheme.swift; path = Theme/WatchTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4A21BA88FD4005299D83415E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7D7F6B272FF2CFA75C9A5FB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EB1CF9000F007C117D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */,
 				9A420EFE389EAF53B48BF69D /* Pods_Runner.framework in Frameworks */,
-				3F9871A72FDCE76B00732908 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +215,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE827067457BDD882E17F490 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3664BB0ECE68715E1BF54BF0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A4CB23218AE21B0463837C /* NotchClip */ = {
+			isa = PBXGroup;
+			children = (
+				214AF6B00103479A8F899E01 /* Info.plist */,
+				9C003330D90FF615783FEE17 /* NotchClip.entitlements */,
+				BF662D76DCCA2BF20E5C87E4 /* NotchClip.xcconfig */,
+				C399072804BAEEB26475B8DA /* Assets.xcassets */,
+				A55B0BD1D80434360D6EA085 /* AppDelegate.swift */,
+			);
+			name = NotchClip;
+			path = NotchClip;
+			sourceTree = "<group>";
+		};
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,9 +250,10 @@
 		46813701FDC03BB27221E51E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3F9871A62FDCE76B00732908 /* StoreKit.framework */,
 				041023D23FA809A943D4F054 /* Pods_Runner.framework */,
 				1C3A8A4A7224B93FBFF76875 /* Pods_RunnerTests.framework */,
+				A871557971ECE1AEFBF82634 /* iOS */,
+				EEC63B729955BE7E573F0B1C /* watchOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,6 +269,37 @@
 				58F5B1FF0B3C0F64897FD6F2 /* Pods-RunnerTests.profile.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5F83FEF9D2BA776E0C312070 /* NotchWatch */ = {
+			isa = PBXGroup;
+			children = (
+				7CDAA9B424B84640BFFCC435 /* NotchWatchApp.swift */,
+				6961A041AC1CD66204E45AAD /* WatchEntryDraft.swift */,
+				02EF8420C577D2163FDC76EF /* WatchSession.swift */,
+				A323F1E25915A9A1305D5572 /* WatchCompanionStore.swift */,
+				C9EE02D6D8297CFB68644BB9 /* WatchQueueStore.swift */,
+				FEE6A916FA7D181E580FD160 /* WatchTheme.swift */,
+				011E6F8769D562556B5D54E5 /* WatchAbstinenceCard.swift */,
+				F6A823C6F570C95FC8BF0279 /* WatchDashboardView.swift */,
+				CB165412C9801332255A997A /* WatchEntryForm.swift */,
+				771B3BEEC0C6FA6184BDFB18 /* WatchLevelCard.swift */,
+				791BF79884D3376A16F4E253 /* WatchPendingList.swift */,
+				36A3DDC5C89892B3F6EDD177 /* WatchStatsCard.swift */,
+				F17AA906733C0E2E316AF6D6 /* Info.plist */,
+				D0D291186F5525885B305BA2 /* NotchWatch.xcconfig */,
+				9C0B7F89614A1FA211292AFF /* Assets.xcassets */,
+				257742130DFBC0A640B999C8 /* Localizable.strings */,
+				88F0E7E61A32986C4B09F85E /* WatchAccessGate.swift */,
+				06F6CE1AAA8CCA568B5A48F0 /* WatchPartnerPicker.swift */,
+				ED7CD550ECACBFD9A4C8A781 /* WatchTagsPicker.swift */,
+				D5BB920522C2F838D1F7D62D /* WatchDashboardLayout.swift */,
+				E4446DBEAA21E4FDB27DEE2E /* WatchDashboardCardPage.swift */,
+				338A8CD7FFE58587E4A85915 /* WatchMonthlyTotalCard.swift */,
+				5AF5AF6639724E4D0206BB10 /* WatchActionsPage.swift */,
+			);
+			name = NotchWatch;
+			path = NotchWatch;
 			sourceTree = "<group>";
 		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
@@ -148,6 +323,9 @@
 				331C8082294A63A400263BE5 /* RunnerTests */,
 				4CF0F66FD5FA81AD1823B5D6 /* Pods */,
 				46813701FDC03BB27221E51E /* Frameworks */,
+				24A4CB23218AE21B0463837C /* NotchClip */,
+				5F83FEF9D2BA776E0C312070 /* NotchWatch */,
+				EF643FB43FF3324BD76E4901 /* WatchShared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +334,8 @@
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
 				331C8081294A63A400263BE5 /* RunnerTests.xctest */,
+				72B3FAF9D922B2EC052AAF19 /* NotchClip.app */,
+				CBE820F4F56F67EF781825A8 /* NotchWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,13 +352,72 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				4F0DCCD707E0E587D294DD85 /* Runner.entitlements */,
+				BEC53035B3BCAB88EA3843B0 /* WatchCompanion */,
 			);
 			path = Runner;
+			sourceTree = "<group>";
+		};
+		A871557971ECE1AEFBF82634 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0C6C7F29DA502F121236559D /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		BEC53035B3BCAB88EA3843B0 /* WatchCompanion */ = {
+			isa = PBXGroup;
+			children = (
+				8DD3DEFB0158A412F245E25B /* WatchPhoneInbox.swift */,
+				E1B5F81DE82F8A38D81D0EA2 /* WatchPhoneSession.swift */,
+				C168207D05C383DA010F5F42 /* WatchPlatformBridge.swift */,
+				436E3B821AA9C9982B30C3C5 /* WatchBridgeRetry.swift */,
+			);
+			name = WatchCompanion;
+			path = WatchCompanion;
+			sourceTree = "<group>";
+		};
+		EEC63B729955BE7E573F0B1C /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				BABA4BE19315127560698C6F /* Foundation.framework */,
+			);
+			name = watchOS;
+			sourceTree = "<group>";
+		};
+		EF643FB43FF3324BD76E4901 /* WatchShared */ = {
+			isa = PBXGroup;
+			children = (
+				B8496FFEAACC2B5298860D5A /* WatchCommand.swift */,
+				733993AA564A419003B960FB /* WatchProtocol.swift */,
+				B972F3028FC6C05C933DF6A5 /* WatchReceipt.swift */,
+				59E1BBAEA9AC6AD3098A3283 /* WatchSnapshot.swift */,
+			);
+			name = WatchShared;
+			path = WatchShared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15323D57E8A0E54C63CFEC44 /* NotchWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D9CE1C21BB64303D532E6E /* Build configuration list for PBXNativeTarget "NotchWatch" */;
+			buildPhases = (
+				CB6288D7FB1AA3800553328A /* Sources */,
+				4A21BA88FD4005299D83415E /* Frameworks */,
+				1AD9DE21B41D382C59DD8E9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotchWatch;
+			productName = NotchWatch;
+			productReference = CBE820F4F56F67EF781825A8 /* NotchWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		331C8080294A63A400263BE5 /* RunnerTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 331C8087294A63A400263BE5 /* Build configuration list for PBXNativeTarget "RunnerTests" */;
@@ -208,12 +447,16 @@
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
+				81C14418033B456F62FCDE32 /* Embed App Clips */,
+				1B9D428BCC82708E5088A6C6 /* Embed Watch Content */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				E60519FA787052FF42367FE0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E78037A18024656995B924B6 /* PBXTargetDependency */,
+				92987B0A7166707C5A039DD2 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			packageProductDependencies = (
@@ -222,6 +465,25 @@
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F06C68FAC532DAADD658E640 /* NotchClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D4100802FE8A55CA44DE8FE /* Build configuration list for PBXNativeTarget "NotchClip" */;
+			buildPhases = (
+				3087488DD66E43C7A648D2B0 /* Build App Clip Flutter */,
+				513F014D4FB40515993F91F3 /* Sources */,
+				BE827067457BDD882E17F490 /* Frameworks */,
+				5A3AADD19CF39AE22309999D /* Resources */,
+				C66DAE9C15C2D52B5E0D3D5D /* Embed App Clip Flutter */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotchClip;
+			productName = NotchClip;
+			productReference = 72B3FAF9D922B2EC052AAF19 /* NotchClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -233,6 +495,10 @@
 				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
+					15323D57E8A0E54C63CFEC44 = {
+						CreatedOnToolsVersion = 26.5;
+						ProvisioningStyle = Automatic;
+					};
 					331C8080294A63A400263BE5 = {
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = 97C146ED1CF9000F007C117D;
@@ -240,6 +506,10 @@
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 1100;
+					};
+					F06C68FAC532DAADD658E640 = {
+						CreatedOnToolsVersion = 26.5;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -262,15 +532,34 @@
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 				331C8080294A63A400263BE5 /* RunnerTests */,
+				F06C68FAC532DAADD658E640 /* NotchClip */,
+				15323D57E8A0E54C63CFEC44 /* NotchWatch */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1AD9DE21B41D382C59DD8E9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A6A701505C7DF22147BCE15 /* Assets.xcassets in Resources */,
+				7159D8C74A8D01B9878440D5 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		331C807F294A63A400263BE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A3AADD19CF39AE22309999D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60BEC416F99C35A2A8DF6C1A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +578,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3087488DD66E43C7A648D2B0 /* Build App Clip Flutter */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build App Clip Flutter";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export BUILT_PRODUCTS_DIR=\"${TARGET_TEMP_DIR}/FlutterProducts\"\nmkdir -p \"$BUILT_PRODUCTS_DIR\"\n/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
+		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -319,6 +627,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		C66DAE9C15C2D52B5E0D3D5D /* Embed App Clip Flutter */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed App Clip Flutter";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export BUILT_PRODUCTS_DIR=\"${TARGET_TEMP_DIR}/FlutterProducts\"\n/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n";
 		};
 		C9A5884E728EF34F3048C3AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -392,12 +719,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		513F014D4FB40515993F91F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				247023D73B26C6A9F326F434 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EA1CF9000F007C117D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				6011D96FB6615DBC0F592A04 /* WatchCommand.swift in Sources */,
+				75165EEDA3DFB5F33A186487 /* WatchProtocol.swift in Sources */,
+				0253273A66F775CFB01FE2CD /* WatchReceipt.swift in Sources */,
+				EDF6D76294EFC3D6E16F8554 /* WatchSnapshot.swift in Sources */,
+				8BC1FAB1DCB43D7ACFD42D6D /* WatchPhoneInbox.swift in Sources */,
+				9A568ABCDF6C395B879937CE /* WatchPhoneSession.swift in Sources */,
+				BDF8989A28330835C5FB0A57 /* WatchPlatformBridge.swift in Sources */,
+				350FA5BE63C6BB9126541EF6 /* WatchBridgeRetry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB6288D7FB1AA3800553328A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CDE7AC252029703CC3C1F0C /* WatchCommand.swift in Sources */,
+				007311763033EE53A205B50B /* WatchProtocol.swift in Sources */,
+				ED0CF2131263C74397657ED6 /* WatchReceipt.swift in Sources */,
+				2D5DD800B273C63969455F29 /* WatchSnapshot.swift in Sources */,
+				4547A4109E2F50CED10C74ED /* NotchWatchApp.swift in Sources */,
+				D55DE5B798C3042764C504A5 /* WatchEntryDraft.swift in Sources */,
+				B6FAE3CB04D51B0B555C49C7 /* WatchSession.swift in Sources */,
+				85491FC3C436203F2227D39C /* WatchCompanionStore.swift in Sources */,
+				0DC679A2B62C5DA569FE2F32 /* WatchQueueStore.swift in Sources */,
+				3651F96E486E8A1FED27A6B9 /* WatchTheme.swift in Sources */,
+				D234F769DD9F4301C9C9BEFA /* WatchAbstinenceCard.swift in Sources */,
+				4464D3F0DED1541428917A7E /* WatchDashboardView.swift in Sources */,
+				E57493E542C2AB81F5D62F5C /* WatchEntryForm.swift in Sources */,
+				FB5AF6D2480C21DCF93E2968 /* WatchLevelCard.swift in Sources */,
+				21607508B4A6F13179EEAAA8 /* WatchPendingList.swift in Sources */,
+				49F302F52C364FC964DD323E /* WatchStatsCard.swift in Sources */,
+				36672198FD7170EDA7E26079 /* WatchAccessGate.swift in Sources */,
+				FAEEBE553F701DEAFB83A450 /* WatchPartnerPicker.swift in Sources */,
+				3D274B370FBC5B4ADA658785 /* WatchTagsPicker.swift in Sources */,
+				D9850FE3DF81507CF0726C5D /* WatchDashboardLayout.swift in Sources */,
+				FCD902DC789EB3A51A9F271A /* WatchDashboardCardPage.swift in Sources */,
+				F9F1E937CB7FF78C5163472D /* WatchMonthlyTotalCard.swift in Sources */,
+				C6EDC1275A0A88CF7A6C91C1 /* WatchActionsPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,9 +782,30 @@
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
 		};
+		92987B0A7166707C5A039DD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NotchWatch;
+			target = 15323D57E8A0E54C63CFEC44 /* NotchWatch */;
+			targetProxy = CF65632215BD54BFE3DA24D0 /* PBXContainerItemProxy */;
+		};
+		E78037A18024656995B924B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NotchClip;
+			target = F06C68FAC532DAADD658E640 /* NotchClip */;
+			targetProxy = A6C0934A1ABD5A873285EDEB /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		257742130DFBC0A640B999C8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BA45756554FC0B0617E36B5 /* en */,
+				B0E33ADFA16F77CD4F5E99BC /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -498,6 +892,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = HA64587VPE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -518,6 +913,36 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
+		};
+		2C7B44A23F6AC10531F455FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF662D76DCCA2BF20E5C87E4 /* NotchClip.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = NotchClip/NotchClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HA64587VPE;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.christhoval.apps.notch.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		331C8088294A63A400263BE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -568,6 +993,60 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
 			};
 			name = Profile;
+		};
+		4B442A6E9CF7C6773A820309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0D291186F5525885B305BA2 /* NotchWatch.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HA64587VPE;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.christhoval.apps.notch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		5E30742FEE9CE3F946CC2957 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF662D76DCCA2BF20E5C87E4 /* NotchClip.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = NotchClip/NotchClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HA64587VPE;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.christhoval.apps.notch.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
 		};
 		97C147031CF9000F007C117D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -686,6 +1165,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = HA64587VPE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -714,6 +1194,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = HA64587VPE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -735,15 +1216,117 @@
 			};
 			name = Release;
 		};
+		A5EA3C125E9FDABCE4C07601 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF662D76DCCA2BF20E5C87E4 /* NotchClip.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = NotchClip/NotchClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HA64587VPE;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.christhoval.apps.notch.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		AF3CB0E9CE421113B1ED696B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0D291186F5525885B305BA2 /* NotchWatch.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HA64587VPE;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.christhoval.apps.notch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		E502BEEAF4AAFBA937C763DE /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0D291186F5525885B305BA2 /* NotchWatch.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HA64587VPE;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.christhoval.apps.notch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Profile;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		21D9CE1C21BB64303D532E6E /* Build configuration list for PBXNativeTarget "NotchWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF3CB0E9CE421113B1ED696B /* Release */,
+				4B442A6E9CF7C6773A820309 /* Debug */,
+				E502BEEAF4AAFBA937C763DE /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		331C8087294A63A400263BE5 /* Build configuration list for PBXNativeTarget "RunnerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331C8088294A63A400263BE5 /* Debug */,
 				331C8089294A63A400263BE5 /* Release */,
 				331C808A294A63A400263BE5 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D4100802FE8A55CA44DE8FE /* Build configuration list for PBXNativeTarget "NotchClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C7B44A23F6AC10531F455FC /* Release */,
+				5E30742FEE9CE3F946CC2957 /* Debug */,
+				A5EA3C125E9FDABCE4C07601 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

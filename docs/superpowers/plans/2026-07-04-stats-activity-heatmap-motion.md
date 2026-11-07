@@ -13,22 +13,22 @@
 ### Task 1: Reintroduce a period-aware activity section
 
 **Files:**
-- Create: `lib/features/feature/insights/services/stats_period_range_service.dart`
-- Create: `lib/features/feature/insights/widgets/stats_activity_section.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_heatmap_card.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_monthly_activity_chart.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
+- Create: `lib/features/insights/services/stats_period_range_service.dart`
+- Create: `lib/features/insights/widgets/stats_activity_section.dart`
+- Modify: `lib/features/insights/widgets/stats_heatmap_card.dart`
+- Modify: `lib/features/insights/widgets/stats_monthly_activity_chart.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
 
 ### Task 2: Add lightweight motion
 
 **Files:**
-- Create: `lib/features/feature/insights/widgets/stats_reveal.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_view.dart`
-- Modify: `lib/features/feature/insights/widgets/stats_content.dart`
+- Create: `lib/features/insights/widgets/stats_reveal.dart`
+- Modify: `lib/features/insights/widgets/stats_view.dart`
+- Modify: `lib/features/insights/widgets/stats_content.dart`
 
 ### Task 3: Verify
 
 **Files:**
-- Test: `test/features/feature/insights/services/stats_filter_service_test.dart`
-- Test: `test/features/feature/insights/services/stats_story_service_test.dart`
-- Test: `test/features/feature/insights/services/stats_view_model_service_test.dart`
+- Test: `test/features/insights/services/stats_filter_service_test.dart`
+- Test: `test/features/insights/services/stats_story_service_test.dart`
+- Test: `test/features/insights/services/stats_view_model_service_test.dart`

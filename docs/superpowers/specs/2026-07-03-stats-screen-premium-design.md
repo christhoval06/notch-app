@@ -193,7 +193,7 @@ Measure:
 
 ## Architecture
 
-Implement in three layers inside `features/feature/insights`.
+Implement in three layers inside `features/insights`.
 
 ### 1. Query / Filter Layer
 

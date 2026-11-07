@@ -41,8 +41,8 @@
 |---|---|---|
 | Wire contract | `lib/core/constants/watch_protocol.dart`, `lib/features/watch_companion/services/watch_command.dart`, `watch_snapshot.dart`, `watch_receipt.dart` in the same folder; `ios/WatchShared/WatchProtocol.swift`, `WatchCommand.swift`, `WatchSnapshot.swift`, `WatchReceipt.swift` | Versioned DTOs and serialization; matched fixtures |
 | Aggregation | `lib/features/watch_companion/services/watch_snapshot_service.dart` | Cached repository snapshot and existing abstinence/level calculations |
-| Saving | `lib/core/services/encounter_write_coordinator.dart`, `lib/features/feature/encounters/services/encounter_save_service.dart` | Serialized, non-UI save path used by phone and watch |
-| Recovery | `lib/data/repositories/watch_import_repository.dart`, `lib/features/watch_companion/services/watch_import_service.dart`, `lib/features/feature/gamification/services/encounter_progress_reconciliation_service.dart` | Durable import journal, deduplication, affected-month recovery |
+| Saving | `lib/core/services/encounter_write_coordinator.dart`, `lib/features/encounters/services/encounter_save_service.dart` | Serialized, non-UI save path used by phone and watch |
+| Recovery | `lib/data/repositories/watch_import_repository.dart`, `lib/features/watch_companion/services/watch_import_service.dart`, `lib/features/gamification/services/encounter_progress_reconciliation_service.dart` | Durable import journal, deduplication, affected-month recovery |
 | Access and reset | `lib/core/session/app_access_session.dart`, `lib/features/watch_companion/state/watch_companion_controller.dart` | Auth state, lifecycle gates, reset orchestration |
 | Phone transport | `ios/Runner/WatchCompanion/WatchPhoneSession.swift`, `WatchPhoneInbox.swift`, `WatchPlatformBridge.swift`, `WatchPairingStore.swift` | Native inbox, session, generation/revision, channel |
 | Watch runtime | `ios/NotchWatch/State/WatchCompanionStore.swift`, `WatchQueueStore.swift`, `Services/WatchSession.swift` | Persistent queue, cached context, receipts, reconnection |
