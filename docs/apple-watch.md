@@ -65,6 +65,9 @@ No partner directory or encounter history is exported to the Watch.
 - Watch simulator Debug and unsigned Watch device Release builds pass.
   Runner simulator Debug and unsigned iPhone Release builds pass, with both
   Watch and App Clip embedded. All three report version 1.0.0, build 8.
+  The final release was rebuilt successfully using a fresh DerivedData directory
+  after a stale SDK-module cache error; generated simulator intermediates were
+  cleared to recover disk space. No source workaround was required.
 - Bundle inspection confirms Watch minimum 10.0, Runner 15.0, App Clip 17.0,
   correct companion IDs/platforms, and different Runner/App Clip Flutter
   kernel hashes in the simulator build.
