@@ -7,6 +7,22 @@ optional mood and tags, orgasm count, and an explicit protection choice.
 Native labels support English and Spanish. The iPhone abstinence card now uses
 the same green hourglass heading and large, compact duration as the Watch.
 
+## Choose Watch cards
+
+On iPhone, open **Notch → Settings → Apple Watch**. Toggle cards and drag the
+handles on enabled cards to change their order. Abstinence, XP/level and monthly
+stats are enabled by default; monthly orgasm total is available as a fourth
+card. Choices persist on the phone and reach the Watch on the next authenticated
+sync. Swipe vertically or turn the Digital Crown to move between pages.
+
+The Actions page remains available for adding entries, viewing the queue and
+syncing. A quick-add button also stays in the dashboard toolbar. With every
+card disabled, Actions explains where to enable them. Missing configuration in
+older snapshots uses defaults; explicit empty selections remain empty. Unknown
+and duplicate IDs are ignored, and removing the current page selects a valid
+page. Initial sync and restored private access open the first configured card.
+These are cards inside Notch; no Smart Stack extension is included.
+
 ## Run locally
 
 Open `ios/Runner.xcworkspace` in Xcode. Select the `NotchWatch` scheme and a
@@ -71,10 +87,12 @@ optional command fields preserve compatibility with older pending entries.
 
 ## Verification on November 7, 2026
 
-- All 22 Dart companion tests pass, including four persisted-write/reopen
+- All 28 Dart companion tests pass, including four persisted-write/reopen
   recovery boundaries, access/reset, timestamps, duplicate import, snapshots,
   progression regressions, mood/tag recovery, backward compatibility and
-  bounded partner suggestions. The two existing abstinence service tests pass.
+  bounded partner suggestions, card preferences, rapid toggles, ordering,
+  explicit all-off snapshots and settings control persistence.
+  The two existing abstinence service tests pass.
   Full analysis retains 23 baseline findings outside the changed code.
 - Five Foundation harnesses pass: protocol, phone inbox, Watch queue, entry
   draft validation, and native bridge recovery after temporary file failure.
@@ -84,6 +102,9 @@ optional command fields preserve compatibility with older pending entries.
   final acceptance, live receipts, offline retention, reconnect with outstanding
   background transfers, failed immediate sends, and recovery of lost receipts.
   Run it with `bash test/native/watch_connectivity/run.sh`.
+- The seventh native harness (`test/native/watch_layout/main.swift`) verifies
+  card normalization, all-off behavior, cached ordering, first/restored access,
+  removed-page fallback and preservation of an intentional Actions selection.
 - Updated Watch and Runner simulator Debug builds pass, with both Watch and
   App Clip embedded. The initial companion also passed unsigned Watch and
   iPhone Release builds; this follow-up has not been signed or archived.
@@ -103,7 +124,12 @@ optional command fields preserve compatibility with older pending entries.
   card renders without overflow in English/Spanish at
   normal and 1.6× text scale. Fictional data and its isolated simulator were
   removed after inspection; existing simulator storage was preserved.
-- Full Flutter suite: 136 pass, five existing baseline failures remain:
+- The settings screen renders without overflow in English and Spanish at
+  390-point width using real app fonts. The paginated first card fits the 40 mm
+  Watch and shows native page indicators. Full Crown/swipe interaction and
+  larger text/Watch sizes remain manual device checks. Existing simulator
+  preferences and records were preserved; no fictional data was inserted.
+- Full Flutter suite: 142 pass, five existing baseline failures remain:
   `AnalyzerContextInsights adds an insight for the strongest recent month`,
   `AnalyzerPartnerInsights adds an insight for the strongest recent chemistry`,
   `LiteModeService.canAddEncounter blocks saving when current month already has five records`,

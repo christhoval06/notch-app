@@ -14,15 +14,19 @@ void main() {
     rating: rating,
     protected: protected,
   );
-  Map<String, Object?> build(List<Encounter> entries, {DateTime? at}) =>
-      WatchSnapshotService.build(
-        now: at ?? now,
-        encounters: entries,
-        monthlyProgress: [MonthlyProgress(monthId: '2026-11', xp: 150)],
-        l10n: AppLocalizationsEn(),
-        generation: 'g',
-        revision: 1,
-      ).toMap();
+  Map<String, Object?> build(
+    List<Encounter> entries, {
+    DateTime? at,
+    List<String>? cards,
+  }) => WatchSnapshotService.build(
+    now: at ?? now,
+    encounters: entries,
+    monthlyProgress: [MonthlyProgress(monthId: '2026-11', xp: 150)],
+    l10n: AppLocalizationsEn(),
+    generation: 'g',
+    revision: 1,
+    dashboardCards: cards,
+  ).toMap();
   test(
     'snapshot contains authoritative aggregates without partner history',
     () {
@@ -45,10 +49,30 @@ void main() {
       final data = build([entry(4, 8, true)], at: DateTime(2026, 12, 1));
       expect(data['monthId'], '2026-12');
       expect(data['entryCount'], 0);
+      expect(data['orgasmCount'], 0);
       expect(data['averageRating'], isNull);
       expect(data['protectionRate'], isNull);
       expect(data['xp'], 0);
       expect(build([])['abstinenceReferenceMs'], isNull);
     },
   );
+  test(
+    'snapshot exports default page order and current month orgasm total',
+    () {
+      final data = build([entry(4, 8, true), entry(6, 10, false)]);
+      expect(data['dashboardCards'], ['abstinence', 'level', 'stats']);
+      expect(data['orgasmCount'], 2);
+      expect(build([], at: DateTime(2026, 12, 1))['orgasmCount'], 0);
+    },
+  );
+  test('snapshot preserves explicit all-off and sanitizes page order', () {
+    expect(build([], cards: [])['dashboardCards'], isEmpty);
+    expect(
+      build(
+        [],
+        cards: ['stats', 'unknown', 'stats', 'orgasms'],
+      )['dashboardCards'],
+      ['stats', 'orgasms'],
+    );
+  });
 }

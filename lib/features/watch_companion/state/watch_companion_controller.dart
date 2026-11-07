@@ -1,3 +1,4 @@
+import 'package:notch_app/features/watch_companion/state/watch_layout_controller.dart';
 import 'package:notch_app/data/repositories/partner_repository.dart';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
@@ -31,6 +32,7 @@ class WatchCompanionController {
     _transport = transport;
     transport.onInbox = () => unawaited(drainInbox());
     _access.addListener(_accessChanged);
+    WatchLayoutController.instance.addListener(_dataChanged);
     EncounterRepository.listenable().addListener(_dataChanged);
     MonthlyProgressRepository.listenable().addListener(_dataChanged);
     PartnerRepository.listenable().addListener(_dataChanged);
@@ -117,6 +119,7 @@ class WatchCompanionController {
       encounters: _cache.encounters,
       monthlyProgress: _cache.monthlyProgress,
       partnerNames: _cache.partnerNames,
+      dashboardCards: WatchLayoutController.instance.value,
       l10n: lookupAppLocalizations(
         AppLocaleController.instance.localeNotifier.value,
       ),

@@ -1,3 +1,4 @@
+import 'package:notch_app/core/constants/watch_dashboard_cards.dart';
 import 'package:notch_app/features/watch_companion/services/watch_entry_options_service.dart';
 import 'package:notch_app/core/constants/watch_protocol.dart';
 import 'package:notch_app/core/utils/gamification_level_service.dart';
@@ -17,6 +18,7 @@ abstract final class WatchSnapshotService {
     required String generation,
     required int revision,
     List<String>? partnerNames,
+    List<String>? dashboardCards,
   }) {
     final monthId = '${now.year}-${now.month.toString().padLeft(2, '0')}';
     final current = encounters
@@ -39,6 +41,9 @@ abstract final class WatchSnapshotService {
       'schemaVersion': WatchProtocol.version,
       'kind': 'snapshot',
       'state': 'active',
+      'dashboardCards': WatchDashboardCards.normalize(
+        dashboardCards ?? WatchDashboardCards.defaults,
+      ),
       ...WatchEntryOptionsService.build(
         partnerNames ?? WatchEntryOptionsService.partnerNames(encounters, []),
         l10n,
@@ -56,6 +61,7 @@ abstract final class WatchSnapshotService {
       'progress': level['progress'] ?? 0.0,
       'nextXp': level['next_xp'] ?? 100,
       'entryCount': current.length,
+      'orgasmCount': current.fold<int>(0, (sum, e) => sum + e.orgasmCount),
       if (current.isNotEmpty) ...{
         'averageRating':
             current.fold(0, (sum, e) => sum + e.rating) / current.length,

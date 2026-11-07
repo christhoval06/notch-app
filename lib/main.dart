@@ -1,3 +1,5 @@
+import 'package:notch_app/features/watch_companion/state/watch_layout_controller.dart';
+import 'package:notch_app/core/router/app_router.dart';
 import 'package:notch_app/features/watch_companion/state/watch_companion_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:notch_app/core/app/landing_app.dart';
@@ -49,6 +51,7 @@ void main() async {
     await prefs.setBool('isFirstTime', false);
   }
 
+  WatchLayoutController.initialize(prefs);
   await WatchCompanionController.instance.start();
   runApp(NotchApp(isFirstTime: isFirstTime));
 }
@@ -65,6 +68,7 @@ class NotchApp extends StatelessWidget {
       builder: (context, locale, _) => MaterialApp(
         navigatorKey: navigatorKey,
         title: 'NOTCH',
+        routes: AppRouter.mobile,
         debugShowCheckedModeBanner: false,
         locale: locale,
         supportedLocales: AppLocalizations.supportedLocales,

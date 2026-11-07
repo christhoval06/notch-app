@@ -24,3 +24,9 @@ for invalid: [String: Any] in [["moodEmoji": "unknown"], ["tags": ["unknown"]], 
     assert((try? decoded.validated()) == nil)
 }
 assert(command.dictionary["tags"] == nil && command.dictionary["moodEmoji"] == nil)
+
+let pageData = try WatchProtocol.data(["schemaVersion": 1, "kind": "snapshot", "generation": "g", "revision": 1, "state": "active", "dashboardCards": ["stats", "orgasms"], "orgasmCount": 3])
+let pageSnapshot = try JSONDecoder().decode(WatchSnapshot.self, from: pageData)
+let pageRoundTrip = try JSONSerialization.jsonObject(with: JSONEncoder().encode(pageSnapshot)) as! [String: Any]
+assert(pageRoundTrip["dashboardCards"] as? [String] == ["stats", "orgasms"])
+assert(pageRoundTrip["orgasmCount"] as? Int == 3)

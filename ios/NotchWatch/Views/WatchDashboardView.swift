@@ -2,38 +2,39 @@ import SwiftUI
 
 struct WatchDashboardView: View {
     @EnvironmentObject private var store: WatchCompanionStore
+    @State private var selection = WatchDashboardSelection()
+    private var cards: [WatchDashboardCard] { WatchDashboardLayout.cards(in: store.snapshot) }
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 12) {
-                    if let snapshot = store.snapshot, snapshot.state == "active" {
-                        WatchAbstinenceCard(snapshot: snapshot)
-                        WatchLevelCard(snapshot: snapshot)
-                        WatchStatsCard(snapshot: snapshot)
-                        if let time = snapshot.generatedAtMs {
-                            VStack {
-                                Text("watchLastSync")
-                                Text(Date(timeIntervalSince1970: Double(time) / 1000), style: .relative)
-                            }.font(.caption2).foregroundStyle(.secondary)
+            Group {
+                if let snapshot = store.snapshot, snapshot.allowsPrivateContent {
+                    TabView(selection: $selection.page) {
+                        ForEach(cards, id: \.self) { card in
+                            WatchDashboardCardPage(card: card, snapshot: snapshot)
+                                .tag(card.rawValue)
                         }
-                    } else {
-                        Label("watchOpenPhone", systemImage: "iphone.and.arrow.forward")
-                            .font(.footnote).padding(.vertical)
-                    }
-                    NavigationLink { WatchEntryForm() } label: {
-                        Label("watchAddEntry", systemImage: "plus")
-                    }.buttonStyle(.borderedProminent).disabled(!store.canCreate)
-                    if store.canCreate && !store.entries.isEmpty {
-                        NavigationLink { WatchPendingList() } label: {
-                            Text("watchQueueTitle") + Text(verbatim: " (\(store.entries.count))")
-                        }
-                    }
-                    Button("watchRefresh") { store.refresh() }
-                        .font(.caption)
-                }.padding(.horizontal, 6)
+                        WatchActionsPage(showCardHint: cards.isEmpty)
+                            .tag(WatchDashboardLayout.actions)
+                    }.tabViewStyle(.verticalPage)
+                } else { WatchActionsPage() }
             }
             .background(WatchTheme.background)
             .navigationTitle("NOTCH")
+            .onChange(of: cards, initial: true) { _, values in
+                selection.update(cards: values)
+            }
+            .toolbar {
+                if store.canCreate {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink { WatchEntryForm() } label: {
+                            Image(systemName: "plus")
+                                .foregroundStyle(WatchTheme.onAccent)
+                                .accessibilityLabel(Text("watchAddEntry"))
+                        }
+                    }
+                }
+            }
             .alert("watchNotice", isPresented: Binding(
                 get: { store.errorKey != nil }, set: { if !$0 { store.errorKey = nil } })) {
                 Button("watchOK", role: .cancel) { store.errorKey = nil }

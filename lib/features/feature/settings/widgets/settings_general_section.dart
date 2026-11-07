@@ -7,6 +7,7 @@ import 'package:notch_app/features/feature/settings/presentation/pages/security_
 import 'package:notch_app/features/feature/settings/widgets/settings_section_header.dart';
 import 'package:notch_app/features/feature/settings/widgets/settings_tile.dart';
 import 'package:notch_app/l10n/app_localizations.dart';
+import 'package:notch_app/features/watch_companion/widgets/watch_settings_tile.dart';
 
 class SettingsGeneralSection extends StatelessWidget {
   const SettingsGeneralSection({super.key, required this.onLanguageTap});
@@ -21,6 +22,7 @@ class SettingsGeneralSection extends StatelessWidget {
     return Column(
       children: [
         SettingsSectionHeader(title: l10n.settingsGeneral),
+        const WatchSettingsTile(),
         SettingsTile(
           icon: Icons.shield_outlined,
           color: scheme.warning,

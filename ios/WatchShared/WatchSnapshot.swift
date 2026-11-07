@@ -7,6 +7,8 @@ struct WatchSnapshot: Codable {
     let revision: Int
     let state: String
     var allowsPrivateContent: Bool { state == "active" }
+    var dashboardCards: [String]?
+    var orgasmCount: Int?
     var partnerNames: [String]?
     var moodOptions: [String]?
     var tagOptions: [WatchTagOption]?
